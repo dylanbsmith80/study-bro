@@ -1,0 +1,273 @@
+{
+  "title": "Econ 300 Exam 2",
+  "cards": [
+    {
+      "term": "Theory of the firm",
+      "definition": "Explains how a firm makes cost-minimizing production decisions and how its cost varies with output."
+    },
+    {
+      "term": "Why firms are needed",
+      "definition": "Firms help solve coordination problems involved in producing complex goods."
+    },
+    {
+      "term": "Three parts of a firm's production decision",
+      "definition": "Production technology, cost constraints, and input choices."
+    },
+    {
+      "term": "Production technology",
+      "definition": "The ways inputs can be transformed into outputs."
+    },
+    {
+      "term": "Cost constraints",
+      "definition": "How input prices affect production costs and the optimal combination of inputs."
+    },
+    {
+      "term": "Input choices",
+      "definition": "The firm's selection of production inputs with attention to their costs."
+    },
+    {
+      "term": "Factors of production",
+      "definition": "Inputs used in production, broadly including labor, materials, and capital."
+    },
+    {
+      "term": "Production function",
+      "definition": "Shows the highest output a firm can efficiently produce for each specified combination of inputs."
+    },
+    {
+      "term": "Production function notation",
+      "definition": "q = F(K, L), where q is output, K is capital, and L is labor."
+    },
+    {
+      "term": "Average product",
+      "definition": "Output per unit of a particular input."
+    },
+    {
+      "term": "Average product of labor",
+      "definition": "Output divided by labor input: AP of labor = q / L."
+    },
+    {
+      "term": "Marginal product",
+      "definition": "The additional output produced when an input is increased by one unit."
+    },
+    {
+      "term": "Marginal product of labor",
+      "definition": "The change in output divided by the change in labor input: MP of labor = Δq / ΔL."
+    },
+    {
+      "term": "Law of diminishing marginal returns",
+      "definition": "As one input increases while other inputs remain fixed, the additional output from that input eventually decreases."
+    },
+    {
+      "term": "Productivity and standard of living",
+      "definition": "In the long run, aggregate consumption can increase only when the total amount produced increases."
+    },
+    {
+      "term": "Stock of capital",
+      "definition": "The total amount of capital available for use in production."
+    },
+    {
+      "term": "Technological change",
+      "definition": "Development of new technologies that allow factors of production to be used more effectively."
+    },
+    {
+      "term": "Sources of labor productivity growth",
+      "definition": "Growth in the stock of capital and technological change."
+    },
+    {
+      "term": "Accounting cost",
+      "definition": "Actual expenses plus depreciation charges for capital."
+    },
+    {
+      "term": "Economic cost",
+      "definition": "The cost to a firm of using economic resources in production."
+    },
+    {
+      "term": "Opportunity cost",
+      "definition": "The cost of opportunities forgone when resources are not put to their best alternative use."
+    },
+    {
+      "term": "Sunk cost",
+      "definition": "An expenditure that has already been made and cannot be recovered; fixed costs are sunk in the short run."
+    },
+    {
+      "term": "Total cost",
+      "definition": "The total economic cost of production, equal to fixed cost plus variable cost."
+    },
+    {
+      "term": "Fixed cost",
+      "definition": "A cost that does not vary with output and can be eliminated only by shutting down; most costs are fixed in the short run."
+    },
+    {
+      "term": "Variable cost",
+      "definition": "A cost that changes as output changes; over a sufficiently long run, nearly all costs are variable."
+    },
+    {
+      "term": "Amortization",
+      "definition": "Treating a one-time expenditure as an annual cost spread over a number of years."
+    },
+    {
+      "term": "Marginal cost",
+      "definition": "The increase in cost caused by producing one additional unit of output."
+    },
+    {
+      "term": "Marginal cost and average cost",
+      "definition": "Marginal cost pulls an average cost down when it is below the average and pulls it up when it is above; it intersects ATC and AVC at their minimum points."
+    },
+    {
+      "term": "Average total cost (ATC)",
+      "definition": "The firm's total cost divided by its level of output."
+    },
+    {
+      "term": "Average fixed cost (AFC)",
+      "definition": "Fixed cost divided by the level of output."
+    },
+    {
+      "term": "Average variable cost (AVC)",
+      "definition": "Variable cost divided by the level of output."
+    },
+    {
+      "term": "Diminishing returns and marginal cost",
+      "definition": "As the marginal product of labor declines with additional labor, marginal cost rises as output increases."
+    },
+    {
+      "term": "User cost of capital",
+      "definition": "The annual cost of owning and using a capital asset, equal to economic depreciation plus forgone interest."
+    },
+    {
+      "term": "User cost of capital formula",
+      "definition": "User cost = economic depreciation + (interest rate × value of capital); the rate can be written as r = interest rate + depreciation rate."
+    },
+    {
+      "term": "Isocost line",
+      "definition": "A graph showing all combinations of labor and capital that can be purchased for a given total cost."
+    },
+    {
+      "term": "Isocost equation",
+      "definition": "C = wL + rK, where w is the wage and r is the rental or user cost of capital."
+    },
+    {
+      "term": "Expansion path",
+      "definition": "A curve through the tangencies of a firm's isocost lines and isoquants, showing the cost-minimizing input combination at every output level."
+    },
+    {
+      "term": "Long-run average cost curve (LAC)",
+      "definition": "Relates average production cost to output when all inputs are variable."
+    },
+    {
+      "term": "Long-run marginal cost curve (LMC)",
+      "definition": "Shows the change in long-run total cost when output increases by one unit."
+    },
+    {
+      "term": "Short-run average cost curve (SAC)",
+      "definition": "Relates average production cost to output when the level of capital is fixed."
+    },
+    {
+      "term": "Economies of scale",
+      "definition": "A situation in which output can be doubled for less than a doubling of cost."
+    },
+    {
+      "term": "Diseconomies of scale",
+      "definition": "A situation in which doubling output requires more than a doubling of cost."
+    },
+    {
+      "term": "Increasing returns to scale",
+      "definition": "Output more than doubles when the quantities of all inputs are doubled."
+    },
+    {
+      "term": "Product transformation curve",
+      "definition": "Shows the combinations of two different outputs that can be produced with a given set of inputs."
+    },
+    {
+      "term": "Economies of scope",
+      "definition": "Joint output by one firm is greater than the output achievable by two separate firms each producing one product."
+    },
+    {
+      "term": "Diseconomies of scope",
+      "definition": "Joint output by one firm is less than the output achievable by separate firms each producing one product."
+    },
+    {
+      "term": "Cost-minimization condition",
+      "definition": "The productivity of each dollar spent on every factor should be equal: MPL / w = MPK / r."
+    },
+    {
+      "term": "Cost function",
+      "definition": "An equation, C(q), that represents a firm's expansion path and the cost of producing each output level."
+    },
+    {
+      "term": "Perfect competition",
+      "definition": "A market structure characterized by price taking, homogeneous products, and free entry and exit."
+    },
+    {
+      "term": "Price taking",
+      "definition": "No individual buyer or seller can influence the market price."
+    },
+    {
+      "term": "Homogeneous products",
+      "definition": "Products are the same across suppliers."
+    },
+    {
+      "term": "Free entry and exit",
+      "definition": "There are no barriers preventing firms from entering or leaving the market."
+    },
+    {
+      "term": "Profit",
+      "definition": "The difference between total revenue and total cost, represented by the vertical distance between the revenue and cost functions."
+    },
+    {
+      "term": "Profit-maximizing rule",
+      "definition": "Profit is maximized where the slopes of revenue and cost are equal, so marginal revenue equals marginal cost."
+    },
+    {
+      "term": "Marginal revenue",
+      "definition": "The change in revenue resulting from a one-unit increase in output."
+    },
+    {
+      "term": "Short-run output rule for a competitive firm",
+      "definition": "Choose output where marginal cost equals marginal revenue and price: MC(q) = MR = P."
+    },
+    {
+      "term": "Short-run shutdown rule",
+      "definition": "Shut down if price is below average variable cost; if price is above AVC, the firm may produce to reduce losses on fixed costs."
+    },
+    {
+      "term": "Competitive firm's supply curve",
+      "definition": "The portion of the marginal cost curve that lies above average variable cost."
+    },
+    {
+      "term": "Long-run output rule for a competitive firm",
+      "definition": "Choose output where long-run marginal cost equals price."
+    },
+    {
+      "term": "Long-run zero economic profit",
+      "definition": "The firm earns a normal return equal to what it could earn elsewhere; free entry removes positive economic profit and exit removes losses."
+    },
+    {
+      "term": "Conditions for long-run equilibrium",
+      "definition": "All firms maximize profit, no firm wants to enter or exit, and market quantity supplied equals quantity demanded."
+    },
+    {
+      "term": "Opportunity cost of land",
+      "definition": "A firm may earn accounting profit but no economic profit once the alternative value of its land is counted."
+    },
+    {
+      "term": "Economic rent",
+      "definition": "The amount a firm is willing to pay for an input minus the minimum amount necessary to obtain it."
+    },
+    {
+      "term": "Constant-cost industry",
+      "definition": "An industry with a horizontal long-run supply curve because expansion does not raise input costs."
+    },
+    {
+      "term": "Increasing-cost industry",
+      "definition": "An industry with an upward-sloping long-run supply curve because input prices rise as the industry expands."
+    },
+    {
+      "term": "Effect of an output tax",
+      "definition": "An output tax raises the firm's marginal cost by the tax amount, reduces output until MC plus tax equals price, and shifts supply upward by the tax."
+    },
+    {
+      "term": "Magnitude of long-run supply elasticity",
+      "definition": "Depends on how much input costs increase as the market expands."
+    }
+  ]
+}

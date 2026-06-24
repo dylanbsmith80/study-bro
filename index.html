@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <title>Study Bro</title>
+  <style>
+    :root {
+      --black: #050505;
+      --white: #ffffff;
+      --paper: #f4f4f0;
+      --muted: #686868;
+      --yellow: #ffd43b;
+      --green: #b9f6ca;
+      --green-dark: #0b5d2a;
+      --red: #ffb3b3;
+      --red-dark: #8b1111;
+      --border: 2px solid var(--black);
+      --radius: 22px;
+      --shadow: 7px 7px 0 var(--black);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--black);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 18px clamp(18px, 5vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: clamp(1.45rem, 4vw, 2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .deck-label {
+      color: #bdbdbd;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .shell {
+      width: min(100% - 32px, 960px);
+      margin: 30px auto 60px;
+    }
+
+    .tabs {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto 24px;
+      padding: 5px;
+      border: var(--border);
+      border-radius: 999px;
+      background: var(--white);
+      display: flex;
+      gap: 4px;
+    }
+
+    .tab {
+      min-width: 110px;
+      padding: 10px 19px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--black);
+      font-weight: 850;
+      cursor: pointer;
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    .tab:hover,
+    .tab:focus-visible {
+      background: #e8e8e3;
+      outline: none;
+    }
+
+    .tab.active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .progress-track {
+      height: 14px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      border: var(--border);
+      border-radius: 999px;
+      background: var(--white);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: var(--yellow);
+      transition: width 240ms ease;
+    }
+
+    .mode-panel {
+      display: none;
+    }
+
+    .mode-panel.active {
+      display: block;
+      animation: appear 220ms ease;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .status-row {
+      min-height: 34px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .status-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stat {
+      padding: 6px 11px;
+      border: var(--border);
+      border-radius: 999px;
+      background: var(--white);
+    }
+
+    .study-card {
+      width: 100%;
+      min-height: 360px;
+      padding: clamp(28px, 7vw, 64px);
+      border: var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .flashcard {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      perspective: 1000px;
+    }
+
+    .flashcard:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 4px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 22px;
+      padding: 5px 10px;
+      border: 1.5px solid var(--black);
+      border-radius: 999px;
+      background: var(--yellow);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .card-copy {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(1.65rem, 5vw, 3.2rem);
+      font-weight: 850;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    .definition-copy {
+      font-size: clamp(1.25rem, 3.4vw, 2rem);
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .flip-note {
+      position: absolute;
+      right: 18px;
+      bottom: 15px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 750;
+    }
+
+    .actions {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .btn {
+      min-height: 52px;
+      padding: 12px 20px;
+      border: var(--border);
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 100ms ease, box-shadow 100ms ease, background 140ms ease;
+    }
+
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--black);
+    }
+
+    .btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 var(--black);
+    }
+
+    .btn:focus-visible,
+    .answer:focus-visible,
+    .match-card:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 3px;
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+    }
+
+    .learn-prompt {
+      min-height: 210px;
+      margin-bottom: 18px;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .answer {
+      min-height: 94px;
+      padding: 18px;
+      border: var(--border);
+      border-radius: 16px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 750;
+      line-height: 1.35;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 120ms ease, background 150ms ease;
+    }
+
+    .answer:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .answer:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
+    .answer.correct {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--green-dark);
+    }
+
+    .answer.wrong {
+      border-color: var(--red-dark);
+      background: var(--red);
+      color: var(--red-dark);
+    }
+
+    .match-toolbar {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .match-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .match-card {
+      min-height: 134px;
+      padding: 14px;
+      border: var(--border);
+      border-radius: 15px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 760;
+      line-height: 1.25;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      transition: transform 120ms ease, background 150ms ease, opacity 200ms ease;
+    }
+
+    .match-card:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .match-card.selected {
+      background: var(--yellow);
+    }
+
+    .match-card.matched {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--green-dark);
+      cursor: default;
+    }
+
+    .match-card.wrong {
+      border-color: var(--red-dark);
+      background: var(--red);
+      color: var(--red-dark);
+    }
+
+    .mini-badge {
+      padding: 3px 7px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: 0.57rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .completion {
+      min-height: 430px;
+      padding: 40px 24px;
+      border: var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .completion-mark {
+      width: 78px;
+      height: 78px;
+      margin-bottom: 20px;
+      border: var(--border);
+      border-radius: 50%;
+      background: var(--yellow);
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 950;
+    }
+
+    .completion h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 7vw, 3.7rem);
+      letter-spacing: -0.055em;
+    }
+
+    .completion p {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .completion .btn {
+      min-width: 190px;
+    }
+
+    @media (max-width: 700px) {
+      .shell {
+        width: min(100% - 22px, 960px);
+        margin-top: 20px;
+      }
+
+      .deck-label {
+        display: none;
+      }
+
+      .tabs {
+        width: 100%;
+      }
+
+      .tab {
+        flex: 1;
+        min-width: 0;
+        padding-inline: 10px;
+      }
+
+      .study-card {
+        min-height: 310px;
+        box-shadow: 5px 5px 0 var(--black);
+      }
+
+      .answers {
+        grid-template-columns: 1fr;
+      }
+
+      .match-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .match-card {
+        min-height: 118px;
+        padding: 11px;
+        font-size: 0.84rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .status-row,
+      .match-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .match-toolbar .btn {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="brand">Study Bro.</h1>
+    <span class="deck-label">Sample deck · <span id="deckCount"></span> terms</span>
+  </header>
+
+  <main class="shell">
+    <nav class="tabs" aria-label="Study modes">
+      <button class="tab active" type="button" data-mode="flashcards">Flashcards</button>
+      <button class="tab" type="button" data-mode="learn">Learn</button>
+      <button class="tab" type="button" data-mode="match">Match</button>
+    </nav>
+
+    <div class="progress-track" aria-label="Study progress">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <section class="mode-panel active" id="flashcardsPanel" aria-label="Flashcards mode"></section>
+    <section class="mode-panel" id="learnPanel" aria-label="Learn mode"></section>
+    <section class="mode-panel" id="matchPanel" aria-label="Match mode"></section>
+  </main>
+
+  <script>
+    // Replace this array later with JSON loaded from a file or URL.
+    const deck = [
+      { term: "Photosynthesis", definition: "The process plants use to convert light energy into chemical energy." },
+      { term: "Mitosis", definition: "Cell division that produces two genetically identical daughter cells." },
+      { term: "Ecosystem", definition: "A community of organisms interacting with each other and their environment." },
+      { term: "Velocity", definition: "The speed of an object in a specific direction." },
+      { term: "Atom", definition: "The smallest unit of an element that retains its chemical properties." },
+      { term: "Democracy", definition: "A system of government in which power is held by the people." },
+      { term: "Metaphor", definition: "A figure of speech that directly compares two unlike things." },
+      { term: "Hypothesis", definition: "A testable explanation or prediction based on available evidence." },
+      { term: "Inflation", definition: "A general increase in prices and fall in the purchasing value of money." },
+      { term: "Algorithm", definition: "A step-by-step procedure for solving a problem or completing a task." }
+    ];
+
+    const elements = {
+      progress: document.querySelector("#progressFill"),
+      flashcards: document.querySelector("#flashcardsPanel"),
+      learn: document.querySelector("#learnPanel"),
+      match: document.querySelector("#matchPanel"),
+      tabs: [...document.querySelectorAll(".tab")]
+    };
+
+    let activeMode = "flashcards";
+    let timerInterval = null;
+
+    const flashState = {};
+    const learnState = {};
+    const matchState = {};
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function escapeHTML(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function setProgress(percent) {
+      elements.progress.style.width = `${Math.max(0, Math.min(100, percent))}%`;
+    }
+
+    function initFlashcards() {
+      Object.assign(flashState, {
+        queue: deck.map((_, index) => index),
+        missed: [],
+        index: 0,
+        round: 1,
+        known: 0,
+        unknown: 0,
+        flipped: false,
+        complete: false
+      });
+      renderFlashcards();
+    }
+
+    function renderFlashcards() {
+      if (flashState.complete) {
+        elements.flashcards.innerHTML = completionHTML(
+          "Deck complete",
+          `${flashState.known} got it · ${flashState.unknown} still learning`,
+          "Study again",
+          "initFlashcards()"
+        );
+        setProgress(100);
+        return;
+      }
+
+      const card = deck[flashState.queue[flashState.index]];
+      const showingDefinition = flashState.flipped;
+      const completed = flashState.index;
+      const total = flashState.queue.length;
+      setProgress((completed / total) * 100);
+
+      elements.flashcards.innerHTML = `
+        <div class="status-row">
+          <div class="status-group">
+            <span class="stat">Round ${flashState.round}</span>
+            <span class="stat">Known ${flashState.known}</span>
+            <span class="stat">Learning ${flashState.unknown}</span>
+          </div>
+          <span>${flashState.index + 1} / ${total}</span>
+        </div>
+        <article class="study-card flashcard" id="activeFlashcard" role="button" tabindex="0" aria-label="Flip card">
+          <span class="badge">${showingDefinition ? "definition" : "term"}</span>
+          <p class="card-copy ${showingDefinition ? "definition-copy" : ""}">
+            ${escapeHTML(showingDefinition ? card.definition : card.term)}
+          </p>
+          <span class="flip-note">click to flip ↻</span>
+        </article>
+        <div class="actions">
+          <button class="btn" type="button" id="missedButton">Still learning ✗</button>
+          <button class="btn btn-dark" type="button" id="knownButton">Got it ✓</button>
+        </div>
+      `;
+
+      const flashcard = document.querySelector("#activeFlashcard");
+      flashcard.addEventListener("click", flipFlashcard);
+      flashcard.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          flipFlashcard();
+        }
+      });
+      document.querySelector("#missedButton").addEventListener("click", () => gradeFlashcard(false));
+      document.querySelector("#knownButton").addEventListener("click", () => gradeFlashcard(true));
+    }
+
+    function flipFlashcard() {
+      flashState.flipped = !flashState.flipped;
+      renderFlashcards();
+    }
+
+    function gradeFlashcard(isKnown) {
+      const cardIndex = flashState.queue[flashState.index];
+      if (isKnown) {
+        flashState.known += 1;
+      } else {
+        flashState.unknown += 1;
+        if (flashState.round === 1) flashState.missed.push(cardIndex);
+      }
+
+      flashState.index += 1;
+      flashState.flipped = false;
+
+      if (flashState.index >= flashState.queue.length) {
+        if (flashState.round === 1 && flashState.missed.length) {
+          flashState.queue = shuffle(flashState.missed);
+          flashState.index = 0;
+          flashState.round = 2;
+        } else {
+          flashState.complete = true;
+        }
+      }
+      renderFlashcards();
+    }
+
+    function initLearn() {
+      Object.assign(learnState, {
+        queue: shuffle(deck.map((_, index) => index)),
+        missed: [],
+        index: 0,
+        round: 1,
+        correct: 0,
+        answered: 0,
+        locked: false,
+        complete: false,
+        choices: []
+      });
+      prepareLearnQuestion();
+    }
+
+    function prepareLearnQuestion() {
+      if (learnState.complete) {
+        renderLearn();
+        return;
+      }
+      const currentIndex = learnState.queue[learnState.index];
+      const distractors = shuffle(
+        deck.map((card, index) => ({ definition: card.definition, index }))
+          .filter((item) => item.index !== currentIndex)
+      ).slice(0, Math.min(3, deck.length - 1));
+
+      learnState.choices = shuffle([
+        { definition: deck[currentIndex].definition, index: currentIndex },
+        ...distractors
+      ]);
+      learnState.locked = false;
+      renderLearn();
+    }
+
+    function renderLearn() {
+      if (learnState.complete) {
+        const percentage = learnState.answered
+          ? Math.round((learnState.correct / learnState.answered) * 100)
+          : 0;
+        elements.learn.innerHTML = completionHTML(
+          `${percentage}% score`,
+          `${learnState.correct} correct out of ${learnState.answered} answers`,
+          "Try again",
+          "initLearn()"
+        );
+        setProgress(100);
+        return;
+      }
+
+      const currentIndex = learnState.queue[learnState.index];
+      const card = deck[currentIndex];
+      setProgress((learnState.index / learnState.queue.length) * 100);
+
+      elements.learn.innerHTML = `
+        <div class="status-row">
+          <div class="status-group">
+            <span class="stat">Round ${learnState.round}</span>
+            <span class="stat">Score ${learnState.correct} / ${learnState.answered}</span>
+          </div>
+          <span>${learnState.index + 1} / ${learnState.queue.length}</span>
+        </div>
+        <article class="study-card learn-prompt">
+          <span class="badge">term</span>
+          <p class="card-copy">${escapeHTML(card.term)}</p>
+        </article>
+        <div class="answers" id="answerGrid">
+          ${learnState.choices.map((choice, index) => `
+            <button class="answer" type="button" data-choice="${index}">
+              <span class="mini-badge">definition</span><br><br>
+              ${escapeHTML(choice.definition)}
+            </button>
+          `).join("")}
+        </div>
+      `;
+
+      document.querySelectorAll(".answer").forEach((button) => {
+        button.addEventListener("click", () => answerLearn(Number(button.dataset.choice)));
+      });
+    }
+
+    function answerLearn(choicePosition) {
+      if (learnState.locked) return;
+      learnState.locked = true;
+
+      const currentIndex = learnState.queue[learnState.index];
+      const selected = learnState.choices[choicePosition];
+      const buttons = [...document.querySelectorAll(".answer")];
+      const isCorrect = selected.index === currentIndex;
+
+      learnState.answered += 1;
+      if (isCorrect) {
+        learnState.correct += 1;
+      } else if (learnState.round === 1) {
+        learnState.missed.push(currentIndex);
+      }
+
+      buttons.forEach((button, index) => {
+        button.disabled = true;
+        if (learnState.choices[index].index === currentIndex) button.classList.add("correct");
+        if (index === choicePosition && !isCorrect) button.classList.add("wrong");
+      });
+
+      window.setTimeout(() => {
+        learnState.index += 1;
+        if (learnState.index >= learnState.queue.length) {
+          if (learnState.round === 1 && learnState.missed.length) {
+            learnState.queue = shuffle(learnState.missed);
+            learnState.index = 0;
+            learnState.round = 2;
+          } else {
+            learnState.complete = true;
+          }
+        }
+        prepareLearnQuestion();
+      }, 900);
+    }
+
+    function initMatch() {
+      stopMatchTimer();
+      const pairCount = Math.min(6, deck.length);
+      const selectedIndexes = shuffle(deck.map((_, index) => index)).slice(0, pairCount);
+      const cards = selectedIndexes.flatMap((deckIndex) => [
+        { id: `term-${deckIndex}`, pairId: deckIndex, type: "term", text: deck[deckIndex].term },
+        { id: `definition-${deckIndex}`, pairId: deckIndex, type: "definition", text: deck[deckIndex].definition }
+      ]);
+
+      Object.assign(matchState, {
+        cards: shuffle(cards),
+        selected: null,
+        matched: new Set(),
+        moves: 0,
+        seconds: 0,
+        locked: false,
+        complete: false,
+        pairCount
+      });
+      startMatchTimer();
+      renderMatch();
+    }
+
+    function startMatchTimer() {
+      timerInterval = window.setInterval(() => {
+        if (activeMode === "match" && !matchState.complete) {
+          matchState.seconds += 1;
+          const timer = document.querySelector("#matchTimer");
+          if (timer) timer.textContent = formatTime(matchState.seconds);
+        }
+      }, 1000);
+    }
+
+    function stopMatchTimer() {
+      if (timerInterval) window.clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      return `${minutes}:${String(seconds % 60).padStart(2, "0")}`;
+    }
+
+    function renderMatch() {
+      if (matchState.complete) {
+        elements.match.innerHTML = completionHTML(
+          "Matched!",
+          `${matchState.moves} moves · ${formatTime(matchState.seconds)}`,
+          "New set",
+          "initMatch()"
+        );
+        setProgress(100);
+        return;
+      }
+
+      setProgress((matchState.matched.size / matchState.pairCount) * 100);
+      elements.match.innerHTML = `
+        <div class="match-toolbar">
+          <div class="status-group">
+            <span class="stat">Moves ${matchState.moves}</span>
+            <span class="stat">Time <span id="matchTimer">${formatTime(matchState.seconds)}</span></span>
+          </div>
+          <button class="btn btn-yellow" type="button" id="newMatchSet">New set</button>
+        </div>
+        <div class="match-grid">
+          ${matchState.cards.map((card) => {
+            const matched = matchState.matched.has(card.pairId);
+            const selected = matchState.selected?.id === card.id;
+            return `
+              <button
+                class="match-card ${matched ? "matched" : ""} ${selected ? "selected" : ""}"
+                type="button"
+                data-id="${card.id}"
+                ${matched ? "disabled" : ""}
+              >
+                <span class="mini-badge">${card.type}</span>
+                <span>${escapeHTML(card.text)}</span>
+              </button>
+            `;
+          }).join("")}
+        </div>
+      `;
+
+      document.querySelector("#newMatchSet").addEventListener("click", initMatch);
+      document.querySelectorAll(".match-card:not(:disabled)").forEach((button) => {
+        button.addEventListener("click", () => selectMatchCard(button.dataset.id));
+      });
+    }
+
+    function selectMatchCard(cardId) {
+      if (matchState.locked) return;
+      const clicked = matchState.cards.find((card) => card.id === cardId);
+      if (!clicked || matchState.matched.has(clicked.pairId)) return;
+
+      if (!matchState.selected) {
+        matchState.selected = clicked;
+        renderMatch();
+        return;
+      }
+
+      if (matchState.selected.id === clicked.id) {
+        matchState.selected = null;
+        renderMatch();
+        return;
+      }
+
+      // A valid attempt must contain one term and one definition.
+      if (matchState.selected.type === clicked.type) {
+        matchState.selected = clicked;
+        renderMatch();
+        return;
+      }
+
+      matchState.moves += 1;
+      const first = matchState.selected;
+      if (first.pairId === clicked.pairId) {
+        matchState.matched.add(clicked.pairId);
+        matchState.selected = null;
+        if (matchState.matched.size === matchState.pairCount) {
+          matchState.complete = true;
+          stopMatchTimer();
+        }
+        renderMatch();
+        return;
+      }
+
+      matchState.locked = true;
+      const firstButton = document.querySelector(`[data-id="${CSS.escape(first.id)}"]`);
+      const secondButton = document.querySelector(`[data-id="${CSS.escape(clicked.id)}"]`);
+      firstButton?.classList.add("wrong");
+      secondButton?.classList.add("wrong");
+
+      window.setTimeout(() => {
+        matchState.selected = null;
+        matchState.locked = false;
+        renderMatch();
+      }, 500);
+    }
+
+    function completionHTML(title, detail, buttonLabel, action) {
+      return `
+        <div class="completion">
+          <div class="completion-mark">✓</div>
+          <h2>${escapeHTML(title)}</h2>
+          <p>${escapeHTML(detail)}</p>
+          <button class="btn btn-dark" type="button" onclick="${action}">${escapeHTML(buttonLabel)}</button>
+        </div>
+      `;
+    }
+
+    function switchMode(mode) {
+      activeMode = mode;
+      elements.tabs.forEach((tab) => {
+        const isActive = tab.dataset.mode === mode;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+      });
+      document.querySelectorAll(".mode-panel").forEach((panel) => panel.classList.remove("active"));
+      elements[mode].classList.add("active");
+
+      if (mode !== "match") stopMatchTimer();
+      if (mode === "flashcards") renderFlashcards();
+      if (mode === "learn") renderLearn();
+      if (mode === "match") {
+        if (!matchState.cards || matchState.complete) initMatch();
+        else {
+          startMatchTimer();
+          renderMatch();
+        }
+      }
+    }
+
+    elements.tabs.forEach((tab) => {
+      tab.addEventListener("click", () => switchMode(tab.dataset.mode));
+    });
+
+    document.querySelector("#deckCount").textContent = deck.length;
+    initFlashcards();
+    initLearn();
+    initMatch();
+    switchMode("flashcards");
+  </script>
+</body>
+</html>

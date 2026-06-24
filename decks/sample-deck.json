@@ -1,0 +1,29 @@
+{
+  "title": "Biology Chapter 1",
+  "cards": [
+    {
+      "term": "Osmosis",
+      "definition": "The movement of water across a semipermeable membrane."
+    },
+    {
+      "term": "Cell membrane",
+      "definition": "A selectively permeable barrier that surrounds and protects a cell."
+    },
+    {
+      "term": "Cytoplasm",
+      "definition": "The gel-like material inside a cell where many chemical reactions occur."
+    },
+    {
+      "term": "Nucleus",
+      "definition": "The organelle that contains most of a eukaryotic cell's genetic material."
+    },
+    {
+      "term": "Diffusion",
+      "definition": "The movement of particles from an area of higher concentration to lower concentration."
+    },
+    {
+      "term": "Homeostasis",
+      "definition": "The maintenance of stable internal conditions in an organism."
+    }
+  ]
+}

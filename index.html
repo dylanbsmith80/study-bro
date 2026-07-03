@@ -9,16 +9,26 @@
     :root {
       --black: #050505;
       --white: #ffffff;
-      --paper: #f4f4f0;
-      --muted: #686868;
+      --paper: #fff7df;
+      --paper-deep: #f0dfb8;
+      --paper-line: rgba(5, 5, 5, 0.06);
+      --muted: #665f51;
       --yellow: #ffd43b;
-      --green: #b9f6ca;
-      --green-dark: #0b5d2a;
-      --red: #ffb3b3;
+      --note-pink: #f3a0d8;
+      --note-blue: #72b8ff;
+      --lime: #a8d81f;
+      --green: #c9f47a;
+      --green-dark: #315f05;
+      --red: #ff4d32;
+      --red-soft: #ffd0c9;
       --red-dark: #8b1111;
-      --border: 2px solid var(--black);
-      --radius: 22px;
+      --purple: #6f3fa0;
+      --wood: #8b5226;
+      --ink-soft: rgba(5, 5, 5, 0.72);
+      --border: 3px solid var(--black);
+      --radius: 18px;
       --shadow: 7px 7px 0 var(--black);
+      --shadow-soft: 5px 5px 0 rgba(5, 5, 5, 0.18);
     }
 
     * {
@@ -28,9 +38,24 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: var(--paper);
+      background:
+        repeating-linear-gradient(0deg, transparent 0 31px, var(--paper-line) 31px 32px),
+        repeating-linear-gradient(90deg, rgba(255, 212, 59, 0.08) 0 1px, transparent 1px 76px),
+        linear-gradient(180deg, #fff9e9 0%, var(--paper) 54%, #f4e2bb 100%);
       color: var(--black);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        repeating-linear-gradient(8deg, transparent 0 42px, rgba(5, 5, 5, 0.025) 42px 43px),
+        repeating-linear-gradient(96deg, transparent 0 64px, rgba(168, 216, 31, 0.06) 64px 65px);
+      opacity: 0.75;
     }
 
     button {
@@ -38,104 +63,159 @@
     }
 
     .app-header {
-      background: var(--black);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, #16110d 0%, #22150d 56%, #32180e 100%);
       color: var(--white);
-      padding: 18px clamp(18px, 5vw, 64px);
+      padding: 16px clamp(18px, 5vw, 64px);
+      border-bottom: 5px solid var(--black);
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .header-identity {
+    .app-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 28px),
+        linear-gradient(0deg, rgba(255, 212, 59, 0.12), transparent 62%);
+      opacity: 0.72;
+    }
+
+    .brand-lockup {
       min-width: 0;
       display: flex;
       align-items: center;
       gap: 14px;
     }
 
-    .brand-logo {
-      width: clamp(48px, 5vw, 60px);
-      height: auto;
-      flex: 0 0 auto;
-      border-radius: 12px;
-      object-fit: contain;
+    .logo-mark {
+      position: relative;
+      flex: 0 0 74px;
+      width: 74px;
+      height: 74px;
+      overflow: hidden;
+      border: 3px solid var(--black);
+      border-radius: 19px;
+      background:
+        linear-gradient(135deg, var(--lime) 0 48%, var(--yellow) 48% 100%);
+      color: var(--black);
+      display: grid;
+      place-items: center;
+      box-shadow: 5px 5px 0 var(--yellow);
+      font-size: 1.2rem;
+      font-weight: 950;
+      letter-spacing: 0;
+      transform: rotate(-2deg);
     }
 
-    .header-copy {
+    .logo-mark img {
+      position: absolute;
+      left: -47%;
+      top: -18%;
+      width: 188%;
+      height: 188%;
+      object-fit: cover;
+    }
+
+    .brand-copy {
       min-width: 0;
+      display: grid;
+      gap: 5px;
     }
 
     .brand {
       margin: 0;
-      font-size: clamp(1.45rem, 4vw, 2rem);
+      font-size: clamp(1.65rem, 4vw, 2.25rem);
       line-height: 1;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.035em;
+      text-shadow: 3px 3px 0 var(--black);
     }
 
-    .header-deck {
-      min-width: 0;
-      margin-top: 5px;
-      text-align: left;
-    }
-
-    .deck-title {
-      display: block;
-      max-width: min(58vw, 520px);
-      overflow: hidden;
-      color: var(--white);
-      font-size: clamp(0.88rem, 2.4vw, 1.08rem);
-      font-weight: 850;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    .brand-tagline {
+      width: fit-content;
+      padding: 4px 9px;
+      border: 2px solid var(--black);
+      border-radius: 3px;
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.45);
+      font-size: 0.72rem;
+      font-weight: 950;
+      letter-spacing: 0;
+      transform: rotate(-1deg);
     }
 
     .deck-label {
-      display: block;
-      margin-top: 3px;
-      color: #bdbdbd;
+      padding: 8px 12px;
+      border: 2px solid rgba(255, 255, 255, 0.78);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff3bf;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .shell {
       width: min(100% - 32px, 960px);
-      margin: 30px auto 60px;
+      margin: 28px auto 64px;
+    }
+
+    .shell.stack-shell {
+      width: min(100% - 32px, 1180px);
     }
 
     .tabs {
       width: fit-content;
       max-width: 100%;
       margin: 0 auto 24px;
-      padding: 5px;
-      border: var(--border);
-      border-radius: 999px;
-      background: var(--white);
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
       display: flex;
-      gap: 4px;
+      gap: 8px;
     }
 
     .tab {
       min-width: 110px;
-      padding: 10px 19px;
-      border: 0;
-      border-radius: 999px;
-      background: transparent;
+      padding: 11px 18px 13px;
+      border: var(--border);
+      border-radius: 14px 14px 6px 6px;
+      background: var(--white);
       color: var(--black);
       font-weight: 850;
       cursor: pointer;
-      transition: background 160ms ease, color 160ms ease;
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 160ms ease, color 160ms ease;
     }
+
+    .tab:nth-child(1) { background: var(--yellow); }
+    .tab:nth-child(2) { background: var(--green); }
+    .tab:nth-child(3) { background: var(--note-blue); }
+    .tab:nth-child(4) { background: var(--note-pink); }
+    .tab:nth-child(5) { background: var(--red-soft); }
 
     .tab:hover,
     .tab:focus-visible {
-      background: #e8e8e3;
+      transform: translate(-1px, -2px);
+      box-shadow: 5px 6px 0 var(--black);
       outline: none;
     }
 
     .tab.active {
       background: var(--black);
       color: var(--white);
+      transform: translateY(-4px);
+      box-shadow: 4px 8px 0 var(--yellow);
     }
 
     .progress-track {
@@ -144,29 +224,19 @@
       overflow: hidden;
       border: var(--border);
       border-radius: 999px;
-      background: var(--white);
+      background:
+        repeating-linear-gradient(90deg, rgba(5, 5, 5, 0.08) 0 1px, transparent 1px 18px),
+        var(--white);
+      box-shadow: 4px 4px 0 rgba(5, 5, 5, 0.18);
     }
 
     .progress-fill {
       width: 0;
       height: 100%;
-      background: var(--yellow);
+      background:
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.28) 0 8px, transparent 8px 16px),
+        var(--lime);
       transition: width 240ms ease;
-    }
-
-    .deck-message {
-      margin-bottom: 20px;
-      padding: 14px 16px;
-      border: var(--border);
-      border-radius: 14px;
-      background: var(--red);
-      color: var(--red-dark);
-      font-weight: 800;
-      line-height: 1.4;
-    }
-
-    .deck-message[hidden] {
-      display: none;
     }
 
     .mode-panel {
@@ -203,17 +273,34 @@
     .stat {
       padding: 6px 11px;
       border: var(--border);
-      border-radius: 999px;
-      background: var(--white);
+      border-radius: 6px;
+      background: var(--yellow);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.2);
+      font-weight: 900;
+    }
+
+    .status-group .stat:nth-child(2n) {
+      background: var(--green);
+      transform: rotate(1deg);
+    }
+
+    .status-group .stat:nth-child(3n) {
+      background: var(--note-pink);
+      transform: rotate(-1deg);
     }
 
     .study-card {
+      position: relative;
+      overflow: hidden;
       width: 100%;
       min-height: 360px;
       padding: clamp(28px, 7vw, 64px);
       border: var(--border);
       border-radius: var(--radius);
-      background: var(--white);
+      background:
+        linear-gradient(90deg, rgba(255, 77, 50, 0.16) 0 4px, transparent 4px 100%),
+        repeating-linear-gradient(0deg, transparent 0 36px, rgba(5, 5, 5, 0.07) 36px 37px),
+        #fffdf3;
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
@@ -222,11 +309,46 @@
       text-align: center;
     }
 
+    .study-card::before {
+      content: "";
+      position: absolute;
+      inset: 14px auto 14px 24px;
+      width: 3px;
+      border-radius: 999px;
+      background: var(--red);
+      opacity: 0.72;
+    }
+
+    .study-card::after {
+      content: "";
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      width: 80px;
+      height: 18px;
+      border: 2px solid var(--black);
+      background:
+        repeating-linear-gradient(90deg, rgba(5, 5, 5, 0.18) 0 2px, transparent 2px 10px),
+        var(--yellow);
+      transform: rotate(4deg);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.18);
+    }
+
     .flashcard {
       position: relative;
       cursor: pointer;
       user-select: none;
       perspective: 1000px;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .flashcard.flipping-out {
+      animation: flashcardFlipOut 150ms ease-in forwards;
+    }
+
+    .flashcard.flipping-in {
+      animation: flashcardFlipIn 170ms ease-out;
     }
 
     .flashcard:focus-visible {
@@ -234,21 +356,37 @@
       outline-offset: 4px;
     }
 
+    @keyframes flashcardFlipOut {
+      from { transform: rotateY(0deg) scale(1); }
+      to { transform: rotateY(88deg) scale(0.985); }
+    }
+
+    @keyframes flashcardFlipIn {
+      from { transform: rotateY(-88deg) scale(0.985); }
+      to { transform: rotateY(0deg) scale(1); }
+    }
+
     .badge {
+      position: relative;
+      z-index: 1;
       display: inline-flex;
       align-items: center;
       margin-bottom: 22px;
       padding: 5px 10px;
-      border: 1.5px solid var(--black);
-      border-radius: 999px;
-      background: var(--yellow);
+      border: 2px solid var(--black);
+      border-radius: 5px;
+      background: var(--lime);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.18);
       font-size: 0.68rem;
       font-weight: 900;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      transform: rotate(-1deg);
     }
 
     .card-copy {
+      position: relative;
+      z-index: 1;
       margin: 0;
       max-width: 720px;
       font-size: clamp(1.65rem, 5vw, 3.2rem);
@@ -265,6 +403,7 @@
 
     .flip-note {
       position: absolute;
+      z-index: 1;
       right: 18px;
       bottom: 15px;
       color: var(--muted);
@@ -283,8 +422,8 @@
       min-height: 52px;
       padding: 12px 20px;
       border: var(--border);
-      border-radius: 14px;
-      background: var(--white);
+      border-radius: 12px;
+      background: #fffdf3;
       color: var(--black);
       font-weight: 900;
       cursor: pointer;
@@ -294,7 +433,7 @@
 
     .btn:hover {
       transform: translate(-1px, -1px);
-      box-shadow: 5px 5px 0 var(--black);
+      box-shadow: 6px 6px 0 var(--black);
     }
 
     .btn:active {
@@ -304,6 +443,10 @@
 
     .btn:focus-visible,
     .answer:focus-visible,
+    .test-option:focus-visible,
+    .test-answer-chip:focus-visible,
+    .test-drop-zone:focus-visible,
+    .stack-answer:focus-visible,
     .match-card:focus-visible {
       outline: 4px solid var(--yellow);
       outline-offset: 3px;
@@ -312,10 +455,13 @@
     .btn-dark {
       background: var(--black);
       color: var(--white);
+      box-shadow: 4px 4px 0 var(--red);
     }
 
     .btn-yellow {
-      background: var(--yellow);
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.35), transparent 64%),
+        var(--yellow);
     }
 
     .learn-prompt {
@@ -329,22 +475,45 @@
       gap: 14px;
     }
 
+    .learn-controls {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .learn-feedback {
+      min-height: 24px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-weight: 820;
+      line-height: 1.35;
+    }
+
+    .learn-feedback strong {
+      color: var(--black);
+    }
+
     .answer {
       min-height: 94px;
       padding: 18px;
       border: var(--border);
-      border-radius: 16px;
-      background: var(--white);
+      border-radius: 13px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 28px, rgba(5, 5, 5, 0.05) 28px 29px),
+        #fffdf3;
       color: var(--black);
       font-weight: 750;
       line-height: 1.35;
       text-align: left;
       cursor: pointer;
-      transition: transform 120ms ease, background 150ms ease;
+      box-shadow: var(--shadow-soft);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 150ms ease;
     }
 
     .answer:hover:not(:disabled) {
-      transform: translateY(-2px);
+      transform: translate(-1px, -2px);
+      box-shadow: 6px 6px 0 rgba(5, 5, 5, 0.22);
     }
 
     .answer:disabled {
@@ -360,7 +529,7 @@
 
     .answer.wrong {
       border-color: var(--red-dark);
-      background: var(--red);
+      background: var(--red-soft);
       color: var(--red-dark);
     }
 
@@ -382,8 +551,8 @@
       min-height: 134px;
       padding: 14px;
       border: var(--border);
-      border-radius: 15px;
-      background: var(--white);
+      border-radius: 13px;
+      background: #fffdf3;
       color: var(--black);
       font-weight: 760;
       line-height: 1.25;
@@ -394,11 +563,13 @@
       justify-content: space-between;
       gap: 12px;
       text-align: left;
-      transition: transform 120ms ease, background 150ms ease, opacity 200ms ease;
+      box-shadow: var(--shadow-soft);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 150ms ease, opacity 200ms ease;
     }
 
     .match-card:hover:not(:disabled) {
-      transform: translateY(-2px);
+      transform: translate(-1px, -2px);
+      box-shadow: 6px 6px 0 rgba(5, 5, 5, 0.22);
     }
 
     .match-card.selected {
@@ -414,14 +585,15 @@
 
     .match-card.wrong {
       border-color: var(--red-dark);
-      background: var(--red);
+      background: var(--red-soft);
       color: var(--red-dark);
     }
 
     .mini-badge {
       padding: 3px 7px;
-      border: 1px solid currentColor;
-      border-radius: 999px;
+      border: 2px solid currentColor;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.45);
       font-size: 0.57rem;
       font-weight: 900;
       letter-spacing: 0.1em;
@@ -429,11 +601,16 @@
     }
 
     .completion {
+      position: relative;
+      overflow: hidden;
       min-height: 430px;
       padding: 40px 24px;
       border: var(--border);
       border-radius: var(--radius);
-      background: var(--white);
+      background:
+        linear-gradient(90deg, rgba(255, 77, 50, 0.14) 0 5px, transparent 5px),
+        repeating-linear-gradient(0deg, transparent 0 34px, rgba(5, 5, 5, 0.06) 34px 35px),
+        #fffdf3;
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
@@ -442,17 +619,41 @@
       text-align: center;
     }
 
+    .completion::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 76px;
+      height: 76px;
+      border: 3px solid var(--black);
+      border-radius: 18px;
+      background-image: url("Logo1.png");
+      background-size: 190%;
+      background-position: 45% 20%;
+      box-shadow: 4px 4px 0 var(--yellow);
+      transform: rotate(-4deg);
+    }
+
+    .completion > * {
+      position: relative;
+      z-index: 1;
+    }
+
     .completion-mark {
-      width: 78px;
-      height: 78px;
+      width: 92px;
+      height: 92px;
       margin-bottom: 20px;
       border: var(--border);
-      border-radius: 50%;
-      background: var(--yellow);
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, var(--lime), var(--yellow));
+      box-shadow: 5px 5px 0 var(--black);
       display: grid;
       place-items: center;
       font-size: 2rem;
       font-weight: 950;
+      transform: rotate(-2deg);
     }
 
     .completion h2 {
@@ -471,6 +672,551 @@
       min-width: 190px;
     }
 
+    .test-shell {
+      display: grid;
+      gap: 18px;
+    }
+
+    .test-intro,
+    .test-card,
+    .test-results {
+      position: relative;
+      overflow: hidden;
+      border: var(--border);
+      border-radius: var(--radius);
+      background:
+        repeating-linear-gradient(0deg, transparent 0 32px, rgba(5, 5, 5, 0.055) 32px 33px),
+        #fffdf3;
+      box-shadow: var(--shadow);
+    }
+
+    .test-intro,
+    .test-results {
+      padding: clamp(22px, 4vw, 34px);
+    }
+
+    .test-intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .test-intro h2,
+    .test-results h2 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .test-intro p,
+    .test-results p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 760;
+      line-height: 1.4;
+    }
+
+    .test-card {
+      padding: clamp(18px, 4vw, 28px);
+    }
+
+    .test-question-header {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .test-question-header strong {
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .test-prompt {
+      margin: 0 0 14px;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 850;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .test-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .test-option {
+      min-height: 58px;
+      padding: 13px 14px;
+      border: var(--border);
+      border-radius: 14px;
+      background: #fffdf3;
+      color: var(--black);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: center;
+      font-weight: 760;
+      line-height: 1.3;
+      text-align: left;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .test-option input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--black);
+    }
+
+    .test-option:has(input:checked) {
+      background: var(--yellow);
+    }
+
+    .test-match-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.72fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .test-match-section {
+      display: grid;
+      gap: 18px;
+    }
+
+    .test-match-board {
+      display: grid;
+      gap: 12px;
+    }
+
+    .test-match-term {
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .test-drop-zone {
+      min-height: 62px;
+      padding: 10px;
+      border: var(--border);
+      border-radius: 14px;
+      background: #fffdf3;
+      color: var(--black);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .test-drop-zone.empty {
+      border-style: dashed;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .test-drop-zone.drag-over {
+      background: var(--yellow);
+    }
+
+    .test-answer-bank {
+      padding: 14px;
+      border: 2px dashed var(--black);
+      border-radius: 16px;
+      background: rgba(168, 216, 31, 0.12);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: flex-start;
+      min-height: 86px;
+    }
+
+    .test-answer-bank.drag-over {
+      background: var(--yellow);
+    }
+
+    .test-answer-chip {
+      min-height: 44px;
+      padding: 10px 12px;
+      border: var(--border);
+      border-radius: 14px;
+      background: var(--yellow);
+      color: var(--black);
+      cursor: grab;
+      box-shadow: 3px 3px 0 var(--black);
+      font-weight: 760;
+      line-height: 1.25;
+      text-align: left;
+      touch-action: none;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .test-answer-chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 4px 4px 0 var(--black);
+    }
+
+    .test-answer-chip.dragging {
+      opacity: 0.62;
+      cursor: grabbing;
+    }
+
+    .test-answer-chip.selected {
+      background: var(--yellow);
+    }
+
+    .test-drop-zone .test-answer-chip {
+      width: 100%;
+      box-shadow: none;
+      cursor: grab;
+    }
+
+    .test-actions,
+    .test-result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .test-score {
+      margin: 18px 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .test-score .stat {
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .test-review {
+      margin-top: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .test-review-item {
+      padding: 14px;
+      border: var(--border);
+      border-radius: 15px;
+      background: #fffdf3;
+    }
+
+    .test-review-item.correct {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--green-dark);
+    }
+
+    .test-review-item.wrong {
+      border-color: var(--red-dark);
+      background: var(--red);
+      color: var(--red-dark);
+    }
+
+    .test-review-item h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .test-review-item p {
+      margin: 4px 0 0;
+      color: inherit;
+      font-size: 0.92rem;
+      font-weight: 760;
+      line-height: 1.35;
+    }
+
+    .test-results::before,
+    .stack-end-state::before {
+      content: "One page at a time";
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      padding: 5px 9px;
+      border: 2px solid var(--black);
+      border-radius: 4px;
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.2);
+      font-size: 0.7rem;
+      font-weight: 950;
+      pointer-events: none;
+      transform: rotate(2deg);
+    }
+
+    .stack-game {
+      display: grid;
+      grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .stack-panel,
+    .stack-stage-card {
+      border: var(--border);
+      border-radius: 18px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 30px, rgba(5, 5, 5, 0.05) 30px 31px),
+        #fffdf3;
+      box-shadow: var(--shadow);
+    }
+
+    .stack-panel {
+      padding: 20px;
+    }
+
+    .stack-stage-card {
+      overflow: hidden;
+    }
+
+    .stack-stats {
+      margin-bottom: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.83rem;
+      font-weight: 850;
+    }
+
+    .stack-question {
+      margin: 0 0 16px;
+      font-size: clamp(1.55rem, 3vw, 2.35rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .stack-answer-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stack-answer {
+      width: 100%;
+      min-height: 68px;
+      padding: 13px 14px;
+      border: var(--border);
+      border-radius: 13px;
+      background: #fffdf3;
+      color: var(--black);
+      font-weight: 780;
+      line-height: 1.25;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 120ms ease, background 150ms ease;
+    }
+
+    .stack-answer:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .stack-answer:disabled {
+      cursor: default;
+    }
+
+    .stack-answer.correct {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--green-dark);
+    }
+
+    .stack-answer.wrong {
+      border-color: var(--red-dark);
+      background: var(--red-soft);
+      color: var(--red-dark);
+    }
+
+    .stack-feedback {
+      min-height: 45px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .stack-feedback strong {
+      color: var(--black);
+    }
+
+    .stack-preview {
+      margin-top: 16px;
+      padding: 14px;
+      border: 2px dashed var(--black);
+      border-radius: 15px;
+      background: rgba(255, 212, 59, 0.14);
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .stack-preview.empty {
+      color: var(--muted);
+      display: block;
+      font-weight: 800;
+    }
+
+    .stack-preview-shape {
+      width: 52px;
+      height: 38px;
+      border: 2px solid var(--black);
+      background: var(--yellow);
+    }
+
+    .stack-preview h3 {
+      margin: 0 0 2px;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .stack-preview p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .stack-controls {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .stack-stage-toolbar {
+      padding: 13px 16px;
+      border-bottom: var(--border);
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.86rem;
+      font-weight: 850;
+    }
+
+    .stack-stage {
+      position: relative;
+      height: min(58vh, 560px);
+      min-height: 430px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(5, 5, 5, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(5, 5, 5, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 77, 50, 0.14) 0 4px, transparent 4px),
+        #fffdf3;
+      background-size: 34px 34px, 34px 34px, 100% 100%, auto;
+      touch-action: none;
+    }
+
+    .stack-stage canvas {
+      position: absolute !important;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 1;
+    }
+
+    .stack-drop-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      z-index: 2;
+      width: min(42%, 320px);
+      height: 22px;
+      transform: translateX(-50%);
+      border: 2px solid var(--black);
+      border-radius: 999px;
+      background: var(--black);
+      box-shadow: 0 6px 0 rgba(5, 5, 5, 0.12);
+      pointer-events: none;
+    }
+
+    .stack-token-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .stack-token {
+      position: absolute;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      box-shadow: 4px 4px 0 rgba(5, 5, 5, 0.28);
+      cursor: grab;
+      pointer-events: auto;
+      touch-action: none;
+    }
+
+    .stack-token:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 4px;
+    }
+
+    .stack-token.dragging {
+      cursor: grabbing;
+      box-shadow: 6px 6px 0 rgba(5, 5, 5, 0.28);
+    }
+
+    .stack-token.circle {
+      border-radius: 50%;
+    }
+
+    .stack-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      padding: 24px;
+      background: rgba(244, 244, 240, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .stack-overlay.active {
+      display: flex;
+    }
+
+    .stack-end-state {
+      position: relative;
+      overflow: hidden;
+      width: min(100%, 440px);
+      padding: 28px;
+      border: var(--border);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .stack-end-state h2 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .stack-end-state p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .stack-end-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
     @media (max-width: 700px) {
       .shell {
         width: min(100% - 22px, 960px);
@@ -481,26 +1227,26 @@
         display: none;
       }
 
-      .deck-title {
-        max-width: 64vw;
+      .brand-lockup {
+        gap: 10px;
       }
 
-      .header-identity {
-        gap: 11px;
-      }
-
-      .brand-logo {
+      .logo-mark {
+        flex-basis: 46px;
         width: 46px;
-        border-radius: 10px;
+        height: 46px;
+        border-radius: 12px;
       }
 
       .tabs {
         width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .tab {
-        flex: 1;
-        min-width: 0;
+        flex: 1 1 118px;
+        min-width: 104px;
         padding-inline: 10px;
       }
 
@@ -513,6 +1259,23 @@
         grid-template-columns: 1fr;
       }
 
+      .learn-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .test-intro {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .test-score {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .test-match-row {
+        grid-template-columns: 1fr;
+      }
+
       .match-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 9px;
@@ -522,6 +1285,15 @@
         min-height: 118px;
         padding: 11px;
         font-size: 0.84rem;
+      }
+
+      .stack-game {
+        grid-template-columns: 1fr;
+      }
+
+      .stack-stage {
+        height: 56vh;
+        min-height: 390px;
       }
     }
 
@@ -539,6 +1311,19 @@
       .match-toolbar .btn {
         width: 100%;
       }
+
+      .test-score {
+        grid-template-columns: 1fr;
+      }
+
+      .test-actions .btn,
+      .test-result-actions .btn {
+        width: 100%;
+      }
+
+      .stack-end-actions {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -555,16 +1340,17 @@
 </head>
 <body>
   <header class="app-header">
-    <div class="header-identity">
-      <img class="brand-logo" src="assets/study-bro-logo.png" alt="Study Bro logo">
-      <div class="header-copy">
+    <div class="brand-lockup" aria-label="Study Bro">
+      <span class="logo-mark" aria-hidden="true">
+        <span>SB</span>
+        <img src="Logo1.png" alt="">
+      </span>
+      <div class="brand-copy">
         <h1 class="brand">Study Bro.</h1>
-        <div class="header-deck">
-          <span class="deck-title" id="deckTitle">Sample Deck</span>
-          <span class="deck-label"><span id="deckCount"></span> terms</span>
-        </div>
+        <span class="brand-tagline">One page at a time</span>
       </div>
     </div>
+    <span class="deck-label">Sample deck · <span id="deckCount"></span> terms</span>
   </header>
 
   <main class="shell">
@@ -572,56 +1358,56 @@
       <button class="tab active" type="button" data-mode="flashcards">Flashcards</button>
       <button class="tab" type="button" data-mode="learn">Learn</button>
       <button class="tab" type="button" data-mode="match">Match</button>
+      <button class="tab" type="button" data-mode="test">Test</button>
+      <button class="tab" type="button" data-mode="stack">Stack</button>
     </nav>
 
     <div class="progress-track" aria-label="Study progress">
       <div class="progress-fill" id="progressFill"></div>
     </div>
 
-    <div class="deck-message" id="deckMessage" role="alert" hidden></div>
-
     <section class="mode-panel active" id="flashcardsPanel" aria-label="Flashcards mode"></section>
     <section class="mode-panel" id="learnPanel" aria-label="Learn mode"></section>
     <section class="mode-panel" id="matchPanel" aria-label="Match mode"></section>
+    <section class="mode-panel" id="testPanel" aria-label="Test mode"></section>
+    <section class="mode-panel" id="stackPanel" aria-label="Stack game mode"></section>
   </main>
 
   <script>
-    const sampleDeck = {
-      title: "Sample Deck",
-      cards: [
-        { term: "Photosynthesis", definition: "The process plants use to convert light energy into chemical energy." },
-        { term: "Mitosis", definition: "Cell division that produces two genetically identical daughter cells." },
-        { term: "Ecosystem", definition: "A community of organisms interacting with each other and their environment." },
-        { term: "Velocity", definition: "The speed of an object in a specific direction." },
-        { term: "Atom", definition: "The smallest unit of an element that retains its chemical properties." },
-        { term: "Democracy", definition: "A system of government in which power is held by the people." },
-        { term: "Metaphor", definition: "A figure of speech that directly compares two unlike things." },
-        { term: "Hypothesis", definition: "A testable explanation or prediction based on available evidence." },
-        { term: "Inflation", definition: "A general increase in prices and fall in the purchasing value of money." },
-        { term: "Algorithm", definition: "A step-by-step procedure for solving a problem or completing a task." }
-      ]
-    };
-
-    let deck = sampleDeck.cards;
-    let deckTitle = sampleDeck.title;
+    // Replace this array later with JSON loaded from a file or URL.
+    const deck = [
+      { term: "Photosynthesis", definition: "The process plants use to convert light energy into chemical energy." },
+      { term: "Mitosis", definition: "Cell division that produces two genetically identical daughter cells." },
+      { term: "Ecosystem", definition: "A community of organisms interacting with each other and their environment." },
+      { term: "Velocity", definition: "The speed of an object in a specific direction." },
+      { term: "Atom", definition: "The smallest unit of an element that retains its chemical properties." },
+      { term: "Democracy", definition: "A system of government in which power is held by the people." },
+      { term: "Metaphor", definition: "A figure of speech that directly compares two unlike things." },
+      { term: "Hypothesis", definition: "A testable explanation or prediction based on available evidence." },
+      { term: "Inflation", definition: "A general increase in prices and fall in the purchasing value of money." },
+      { term: "Algorithm", definition: "A step-by-step procedure for solving a problem or completing a task." }
+    ];
 
     const elements = {
       progress: document.querySelector("#progressFill"),
       flashcards: document.querySelector("#flashcardsPanel"),
       learn: document.querySelector("#learnPanel"),
       match: document.querySelector("#matchPanel"),
-      deckTitle: document.querySelector("#deckTitle"),
-      deckCount: document.querySelector("#deckCount"),
-      deckMessage: document.querySelector("#deckMessage"),
+      test: document.querySelector("#testPanel"),
+      stack: document.querySelector("#stackPanel"),
+      shell: document.querySelector(".shell"),
       tabs: [...document.querySelectorAll(".tab")]
     };
 
     let activeMode = "flashcards";
     let timerInterval = null;
+    let learnAdvanceTimer = null;
+    let stackGame = null;
 
     const flashState = {};
     const learnState = {};
     const matchState = {};
+    const testState = {};
 
     function shuffle(items) {
       const copy = [...items];
@@ -645,71 +1431,6 @@
       elements.progress.style.width = `${Math.max(0, Math.min(100, percent))}%`;
     }
 
-    function validateDeck(data) {
-      if (!data || typeof data.title !== "string" || !data.title.trim()) {
-        throw new Error("The deck needs a non-empty title.");
-      }
-      if (!Array.isArray(data.cards) || data.cards.length === 0) {
-        throw new Error("The deck needs at least one card.");
-      }
-      const validCards = data.cards.every((card) =>
-        card &&
-        typeof card.term === "string" &&
-        card.term.trim() &&
-        typeof card.definition === "string" &&
-        card.definition.trim()
-      );
-      if (!validCards) {
-        throw new Error("Every card needs a non-empty term and definition.");
-      }
-    }
-
-    function updateDeckHeader() {
-      elements.deckTitle.textContent = deckTitle;
-      elements.deckCount.textContent = deck.length;
-      document.title = `${deckTitle} · Study Bro`;
-    }
-
-    function showDeckError(message) {
-      elements.deckMessage.textContent = message;
-      elements.deckMessage.hidden = false;
-    }
-
-    async function loadDeck() {
-      const deckPath = new URLSearchParams(window.location.search).get("deck");
-      if (!deckPath) {
-        updateDeckHeader();
-        return;
-      }
-
-      try {
-        const response = await fetch(deckPath);
-        if (!response.ok) {
-          throw new Error(`Request failed with status ${response.status}.`);
-        }
-        const data = await response.json();
-        validateDeck(data);
-        deckTitle = data.title.trim();
-        deck = data.cards.map((card) => ({
-          term: card.term.trim(),
-          definition: card.definition.trim()
-        }));
-      } catch (error) {
-        deckTitle = sampleDeck.title;
-        deck = sampleDeck.cards;
-        showDeckError(`Could not load "${deckPath}". ${error.message} Showing the sample deck instead.`);
-      }
-
-      updateDeckHeader();
-    }
-
-    function startApp() {
-      initFlashcards();
-      initLearn();
-      initMatch();
-      switchMode("flashcards");
-    }
-
     function initFlashcards() {
       Object.assign(flashState, {
         queue: deck.map((_, index) => index),
@@ -719,6 +1440,7 @@
         known: 0,
         unknown: 0,
         flipped: false,
+        flipStage: null,
         complete: false
       });
       renderFlashcards();
@@ -751,7 +1473,7 @@
           </div>
           <span>${flashState.index + 1} / ${total}</span>
         </div>
-        <article class="study-card flashcard" id="activeFlashcard" role="button" tabindex="0" aria-label="Flip card">
+        <article class="study-card flashcard ${flashState.flipStage ? `flipping-${flashState.flipStage}` : ""}" id="activeFlashcard" role="button" tabindex="0" aria-label="Flip card">
           <span class="badge">${showingDefinition ? "definition" : "term"}</span>
           <p class="card-copy ${showingDefinition ? "definition-copy" : ""}">
             ${escapeHTML(showingDefinition ? card.definition : card.term)}
@@ -777,8 +1499,28 @@
     }
 
     function flipFlashcard() {
-      flashState.flipped = !flashState.flipped;
+      if (flashState.flipStage) return;
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduceMotion) {
+        flashState.flipped = !flashState.flipped;
+        renderFlashcards();
+        return;
+      }
+
+      flashState.flipStage = "out";
       renderFlashcards();
+
+      window.setTimeout(() => {
+        flashState.flipped = !flashState.flipped;
+        flashState.flipStage = "in";
+        renderFlashcards();
+
+        window.setTimeout(() => {
+          flashState.flipStage = null;
+          renderFlashcards();
+        }, 170);
+      }, 150);
     }
 
     function gradeFlashcard(isKnown) {
@@ -792,6 +1534,7 @@
 
       flashState.index += 1;
       flashState.flipped = false;
+      flashState.flipStage = null;
 
       if (flashState.index >= flashState.queue.length) {
         if (flashState.round === 1 && flashState.missed.length) {
@@ -805,7 +1548,13 @@
       renderFlashcards();
     }
 
+    function clearLearnAdvanceTimer() {
+      if (learnAdvanceTimer) window.clearTimeout(learnAdvanceTimer);
+      learnAdvanceTimer = null;
+    }
+
     function initLearn() {
+      clearLearnAdvanceTimer();
       Object.assign(learnState, {
         queue: shuffle(deck.map((_, index) => index)),
         missed: [],
@@ -815,12 +1564,17 @@
         answered: 0,
         locked: false,
         complete: false,
+        selectedChoice: null,
+        correctChoice: null,
+        needsNext: false,
+        feedback: "",
         choices: []
       });
       prepareLearnQuestion();
     }
 
     function prepareLearnQuestion() {
+      clearLearnAdvanceTimer();
       if (learnState.complete) {
         renderLearn();
         return;
@@ -836,6 +1590,10 @@
         ...distractors
       ]);
       learnState.locked = false;
+      learnState.selectedChoice = null;
+      learnState.correctChoice = null;
+      learnState.needsNext = false;
+      learnState.feedback = "";
       renderLearn();
     }
 
@@ -857,6 +1615,7 @@
       const currentIndex = learnState.queue[learnState.index];
       const card = deck[currentIndex];
       setProgress((learnState.index / learnState.queue.length) * 100);
+      const answersLocked = learnState.locked;
 
       elements.learn.innerHTML = `
         <div class="status-row">
@@ -871,18 +1630,33 @@
           <p class="card-copy">${escapeHTML(card.term)}</p>
         </article>
         <div class="answers" id="answerGrid">
-          ${learnState.choices.map((choice, index) => `
-            <button class="answer" type="button" data-choice="${index}">
+          ${learnState.choices.map((choice, index) => {
+            const classes = ["answer"];
+            if (learnState.correctChoice === index) classes.push("correct");
+            if (learnState.selectedChoice === index && learnState.correctChoice !== index) classes.push("wrong");
+
+            return `
+            <button class="${classes.join(" ")}" type="button" data-choice="${index}" ${answersLocked ? "disabled" : ""}>
               <span class="mini-badge">definition</span><br><br>
               ${escapeHTML(choice.definition)}
             </button>
-          `).join("")}
+          `;
+          }).join("")}
+        </div>
+        <p class="learn-feedback" id="learnFeedback">
+          ${learnState.feedback}
+        </p>
+        <div class="learn-controls">
+          <button class="btn" type="button" id="dontKnowButton" ${answersLocked ? "disabled" : ""}>I don't know</button>
+          <button class="btn btn-dark" type="button" id="learnNextButton" ${learnState.needsNext ? "" : "hidden"}>Next</button>
         </div>
       `;
 
       document.querySelectorAll(".answer").forEach((button) => {
         button.addEventListener("click", () => answerLearn(Number(button.dataset.choice)));
       });
+      document.querySelector("#dontKnowButton").addEventListener("click", () => answerLearn(null));
+      document.querySelector("#learnNextButton")?.addEventListener("click", advanceLearnQuestion);
     }
 
     function answerLearn(choicePosition) {
@@ -890,36 +1664,47 @@
       learnState.locked = true;
 
       const currentIndex = learnState.queue[learnState.index];
-      const selected = learnState.choices[choicePosition];
-      const buttons = [...document.querySelectorAll(".answer")];
-      const isCorrect = selected.index === currentIndex;
+      const selected = choicePosition === null ? null : learnState.choices[choicePosition];
+      const correctPosition = learnState.choices.findIndex((choice) => choice.index === currentIndex);
+      const isCorrect = selected?.index === currentIndex;
 
       learnState.answered += 1;
+      learnState.selectedChoice = choicePosition;
+      learnState.correctChoice = correctPosition;
       if (isCorrect) {
         learnState.correct += 1;
+        learnState.needsNext = false;
+        learnState.feedback = "<strong>Correct.</strong>";
       } else if (learnState.round === 1) {
         learnState.missed.push(currentIndex);
       }
 
-      buttons.forEach((button, index) => {
-        button.disabled = true;
-        if (learnState.choices[index].index === currentIndex) button.classList.add("correct");
-        if (index === choicePosition && !isCorrect) button.classList.add("wrong");
-      });
+      if (!isCorrect) {
+        learnState.needsNext = true;
+        learnState.feedback = `<strong>Correct answer:</strong> ${escapeHTML(deck[currentIndex].definition)}`;
+        renderLearn();
+        return;
+      }
 
-      window.setTimeout(() => {
-        learnState.index += 1;
-        if (learnState.index >= learnState.queue.length) {
-          if (learnState.round === 1 && learnState.missed.length) {
-            learnState.queue = shuffle(learnState.missed);
-            learnState.index = 0;
-            learnState.round = 2;
-          } else {
-            learnState.complete = true;
-          }
+      renderLearn();
+      learnAdvanceTimer = window.setTimeout(advanceLearnQuestion, 650);
+    }
+
+    function advanceLearnQuestion() {
+      clearLearnAdvanceTimer();
+      if (!learnState.locked && !learnState.needsNext) return;
+
+      learnState.index += 1;
+      if (learnState.index >= learnState.queue.length) {
+        if (learnState.round === 1 && learnState.missed.length) {
+          learnState.queue = shuffle(learnState.missed);
+          learnState.index = 0;
+          learnState.round = 2;
+        } else {
+          learnState.complete = true;
         }
-        prepareLearnQuestion();
-      }, 900);
+      }
+      prepareLearnQuestion();
     }
 
     function initMatch() {
@@ -1061,6 +1846,443 @@
       }, 500);
     }
 
+    function initTest() {
+      const questions = buildTestQuestions();
+      Object.assign(testState, {
+        questions,
+        matchChoices: buildTestMatchChoices(questions),
+        selectedMatchValue: null,
+        submitted: false
+      });
+      renderTest();
+    }
+
+    function buildTestQuestions() {
+      const questionTypes = ["multipleChoice", "trueFalse", "match"];
+      const shuffledIndexes = shuffle(deck.map((_, index) => index));
+
+      return shuffledIndexes.map((cardIndex, questionIndex) => {
+        const type = questionTypes[questionIndex % questionTypes.length];
+        if (type === "trueFalse") return buildTrueFalseQuestion(cardIndex, questionIndex);
+        if (type === "match") return buildMatchQuestion(cardIndex, questionIndex);
+        return buildMultipleChoiceQuestion(cardIndex, questionIndex);
+      });
+    }
+
+    function getDistractorDefinitions(cardIndex, count = 3) {
+      return shuffle(
+        deck.map((card, index) => ({
+          label: card.definition,
+          cardIndex: index
+        })).filter((choice) => choice.cardIndex !== cardIndex)
+      ).slice(0, Math.min(count, deck.length - 1));
+    }
+
+    function buildMultipleChoiceQuestion(cardIndex, questionIndex) {
+      const choices = shuffle([
+        {
+          label: deck[cardIndex].definition,
+          value: String(cardIndex),
+          cardIndex
+        },
+        ...getDistractorDefinitions(cardIndex).map((choice) => ({
+          label: choice.label,
+          value: String(choice.cardIndex),
+          cardIndex: choice.cardIndex
+        }))
+      ]);
+
+      return {
+        id: `test-${questionIndex}`,
+        type: "multipleChoice",
+        typeLabel: "Multiple choice",
+        cardIndex,
+        prompt: `What is the definition of ${deck[cardIndex].term}?`,
+        choices,
+        correctValue: String(cardIndex),
+        userAnswer: ""
+      };
+    }
+
+    function buildTrueFalseQuestion(cardIndex, questionIndex) {
+      const shouldBeTrue = Math.random() >= 0.5 || deck.length < 2;
+      const wrongDefinition = getDistractorDefinitions(cardIndex, 1)[0];
+      const shownDefinition = shouldBeTrue
+        ? deck[cardIndex].definition
+        : wrongDefinition?.label || deck[cardIndex].definition;
+
+      return {
+        id: `test-${questionIndex}`,
+        type: "trueFalse",
+        typeLabel: "True / false",
+        cardIndex,
+        prompt: `${deck[cardIndex].term}: ${shownDefinition}`,
+        choices: [
+          { label: "True", value: "true" },
+          { label: "False", value: "false" }
+        ],
+        correctValue: String(shouldBeTrue),
+        userAnswer: ""
+      };
+    }
+
+    function buildMatchQuestion(cardIndex, questionIndex) {
+      return {
+        id: `test-${questionIndex}`,
+        type: "match",
+        typeLabel: "Match",
+        cardIndex,
+        prompt: `Match ${deck[cardIndex].term} to the correct definition.`,
+        choices: [],
+        correctValue: String(cardIndex),
+        userAnswer: ""
+      };
+    }
+
+    function buildTestMatchChoices(questions) {
+      return shuffle(questions
+        .filter((question) => question.type === "match")
+        .map((question) => ({
+          label: deck[question.cardIndex].definition,
+          value: String(question.cardIndex),
+          cardIndex: question.cardIndex
+        })));
+    }
+
+    function renderTest() {
+      if (!testState.questions?.length) {
+        initTest();
+        return;
+      }
+      if (testState.submitted) {
+        renderTestResults();
+        return;
+      }
+
+      setProgress(getTestCompletionPercent());
+      elements.test.innerHTML = `
+        <div class="test-shell">
+          <section class="test-intro">
+            <div>
+              <h2>Test</h2>
+              <p>${deck.length} questions pulled from this deck. Mixed multiple choice, true/false, and match.</p>
+            </div>
+            <div class="status-group">
+              <span class="stat" id="testAnsweredStat">${getAnsweredTestCount()} / ${testState.questions.length} answered</span>
+              <span class="stat">Submit for results</span>
+            </div>
+          </section>
+          ${testQuestionListHTML()}
+          <div class="test-actions">
+            <button class="btn btn-dark" type="button" id="submitTestButton">Submit test</button>
+            <button class="btn" type="button" id="resetTestButton">New test</button>
+          </div>
+        </div>
+      `;
+
+      document.querySelectorAll("input[data-test-question]").forEach((control) => {
+        control.addEventListener("change", () => {
+          const question = testState.questions[Number(control.dataset.testQuestion)];
+          question.userAnswer = control.value;
+          updateTestAnsweredDisplay();
+        });
+      });
+      bindTestMatchDrag();
+
+      document.querySelector("#submitTestButton").addEventListener("click", submitTest);
+      document.querySelector("#resetTestButton").addEventListener("click", initTest);
+    }
+
+    function testQuestionListHTML() {
+      const regularQuestions = testState.questions
+        .map((question, index) => ({ question, index }))
+        .filter(({ question }) => question.type !== "match");
+      const matchQuestions = testState.questions
+        .map((question, index) => ({ question, index }))
+        .filter(({ question }) => question.type === "match");
+
+      return `
+        ${regularQuestions.map(({ question, index }) => testQuestionHTML(question, index)).join("")}
+        ${testMatchSectionHTML(matchQuestions)}
+      `;
+    }
+
+    function testQuestionHTML(question, index) {
+      return `
+        <article class="test-card">
+          <div class="test-question-header">
+            <strong>Question ${index + 1}</strong>
+            <span class="mini-badge">${escapeHTML(question.typeLabel)}</span>
+          </div>
+          <p class="test-prompt">${escapeHTML(question.prompt)}</p>
+          ${testChoiceHTML(question, index)}
+        </article>
+      `;
+    }
+
+    function testChoiceHTML(question, index) {
+      return `
+        <div class="test-options">
+          ${question.choices.map((choice) => `
+            <label class="test-option">
+              <input
+                type="radio"
+                name="${escapeHTML(question.id)}"
+                value="${escapeHTML(choice.value)}"
+                data-test-question="${index}"
+                ${question.userAnswer === choice.value ? "checked" : ""}
+              >
+              <span>${escapeHTML(choice.label)}</span>
+            </label>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function testMatchSectionHTML(matchQuestions) {
+      if (!matchQuestions.length) return "";
+
+      const usedValues = new Set(matchQuestions
+        .map(({ question }) => question.userAnswer)
+        .filter(Boolean));
+      const bankChoices = testState.matchChoices.filter((choice) => !usedValues.has(choice.value));
+
+      return `
+        <article class="test-card test-match-section">
+          <div class="test-question-header">
+            <strong>Matching section</strong>
+            <span class="mini-badge">Match</span>
+          </div>
+          <div class="test-match-board">
+            ${matchQuestions.map(({ question, index }) => {
+              const selectedChoice = getTestMatchChoice(question.userAnswer);
+              return `
+                <div class="test-match-row">
+                  <div>
+                    <span class="mini-badge">Question ${index + 1}</span>
+                    <div class="test-match-term">${escapeHTML(deck[question.cardIndex].term)}</div>
+                  </div>
+                  <div
+                    class="test-drop-zone ${selectedChoice ? "" : "empty"}"
+                    data-test-drop="${index}"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Answer for ${escapeHTML(deck[question.cardIndex].term)}"
+                  >
+                    ${selectedChoice ? testAnswerChipHTML(selectedChoice) : "No answer selected"}
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+          <div class="test-answer-bank" data-test-answer-bank>
+            ${bankChoices.length ? bankChoices.map((choice) => testAnswerChipHTML(choice)).join("") : '<span class="stat">All answers placed</span>'}
+          </div>
+        </article>
+      `;
+    }
+
+    function testAnswerChipHTML(choice) {
+      const selected = testState.selectedMatchValue === choice.value;
+      return `
+        <button
+          class="test-answer-chip ${selected ? "selected" : ""}"
+          type="button"
+          draggable="true"
+          data-test-answer-value="${escapeHTML(choice.value)}"
+        >
+          ${escapeHTML(choice.label)}
+        </button>
+      `;
+    }
+
+    function getTestMatchChoice(value) {
+      if (!value) return null;
+      return testState.matchChoices.find((choice) => choice.value === value) || null;
+    }
+
+    function bindTestMatchDrag() {
+      document.querySelectorAll(".test-answer-chip").forEach((chip) => {
+        chip.addEventListener("dragstart", (event) => {
+          testState.selectedMatchValue = chip.dataset.testAnswerValue;
+          chip.classList.add("dragging");
+          event.dataTransfer.effectAllowed = "move";
+          event.dataTransfer.setData("text/plain", chip.dataset.testAnswerValue);
+        });
+        chip.addEventListener("dragend", () => {
+          chip.classList.remove("dragging");
+        });
+        chip.addEventListener("click", (event) => {
+          event.stopPropagation();
+          testState.selectedMatchValue = testState.selectedMatchValue === chip.dataset.testAnswerValue
+            ? null
+            : chip.dataset.testAnswerValue;
+          renderTest();
+        });
+      });
+
+      document.querySelectorAll(".test-drop-zone").forEach((zone) => {
+        zone.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          zone.classList.add("drag-over");
+        });
+        zone.addEventListener("dragleave", () => {
+          zone.classList.remove("drag-over");
+        });
+        zone.addEventListener("drop", (event) => {
+          event.preventDefault();
+          zone.classList.remove("drag-over");
+          const answerValue = event.dataTransfer.getData("text/plain") || testState.selectedMatchValue;
+          assignTestMatchAnswer(Number(zone.dataset.testDrop), answerValue);
+        });
+        zone.addEventListener("click", () => {
+          if (testState.selectedMatchValue) {
+            assignTestMatchAnswer(Number(zone.dataset.testDrop), testState.selectedMatchValue);
+          }
+        });
+        zone.addEventListener("keydown", (event) => {
+          if ((event.key === "Enter" || event.key === " ") && testState.selectedMatchValue) {
+            event.preventDefault();
+            assignTestMatchAnswer(Number(zone.dataset.testDrop), testState.selectedMatchValue);
+          }
+        });
+      });
+
+      const bank = document.querySelector("[data-test-answer-bank]");
+      if (!bank) return;
+
+      bank.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        bank.classList.add("drag-over");
+      });
+      bank.addEventListener("dragleave", () => {
+        bank.classList.remove("drag-over");
+      });
+      bank.addEventListener("drop", (event) => {
+        event.preventDefault();
+        bank.classList.remove("drag-over");
+        const answerValue = event.dataTransfer.getData("text/plain") || testState.selectedMatchValue;
+        clearTestMatchAnswer(answerValue);
+      });
+    }
+
+    function assignTestMatchAnswer(questionIndex, answerValue) {
+      if (!answerValue) return;
+
+      testState.questions.forEach((question) => {
+        if (question.type === "match" && question.userAnswer === answerValue) {
+          question.userAnswer = "";
+        }
+      });
+
+      testState.questions[questionIndex].userAnswer = answerValue;
+      testState.selectedMatchValue = null;
+      renderTest();
+    }
+
+    function clearTestMatchAnswer(answerValue) {
+      if (!answerValue) return;
+
+      testState.questions.forEach((question) => {
+        if (question.type === "match" && question.userAnswer === answerValue) {
+          question.userAnswer = "";
+        }
+      });
+
+      testState.selectedMatchValue = null;
+      renderTest();
+    }
+
+    function updateTestAnsweredDisplay() {
+      setProgress(getTestCompletionPercent());
+      const answeredStat = document.querySelector("#testAnsweredStat");
+      if (answeredStat) answeredStat.textContent = `${getAnsweredTestCount()} / ${testState.questions.length} answered`;
+    }
+
+    function submitTest() {
+      testState.submitted = true;
+      renderTestResults();
+      elements.test.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function getAnsweredTestCount() {
+      return testState.questions.filter((question) => question.userAnswer !== "").length;
+    }
+
+    function getTestCompletionPercent() {
+      if (!testState.questions?.length) return 0;
+      return (getAnsweredTestCount() / testState.questions.length) * 100;
+    }
+
+    function getTestResults() {
+      const questions = testState.questions || [];
+      const correct = questions.filter((question) => isTestQuestionCorrect(question)).length;
+      const byType = ["multipleChoice", "trueFalse", "match"].map((type) => {
+        const typeQuestions = questions.filter((question) => question.type === type);
+        const typeCorrect = typeQuestions.filter((question) => isTestQuestionCorrect(question)).length;
+        return {
+          type,
+          label: typeQuestions[0]?.typeLabel || type,
+          correct: typeCorrect,
+          total: typeQuestions.length
+        };
+      });
+
+      return {
+        correct,
+        total: questions.length,
+        percent: questions.length ? Math.round((correct / questions.length) * 100) : 0,
+        byType
+      };
+    }
+
+    function isTestQuestionCorrect(question) {
+      return question.userAnswer !== "" && question.userAnswer === question.correctValue;
+    }
+
+    function getTestAnswerLabel(question, value) {
+      if (value === "") return "No answer";
+      const choice = question.choices.find((item) => item.value === value);
+      return choice?.label || value;
+    }
+
+    function renderTestResults() {
+      const results = getTestResults();
+      setProgress(100);
+      elements.test.innerHTML = `
+        <section class="test-results">
+          <h2>${results.percent}% score</h2>
+          <p>${results.correct} correct out of ${results.total} questions.</p>
+          <div class="test-score">
+            <span class="stat">Total ${results.correct} / ${results.total}</span>
+            ${results.byType.map((item) => `
+              <span class="stat">${escapeHTML(item.label)} ${item.correct} / ${item.total}</span>
+            `).join("")}
+          </div>
+          <div class="test-result-actions">
+            <button class="btn btn-yellow" type="button" id="retakeTestButton">Retake test</button>
+            <button class="btn btn-dark" type="button" id="backToCardsFromTest">Return to flashcards</button>
+          </div>
+          <div class="test-review">
+            ${testState.questions.map((question, index) => {
+              const correct = isTestQuestionCorrect(question);
+              return `
+                <article class="test-review-item ${correct ? "correct" : "wrong"}">
+                  <h3>${index + 1}. ${escapeHTML(question.typeLabel)} · ${correct ? "Correct" : "Missed"}</h3>
+                  <p>${escapeHTML(question.prompt)}</p>
+                  <p><strong>Your answer:</strong> ${escapeHTML(getTestAnswerLabel(question, question.userAnswer))}</p>
+                  <p><strong>Correct answer:</strong> ${escapeHTML(getTestAnswerLabel(question, question.correctValue))}</p>
+                </article>
+              `;
+            }).join("")}
+          </div>
+        </section>
+      `;
+
+      document.querySelector("#retakeTestButton").addEventListener("click", initTest);
+      document.querySelector("#backToCardsFromTest").addEventListener("click", () => switchMode("flashcards"));
+    }
+
     function completionHTML(title, detail, buttonLabel, action) {
       return `
         <div class="completion">
@@ -1074,6 +2296,7 @@
 
     function switchMode(mode) {
       activeMode = mode;
+      elements.shell.classList.toggle("stack-shell", mode === "stack");
       elements.tabs.forEach((tab) => {
         const isActive = tab.dataset.mode === mode;
         tab.classList.toggle("active", isActive);
@@ -1083,6 +2306,7 @@
       elements[mode].classList.add("active");
 
       if (mode !== "match") stopMatchTimer();
+      if (mode !== "stack" && stackGame) stackGame.pause();
       if (mode === "flashcards") renderFlashcards();
       if (mode === "learn") renderLearn();
       if (mode === "match") {
@@ -1092,13 +2316,56 @@
           renderMatch();
         }
       }
+      if (mode === "test") {
+        if (!testState.questions) initTest();
+        else renderTest();
+      }
+      if (mode === "stack") {
+        ensureStackGame();
+      }
+    }
+
+    function ensureStackGame() {
+      if (!window.StudyBroStack || !window.StudyBroStack.create) {
+        elements.stack.innerHTML = completionHTML(
+          "Stack unavailable",
+          "Matter.js or the Stack game script did not load.",
+          "Back to cards",
+          "switchMode('flashcards')"
+        );
+        setProgress(0);
+        return;
+      }
+
+      if (!stackGame) {
+        stackGame = window.StudyBroStack.create({
+          deck,
+          panel: elements.stack,
+          onProgress: setProgress,
+          onExit: () => switchMode("flashcards")
+        });
+        stackGame.start();
+        return;
+      }
+
+      stackGame.resume();
     }
 
     elements.tabs.forEach((tab) => {
       tab.addEventListener("click", () => switchMode(tab.dataset.mode));
     });
 
-    loadDeck().then(startApp);
+    window.studyBroDeck = deck;
+    window.studyBroSwitchMode = switchMode;
+
+    document.querySelector("#deckCount").textContent = deck.length;
+    initFlashcards();
+    initLearn();
+    initMatch();
+    switchMode("flashcards");
   </script>
+  <script src="vendor/matter.min.js"></script>
+  <script src="physics.js"></script>
+  <script src="stack.js"></script>
 </body>
 </html>

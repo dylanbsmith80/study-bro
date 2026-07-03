@@ -202,11 +202,12 @@
       transition: transform 120ms ease, box-shadow 120ms ease, background 160ms ease, color 160ms ease;
     }
 
-    .tab:nth-child(1) { background: var(--yellow); }
-    .tab:nth-child(2) { background: var(--green); }
-    .tab:nth-child(3) { background: var(--note-blue); }
-    .tab:nth-child(4) { background: var(--note-pink); }
-    .tab:nth-child(5) { background: var(--red-soft); }
+    .tab:nth-child(1) { background: var(--lime); }
+    .tab:nth-child(2) { background: var(--yellow); }
+    .tab:nth-child(3) { background: var(--green); }
+    .tab:nth-child(4) { background: var(--note-blue); }
+    .tab:nth-child(5) { background: var(--note-pink); }
+    .tab:nth-child(6) { background: var(--red-soft); }
 
     .tab:hover,
     .tab:focus-visible {
@@ -551,6 +552,40 @@
       border-color: var(--red-dark);
       background: var(--red-soft);
       color: var(--red-dark);
+    }
+
+    .view-cards-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .view-card-row {
+      overflow: hidden;
+      border: var(--border);
+      border-radius: 14px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 30px, rgba(5, 5, 5, 0.045) 30px 31px),
+        #fffdf3;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(170px, 0.38fr) minmax(0, 1fr);
+    }
+
+    .view-card-term,
+    .view-card-definition {
+      padding: 16px 18px;
+      line-height: 1.35;
+    }
+
+    .view-card-term {
+      border-right: var(--border);
+      background: var(--yellow);
+      font-weight: 950;
+    }
+
+    .view-card-definition {
+      color: var(--ink-soft);
+      font-weight: 720;
     }
 
     .match-toolbar {
@@ -1237,7 +1272,235 @@
       gap: 10px;
     }
 
+    .header-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .theme-toggle {
+      flex: 0 0 auto;
+      min-height: 42px;
+      padding: 6px 8px 6px 14px;
+      border: 2px solid rgba(255, 255, 255, 0.82);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.76rem;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.45);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(5, 5, 5, 0.58);
+      outline: none;
+    }
+
+    .theme-toggle-track {
+      position: relative;
+      width: 42px;
+      height: 24px;
+      border: 2px solid currentColor;
+      border-radius: 999px;
+      background: var(--yellow);
+    }
+
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: currentColor;
+      transition: transform 160ms ease;
+    }
+
+    body.plain-theme {
+      --black: #000000;
+      --white: #ffffff;
+      --paper: #ffffff;
+      --paper-deep: #ffffff;
+      --paper-line: #e4e4e4;
+      --muted: #4a4a4a;
+      --yellow: #ffffff;
+      --note-pink: #ffffff;
+      --note-blue: #ffffff;
+      --lime: #ffffff;
+      --green: #ffffff;
+      --green-dark: #000000;
+      --red: #ffffff;
+      --red-soft: #ffffff;
+      --red-dark: #000000;
+      --purple: #000000;
+      --wood: #000000;
+      --ink-soft: #000000;
+      --border: 2px solid #000000;
+      --radius: 6px;
+      --shadow: none;
+      --shadow-soft: none;
+      background: #ffffff;
+      color: #000000;
+    }
+
+    body.plain-theme::before,
+    body.plain-theme .app-header::before,
+    body.plain-theme .study-card::before,
+    body.plain-theme .study-card::after,
+    body.plain-theme .completion::before,
+    body.plain-theme .test-results::before,
+    body.plain-theme .stack-end-state::before {
+      display: none;
+    }
+
+    body.plain-theme .app-header {
+      overflow: visible;
+      background: #ffffff;
+      color: #000000;
+      border-bottom: 2px solid #000000;
+    }
+
+    body.plain-theme .brand,
+    body.plain-theme .card-copy,
+    body.plain-theme .definition-copy,
+    body.plain-theme .completion h2,
+    body.plain-theme .test-intro h2,
+    body.plain-theme .test-results h2,
+    body.plain-theme .stack-question,
+    body.plain-theme .stack-end-state h2 {
+      letter-spacing: 0;
+      text-shadow: none;
+    }
+
+    body.plain-theme .logo-mark,
+    body.plain-theme .brand-tagline,
+    body.plain-theme .deck-label,
+    body.plain-theme .theme-toggle,
+    body.plain-theme .tab,
+    body.plain-theme .progress-track,
+    body.plain-theme .deck-message,
+    body.plain-theme .stat,
+    body.plain-theme .study-card,
+    body.plain-theme .badge,
+    body.plain-theme .btn,
+    body.plain-theme .answer,
+    body.plain-theme .match-card,
+    body.plain-theme .view-card-row,
+    body.plain-theme .view-card-term,
+    body.plain-theme .completion,
+    body.plain-theme .completion-mark,
+    body.plain-theme .test-intro,
+    body.plain-theme .test-card,
+    body.plain-theme .test-results,
+    body.plain-theme .test-option,
+    body.plain-theme .test-drop-zone,
+    body.plain-theme .test-answer-bank,
+    body.plain-theme .test-answer-chip,
+    body.plain-theme .test-review-item,
+    body.plain-theme .stack-panel,
+    body.plain-theme .stack-stage-card,
+    body.plain-theme .stack-answer,
+    body.plain-theme .stack-preview,
+    body.plain-theme .stack-preview-shape,
+    body.plain-theme .stack-stage-toolbar,
+    body.plain-theme .stack-end-state {
+      border-color: #000000;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #000000;
+      box-shadow: none;
+      transform: none;
+    }
+
+    body.plain-theme .logo-mark img,
+    body.plain-theme .completion::before {
+      filter: grayscale(1) contrast(1.35);
+    }
+
+    body.plain-theme .tab.active,
+    body.plain-theme .btn-dark,
+    body.plain-theme .progress-fill,
+    body.plain-theme .stack-drop-hint {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    body.plain-theme .theme-toggle {
+      border-color: #000000;
+      color: #000000;
+    }
+
+    body.plain-theme .theme-toggle-track {
+      background: #000000;
+    }
+
+    body.plain-theme .theme-toggle-thumb {
+      background: #ffffff;
+      transform: translateX(18px);
+    }
+
+    body.plain-theme .study-card,
+    body.plain-theme .answer,
+    body.plain-theme .view-card-row,
+    body.plain-theme .completion,
+    body.plain-theme .test-intro,
+    body.plain-theme .test-card,
+    body.plain-theme .test-results,
+    body.plain-theme .stack-panel,
+    body.plain-theme .stack-stage-card,
+    body.plain-theme .stack-stage {
+      background-image: none;
+    }
+
+    body.plain-theme .answer.correct,
+    body.plain-theme .match-card.matched,
+    body.plain-theme .test-review-item.correct,
+    body.plain-theme .stack-answer.correct {
+      border-style: double;
+    }
+
+    body.plain-theme .answer.wrong,
+    body.plain-theme .match-card.wrong,
+    body.plain-theme .test-review-item.wrong,
+    body.plain-theme .stack-answer.wrong {
+      border-style: dashed;
+    }
+
     @media (max-width: 700px) {
+      .app-header {
+        padding-inline: 12px;
+        gap: 12px;
+      }
+
+      .header-actions {
+        gap: 0;
+      }
+
+      .theme-toggle {
+        min-height: 38px;
+        padding: 6px;
+        gap: 0;
+      }
+
+      #themeToggleLabel {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+
       .shell {
         width: min(100% - 22px, 960px);
         margin-top: 20px;
@@ -1318,6 +1581,14 @@
     }
 
     @media (max-width: 430px) {
+      .brand-tagline {
+        display: none;
+      }
+
+      .brand {
+        font-size: 1.35rem;
+      }
+
       .actions {
         grid-template-columns: 1fr;
       }
@@ -1370,13 +1641,20 @@
         <span class="brand-tagline">One page at a time</span>
       </div>
     </div>
-    <span class="deck-label">
-      <span class="deck-title" id="deckTitle">Sample deck</span> · <span id="deckCount"></span> terms
-    </span>
+    <div class="header-actions">
+      <span class="deck-label">
+        <span class="deck-title" id="deckTitle">Sample deck</span> · <span id="deckCount"></span> terms
+      </span>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to basic black and white theme">
+        <span id="themeToggleLabel">Basic</span>
+        <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
+      </button>
+    </div>
   </header>
 
   <main class="shell">
     <nav class="tabs" aria-label="Study modes">
+      <button class="tab" type="button" data-mode="viewCards">View Cards</button>
       <button class="tab active" type="button" data-mode="flashcards">Flashcards</button>
       <button class="tab" type="button" data-mode="learn">Learn</button>
       <button class="tab" type="button" data-mode="match">Match</button>
@@ -1394,6 +1672,7 @@
     <section class="mode-panel" id="learnPanel" aria-label="Learn mode"></section>
     <section class="mode-panel" id="matchPanel" aria-label="Match mode"></section>
     <section class="mode-panel" id="testPanel" aria-label="Test mode"></section>
+    <section class="mode-panel" id="viewCardsPanel" aria-label="View all cards"></section>
     <section class="mode-panel" id="stackPanel" aria-label="Stack game mode"></section>
   </main>
 
@@ -1422,10 +1701,13 @@
       deckTitle: document.querySelector("#deckTitle"),
       deckCount: document.querySelector("#deckCount"),
       deckMessage: document.querySelector("#deckMessage"),
+      themeToggle: document.querySelector("#themeToggle"),
+      themeToggleLabel: document.querySelector("#themeToggleLabel"),
       flashcards: document.querySelector("#flashcardsPanel"),
       learn: document.querySelector("#learnPanel"),
       match: document.querySelector("#matchPanel"),
       test: document.querySelector("#testPanel"),
+      viewCards: document.querySelector("#viewCardsPanel"),
       stack: document.querySelector("#stackPanel"),
       shell: document.querySelector(".shell"),
       tabs: [...document.querySelectorAll(".tab")]
@@ -1440,6 +1722,40 @@
     const learnState = {};
     const matchState = {};
     const testState = {};
+
+    function getSavedThemePreference() {
+      try {
+        return localStorage.getItem("studyBroPlainTheme") === "true";
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function saveThemePreference(usePlainTheme) {
+      try {
+        localStorage.setItem("studyBroPlainTheme", usePlainTheme ? "true" : "false");
+      } catch (error) {
+        // Some file:// browser settings block storage; the toggle should still work for this page view.
+      }
+    }
+
+    function setThemePreference(usePlainTheme, shouldSave = true) {
+      document.body.classList.toggle("plain-theme", usePlainTheme);
+      elements.themeToggle.setAttribute("aria-pressed", String(usePlainTheme));
+      elements.themeToggle.setAttribute(
+        "aria-label",
+        usePlainTheme ? "Switch to fun Study Bro theme" : "Switch to basic black and white theme"
+      );
+      elements.themeToggleLabel.textContent = usePlainTheme ? "Fun" : "Basic";
+      if (shouldSave) saveThemePreference(usePlainTheme);
+    }
+
+    function initThemeToggle() {
+      setThemePreference(getSavedThemePreference(), false);
+      elements.themeToggle.addEventListener("click", () => {
+        setThemePreference(!document.body.classList.contains("plain-theme"));
+      });
+    }
 
     function shuffle(items) {
       const copy = [...items];
@@ -1625,6 +1941,28 @@
       }, 150);
     }
 
+    function shouldIgnoreFlashcardShortcut(event) {
+      const target = event.target;
+      if (!target) return false;
+      const tagName = target.tagName;
+      return target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(tagName);
+    }
+
+    function handleFlashcardShortcut(event) {
+      if (activeMode !== "flashcards" || flashState.complete || shouldIgnoreFlashcardShortcut(event)) return;
+
+      if (event.key === " " || event.code === "Space") {
+        event.preventDefault();
+        flipFlashcard();
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        gradeFlashcard(true);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        gradeFlashcard(false);
+      }
+    }
+
     function gradeFlashcard(isKnown) {
       const cardIndex = flashState.queue[flashState.index];
       if (isKnown) {
@@ -1650,6 +1988,23 @@
       renderFlashcards();
     }
 
+    function renderViewCards() {
+      setProgress(100);
+      const rows = deck.map((card, index) => (
+        '<article class="view-card-row">' +
+          '<div class="view-card-term">' + (index + 1) + '. ' + escapeHTML(card.term) + '</div>' +
+          '<div class="view-card-definition">' + escapeHTML(card.definition) + '</div>' +
+        '</article>'
+      )).join("");
+      elements.viewCards.innerHTML =
+        '<div class="status-row">' +
+          '<div class="status-group">' +
+            '<span class="stat">' + deck.length + ' cards</span>' +
+          '</div>' +
+          '<span>Full deck view</span>' +
+        '</div>' +
+        '<div class="view-cards-list">' + rows + '</div>';
+    }
     function clearLearnAdvanceTimer() {
       if (learnAdvanceTimer) window.clearTimeout(learnAdvanceTimer);
       learnAdvanceTimer = null;
@@ -2422,6 +2777,7 @@
         if (!testState.questions) initTest();
         else renderTest();
       }
+      if (mode === "viewCards") renderViewCards();
       if (mode === "stack") {
         ensureStackGame();
       }
@@ -2456,9 +2812,11 @@
     elements.tabs.forEach((tab) => {
       tab.addEventListener("click", () => switchMode(tab.dataset.mode));
     });
+    document.addEventListener("keydown", handleFlashcardShortcut);
 
     window.studyBroSwitchMode = switchMode;
 
+    initThemeToggle();
     loadDeck().then(startApp);
   </script>
   <script src="vendor/matter.min.js"></script>

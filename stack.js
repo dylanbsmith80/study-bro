@@ -1,5 +1,5 @@
 (function () {
-  const MAX_ITEMS = 100;
+  const MAX_ITEMS = 20;
   const BEST_KEY = "studyBroStackBestItemCount";
 
   const STACK_ITEMS = [
@@ -489,7 +489,7 @@
 
       if (state.placed >= MAX_ITEMS) {
         state.phase = "won";
-        state.resultReason = "You stacked 100 study items.";
+        state.resultReason = `You stacked ${MAX_ITEMS} study items.`;
         render();
         window.setTimeout(() => physics?.stop(), 350);
         return;
@@ -553,7 +553,7 @@
       } else if (state.phase === "lost") {
         elements.stageStatus.textContent = "Stack toppled";
       } else if (state.phase === "won") {
-        elements.stageStatus.textContent = "100 items stacked";
+        elements.stageStatus.textContent = `${MAX_ITEMS} items stacked`;
       } else {
         elements.stageStatus.textContent = "Answer correctly to place an item";
       }

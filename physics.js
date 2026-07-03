@@ -24,24 +24,24 @@
   }
 
   function platformWidthFor(stageWidth) {
-    return Math.min(340, Math.max(210, stageWidth * 0.42));
+    return Math.min(300, Math.max(185, stageWidth * 0.36));
   }
 
   function createItemBody(item, x, y) {
     const airDampingByDifficulty = {
-      easy: 0.035,
-      medium: 0.03,
-      hard: 0.024
+      easy: 0.018,
+      medium: 0.015,
+      hard: 0.011
     };
     const restitutionLimit = item.shape === "circle" ? 0.38 : 0.1;
 
     const options = {
       density: item.density,
-      friction: Math.min(1, item.friction + 0.12),
-      frictionStatic: Math.min(1.15, item.frictionStatic || item.friction + 0.38),
-      frictionAir: item.frictionAir || airDampingByDifficulty[item.difficulty] || 0.028,
+      friction: Math.min(0.9, item.friction * 0.82),
+      frictionStatic: Math.min(0.95, item.frictionStatic || item.friction * 0.9),
+      frictionAir: item.frictionAir || airDampingByDifficulty[item.difficulty] || 0.014,
       restitution: Math.min(item.restitution, restitutionLimit),
-      sleepThreshold: 45,
+      sleepThreshold: 75,
       label: `Study Bro Stack item: ${item.name}`,
       render: {
         fillStyle: item.color,
@@ -76,12 +76,12 @@
     let platform = null;
 
     engine.enableSleeping = true;
-    engine.positionIterations = 10;
-    engine.velocityIterations = 8;
+    engine.positionIterations = 8;
+    engine.velocityIterations = 6;
     engine.constraintIterations = 3;
     engine.gravity.x = 0;
     engine.gravity.y = 1;
-    engine.gravity.scale = 0.00115;
+    engine.gravity.scale = 0.0013;
 
     const render = Render.create({
       element: container,
@@ -108,8 +108,8 @@
         24,
         {
           isStatic: true,
-          friction: 1,
-          frictionStatic: 1.2,
+          friction: 0.82,
+          frictionStatic: 0.9,
           restitution: 0,
           label: "Study Bro Stack platform",
           render: {

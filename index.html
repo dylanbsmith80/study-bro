@@ -164,6 +164,10 @@
       text-transform: uppercase;
     }
 
+    .deck-title {
+      color: var(--white);
+    }
+
     .shell {
       width: min(100% - 32px, 960px);
       margin: 28px auto 64px;
@@ -237,6 +241,22 @@
         repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.28) 0 8px, transparent 8px 16px),
         var(--lime);
       transition: width 240ms ease;
+    }
+
+    .deck-message {
+      margin-bottom: 20px;
+      padding: 14px 16px;
+      border: var(--border);
+      border-radius: 14px;
+      background: var(--red-soft);
+      color: var(--red-dark);
+      box-shadow: var(--shadow-soft);
+      font-weight: 850;
+      line-height: 1.4;
+    }
+
+    .deck-message[hidden] {
+      display: none;
     }
 
     .mode-panel {
@@ -1350,7 +1370,9 @@
         <span class="brand-tagline">One page at a time</span>
       </div>
     </div>
-    <span class="deck-label">Sample deck · <span id="deckCount"></span> terms</span>
+    <span class="deck-label">
+      <span class="deck-title" id="deckTitle">Sample deck</span> · <span id="deckCount"></span> terms
+    </span>
   </header>
 
   <main class="shell">
@@ -1366,6 +1388,8 @@
       <div class="progress-fill" id="progressFill"></div>
     </div>
 
+    <div class="deck-message" id="deckMessage" role="alert" hidden></div>
+
     <section class="mode-panel active" id="flashcardsPanel" aria-label="Flashcards mode"></section>
     <section class="mode-panel" id="learnPanel" aria-label="Learn mode"></section>
     <section class="mode-panel" id="matchPanel" aria-label="Match mode"></section>
@@ -1374,22 +1398,30 @@
   </main>
 
   <script>
-    // Replace this array later with JSON loaded from a file or URL.
-    const deck = [
-      { term: "Photosynthesis", definition: "The process plants use to convert light energy into chemical energy." },
-      { term: "Mitosis", definition: "Cell division that produces two genetically identical daughter cells." },
-      { term: "Ecosystem", definition: "A community of organisms interacting with each other and their environment." },
-      { term: "Velocity", definition: "The speed of an object in a specific direction." },
-      { term: "Atom", definition: "The smallest unit of an element that retains its chemical properties." },
-      { term: "Democracy", definition: "A system of government in which power is held by the people." },
-      { term: "Metaphor", definition: "A figure of speech that directly compares two unlike things." },
-      { term: "Hypothesis", definition: "A testable explanation or prediction based on available evidence." },
-      { term: "Inflation", definition: "A general increase in prices and fall in the purchasing value of money." },
-      { term: "Algorithm", definition: "A step-by-step procedure for solving a problem or completing a task." }
-    ];
+    const sampleDeck = {
+      title: "Sample deck",
+      cards: [
+        { term: "Photosynthesis", definition: "The process plants use to convert light energy into chemical energy." },
+        { term: "Mitosis", definition: "Cell division that produces two genetically identical daughter cells." },
+        { term: "Ecosystem", definition: "A community of organisms interacting with each other and their environment." },
+        { term: "Velocity", definition: "The speed of an object in a specific direction." },
+        { term: "Atom", definition: "The smallest unit of an element that retains its chemical properties." },
+        { term: "Democracy", definition: "A system of government in which power is held by the people." },
+        { term: "Metaphor", definition: "A figure of speech that directly compares two unlike things." },
+        { term: "Hypothesis", definition: "A testable explanation or prediction based on available evidence." },
+        { term: "Inflation", definition: "A general increase in prices and fall in the purchasing value of money." },
+        { term: "Algorithm", definition: "A step-by-step procedure for solving a problem or completing a task." }
+      ]
+    };
+
+    let deckTitle = sampleDeck.title;
+    let deck = sampleDeck.cards;
 
     const elements = {
       progress: document.querySelector("#progressFill"),
+      deckTitle: document.querySelector("#deckTitle"),
+      deckCount: document.querySelector("#deckCount"),
+      deckMessage: document.querySelector("#deckMessage"),
       flashcards: document.querySelector("#flashcardsPanel"),
       learn: document.querySelector("#learnPanel"),
       match: document.querySelector("#matchPanel"),
@@ -1429,6 +1461,76 @@
 
     function setProgress(percent) {
       elements.progress.style.width = `${Math.max(0, Math.min(100, percent))}%`;
+    }
+
+    function validateDeck(data) {
+      if (!data || typeof data.title !== "string" || !data.title.trim()) {
+        throw new Error("The deck needs a non-empty title.");
+      }
+
+      if (!Array.isArray(data.cards) || data.cards.length === 0) {
+        throw new Error("The deck needs at least one card.");
+      }
+
+      const validCards = data.cards.every((card) =>
+        card &&
+        typeof card.term === "string" &&
+        card.term.trim() &&
+        typeof card.definition === "string" &&
+        card.definition.trim()
+      );
+
+      if (!validCards) {
+        throw new Error("Every card needs a non-empty term and definition.");
+      }
+    }
+
+    function updateDeckHeader() {
+      elements.deckTitle.textContent = deckTitle;
+      elements.deckCount.textContent = deck.length;
+      document.title = `${deckTitle} · Study Bro`;
+      window.studyBroDeck = deck;
+    }
+
+    function showDeckError(message) {
+      elements.deckMessage.textContent = message;
+      elements.deckMessage.hidden = false;
+    }
+
+    async function loadDeck() {
+      const deckPath = new URLSearchParams(window.location.search).get("deck");
+      if (!deckPath) {
+        updateDeckHeader();
+        return;
+      }
+
+      try {
+        const response = await fetch(deckPath);
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}.`);
+        }
+
+        const data = await response.json();
+        validateDeck(data);
+        deckTitle = data.title.trim();
+        deck = data.cards.map((card) => ({
+          term: card.term.trim(),
+          definition: card.definition.trim()
+        }));
+      } catch (error) {
+        deckTitle = sampleDeck.title;
+        deck = sampleDeck.cards;
+        showDeckError(`Could not load "${deckPath}". ${error.message} Showing the sample deck instead.`);
+      }
+
+      updateDeckHeader();
+    }
+
+    function startApp() {
+      initFlashcards();
+      initLearn();
+      initMatch();
+      switchMode("flashcards");
     }
 
     function initFlashcards() {
@@ -2355,14 +2457,9 @@
       tab.addEventListener("click", () => switchMode(tab.dataset.mode));
     });
 
-    window.studyBroDeck = deck;
     window.studyBroSwitchMode = switchMode;
 
-    document.querySelector("#deckCount").textContent = deck.length;
-    initFlashcards();
-    initLearn();
-    initMatch();
-    switchMode("flashcards");
+    loadDeck().then(startApp);
   </script>
   <script src="vendor/matter.min.js"></script>
   <script src="physics.js"></script>

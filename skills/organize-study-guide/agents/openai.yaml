@@ -1,0 +1,4 @@
+interface:
+  display_name: "Organize Study Guide"
+  short_description: "Turn messy notes into complete study guides"
+  default_prompt: "Use $organize-study-guide to turn these unorganized notes into a complete, polished study guide."

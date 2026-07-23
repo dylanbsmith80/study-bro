@@ -1,0 +1,377 @@
+{
+  "title": "Dysphagia: Introduction and Normal Swallowing",
+  "cards": [
+    {
+      "term": "Goal of swallowing",
+      "definition": "Move food from the mouth to the stomach without allowing it to enter the lungs."
+    },
+    {
+      "term": "Dysphagia",
+      "definition": "Difficulty swallowing anywhere from the mouth to the stomach. It is a symptom of disrupted head-and-neck muscles, innervation, or coordination—not a disease."
+    },
+    {
+      "term": "Broad classification of dysphagia",
+      "definition": "An impairment of swallowing safety, swallowing efficiency, or both."
+    },
+    {
+      "term": "Swallowing safety",
+      "definition": "The ability to swallow without the bolus entering the airway through penetration or aspiration."
+    },
+    {
+      "term": "Swallowing efficiency",
+      "definition": "The ability to swallow without bolus material remaining in the pharynx as residue."
+    },
+    {
+      "term": "Penetration",
+      "definition": "Airway invasion in which the bolus enters the laryngeal vestibule but remains above the true vocal folds.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/006-penetration.webp",
+      "imageAlt": "Fluoroscopic swallowing image labeled penetration above the true vocal folds"
+    },
+    {
+      "term": "Normal response to penetration",
+      "definition": "Swallow again. If no swallow occurs, the material will likely progress to aspiration."
+    },
+    {
+      "term": "Aspiration",
+      "definition": "Airway invasion in which bolus material descends below the true vocal folds into the trachea or lower airway.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/008-aspiration.webp",
+      "imageAlt": "Fluoroscopic swallowing image labeled aspiration below the true vocal folds"
+    },
+    {
+      "term": "Normal response to aspiration",
+      "definition": "Cough or clear the throat."
+    },
+    {
+      "term": "Silent aspiration",
+      "definition": "Aspiration that occurs without a cough response."
+    },
+    {
+      "term": "Post-swallow residue",
+      "definition": "Bolus material left in the pharynx after the swallow is complete and the pharynx has returned to its breathing configuration. It is also called residual, pharyngeal stasis, or post-swallow residue.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/011-post-swallow-residue.webp",
+      "imageAlt": "Fluoroscopic image showing residue remaining in the throat after swallowing"
+    },
+    {
+      "term": "Normal response to residue",
+      "definition": "Swallow again. Unresolved residue creates a high risk of aspiration."
+    },
+    {
+      "term": "Common residue locations",
+      "definition": "The vallecula and pyriform sinus are two common places where bolus material collects."
+    },
+    {
+      "term": "Primary risk of impaired swallowing safety",
+      "definition": "Aspiration pneumonia."
+    },
+    {
+      "term": "Risks of impaired swallowing efficiency",
+      "definition": "Malnutrition, dehydration, weight loss, and aspiration of residue."
+    },
+    {
+      "term": "Potential impacts of dysphagia",
+      "definition": "Penetration or aspiration, aspiration pneumonia, dehydration, malnutrition, weight loss, and reduced quality of life across social, psychological, cultural, and cost dimensions."
+    },
+    {
+      "term": "Three pillars of pneumonia risk",
+      "definition": "Impaired health status such as immunocompromise; impaired airway protection such as aspiration or an impaired cough; and an unhealthy oral environment caused by an imbalanced oral or pharyngeal bacterial microbiome."
+    },
+    {
+      "term": "Culturally responsive dysphagia care",
+      "definition": "Impairment is not the whole picture; dysphagia care should also account for the person's cultural context and quality of life."
+    },
+    {
+      "term": "Four stages of swallowing",
+      "definition": "Oral preparatory stage (mastication), oral stage (bolus propulsion), pharyngeal stage (pharyngeal swallow), and esophageal stage (esophageal transit)."
+    },
+    {
+      "term": "Nonsegmental nature of swallowing",
+      "definition": "Swallowing phases are interdependent: what occurs during one phase affects the others, and impairment can occur in one or more phases."
+    },
+    {
+      "term": "Simplified swallowing sequence",
+      "definition": "Prepare and retain the bolus in the mouth; push it posteriorly; initiate the involuntary pharyngeal swallow while protecting the airway and moving the bolus through the PES; then open the PES so the bolus can enter the esophagus."
+    },
+    {
+      "term": "Tubes, pumps, and valves model",
+      "definition": "Swallowing uses horizontal and vertical tubes; pumps including the oral tongue, tongue base, pharyngeal constrictors, and traction forces; and valves including the lips, velum, larynx, and pharyngoesophageal segment.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/022-tubes-pumps-and-valves-model.webp",
+      "imageAlt": "Diagram modeling swallowing as horizontal and vertical tubes, pumps, and valves"
+    },
+    {
+      "term": "Two binary swallowing goals",
+      "definition": "Seal the airway for safety and move food through to the esophagus for efficiency."
+    },
+    {
+      "term": "Oral preparatory phase",
+      "definition": "Seal the oral cavity, masticate the bolus, mix it with saliva, and divide it into pieces for transport to the pharynx."
+    },
+    {
+      "term": "Anterior spill",
+      "definition": "Bolus escape from the front of the oral cavity when the anterior oral seal is not maintained."
+    },
+    {
+      "term": "Premature or posterior spill",
+      "definition": "Bolus escape posteriorly from the oral cavity before intended transport."
+    },
+    {
+      "term": "Piecemeal deglutition",
+      "definition": "Dividing a bolus into smaller pieces for transport to the pharynx."
+    },
+    {
+      "term": "Anterior lip seal",
+      "definition": "The orbicularis oris rounds, protrudes, and closes the lips. It is innervated by CN VII, the facial nerve.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/028-anterior-lip-seal.webp",
+      "imageAlt": "Anatomical illustration highlighting the orbicularis oris muscle around the lips"
+    },
+    {
+      "term": "Tongue-palatal seal",
+      "definition": "The palatoglossus elevates the posterior tongue to seal against the velum. It is innervated by CN X, the vagus nerve.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/029-tongue-palatal-seal.webp",
+      "imageAlt": "Anatomical illustration highlighting the palatoglossus muscle used for the tongue-palatal seal"
+    },
+    {
+      "term": "Buccinator and bolus control",
+      "definition": "The buccinator keeps the bolus on the tongue and teeth and prevents pocketing. It is innervated by CN VII, the facial nerve.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/030-buccinator-and-bolus-control.webp",
+      "imageAlt": "Anatomical illustration highlighting the buccinator muscle in the cheek"
+    },
+    {
+      "term": "Tongue sensation in oral preparation",
+      "definition": "Taste and touch carried by CN V, VII, and IX help determine the bolus's taste, size, texture, and location."
+    },
+    {
+      "term": "Tongue muscles in oral preparation",
+      "definition": "Tongue muscles supplied by CN XII alter tongue shape and tone to position the bolus; palatoglossus supplied by CN X elevates the posterior tongue to seal with the velum.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/032-tongue-muscles-in-oral-preparation.webp",
+      "imageAlt": "Lateral skull illustration highlighting tongue muscles involved in oral preparation"
+    },
+    {
+      "term": "Temporalis",
+      "definition": "A mastication muscle that elevates and retracts the mandible.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/033-temporalis.webp",
+      "imageAlt": "Anatomical illustration highlighting the temporalis muscle"
+    },
+    {
+      "term": "Masseter",
+      "definition": "A mastication muscle that elevates and protrudes the mandible.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/034-masseter.webp",
+      "imageAlt": "Anatomical illustration highlighting the masseter muscle"
+    },
+    {
+      "term": "Lateral pterygoid",
+      "definition": "A mastication muscle that protrudes, depresses, and rotates the mandible.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/035-lateral-pterygoid.webp",
+      "imageAlt": "Anatomical illustration highlighting the lateral pterygoid muscle"
+    },
+    {
+      "term": "Medial pterygoid",
+      "definition": "A mastication muscle that elevates, protrudes, and rotates the mandible.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/036-medial-pterygoid.webp",
+      "imageAlt": "Anatomical illustration highlighting the medial pterygoid muscle"
+    },
+    {
+      "term": "Mastication innervation",
+      "definition": "The muscles of mastication are supplied by CN V, the trigeminal nerve."
+    },
+    {
+      "term": "Salivation during oral preparation",
+      "definition": "Salivation via CN VII and IX lubricates and dilutes the bolus, supports early starch digestion, maintains healthy oral tissue, and helps preserve the mouth's bacteriostatic environment."
+    },
+    {
+      "term": "Healthy saliva production",
+      "definition": "The average healthy person produces about 1 to 1.5 liters of saliva per day."
+    },
+    {
+      "term": "Solid-bolus oral seal exception",
+      "definition": "During mastication of solids, chewed material may collect in the vallecula while oral preparation continues. This can be normal and is not necessarily premature spill."
+    },
+    {
+      "term": "Oral phase",
+      "definition": "Propel the bolus from the oral cavity to the pharynx, elevate the soft palate, voluntarily open the pharynx by lifting the velum and depressing the posterior tongue, and begin early hyoid elevation."
+    },
+    {
+      "term": "Bolus propulsion",
+      "definition": "The superior longitudinal muscle elevates the tongue tip to the alveolar ridge while intrinsic and extrinsic tongue muscles compress the anterior tongue against the palate in an anterior-to-posterior pattern. These actions are supplied by CN XII.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/042-bolus-propulsion.webp",
+      "imageAlt": "Anatomical illustration highlighting tongue muscles used for bolus propulsion"
+    },
+    {
+      "term": "Soft-palate elevation during pharyngeal opening",
+      "definition": "The levator veli palatini elevates the soft palate and is supplied by CN X, the vagus nerve.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/043-soft-palate-elevation-during-pharyngeal-.webp",
+      "imageAlt": "Anatomical illustration highlighting the levator veli palatini muscle"
+    },
+    {
+      "term": "Posterior tongue depression",
+      "definition": "The hyoglossus and styloglossus depress the posterior tongue to help open the pharynx. They are supplied by CN XII, the hypoglossal nerve.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/044-posterior-tongue-depression.webp",
+      "imageAlt": "Anatomical illustration highlighting muscles that depress the posterior tongue"
+    },
+    {
+      "term": "Anticipatory hyoid elevation",
+      "definition": "The mylohyoid produces moderate hyoid elevation in preparation for pharyngeal events and is supplied by CN V, the trigeminal nerve.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/045-anticipatory-hyoid-elevation.webp",
+      "imageAlt": "Anatomical illustration highlighting the mylohyoid muscle"
+    },
+    {
+      "term": "Swallow trigger",
+      "definition": "Sensory input initiates a cascade of events that reconfigures the larynx and pharynx for swallowing.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/046-swallow-trigger.webp",
+      "imageAlt": "Fluoroscopic sequence showing bolus positions associated with the pharyngeal swallow trigger"
+    },
+    {
+      "term": "Swallow trigger location variability",
+      "definition": "The trigger was traditionally associated with bolus passage through the facial arch, but in healthy adults it may occur lower in the pharynx. Location varies with bolus consistency and can be influenced by verbal cueing."
+    },
+    {
+      "term": "Pharyngeal phase",
+      "definition": "Major events are jaw stabilization, bolus transfer to the pharynx, hyolaryngeal elevation, laryngeal vestibule closure, pharyngeal shortening and constriction, and pharyngoesophageal segment opening."
+    },
+    {
+      "term": "Five clearance events",
+      "definition": "Velopharyngeal closure, tongue-base retraction, pharyngeal shortening, pharyngeal constriction, and PES opening work together to propel and clear the bolus through the pharynx.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/049-five-clearance-events.webp",
+      "imageAlt": "Pharyngeal-phase slide marking the five events involved in bolus propulsion and clearance"
+    },
+    {
+      "term": "Hyolaryngeal elevation mechanics",
+      "definition": "Hyolaryngeal elevation combines contraction of the suprahyoid muscles with anterior hyoid excursion.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/050-hyolaryngeal-elevation-mechanics.webp",
+      "imageAlt": "Annotated pharyngeal-phase slide linking laryngeal elevation and anterior hyoid excursion"
+    },
+    {
+      "term": "Epiglottic movement",
+      "definition": "Epiglottic movement is supported by traction forces from anterior hyoid excursion, the weight of the bolus, and the pharyngeal stripping wave.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/051-epiglottic-movement.webp",
+      "imageAlt": "Annotated pharyngeal-phase slide listing contributors to epiglottic movement"
+    },
+    {
+      "term": "Laryngeal vestibule closure",
+      "definition": "The true and false vocal folds are not directly visible on MBS or VFS, but they participate in laryngeal vestibule closure.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/052-laryngeal-vestibule-closure.webp",
+      "imageAlt": "Endoscopic larynx image on an annotated slide about true and false vocal-fold closure"
+    },
+    {
+      "term": "Velopharyngeal closure",
+      "definition": "Soft-palate elevation and superior pharyngeal constrictor contraction seal the velopharynx and create positive intra-bolus driving pressure to move the bolus inferiorly.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/053-velopharyngeal-closure.webp",
+      "imageAlt": "Annotated pharyngeal-phase slide explaining velopharyngeal closure and driving pressure"
+    },
+    {
+      "term": "Tongue base retraction and driving pressure",
+      "definition": "Tongue-base retraction seals the velopharynx and contributes positive intra-bolus pressure that drives the bolus inferiorly.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/054-tongue-base-retraction-and-driving-press.webp",
+      "imageAlt": "Annotated pharyngeal-phase slide showing tongue-base retraction"
+    },
+    {
+      "term": "Pharyngeal peristalsis",
+      "definition": "Pharyngeal shortening plus medialization and anterior displacement of the pharyngeal walls creates a superior-to-inferior constriction pattern.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/055-pharyngeal-peristalsis.webp",
+      "imageAlt": "Annotated pharyngeal-phase slide describing the superior-to-inferior peristaltic pattern"
+    },
+    {
+      "term": "PES opening sequence",
+      "definition": "The pharyngoesophageal segment is tonically closed at rest. It relaxes, laryngeal traction forces stretch it open, and it closes after the swallow as tonic contraction returns.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/056-pes-opening-sequence.webp",
+      "imageAlt": "Annotated pharyngeal-phase slide describing relaxation, traction opening, and closure of the PES"
+    },
+    {
+      "term": "Hyolaryngeal elevation muscles and nerves",
+      "definition": "Suprahyoid muscles pull the hyoid and larynx superiorly and anteriorly. The mylohyoid, supplied by CN V, is the primary superior mover; the geniohyoid, supplied by C1 fibers traveling with CN XII, is the primary anterior mover.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/057-hyolaryngeal-elevation-muscles-and-nerve.webp",
+      "imageAlt": "Anatomical illustration labeling the mylohyoid and geniohyoid muscles"
+    },
+    {
+      "term": "Laryngeal closure muscles",
+      "definition": "Intrinsic and extrinsic laryngeal muscles adduct the true and false vocal folds through the transverse arytenoids, oblique arytenoids, and lateral cricoarytenoids while inhibiting the posterior cricoarytenoid. Innervation is via CN X.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/058-laryngeal-closure-muscles.webp",
+      "imageAlt": "Anatomical illustration highlighting muscles of the larynx"
+    },
+    {
+      "term": "Velopharyngeal seal: levator veli palatini",
+      "definition": "The levator veli palatini elevates the soft palate during velopharyngeal sealing.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/059-velopharyngeal-seal-levator-veli-palatin.webp",
+      "imageAlt": "Anatomical illustration highlighting the levator veli palatini muscle"
+    },
+    {
+      "term": "Velopharyngeal seal: superior pharyngeal constrictor",
+      "definition": "The superior pharyngeal constrictor contracts around the elevated velum to create a forceful seal and prevent nasal regurgitation. It is supplied by CN X.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/060-velopharyngeal-seal-superior-pharyngeal-.webp",
+      "imageAlt": "Anatomical illustration highlighting the superior pharyngeal constrictor"
+    },
+    {
+      "term": "Basic tongue retraction",
+      "definition": "Intrinsic and extrinsic tongue muscles propel the bolus posteriorly, seal against the posterior pharyngeal wall, and move inferiorly with the pharyngeal constrictors. They are supplied by CN XII.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/061-basic-tongue-retraction.webp",
+      "imageAlt": "Anatomical illustration highlighting intrinsic and extrinsic tongue muscles"
+    },
+    {
+      "term": "Pharyngeal shortening muscles",
+      "definition": "The stylopharyngeus (CN IX), salpingopharyngeus (CN X), and palatopharyngeus (CN X) shorten the pharynx and reduce the distance the bolus must travel.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/062-pharyngeal-shortening-muscles.webp",
+      "imageAlt": "Anatomical illustration labeling the stylopharyngeus, salpingopharyngeus, and palatopharyngeus"
+    },
+    {
+      "term": "Pharyngeal constriction",
+      "definition": "The superior, middle, and inferior pharyngeal constrictors contract sequentially from superior to inferior to propel the bolus through the pharynx. Innervation is via CN X.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/063-pharyngeal-constriction.webp",
+      "imageAlt": "Anatomical illustration labeling the superior, middle, and inferior pharyngeal constrictors"
+    },
+    {
+      "term": "Cricopharyngeus and PES opening",
+      "definition": "The cricopharyngeus is tonically contracted to keep the PES closed. Bolus size and viscosity contribute sensory input that inhibits contraction; combined with hyolaryngeal traction, relaxation creates negative pressure before the bolus arrives. Contraction resumes after the bolus passes. Innervation is via CN X.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/064-cricopharyngeus-and-pes-opening.webp",
+      "imageAlt": "Anatomical illustration highlighting the cricopharyngeus at the pharyngoesophageal segment"
+    },
+    {
+      "term": "Pharynx as shared real estate",
+      "definition": "The pharynx is used for both breathing and swallowing, so swallowing requires coordinated reorganization of the shared space."
+    },
+    {
+      "term": "Swallowing apnea",
+      "definition": "The temporary cessation of normal breathing during a swallow."
+    },
+    {
+      "term": "Typical breathing-swallowing patterns",
+      "definition": "About 80% of healthy swallows follow exhale–apnea/swallow–exhale; about 20% follow inhale–apnea/swallow–exhale."
+    },
+    {
+      "term": "Why exhalation follows swallowing",
+      "definition": "Exhaling after the swallow helps avoid inhaling leftover food."
+    },
+    {
+      "term": "Breathing configuration",
+      "definition": "The default configuration of the pharynx supports breathing.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/069-breathing-configuration.webp",
+      "imageAlt": "Sagittal anatomical image showing the pharynx in its default breathing configuration"
+    },
+    {
+      "term": "Swallowing configuration",
+      "definition": "The secondary configuration of the pharynx supports swallowing and requires a complete reorganization from the breathing configuration.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/070-swallowing-configuration.webp",
+      "imageAlt": "Sagittal anatomical image showing the pharynx in its swallowing configuration"
+    },
+    {
+      "term": "Airway-protection mechanisms",
+      "definition": "Hyolaryngeal elevation, true vocal-fold closure, false vocal-fold closure, and an epiglottis-to-arytenoid seal contribute to a safe swallow."
+    },
+    {
+      "term": "PES-opening contributors",
+      "definition": "Tongue propulsion, pharyngeal contraction and shortening, hyolaryngeal traction forces, gravity, cricopharyngeal relaxation, and negative pressure or suction contribute to efficient PES opening."
+    },
+    {
+      "term": "Esophageal phase",
+      "definition": "The longest swallowing phase, lasting about 8 to 20 seconds. The bolus travels roughly 25 cm from the PES through the thoracic esophagus by involuntary peristaltic contraction.",
+      "image": "deck-assets/dysphagia-introduction-and-normal-swallowing/073-esophageal-phase.webp",
+      "imageAlt": "Esophageal-phase slide showing the esophagus and major transit mechanisms"
+    },
+    {
+      "term": "Esophageal muscle distribution",
+      "definition": "Striated muscle forms the initial one-third of the esophagus, and smooth muscle forms the final two-thirds."
+    },
+    {
+      "term": "Esophageal innervation",
+      "definition": "The esophageal phase is supplied by CN X, the vagus nerve."
+    }
+  ]
+}

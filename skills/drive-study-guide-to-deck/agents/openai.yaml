@@ -1,4 +1,4 @@
 interface:
   display_name: "Drive Study Guide to Deck"
-  short_description: "Convert Drive study guides into Study Bro decks"
-  default_prompt: "Use $drive-study-guide-to-deck to convert a study guide from my Study Bro Study Guides folder into a committed Study Bro deck."
+  short_description: "Publish Drive study guides with grounded images"
+  default_prompt: "Use $drive-study-guide-to-deck to convert and publish a Drive study guide as a validated Study Bro deck, including correctly associated source images."

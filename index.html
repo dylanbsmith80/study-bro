@@ -202,12 +202,12 @@
       transition: transform 120ms ease, box-shadow 120ms ease, background 160ms ease, color 160ms ease;
     }
 
-    .tab:nth-child(1) { background: var(--lime); }
-    .tab:nth-child(2) { background: var(--yellow); }
-    .tab:nth-child(3) { background: var(--green); }
-    .tab:nth-child(4) { background: var(--note-blue); }
-    .tab:nth-child(5) { background: var(--note-pink); }
-    .tab:nth-child(6) { background: var(--red-soft); }
+    .tab[data-mode="viewCards"] { background: var(--lime); }
+    .tab[data-mode="flashcards"] { background: var(--yellow); }
+    .tab[data-mode="learn"] { background: var(--green); }
+    .tab[data-mode="match"] { background: var(--note-blue); }
+    .tab[data-mode="test"] { background: var(--note-pink); }
+    .tab[data-mode="stack"] { background: var(--red-soft); }
 
     .tab:hover,
     .tab:focus-visible {
@@ -416,6 +416,109 @@
       letter-spacing: -0.035em;
     }
 
+    .card-image {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: auto;
+      max-width: min(100%, 360px);
+      max-height: 190px;
+      margin: 0 auto 18px;
+      border: var(--border);
+      border-radius: 14px;
+      background: var(--white);
+      box-shadow: 4px 4px 0 rgba(5, 5, 5, 0.22);
+      object-fit: contain;
+    }
+
+    [data-enlarge-card-image] {
+      cursor: zoom-in;
+    }
+
+    [data-enlarge-card-image]:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 4px;
+    }
+
+    .image-enlarge-hint {
+      position: relative;
+      z-index: 1;
+      margin: -8px 0 12px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 850;
+    }
+
+    body.image-viewer-open {
+      overflow: hidden;
+    }
+
+    .image-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      padding: 24px;
+      background: rgba(5, 5, 5, 0.84);
+      display: grid;
+      place-items: center;
+    }
+
+    .image-viewer[hidden] {
+      display: none;
+    }
+
+    .image-viewer-dialog {
+      position: relative;
+      width: min(94vw, 1100px, calc(100vw - 48px));
+      max-height: 92dvh;
+      padding: 52px 20px 20px;
+      border: var(--border);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: 9px 9px 0 var(--yellow);
+      display: grid;
+      place-items: center;
+      gap: 12px;
+    }
+
+    .image-viewer-image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: calc(92dvh - 112px);
+      border: 2px solid var(--black);
+      border-radius: 12px;
+      background: var(--white);
+      object-fit: contain;
+    }
+
+    .image-viewer-caption {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .image-viewer-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      min-height: 38px;
+      padding: 7px 12px;
+      border: 2px solid var(--black);
+      border-radius: 9px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    .image-viewer-close:hover,
+    .image-viewer-close:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
     .definition-copy {
       font-size: clamp(1.25rem, 3.4vw, 2rem);
       line-height: 1.35;
@@ -559,6 +662,140 @@
       gap: 12px;
     }
 
+    .view-cards-toolbar {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .local-save-status {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 850;
+    }
+
+    .card-editor {
+      margin-bottom: 18px;
+      padding: 18px;
+      border: var(--border);
+      border-radius: 14px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 30px, rgba(5, 5, 5, 0.045) 30px 31px),
+        #fffdf3;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-editor h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      letter-spacing: -0.025em;
+    }
+
+    .card-editor-fields {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .card-editor-field {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .card-editor-field input,
+    .card-editor-field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 12px;
+      border: var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-weight: 720;
+      letter-spacing: 0;
+      line-height: 1.35;
+      text-transform: none;
+    }
+
+    .card-editor-field textarea {
+      min-height: 82px;
+      resize: vertical;
+    }
+
+    .card-image-picker {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .card-image-picker input[type="file"] {
+      min-height: 48px;
+      padding: 9px;
+      border: var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: none;
+    }
+
+    .card-image-preview {
+      min-height: 88px;
+      padding: 10px;
+      border: 2px dashed var(--black);
+      border-radius: 12px;
+      background: rgba(255, 212, 59, 0.12);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .card-image-preview img {
+      display: block;
+      width: auto;
+      max-width: 180px;
+      max-height: 120px;
+      border: 2px solid var(--black);
+      border-radius: 9px;
+      background: var(--white);
+      object-fit: contain;
+    }
+
+    .card-image-preview[aria-busy="true"] {
+      opacity: 0.68;
+    }
+
+    .card-editor-field input:focus,
+    .card-editor-field textarea:focus,
+    .card-image-picker input[type="file"]:focus {
+      outline: 4px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
+    .card-editor-actions {
+      margin-top: 14px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
     .view-card-row {
       overflow: hidden;
       border: var(--border);
@@ -568,7 +805,7 @@
         #fffdf3;
       box-shadow: var(--shadow-soft);
       display: grid;
-      grid-template-columns: minmax(170px, 0.38fr) minmax(0, 1fr);
+      grid-template-columns: minmax(170px, 0.38fr) minmax(0, 1fr) auto;
     }
 
     .view-card-term,
@@ -586,6 +823,60 @@
     .view-card-definition {
       color: var(--ink-soft);
       font-weight: 720;
+    }
+
+    .view-card-image {
+      display: block;
+      width: auto;
+      max-width: 150px;
+      max-height: 110px;
+      margin: 10px 18px 14px;
+      border: 2px solid var(--black);
+      border-radius: 10px;
+      background: var(--white);
+      object-fit: contain;
+    }
+
+    .view-card-actions {
+      padding: 10px;
+      border-left: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .delete-card-button,
+    .confirm-delete-button {
+      min-height: 42px;
+      padding: 8px 12px;
+      border: 2px solid var(--red-dark);
+      border-radius: 9px;
+      background: var(--red-soft);
+      color: var(--red-dark);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .cancel-delete-button {
+      min-height: 42px;
+      padding: 8px 12px;
+      border: 2px solid var(--black);
+      border-radius: 9px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .delete-card-button:hover,
+    .delete-card-button:focus-visible,
+    .confirm-delete-button:hover,
+    .confirm-delete-button:focus-visible,
+    .cancel-delete-button:hover,
+    .cancel-delete-button:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 2px;
     }
 
     .match-toolbar {
@@ -620,6 +911,18 @@
       text-align: left;
       box-shadow: var(--shadow-soft);
       transition: transform 120ms ease, box-shadow 120ms ease, background 150ms ease, opacity 200ms ease;
+    }
+
+    .match-card-image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 76px;
+      margin-inline: auto;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      background: var(--white);
+      object-fit: contain;
     }
 
     .match-card:hover:not(:disabled) {
@@ -1397,6 +1700,14 @@
     body.plain-theme .answer,
     body.plain-theme .match-card,
     body.plain-theme .view-card-row,
+    body.plain-theme .card-editor,
+    body.plain-theme .card-editor-field input,
+    body.plain-theme .card-editor-field textarea,
+    body.plain-theme .card-image-picker input[type="file"],
+    body.plain-theme .card-image-preview,
+    body.plain-theme .delete-card-button,
+    body.plain-theme .confirm-delete-button,
+    body.plain-theme .cancel-delete-button,
     body.plain-theme .view-card-term,
     body.plain-theme .completion,
     body.plain-theme .completion-mark,
@@ -1477,6 +1788,148 @@
       border-style: dashed;
     }
 
+    /*
+      Keep the controls for the fixed study modes inside a typical laptop
+      viewport. Long-form modes (the term list and tests) intentionally retain
+      their natural document scrolling.
+    */
+    @media (min-width: 701px) and (max-height: 900px) {
+      .app-header {
+        padding-block: 10px;
+      }
+
+      .logo-mark {
+        flex-basis: 54px;
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+      }
+
+      .brand-copy {
+        gap: 3px;
+      }
+
+      .brand {
+        font-size: 1.7rem;
+      }
+
+      .shell {
+        margin-top: 14px;
+        margin-bottom: 28px;
+      }
+
+      .tabs {
+        margin-bottom: 14px;
+      }
+
+      .tab {
+        padding-block: 8px 10px;
+      }
+
+      .status-row {
+        margin-bottom: 9px;
+      }
+
+      #flashcardsPanel .study-card {
+        min-height: clamp(260px, calc(100dvh - 330px), 360px);
+        padding-block: 26px;
+      }
+
+      #flashcardsPanel .card-image {
+        max-height: 110px;
+        margin-bottom: 10px;
+      }
+
+      #learnPanel .card-image {
+        max-height: 72px;
+        margin-bottom: 6px;
+      }
+
+      #flashcardsPanel .actions {
+        margin-top: 14px;
+      }
+
+      #learnPanel .learn-prompt {
+        min-height: clamp(130px, calc(100dvh - 600px), 190px);
+        margin-bottom: 8px;
+        padding-block: 18px;
+      }
+
+      #learnPanel .answers {
+        gap: 8px;
+      }
+
+      #learnPanel .answer {
+        min-height: 62px;
+        padding: 9px 13px;
+      }
+
+      #learnPanel .learn-controls {
+        margin-top: 10px;
+      }
+
+      #learnPanel .learn-feedback {
+        margin-top: 9px;
+      }
+
+      .stack-game {
+        gap: 14px;
+      }
+
+      .stack-panel {
+        padding: 14px;
+      }
+
+      .stack-stats {
+        margin-bottom: 9px;
+      }
+
+      .stack-question {
+        margin-bottom: 10px;
+        font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+      }
+
+      .stack-answer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .stack-answer {
+        min-height: 56px;
+        padding: 9px 10px;
+        font-size: 0.9rem;
+      }
+
+      .stack-feedback {
+        min-height: 38px;
+        margin-top: 9px;
+        font-size: 0.9rem;
+      }
+
+      .stack-preview {
+        margin-top: 9px;
+        padding: 9px;
+      }
+
+      .stack-controls {
+        margin-top: 9px;
+      }
+
+      .stack-controls .btn {
+        min-height: 44px;
+        padding-block: 8px;
+      }
+
+      .stack-stage-toolbar {
+        padding-block: 9px;
+      }
+
+      .stack-stage {
+        height: clamp(330px, calc(100dvh - 245px), 540px);
+        min-height: 330px;
+      }
+    }
+
     @media (max-width: 700px) {
       .app-header {
         padding-inline: 12px;
@@ -1540,6 +1993,40 @@
 
       .answers {
         grid-template-columns: 1fr;
+      }
+
+      .view-cards-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .view-cards-toolbar .btn {
+        width: 100%;
+      }
+
+      .card-editor-fields,
+      .view-card-row {
+        grid-template-columns: 1fr;
+      }
+
+      .card-image-picker {
+        grid-template-columns: 1fr;
+      }
+
+      .view-card-term {
+        border-right: 0;
+        border-bottom: var(--border);
+      }
+
+      .view-card-actions {
+        border-top: var(--border);
+        border-left: 0;
+      }
+
+      .delete-card-button,
+      .confirm-delete-button,
+      .cancel-delete-button {
+        width: 100%;
       }
 
       .learn-controls {
@@ -1658,8 +2145,8 @@
       <button class="tab active" type="button" data-mode="flashcards">Flashcards</button>
       <button class="tab" type="button" data-mode="learn">Learn</button>
       <button class="tab" type="button" data-mode="match">Match</button>
-      <button class="tab" type="button" data-mode="test">Test</button>
       <button class="tab" type="button" data-mode="stack">Stack</button>
+      <button class="tab" type="button" data-mode="test">Test</button>
     </nav>
 
     <div class="progress-track" aria-label="Study progress">
@@ -1675,6 +2162,14 @@
     <section class="mode-panel" id="viewCardsPanel" aria-label="View all cards"></section>
     <section class="mode-panel" id="stackPanel" aria-label="Stack game mode"></section>
   </main>
+
+  <div class="image-viewer" id="imageViewer" role="dialog" aria-modal="true" aria-label="Enlarged card image" hidden>
+    <div class="image-viewer-dialog">
+      <button class="image-viewer-close" id="closeImageViewer" type="button">Close ✕</button>
+      <img class="image-viewer-image" id="imageViewerImage" alt="">
+      <p class="image-viewer-caption" id="imageViewerCaption"></p>
+    </div>
+  </div>
 
   <script>
     const sampleDeck = {
@@ -1693,8 +2188,15 @@
       ]
     };
 
+    const DECK_EDITS_STORAGE_PREFIX = "studyBroDeckEdits:v1:";
     let deckTitle = sampleDeck.title;
     let deck = sampleDeck.cards;
+    let hasLocalDeckEdits = false;
+    let isAddCardFormOpen = false;
+    let pendingDeleteCardIndex = null;
+    let pendingCardImageData = "";
+    let isCardImageProcessing = false;
+    let imageViewerTrigger = null;
 
     const elements = {
       progress: document.querySelector("#progressFill"),
@@ -1775,6 +2277,93 @@
         .replaceAll("'", "&#039;");
     }
 
+    function isSafePublishedImagePath(value) {
+      if (typeof value !== "string") return false;
+      return /^deck-assets\/[a-z0-9](?:[a-z0-9-]{0,78}[a-z0-9])?\/[a-z0-9][a-z0-9._-]*\.(?:gif|jpe?g|png|webp)$/i.test(value.trim());
+    }
+
+    function cardImageHTML(card, className = "card-image", showHint = true) {
+      if (!card?.image || typeof card.image !== "string") return "";
+      const cardLabel = card.term || card.text || "card";
+      const imageAlt = typeof card.imageAlt === "string" && card.imageAlt.trim()
+        ? card.imageAlt.trim()
+        : `Image for ${cardLabel}`;
+      return (
+        `<img class="${className}" src="${escapeHTML(card.image)}" ` +
+          `alt="${escapeHTML(imageAlt)}" ` +
+          `aria-label="Enlarge image: ${escapeHTML(imageAlt)}" ` +
+          `title="Enlarge image" role="button" tabindex="0" data-enlarge-card-image>` +
+        (showHint ? '<span class="image-enlarge-hint">Tap or click the image to enlarge</span>' : '')
+      );
+    }
+
+    function openImageViewer(image) {
+      const viewer = document.querySelector("#imageViewer");
+      const viewerImage = document.querySelector("#imageViewerImage");
+      const caption = document.querySelector("#imageViewerCaption");
+      if (!viewer || !viewerImage || !image?.src) return;
+
+      imageViewerTrigger = image;
+      viewerImage.src = image.src;
+      viewerImage.alt = image.alt || "Enlarged card image";
+      caption.textContent = image.alt || "";
+      viewer.hidden = false;
+      document.body.classList.add("image-viewer-open");
+      document.querySelector("#closeImageViewer")?.focus();
+    }
+
+    function closeImageViewer() {
+      const viewer = document.querySelector("#imageViewer");
+      const viewerImage = document.querySelector("#imageViewerImage");
+      if (!viewer || viewer.hidden) return;
+
+      viewer.hidden = true;
+      document.body.classList.remove("image-viewer-open");
+      viewerImage.removeAttribute("src");
+      imageViewerTrigger?.focus();
+      imageViewerTrigger = null;
+    }
+
+    function initImageViewer() {
+      document.addEventListener("click", (event) => {
+        const image = event.target.closest?.("[data-enlarge-card-image]");
+        if (!image) return;
+        event.preventDefault();
+        event.stopPropagation();
+        openImageViewer(image);
+      }, true);
+
+      document.addEventListener("keydown", (event) => {
+        const image = event.target.closest?.("[data-enlarge-card-image]");
+        if (image && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          event.stopPropagation();
+          openImageViewer(image);
+          return;
+        }
+
+        if (event.key === "Escape" && !document.querySelector("#imageViewer")?.hidden) {
+          event.preventDefault();
+          closeImageViewer();
+        }
+      }, true);
+
+      document.addEventListener("error", (event) => {
+        const image = event.target.closest?.("[data-enlarge-card-image]");
+        if (!image) return;
+        image.hidden = true;
+        if (image.nextElementSibling?.classList.contains("image-enlarge-hint")) {
+          image.nextElementSibling.hidden = true;
+        }
+        console.warn(`Study Bro could not load card image: ${image.getAttribute("src")}`);
+      }, true);
+
+      document.querySelector("#closeImageViewer")?.addEventListener("click", closeImageViewer);
+      document.querySelector("#imageViewer")?.addEventListener("click", (event) => {
+        if (event.target.id === "imageViewer") closeImageViewer();
+      });
+    }
+
     function setProgress(percent) {
       elements.progress.style.width = `${Math.max(0, Math.min(100, percent))}%`;
     }
@@ -1788,17 +2377,173 @@
         throw new Error("The deck needs at least one card.");
       }
 
-      const validCards = data.cards.every((card) =>
-        card &&
-        typeof card.term === "string" &&
-        card.term.trim() &&
-        typeof card.definition === "string" &&
-        card.definition.trim()
-      );
+      const validCards = data.cards.every((card) => {
+        if (
+          !card ||
+          typeof card.term !== "string" ||
+          !card.term.trim() ||
+          typeof card.definition !== "string" ||
+          !card.definition.trim()
+        ) {
+          return false;
+        }
+
+        const image = card.image;
+        const imageAlt = card.imageAlt;
+        if (image === undefined || image === "") {
+          return imageAlt === undefined || imageAlt === "";
+        }
+        if (typeof image !== "string" || !image.trim()) return false;
+
+        if (image.trim().startsWith("data:image/")) {
+          return (
+            imageAlt === undefined ||
+            imageAlt === "" ||
+            (typeof imageAlt === "string" && Boolean(imageAlt.trim()))
+          );
+        }
+
+        return (
+          isSafePublishedImagePath(image) &&
+          typeof imageAlt === "string" &&
+          Boolean(imageAlt.trim())
+        );
+      });
 
       if (!validCards) {
-        throw new Error("Every card needs a non-empty term and definition.");
+        throw new Error(
+          "Every card needs a non-empty term and definition. Published images also need a safe deck-assets path and non-empty alt text."
+        );
       }
+    }
+
+    function normalizeDeck(data) {
+      return {
+        title: data.title.trim(),
+        cards: data.cards.map((card) => {
+          const term = card.term.trim();
+          return {
+            term,
+            definition: card.definition.trim(),
+            ...(card.image ? {
+              image: card.image.trim(),
+              imageAlt: typeof card.imageAlt === "string" && card.imageAlt.trim()
+                ? card.imageAlt.trim()
+                : `Image for ${term}`
+            } : {})
+          };
+        })
+      };
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => resolve(reader.result));
+        reader.addEventListener("error", () => reject(new Error("The image could not be read.")));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function loadImage(dataURL) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.addEventListener("load", () => resolve(image));
+        image.addEventListener("error", () => reject(new Error("That file is not a supported image.")));
+        image.src = dataURL;
+      });
+    }
+
+    function renderCompressedImage(image, maxDimension, quality) {
+      const scale = Math.min(1, maxDimension / Math.max(image.naturalWidth, image.naturalHeight));
+      const width = Math.max(1, Math.round(image.naturalWidth * scale));
+      const height = Math.max(1, Math.round(image.naturalHeight * scale));
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+      return canvas.toDataURL("image/webp", quality);
+    }
+
+    async function compressCardImage(file) {
+      if (!file.type.startsWith("image/")) {
+        throw new Error("Please choose an image file.");
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        throw new Error("Please choose an image smaller than 10 MB.");
+      }
+
+      const sourceData = await readFileAsDataURL(file);
+      const image = await loadImage(sourceData);
+      let compressed = renderCompressedImage(image, 900, 0.8);
+      if (compressed.length > 240000) {
+        compressed = renderCompressedImage(image, 600, 0.66);
+      }
+      if (compressed.length > 180000) {
+        compressed = renderCompressedImage(image, 480, 0.58);
+      }
+      return compressed;
+    }
+
+    function updateCardImagePreview(message = "") {
+      const preview = document.querySelector("#newCardImagePreview");
+      const saveButton = document.querySelector("#saveNewCardButton");
+      if (!preview) return;
+
+      preview.setAttribute("aria-busy", String(isCardImageProcessing));
+      saveButton?.toggleAttribute("disabled", isCardImageProcessing);
+      if (pendingCardImageData) {
+        preview.innerHTML =
+          `<img src="${escapeHTML(pendingCardImageData)}" alt="Selected card image preview">` +
+          `<span>${escapeHTML(message || "Image ready and compressed for local saving.")}</span>`;
+      } else {
+        preview.textContent = message || "Optional · JPG, PNG, GIF, or WebP up to 10 MB";
+      }
+    }
+
+    function getDeckStorageKey() {
+      const deckURL = new URL(window.location.href);
+      deckURL.hash = "";
+      return `${DECK_EDITS_STORAGE_PREFIX}${deckURL.href}`;
+    }
+
+    function getSavedDeck() {
+      try {
+        const savedValue = localStorage.getItem(getDeckStorageKey());
+        if (!savedValue) return null;
+
+        const savedDeck = JSON.parse(savedValue);
+        validateDeck(savedDeck);
+        hasLocalDeckEdits = true;
+        return normalizeDeck(savedDeck);
+      } catch (error) {
+        showDeckError(`Your locally saved card changes could not be loaded. ${error.message}`);
+        return null;
+      }
+    }
+
+    function saveEditedDeck(cards) {
+      const editedDeck = {
+        title: deckTitle,
+        cards
+      };
+
+      try {
+        validateDeck(editedDeck);
+        localStorage.setItem(getDeckStorageKey(), JSON.stringify(editedDeck));
+        hasLocalDeckEdits = true;
+        return true;
+      } catch (error) {
+        showDeckError(`Your card changes could not be saved on this device. ${error.message}`);
+        return false;
+      }
+    }
+
+    function reopenCardManager() {
+      const cardManagerURL = new URL(window.location.href);
+      cardManagerURL.hash = "viewCards";
+      window.history.replaceState(null, "", cardManagerURL.href);
+      window.location.reload();
     }
 
     function updateDeckHeader() {
@@ -1814,6 +2559,14 @@
     }
 
     async function loadDeck() {
+      const savedDeck = getSavedDeck();
+      if (savedDeck) {
+        deckTitle = savedDeck.title;
+        deck = savedDeck.cards;
+        updateDeckHeader();
+        return;
+      }
+
       const deckPath = new URLSearchParams(window.location.search).get("deck");
       if (!deckPath) {
         updateDeckHeader();
@@ -1828,11 +2581,9 @@
 
         const data = await response.json();
         validateDeck(data);
-        deckTitle = data.title.trim();
-        deck = data.cards.map((card) => ({
-          term: card.term.trim(),
-          definition: card.definition.trim()
-        }));
+        const normalizedDeck = normalizeDeck(data);
+        deckTitle = normalizedDeck.title;
+        deck = normalizedDeck.cards;
       } catch (error) {
         deckTitle = sampleDeck.title;
         deck = sampleDeck.cards;
@@ -1846,7 +2597,7 @@
       initFlashcards();
       initLearn();
       initMatch();
-      switchMode("flashcards");
+      switchMode(window.location.hash === "#viewCards" ? "viewCards" : "flashcards");
     }
 
     function initFlashcards() {
@@ -1893,6 +2644,7 @@
         </div>
         <article class="study-card flashcard ${flashState.flipStage ? `flipping-${flashState.flipStage}` : ""}" id="activeFlashcard" role="button" tabindex="0" aria-label="Flip card">
           <span class="badge">${showingDefinition ? "definition" : "term"}</span>
+          ${showingDefinition ? cardImageHTML(card) : ""}
           <p class="card-copy ${showingDefinition ? "definition-copy" : ""}">
             ${escapeHTML(showingDefinition ? card.definition : card.term)}
           </p>
@@ -1990,20 +2742,146 @@
 
     function renderViewCards() {
       setProgress(100);
-      const rows = deck.map((card, index) => (
-        '<article class="view-card-row">' +
+      const rows = deck.map((card, index) => {
+        const deleteControls = pendingDeleteCardIndex === index
+          ? '<button class="confirm-delete-button" type="button" data-confirm-delete="' + index + '">' +
+              'Confirm delete</button>' +
+            '<button class="cancel-delete-button" type="button" data-cancel-delete>Cancel</button>'
+          : '<button class="delete-card-button" type="button" data-delete-card="' + index + '" ' +
+              'aria-label="Delete ' + escapeHTML(card.term) + '">Delete</button>';
+
+        return '<article class="view-card-row">' +
           '<div class="view-card-term">' + (index + 1) + '. ' + escapeHTML(card.term) + '</div>' +
-          '<div class="view-card-definition">' + escapeHTML(card.definition) + '</div>' +
-        '</article>'
-      )).join("");
+          '<div class="view-card-definition">' + escapeHTML(card.definition) +
+            cardImageHTML(card, "view-card-image") + '</div>' +
+          '<div class="view-card-actions">' +
+            deleteControls +
+          '</div>' +
+        '</article>';
+      }).join("");
+
+      const editor = isAddCardFormOpen
+        ? '<form class="card-editor" id="addCardForm">' +
+            '<h2>Add a card</h2>' +
+            '<div class="card-editor-fields">' +
+              '<label class="card-editor-field">Term' +
+                '<input id="newCardTerm" name="term" type="text" maxlength="300" required autocomplete="off">' +
+              '</label>' +
+              '<label class="card-editor-field">Definition' +
+                '<textarea id="newCardDefinition" name="definition" maxlength="2000" required></textarea>' +
+              '</label>' +
+              '<div class="card-image-picker">' +
+                '<label class="card-editor-field">Optional image' +
+                  '<input id="newCardImage" name="image" type="file" accept="image/*">' +
+                '</label>' +
+                '<div class="card-image-preview" id="newCardImagePreview" aria-live="polite">' +
+                  'Optional · JPG, PNG, GIF, or WebP up to 10 MB' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="card-editor-actions">' +
+              '<button class="btn" type="button" id="cancelAddCard">Cancel</button>' +
+              '<button class="btn btn-dark" type="submit" id="saveNewCardButton">Save card</button>' +
+            '</div>' +
+          '</form>'
+        : '';
+
       elements.viewCards.innerHTML =
-        '<div class="status-row">' +
+        '<div class="view-cards-toolbar">' +
           '<div class="status-group">' +
             '<span class="stat">' + deck.length + ' cards</span>' +
+            (hasLocalDeckEdits ? '<span class="local-save-status">Saved on this device</span>' : '') +
           '</div>' +
-          '<span>Full deck view</span>' +
+          '<button class="btn btn-yellow" type="button" id="openAddCard">Add card</button>' +
         '</div>' +
+        editor +
         '<div class="view-cards-list">' + rows + '</div>';
+
+      document.querySelector("#openAddCard").addEventListener("click", () => {
+        isAddCardFormOpen = true;
+        pendingCardImageData = "";
+        isCardImageProcessing = false;
+        renderViewCards();
+        document.querySelector("#newCardTerm")?.focus();
+      });
+
+      document.querySelector("#cancelAddCard")?.addEventListener("click", () => {
+        isAddCardFormOpen = false;
+        pendingCardImageData = "";
+        isCardImageProcessing = false;
+        renderViewCards();
+      });
+
+      document.querySelector("#newCardImage")?.addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        pendingCardImageData = "";
+        if (!file) {
+          updateCardImagePreview();
+          return;
+        }
+
+        isCardImageProcessing = true;
+        updateCardImagePreview("Compressing image…");
+        try {
+          pendingCardImageData = await compressCardImage(file);
+          isCardImageProcessing = false;
+          updateCardImagePreview();
+        } catch (error) {
+          pendingCardImageData = "";
+          isCardImageProcessing = false;
+          event.target.value = "";
+          updateCardImagePreview(error.message);
+        }
+      });
+
+      document.querySelector("#addCardForm")?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (isCardImageProcessing) return;
+        const term = document.querySelector("#newCardTerm").value.trim();
+        const definition = document.querySelector("#newCardDefinition").value.trim();
+        if (!term || !definition) return;
+
+        const newCard = {
+          term,
+          definition,
+          ...(pendingCardImageData ? {
+            image: pendingCardImageData,
+            imageAlt: `Image for ${term}`
+          } : {})
+        };
+        const updatedCards = [...deck, newCard];
+        if (saveEditedDeck(updatedCards)) reopenCardManager();
+      });
+
+      document.querySelectorAll("[data-delete-card]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const cardIndex = Number(button.dataset.deleteCard);
+          const card = deck[cardIndex];
+          if (!card) return;
+
+          if (deck.length === 1) {
+            showDeckError("A deck must keep at least one card.");
+            return;
+          }
+
+          pendingDeleteCardIndex = cardIndex;
+          renderViewCards();
+          document.querySelector(`[data-confirm-delete="${cardIndex}"]`)?.focus();
+        });
+      });
+
+      document.querySelector("[data-cancel-delete]")?.addEventListener("click", () => {
+        pendingDeleteCardIndex = null;
+        renderViewCards();
+      });
+
+      document.querySelectorAll("[data-confirm-delete]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const cardIndex = Number(button.dataset.confirmDelete);
+          const updatedCards = deck.filter((_, index) => index !== cardIndex);
+          if (saveEditedDeck(updatedCards)) reopenCardManager();
+        });
+      });
     }
     function clearLearnAdvanceTimer() {
       if (learnAdvanceTimer) window.clearTimeout(learnAdvanceTimer);
@@ -2169,8 +3047,22 @@
       const pairCount = Math.min(6, deck.length);
       const selectedIndexes = shuffle(deck.map((_, index) => index)).slice(0, pairCount);
       const cards = selectedIndexes.flatMap((deckIndex) => [
-        { id: `term-${deckIndex}`, pairId: deckIndex, type: "term", text: deck[deckIndex].term },
-        { id: `definition-${deckIndex}`, pairId: deckIndex, type: "definition", text: deck[deckIndex].definition }
+        {
+          id: `term-${deckIndex}`,
+          pairId: deckIndex,
+          type: "term",
+          text: deck[deckIndex].term,
+          image: "",
+          imageAlt: ""
+        },
+        {
+          id: `definition-${deckIndex}`,
+          pairId: deckIndex,
+          type: "definition",
+          text: deck[deckIndex].definition,
+          image: deck[deckIndex].image || "",
+          imageAlt: deck[deckIndex].imageAlt || ""
+        }
       ]);
 
       Object.assign(matchState, {
@@ -2240,6 +3132,7 @@
                 ${matched ? "disabled" : ""}
               >
                 <span class="mini-badge">${card.type}</span>
+                ${card.image ? cardImageHTML(card, "match-card-image", false) : ""}
                 <span>${escapeHTML(card.text)}</span>
               </button>
             `;
@@ -2817,6 +3710,7 @@
     window.studyBroSwitchMode = switchMode;
 
     initThemeToggle();
+    initImageViewer();
     loadDeck().then(startApp);
   </script>
   <script src="vendor/matter.min.js"></script>

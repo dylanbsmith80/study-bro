@@ -40,6 +40,13 @@ def main() -> int:
             raise ValueError('Deck must have a non-empty string "title".')
         if not isinstance(cards, list) or not cards:
             raise ValueError('Deck must have a non-empty "cards" array.')
+        image_count = sum(
+            1
+            for card in cards
+            if isinstance(card, dict)
+            and isinstance(card.get("image"), str)
+            and card["image"].strip()
+        )
 
         args.links_dir.mkdir(parents=True, exist_ok=True)
         destination = args.links_dir / f"{args.deck_file.stem}.md"
@@ -56,6 +63,7 @@ def main() -> int:
             f"- [Open Study Bro deck]({share_url})\n"
             f"- Deck file: [`{deck_path}`](../{deck_path})\n"
             f"- Cards: {len(cards)}\n"
+            f"- Images: {image_count}\n"
         )
         destination.write_text(content, encoding="utf-8")
     except (OSError, ValueError, json.JSONDecodeError) as error:
@@ -64,6 +72,7 @@ def main() -> int:
 
     print(destination.as_posix())
     print(share_url)
+    print(f"images={image_count}")
     return 0
 
 

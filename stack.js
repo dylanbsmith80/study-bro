@@ -1,5 +1,5 @@
 (function () {
-  const MAX_ITEMS = 20;
+  const MAX_ITEMS = 100;
   const BEST_KEY = "studyBroStackBestItemCount";
 
   const STACK_ITEMS = [
@@ -489,7 +489,7 @@
 
       if (state.placed >= MAX_ITEMS) {
         state.phase = "won";
-        state.resultReason = `You stacked ${MAX_ITEMS} study items.`;
+        state.resultReason = "You stacked 100 study items.";
         render();
         window.setTimeout(() => physics?.stop(), 350);
         return;
@@ -553,7 +553,7 @@
       } else if (state.phase === "lost") {
         elements.stageStatus.textContent = "Stack toppled";
       } else if (state.phase === "won") {
-        elements.stageStatus.textContent = `${MAX_ITEMS} items stacked`;
+        elements.stageStatus.textContent = "100 items stacked";
       } else {
         elements.stageStatus.textContent = "Answer correctly to place an item";
       }
@@ -587,6 +587,9 @@
     }
 
     function renderFeedback() {
+      elements.feedback.classList.toggle("feedback-correct", state.phase === "placing");
+      elements.feedback.classList.toggle("feedback-wrong", state.phase === "review" && state.answerState?.selected !== state.answerState?.correct);
+      elements.feedback.classList.toggle("feedback-error", state.phase === "blocked" || state.phase === "lost");
       if (state.phase === "placing" && state.pendingItem) {
         elements.feedback.innerHTML = `<strong>Correct.</strong> Drag the ${escapeHTML(state.pendingItem.name)} into the stack area.`;
         return;
@@ -625,7 +628,7 @@
       const won = state.phase === "won";
       elements.overlay.classList.add("active");
       elements.overlay.innerHTML = `
-        <div class="stack-end-state">
+        <div class="stack-end-state ${won ? "success" : "error"}">
           <h2>${won ? "Stacked!" : "Toppled"}</h2>
           <p>${escapeHTML(state.resultReason)} Best run: ${state.best} / ${MAX_ITEMS}.</p>
           <div class="stack-end-actions">

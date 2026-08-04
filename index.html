@@ -310,6 +310,29 @@
       transform: rotate(-1deg);
     }
 
+    .mode-shuffle-button {
+      min-height: 34px;
+      padding: 6px 11px;
+      border: var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--black);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.2);
+    }
+
+    .mode-shuffle-button[aria-pressed="true"] {
+      background: var(--yellow);
+    }
+
+    .mode-shuffle-button:hover,
+    .mode-shuffle-button:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
     .study-card {
       position: relative;
       overflow: hidden;
@@ -846,6 +869,8 @@
       gap: 8px;
     }
 
+    .edit-card-button,
+    .restore-card-button,
     .delete-card-button,
     .confirm-delete-button {
       min-height: 42px;
@@ -856,6 +881,13 @@
       color: var(--red-dark);
       font-weight: 900;
       cursor: pointer;
+    }
+
+    .edit-card-button,
+    .restore-card-button {
+      border-color: var(--black);
+      background: var(--white);
+      color: var(--black);
     }
 
     .cancel-delete-button {
@@ -869,6 +901,10 @@
       cursor: pointer;
     }
 
+    .edit-card-button:hover,
+    .edit-card-button:focus-visible,
+    .restore-card-button:hover,
+    .restore-card-button:focus-visible,
     .delete-card-button:hover,
     .delete-card-button:focus-visible,
     .confirm-delete-button:hover,
@@ -1033,6 +1069,61 @@
     .test-shell {
       display: grid;
       gap: 18px;
+    }
+
+    .test-builder {
+      display: grid;
+      gap: 16px;
+    }
+
+    .test-builder-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .test-builder fieldset {
+      margin: 0;
+      padding: 14px;
+      border: 2px solid var(--black);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      display: grid;
+      gap: 9px;
+    }
+
+    .test-builder legend {
+      padding: 0 6px;
+      font-weight: 950;
+    }
+
+    .test-builder label {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      font-weight: 760;
+      line-height: 1.3;
+    }
+
+    .test-builder input,
+    .test-builder select {
+      accent-color: var(--black);
+    }
+
+    .test-card-selector {
+      max-height: 250px;
+      overflow: auto;
+      padding: 10px;
+      border: 2px dashed var(--black);
+      border-radius: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .test-builder-error {
+      margin: 0;
+      color: var(--red-dark);
+      font-weight: 900;
     }
 
     .test-intro,
@@ -1208,8 +1299,22 @@
       font-weight: 760;
       line-height: 1.25;
       text-align: left;
-      touch-action: none;
+      touch-action: manipulation;
       transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .test-match-select {
+      display: none;
+      width: 100%;
+      min-height: 48px;
+      margin-top: 8px;
+      padding: 9px;
+      border: 2px solid var(--black);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-weight: 760;
     }
 
     .test-answer-chip:hover {
@@ -1646,6 +1751,10 @@
       --red: #ffffff;
       --red-soft: #ffffff;
       --red-dark: #000000;
+      --semantic-green-bg: #e6f4ea;
+      --semantic-green-text: #0b5d2a;
+      --semantic-red-bg: #fde8e8;
+      --semantic-red-text: #8a1c1c;
       --purple: #000000;
       --wood: #000000;
       --ink-soft: #000000;
@@ -1705,6 +1814,8 @@
     body.plain-theme .card-editor-field textarea,
     body.plain-theme .card-image-picker input[type="file"],
     body.plain-theme .card-image-preview,
+    body.plain-theme .edit-card-button,
+    body.plain-theme .restore-card-button,
     body.plain-theme .delete-card-button,
     body.plain-theme .confirm-delete-button,
     body.plain-theme .cancel-delete-button,
@@ -1777,15 +1888,61 @@
     body.plain-theme .answer.correct,
     body.plain-theme .match-card.matched,
     body.plain-theme .test-review-item.correct,
-    body.plain-theme .stack-answer.correct {
+    body.plain-theme .stack-answer.correct,
+    body.plain-theme .learn-feedback.feedback-correct,
+    body.plain-theme .stack-feedback.feedback-correct,
+    body.plain-theme .stack-panel:has(.stack-answer.correct) .stack-feedback,
+    body.plain-theme .stack-end-state.success,
+    body.plain-theme #knownButton {
+      border-color: var(--semantic-green-text);
       border-style: double;
+      background: var(--semantic-green-bg);
+      color: var(--semantic-green-text);
     }
 
     body.plain-theme .answer.wrong,
     body.plain-theme .match-card.wrong,
     body.plain-theme .test-review-item.wrong,
-    body.plain-theme .stack-answer.wrong {
+    body.plain-theme .stack-answer.wrong,
+    body.plain-theme .learn-feedback.feedback-wrong,
+    body.plain-theme .stack-feedback.feedback-wrong,
+    body.plain-theme .stack-feedback.feedback-error,
+    body.plain-theme .stack-panel:has(.stack-answer.wrong) .stack-feedback,
+    body.plain-theme .stack-end-state.error,
+    body.plain-theme .test-builder-error,
+    body.plain-theme .deck-message,
+    body.plain-theme #missedButton {
+      border-color: var(--semantic-red-text);
       border-style: dashed;
+      background: var(--semantic-red-bg);
+      color: var(--semantic-red-text);
+    }
+
+    body.plain-theme .learn-feedback.feedback-correct,
+    body.plain-theme .learn-feedback.feedback-wrong,
+    body.plain-theme .stack-feedback.feedback-correct,
+    body.plain-theme .stack-feedback.feedback-wrong,
+    body.plain-theme .stack-feedback.feedback-error,
+    body.plain-theme .stack-panel:has(.stack-answer.correct) .stack-feedback,
+    body.plain-theme .stack-panel:has(.stack-answer.wrong) .stack-feedback,
+    body.plain-theme .test-builder-error {
+      padding: 9px 11px;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 4px;
+    }
+
+    body.plain-theme .learn-feedback.feedback-correct strong,
+    body.plain-theme .stack-feedback.feedback-correct strong,
+    body.plain-theme .stack-panel:has(.stack-answer.correct) .stack-feedback strong {
+      color: var(--semantic-green-text);
+    }
+
+    body.plain-theme .learn-feedback.feedback-wrong strong,
+    body.plain-theme .stack-feedback.feedback-wrong strong,
+    body.plain-theme .stack-feedback.feedback-error strong,
+    body.plain-theme .stack-panel:has(.stack-answer.wrong) .stack-feedback strong {
+      color: var(--semantic-red-text);
     }
 
     /*
@@ -2023,6 +2180,8 @@
         border-left: 0;
       }
 
+      .edit-card-button,
+      .restore-card-button,
       .delete-card-button,
       .confirm-delete-button,
       .cancel-delete-button {
@@ -2038,12 +2197,20 @@
         flex-direction: column;
       }
 
+      .test-builder-grid {
+        grid-template-columns: 1fr;
+      }
+
       .test-score {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .test-match-row {
         grid-template-columns: 1fr;
+      }
+
+      .test-match-select {
+        display: block;
       }
 
       .match-grid {
@@ -2189,12 +2356,30 @@
     };
 
     const DECK_EDITS_STORAGE_PREFIX = "studyBroDeckEdits:v1:";
+    const STUDY_BRO_DB_NAME = "StudyBroPrivateData";
+    const STUDY_BRO_DB_VERSION = 1;
+    const STUDY_BRO_STORES = {
+      decks: "decks",
+      images: "images",
+      deletedCards: "deletedCards",
+      preferences: "preferences",
+      library: "library",
+      migrations: "migrations"
+    };
+    let studyBroDBPromise = null;
+    let persistenceMode = "pending";
+    const activeImageObjectURLs = new Set();
     let deckTitle = sampleDeck.title;
     let deck = sampleDeck.cards;
+    let originalDeck = { title: sampleDeck.title, cards: [] };
+    let originalCardsById = new Map();
     let hasLocalDeckEdits = false;
     let isAddCardFormOpen = false;
+    let editingCardIndex = null;
+    let editImageAction = "keep";
     let pendingDeleteCardIndex = null;
-    let pendingCardImageData = "";
+    let pendingCardImageBlob = null;
+    let pendingCardImagePreviewURL = "";
     let isCardImageProcessing = false;
     let imageViewerTrigger = null;
 
@@ -2224,8 +2409,12 @@
     const learnState = {};
     const matchState = {};
     const testState = {};
+    const missedCardIds = new Set();
+    let savedTestPreferences = null;
+    let flashShuffleEnabled = false;
+    let learnShuffleEnabled = true;
 
-    function getSavedThemePreference() {
+    function getLegacyThemePreference() {
       try {
         return localStorage.getItem("studyBroPlainTheme") === "true";
       } catch (error) {
@@ -2233,12 +2422,85 @@
       }
     }
 
-    function saveThemePreference(usePlainTheme) {
+    async function getSavedThemePreference() {
+      try {
+        const db = await openStudyBroDB();
+        const record = await idbRequest(db.transaction(STUDY_BRO_STORES.preferences).objectStore(STUDY_BRO_STORES.preferences).get(`${getDeckKey()}:theme`));
+        return record ? record.value === true : getLegacyThemePreference();
+      } catch (error) {
+        return getLegacyThemePreference();
+      }
+    }
+
+    async function saveThemePreference(usePlainTheme) {
       try {
         localStorage.setItem("studyBroPlainTheme", usePlainTheme ? "true" : "false");
       } catch (error) {
-        // Some file:// browser settings block storage; the toggle should still work for this page view.
+        // The database below is the primary store; this is only a compatibility fallback.
       }
+      try {
+        const db = await openStudyBroDB();
+        await idbTransaction(db, [STUDY_BRO_STORES.preferences], "readwrite", (stores) => {
+          stores.preferences.put({
+            id: `${getDeckKey()}:theme`,
+            deckKey: getDeckKey(),
+            name: "plainTheme",
+            value: Boolean(usePlainTheme),
+            updatedAt: new Date().toISOString()
+          });
+        });
+      } catch (error) {
+        // The visible toggle still works and the localStorage fallback remains available.
+      }
+    }
+
+    async function getDeckPreference(name, fallback = null) {
+      try {
+        const db = await openStudyBroDB();
+        const record = await idbRequest(db.transaction(STUDY_BRO_STORES.preferences).objectStore(STUDY_BRO_STORES.preferences).get(`${getDeckKey()}:${name}`));
+        return record ? record.value : fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    async function saveDeckPreference(name, value) {
+      try {
+        const db = await openStudyBroDB();
+        await idbTransaction(db, [STUDY_BRO_STORES.preferences], "readwrite", (stores) => {
+          stores.preferences.put({
+            id: `${getDeckKey()}:${name}`,
+            deckKey: getDeckKey(),
+            name,
+            value,
+            updatedAt: new Date().toISOString()
+          });
+        });
+      } catch (error) {
+        // Preferences are helpful but must never block studying when storage is unavailable.
+      }
+    }
+
+    function cardTrackingId(card) {
+      return card?.sourceId || card?.id || "";
+    }
+
+    async function loadStudyPreferences() {
+      const savedMissed = await getDeckPreference("missedCards", []);
+      missedCardIds.clear();
+      if (Array.isArray(savedMissed)) savedMissed.forEach((id) => missedCardIds.add(id));
+      const preferences = await getDeckPreference("testPreferences", null);
+      savedTestPreferences = preferences && typeof preferences === "object" ? preferences : null;
+      flashShuffleEnabled = await getDeckPreference("flashcardsShuffle", false) === true;
+      learnShuffleEnabled = await getDeckPreference("learnShuffle", true) !== false;
+    }
+
+    function updateMissedCard(cardIndex, wasMissed) {
+      const id = cardTrackingId(deck[cardIndex]);
+      if (!id) return;
+      if (wasMissed) missedCardIds.add(id);
+      else missedCardIds.delete(id);
+      saveDeckPreference("missedCards", [...missedCardIds]);
     }
 
     function setThemePreference(usePlainTheme, shouldSave = true) {
@@ -2252,8 +2514,8 @@
       if (shouldSave) saveThemePreference(usePlainTheme);
     }
 
-    function initThemeToggle() {
-      setThemePreference(getSavedThemePreference(), false);
+    async function initThemeToggle() {
+      setThemePreference(await getSavedThemePreference(), false);
       elements.themeToggle.addEventListener("click", () => {
         setThemePreference(!document.body.classList.contains("plain-theme"));
       });
@@ -2403,6 +2665,10 @@
           );
         }
 
+        if (typeof card.imageId === "string" && card.imageId && image.trim().startsWith("blob:")) {
+          return imageAlt === undefined || imageAlt === "" || typeof imageAlt === "string";
+        }
+
         return (
           isSafePublishedImagePath(image) &&
           typeof imageAlt === "string" &&
@@ -2425,6 +2691,9 @@
           return {
             term,
             definition: card.definition.trim(),
+            ...(typeof card.id === "string" && card.id ? { id: card.id } : {}),
+            ...(typeof card.sourceId === "string" && card.sourceId ? { sourceId: card.sourceId } : {}),
+            ...(typeof card.imageId === "string" && card.imageId ? { imageId: card.imageId } : {}),
             ...(card.image ? {
               image: card.image.trim(),
               imageAlt: typeof card.imageAlt === "string" && card.imageAlt.trim()
@@ -2434,6 +2703,30 @@
           };
         })
       };
+    }
+
+    function assignOriginalCardIds(data) {
+      const occurrences = new Map();
+      return {
+        title: data.title,
+        cards: data.cards.map((card) => {
+          const explicitId = typeof card.id === "string" && card.id.trim() ? card.id.trim() : "";
+          const signature = JSON.stringify([card.term, card.definition, card.image || "", card.imageAlt || ""]);
+          const occurrence = occurrences.get(signature) || 0;
+          occurrences.set(signature, occurrence + 1);
+          const sourceId = explicitId
+            ? `published:id:${encodeURIComponent(explicitId)}`
+            : `published:v1:${encodeURIComponent(signature)}:${occurrence}`;
+          return { ...card, sourceId };
+        })
+      };
+    }
+
+    function cardsMatch(left, right) {
+      return left.term === right.term &&
+        left.definition === right.definition &&
+        (left.image || "") === (right.image || "") &&
+        (left.imageAlt || "") === (right.imageAlt || "");
     }
 
     function readFileAsDataURL(file) {
@@ -2462,7 +2755,13 @@
       canvas.width = width;
       canvas.height = height;
       canvas.getContext("2d").drawImage(image, 0, 0, width, height);
-      return canvas.toDataURL("image/webp", quality);
+      return new Promise((resolve, reject) => {
+        canvas.toBlob(
+          (blob) => blob ? resolve(blob) : reject(new Error("The image could not be compressed.")),
+          "image/webp",
+          quality
+        );
+      });
     }
 
     async function compressCardImage(file) {
@@ -2475,14 +2774,20 @@
 
       const sourceData = await readFileAsDataURL(file);
       const image = await loadImage(sourceData);
-      let compressed = renderCompressedImage(image, 900, 0.8);
-      if (compressed.length > 240000) {
-        compressed = renderCompressedImage(image, 600, 0.66);
+      let compressed = await renderCompressedImage(image, 900, 0.8);
+      if (compressed.size > 180000) {
+        compressed = await renderCompressedImage(image, 600, 0.66);
       }
-      if (compressed.length > 180000) {
-        compressed = renderCompressedImage(image, 480, 0.58);
+      if (compressed.size > 135000) {
+        compressed = await renderCompressedImage(image, 480, 0.58);
       }
       return compressed;
+    }
+
+    function clearPendingCardImage() {
+      if (pendingCardImagePreviewURL) URL.revokeObjectURL(pendingCardImagePreviewURL);
+      pendingCardImageBlob = null;
+      pendingCardImagePreviewURL = "";
     }
 
     function updateCardImagePreview(message = "") {
@@ -2492,29 +2797,127 @@
 
       preview.setAttribute("aria-busy", String(isCardImageProcessing));
       saveButton?.toggleAttribute("disabled", isCardImageProcessing);
-      if (pendingCardImageData) {
+      if (pendingCardImageBlob && pendingCardImagePreviewURL) {
         preview.innerHTML =
-          `<img src="${escapeHTML(pendingCardImageData)}" alt="Selected card image preview">` +
+          `<img src="${escapeHTML(pendingCardImagePreviewURL)}" alt="Selected card image preview">` +
           `<span>${escapeHTML(message || "Image ready and compressed for local saving.")}</span>`;
       } else {
         preview.textContent = message || "Optional · JPG, PNG, GIF, or WebP up to 10 MB";
       }
     }
 
-    function getDeckStorageKey() {
-      const deckURL = new URL(window.location.href);
-      deckURL.hash = "";
-      return `${DECK_EDITS_STORAGE_PREFIX}${deckURL.href}`;
+    function isOriginalCardEdited(card) {
+      if (!card?.sourceId) return false;
+      const original = originalCardsById.get(card.sourceId);
+      return Boolean(original && (!cardsMatch(card, original) || card.imageId));
     }
 
-    function getSavedDeck() {
+    function updateEditCardImagePreview(card, message = "") {
+      const preview = document.querySelector("#editCardImagePreview");
+      const saveButton = document.querySelector("#saveEditedCardButton");
+      if (!preview) return;
+      preview.setAttribute("aria-busy", String(isCardImageProcessing));
+      saveButton?.toggleAttribute("disabled", isCardImageProcessing);
+      if (editImageAction === "remove") {
+        preview.textContent = message || "The current image will be removed when you save.";
+      } else if (pendingCardImageBlob && pendingCardImagePreviewURL) {
+        preview.innerHTML = `<img src="${escapeHTML(pendingCardImagePreviewURL)}" alt="Replacement image preview">` +
+          `<span>${escapeHTML(message || "Replacement image ready and compressed for local saving.")}</span>`;
+      } else if (card?.image) {
+        preview.innerHTML = `<img src="${escapeHTML(card.image)}" alt="${escapeHTML(card.imageAlt || "Current card image")}">` +
+          `<span>${escapeHTML(message || "Current definition-side image.")}</span>`;
+      } else {
+        preview.textContent = message || "No image · choose one to add it to the definition side.";
+      }
+    }
+
+    function getDeckKey() {
+      const deckURL = new URL(window.location.href);
+      deckURL.hash = "";
+      return deckURL.href;
+    }
+
+    function getDeckStorageKey() {
+      return `${DECK_EDITS_STORAGE_PREFIX}${getDeckKey()}`;
+    }
+
+    function idbRequest(request) {
+      return new Promise((resolve, reject) => {
+        request.addEventListener("success", () => resolve(request.result), { once: true });
+        request.addEventListener("error", () => reject(request.error || new Error("Browser database request failed.")), { once: true });
+      });
+    }
+
+    function openStudyBroDB() {
+      if (!window.indexedDB) return Promise.reject(new Error("IndexedDB is unavailable."));
+      if (studyBroDBPromise) return studyBroDBPromise;
+
+      studyBroDBPromise = new Promise((resolve, reject) => {
+        const request = indexedDB.open(STUDY_BRO_DB_NAME, STUDY_BRO_DB_VERSION);
+        request.addEventListener("upgradeneeded", () => {
+          const db = request.result;
+          Object.values(STUDY_BRO_STORES).forEach((storeName) => {
+            if (!db.objectStoreNames.contains(storeName)) {
+              const store = db.createObjectStore(storeName, { keyPath: storeName === STUDY_BRO_STORES.decks ? "deckKey" : "id" });
+              if ([STUDY_BRO_STORES.images, STUDY_BRO_STORES.deletedCards, STUDY_BRO_STORES.preferences].includes(storeName)) {
+                store.createIndex("deckKey", "deckKey", { unique: false });
+              }
+            }
+          });
+        });
+        request.addEventListener("success", () => {
+          const db = request.result;
+          db.addEventListener("versionchange", () => db.close());
+          persistenceMode = "indexedDB";
+          resolve(db);
+        }, { once: true });
+        request.addEventListener("error", () => {
+          studyBroDBPromise = null;
+          persistenceMode = "localStorage";
+          reject(request.error || new Error("IndexedDB could not be opened."));
+        }, { once: true });
+        request.addEventListener("blocked", () => {
+          studyBroDBPromise = null;
+          persistenceMode = "localStorage";
+          reject(new Error("IndexedDB is blocked by another open page."));
+        }, { once: true });
+      });
+      return studyBroDBPromise;
+    }
+
+    function idbTransaction(db, storeNames, mode, work) {
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeNames, mode);
+        const stores = Object.fromEntries(storeNames.map((name) => [name, transaction.objectStore(name)]));
+        transaction.addEventListener("complete", () => resolve(), { once: true });
+        transaction.addEventListener("abort", () => reject(transaction.error || new Error("Browser database transaction was cancelled.")), { once: true });
+        transaction.addEventListener("error", () => reject(transaction.error || new Error("Browser database transaction failed.")), { once: true });
+        try {
+          work(stores, transaction);
+        } catch (error) {
+          transaction.abort();
+          reject(error);
+        }
+      });
+    }
+
+    function makeRecordId(prefix = "record") {
+      return `${prefix}:${Date.now()}:${crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)}`;
+    }
+
+    async function dataURLToBlob(dataURL) {
+      const response = await fetch(dataURL);
+      if (!response.ok) throw new Error("A saved card image could not be migrated.");
+      return response.blob();
+    }
+
+    function readLegacyDeck() {
       try {
         const savedValue = localStorage.getItem(getDeckStorageKey());
         if (!savedValue) return null;
 
         const savedDeck = JSON.parse(savedValue);
         validateDeck(savedDeck);
-        hasLocalDeckEdits = true;
         return normalizeDeck(savedDeck);
       } catch (error) {
         showDeckError(`Your locally saved card changes could not be loaded. ${error.message}`);
@@ -2522,11 +2925,16 @@
       }
     }
 
-    function saveEditedDeck(cards) {
-      const editedDeck = {
-        title: deckTitle,
-        cards
-      };
+    function saveLegacyDeck(cards) {
+      const serializableCards = cards.map((card) => {
+        const copy = { term: card.term, definition: card.definition };
+        if (card.image && !card.image.startsWith("blob:")) {
+          copy.image = card.image;
+          copy.imageAlt = card.imageAlt || `Image for ${card.term}`;
+        }
+        return copy;
+      });
+      const editedDeck = { title: deckTitle, cards: serializableCards };
 
       try {
         validateDeck(editedDeck);
@@ -2536,6 +2944,199 @@
       } catch (error) {
         showDeckError(`Your card changes could not be saved on this device. ${error.message}`);
         return false;
+      }
+    }
+
+    async function hydrateImage(db, card) {
+      const hydrated = { ...card };
+      if (hydrated.imageId) {
+        const imageRecord = await idbRequest(db.transaction(STUDY_BRO_STORES.images).objectStore(STUDY_BRO_STORES.images).get(hydrated.imageId));
+        if (imageRecord?.blob instanceof Blob) {
+          hydrated.image = URL.createObjectURL(imageRecord.blob);
+          activeImageObjectURLs.add(hydrated.image);
+        }
+      }
+      return hydrated;
+    }
+
+    async function applySavedOverlay(db, record, baseDeck) {
+      const deleted = new Set(record.deletedOriginalIds || []);
+      const overrides = new Map((record.overrides || []).map((override) => [override.sourceId, override]));
+      const cards = [];
+      for (const originalCard of baseDeck.cards) {
+        if (deleted.has(originalCard.sourceId)) continue;
+        const override = overrides.get(originalCard.sourceId);
+        if (!override) {
+          cards.push({ ...originalCard });
+          continue;
+        }
+        let card = { ...originalCard, ...override, sourceId: originalCard.sourceId };
+        if (override.imageRemoved) {
+          delete card.image;
+          delete card.imageAlt;
+          delete card.imageId;
+        } else if (override.imageId) {
+          delete card.image;
+          card = await hydrateImage(db, card);
+        }
+        delete card.imageRemoved;
+        cards.push(card);
+      }
+      for (const addition of record.additions || []) cards.push(await hydrateImage(db, addition));
+      return normalizeDeck({ title: baseDeck.title, cards });
+    }
+
+    function cardForStorage(card, baseCard = null) {
+      const stored = {
+        ...(baseCard ? { sourceId: baseCard.sourceId } : { id: card.id || makeRecordId("user-card") }),
+        term: card.term,
+        definition: card.definition
+      };
+      if (card.imageId) {
+        stored.imageId = card.imageId;
+        stored.imageAlt = card.imageAlt || `Image for ${card.term}`;
+      } else if (card.image && !card.image.startsWith("blob:")) {
+        stored.image = card.image;
+        stored.imageAlt = card.imageAlt || `Image for ${card.term}`;
+      } else if (baseCard?.image) {
+        stored.imageRemoved = true;
+      }
+      return stored;
+    }
+
+    function buildOverlayRecord(cards) {
+      const presentOriginalIds = new Set(cards.filter((card) => card.sourceId).map((card) => card.sourceId));
+      const deletedOriginalIds = originalDeck.cards
+        .filter((card) => !presentOriginalIds.has(card.sourceId))
+        .map((card) => card.sourceId);
+      const overrides = [];
+      const additions = [];
+      cards.forEach((card) => {
+        const baseCard = card.sourceId ? originalCardsById.get(card.sourceId) : null;
+        if (!baseCard) {
+          additions.push(cardForStorage(card));
+        } else if (!cardsMatch(card, baseCard) || card.imageId) {
+          overrides.push(cardForStorage(card, baseCard));
+        }
+      });
+      return {
+        deckKey: getDeckKey(),
+        title: originalDeck.title,
+        additions,
+        overrides,
+        deletedOriginalIds,
+        metadata: {},
+        updatedAt: new Date().toISOString(),
+        schemaVersion: 2
+      };
+    }
+
+    async function convertFullDeckToOverlay(db, fullDeck, migrationId = "") {
+      const unmatched = fullDeck.cards.map((card) => ({ ...card }));
+      const reconstructed = [];
+      originalDeck.cards.forEach((originalCard) => {
+        const matchIndex = unmatched.findIndex((card) => cardsMatch(card, originalCard));
+        if (matchIndex >= 0) {
+          reconstructed.push({ ...originalCard });
+          unmatched.splice(matchIndex, 1);
+        }
+      });
+      const imageRecords = [];
+      for (const card of unmatched) {
+        const addition = { ...card, id: card.id || makeRecordId("user-card") };
+        if (addition.image?.startsWith("data:image/")) {
+          const imageId = makeRecordId("image");
+          imageRecords.push({ id: imageId, deckKey: getDeckKey(), blob: await dataURLToBlob(addition.image), createdAt: new Date().toISOString() });
+          addition.imageId = imageId;
+          delete addition.image;
+        }
+        reconstructed.push(addition);
+      }
+      const overlay = buildOverlayRecord(reconstructed);
+      const storesNeeded = [STUDY_BRO_STORES.decks, STUDY_BRO_STORES.images, ...(migrationId ? [STUDY_BRO_STORES.migrations] : [])];
+      await idbTransaction(db, storesNeeded, "readwrite", (stores) => {
+        imageRecords.forEach((record) => stores.images.put(record));
+        stores.decks.put(overlay);
+        if (migrationId) stores.migrations.put({ id: migrationId, deckKey: getDeckKey(), status: "complete", completedAt: new Date().toISOString(), legacyKey: getDeckStorageKey() });
+      });
+      return applySavedOverlay(db, overlay, originalDeck);
+    }
+
+    async function getSavedDeck(baseDeck) {
+      const legacyDeck = readLegacyDeck();
+      try {
+        const db = await openStudyBroDB();
+        const record = await idbRequest(db.transaction(STUDY_BRO_STORES.decks).objectStore(STUDY_BRO_STORES.decks).get(getDeckKey()));
+        if (record?.schemaVersion === 2) {
+          hasLocalDeckEdits = Boolean(record.additions?.length || record.overrides?.length || record.deletedOriginalIds?.length);
+          return applySavedOverlay(db, record, baseDeck);
+        }
+        if (record?.cards) {
+          hasLocalDeckEdits = true;
+          return convertFullDeckToOverlay(db, { title: record.title || baseDeck.title, cards: await Promise.all(record.cards.map((card) => hydrateImage(db, card))) });
+        }
+        if (legacyDeck) {
+          hasLocalDeckEdits = true;
+          return convertFullDeckToOverlay(db, legacyDeck, `localStorage-v1:${getDeckKey()}`);
+        }
+        return baseDeck;
+      } catch (error) {
+        persistenceMode = "localStorage";
+        if (legacyDeck) {
+          hasLocalDeckEdits = true;
+          showDeckError(`Private browser database is unavailable, so Study Bro is using its saved compatibility copy. Nothing was discarded. ${error.message}`);
+          return legacyDeck;
+        }
+        return baseDeck;
+      }
+    }
+
+    async function saveEditedDeck(cards, options = {}) {
+      const deckKey = getDeckKey();
+      const cardsToSave = cards.map((card) => ({ ...card }));
+      let newImageRecord = null;
+      if (options.newImageBlob instanceof Blob) {
+        const targetIndex = Number.isInteger(options.imageTargetIndex) ? options.imageTargetIndex : cardsToSave.length - 1;
+        const imageId = makeRecordId("image");
+        newImageRecord = { id: imageId, deckKey, blob: options.newImageBlob, createdAt: new Date().toISOString() };
+        cardsToSave[targetIndex].imageId = imageId;
+        cardsToSave[targetIndex].imageAlt = options.imageAlt || `Image for ${cardsToSave[targetIndex].term}`;
+        delete cardsToSave[targetIndex].image;
+      }
+      const overlay = buildOverlayRecord(cardsToSave);
+      try {
+        const db = await openStudyBroDB();
+        await idbTransaction(db, [STUDY_BRO_STORES.decks, STUDY_BRO_STORES.images, STUDY_BRO_STORES.deletedCards], "readwrite", (stores) => {
+          if (newImageRecord) stores.images.put(newImageRecord);
+          if (options.cleanupImageId && options.cleanupImageId !== newImageRecord?.id) stores.images.delete(options.cleanupImageId);
+          if (options.deletedCard) {
+            stores.deletedCards.put({ id: makeRecordId("deleted"), deckKey, card: cardForStorage(options.deletedCard, options.deletedCard.sourceId ? originalCardsById.get(options.deletedCard.sourceId) : null), originalIndex: options.deletedIndex, deletedAt: new Date().toISOString() });
+          }
+          stores.decks.put(overlay);
+        });
+        persistenceMode = "indexedDB";
+        hasLocalDeckEdits = Boolean(overlay.additions.length || overlay.overrides.length || overlay.deletedOriginalIds.length);
+        return true;
+      } catch (error) {
+        persistenceMode = "localStorage";
+        if (cardsToSave.some((card) => card.imageId && card.image?.startsWith("blob:"))) {
+          showDeckError(`Your changes were not saved because the private browser database became unavailable. Your previously saved deck and images were left untouched. ${error.message}`);
+          return false;
+        }
+        const fallbackCards = [...cardsToSave];
+        if (options.newImageBlob instanceof Blob) {
+          try {
+            const targetIndex = Number.isInteger(options.imageTargetIndex) ? options.imageTargetIndex : fallbackCards.length - 1;
+            fallbackCards[targetIndex] = { ...fallbackCards[targetIndex], image: await readFileAsDataURL(options.newImageBlob), imageAlt: options.imageAlt };
+            delete fallbackCards[targetIndex].imageId;
+          } catch (imageError) {
+            showDeckError(`Your card image could not be saved. Nothing was removed. ${imageError.message}`);
+            return false;
+          }
+        }
+        const saved = saveLegacyDeck(fallbackCards);
+        if (saved) showDeckError(`Private browser database is unavailable, so this deck was saved with the compatibility fallback. ${error.message}`);
+        return saved;
       }
     }
 
@@ -2559,37 +3160,28 @@
     }
 
     async function loadDeck() {
-      const savedDeck = getSavedDeck();
-      if (savedDeck) {
-        deckTitle = savedDeck.title;
-        deck = savedDeck.cards;
-        updateDeckHeader();
-        return;
-      }
-
       const deckPath = new URLSearchParams(window.location.search).get("deck");
+      let publishedDeck = normalizeDeck(sampleDeck);
       if (!deckPath) {
-        updateDeckHeader();
-        return;
-      }
-
-      try {
-        const response = await fetch(deckPath);
-        if (!response.ok) {
-          throw new Error(`Request failed with status ${response.status}.`);
+        publishedDeck = normalizeDeck(sampleDeck);
+      } else {
+        try {
+          const response = await fetch(deckPath);
+          if (!response.ok) throw new Error(`Request failed with status ${response.status}.`);
+          const data = await response.json();
+          validateDeck(data);
+          publishedDeck = normalizeDeck(data);
+        } catch (error) {
+          publishedDeck = normalizeDeck(sampleDeck);
+          showDeckError(`Could not load "${deckPath}". ${error.message} Showing the sample deck instead.`);
         }
-
-        const data = await response.json();
-        validateDeck(data);
-        const normalizedDeck = normalizeDeck(data);
-        deckTitle = normalizedDeck.title;
-        deck = normalizedDeck.cards;
-      } catch (error) {
-        deckTitle = sampleDeck.title;
-        deck = sampleDeck.cards;
-        showDeckError(`Could not load "${deckPath}". ${error.message} Showing the sample deck instead.`);
       }
 
+      originalDeck = assignOriginalCardIds(publishedDeck);
+      originalCardsById = new Map(originalDeck.cards.map((card) => [card.sourceId, card]));
+      const composedDeck = await getSavedDeck(originalDeck);
+      deckTitle = composedDeck.title;
+      deck = composedDeck.cards;
       updateDeckHeader();
     }
 
@@ -2602,7 +3194,7 @@
 
     function initFlashcards() {
       Object.assign(flashState, {
-        queue: deck.map((_, index) => index),
+        queue: flashShuffleEnabled ? shuffle(deck.map((_, index) => index)) : deck.map((_, index) => index),
         missed: [],
         index: 0,
         round: 1,
@@ -2640,7 +3232,10 @@
             <span class="stat">Known ${flashState.known}</span>
             <span class="stat">Learning ${flashState.unknown}</span>
           </div>
-          <span>${flashState.index + 1} / ${total}</span>
+          <div class="status-group">
+            <button class="mode-shuffle-button" type="button" id="toggleFlashShuffle" aria-pressed="${flashShuffleEnabled}">Shuffle ${flashShuffleEnabled ? "on" : "off"}</button>
+            <span>${flashState.index + 1} / ${total}</span>
+          </div>
         </div>
         <article class="study-card flashcard ${flashState.flipStage ? `flipping-${flashState.flipStage}` : ""}" id="activeFlashcard" role="button" tabindex="0" aria-label="Flip card">
           <span class="badge">${showingDefinition ? "definition" : "term"}</span>
@@ -2666,6 +3261,13 @@
       });
       document.querySelector("#missedButton").addEventListener("click", () => gradeFlashcard(false));
       document.querySelector("#knownButton").addEventListener("click", () => gradeFlashcard(true));
+      document.querySelector("#toggleFlashShuffle").addEventListener("click", toggleFlashShuffle);
+    }
+
+    function toggleFlashShuffle() {
+      flashShuffleEnabled = !flashShuffleEnabled;
+      saveDeckPreference("flashcardsShuffle", flashShuffleEnabled);
+      initFlashcards();
     }
 
     function flipFlashcard() {
@@ -2717,6 +3319,7 @@
 
     function gradeFlashcard(isKnown) {
       const cardIndex = flashState.queue[flashState.index];
+      updateMissedCard(cardIndex, !isKnown);
       if (isKnown) {
         flashState.known += 1;
       } else {
@@ -2747,7 +3350,9 @@
           ? '<button class="confirm-delete-button" type="button" data-confirm-delete="' + index + '">' +
               'Confirm delete</button>' +
             '<button class="cancel-delete-button" type="button" data-cancel-delete>Cancel</button>'
-          : '<button class="delete-card-button" type="button" data-delete-card="' + index + '" ' +
+          : '<button class="edit-card-button" type="button" data-edit-card="' + index + '" ' +
+              'aria-label="Edit ' + escapeHTML(card.term) + '">Edit</button>' +
+            '<button class="delete-card-button" type="button" data-delete-card="' + index + '" ' +
               'aria-label="Delete ' + escapeHTML(card.term) + '">Delete</button>';
 
         return '<article class="view-card-row">' +
@@ -2760,7 +3365,8 @@
         '</article>';
       }).join("");
 
-      const editor = isAddCardFormOpen
+      const editingCard = Number.isInteger(editingCardIndex) ? deck[editingCardIndex] : null;
+      const addEditor = isAddCardFormOpen
         ? '<form class="card-editor" id="addCardForm">' +
             '<h2>Add a card</h2>' +
             '<div class="card-editor-fields">' +
@@ -2786,6 +3392,35 @@
           '</form>'
         : '';
 
+      const editEditor = editingCard
+        ? '<form class="card-editor" id="editCardForm">' +
+            '<h2>Edit card</h2>' +
+            '<div class="card-editor-fields">' +
+              '<label class="card-editor-field">Term' +
+                '<input id="editCardTerm" name="term" type="text" maxlength="300" required autocomplete="off" value="' + escapeHTML(editingCard.term) + '">' +
+              '</label>' +
+              '<label class="card-editor-field">Definition' +
+                '<textarea id="editCardDefinition" name="definition" maxlength="2000" required>' + escapeHTML(editingCard.definition) + '</textarea>' +
+              '</label>' +
+              '<div class="card-image-picker">' +
+                '<label class="card-editor-field">Add or replace image' +
+                  '<input id="editCardImage" name="image" type="file" accept="image/*">' +
+                '</label>' +
+                '<label class="card-editor-field">Image alt text' +
+                  '<input id="editCardImageAlt" name="imageAlt" type="text" maxlength="500" value="' + escapeHTML(editingCard.imageAlt || '') + '">' +
+                '</label>' +
+                '<div class="card-image-preview" id="editCardImagePreview" aria-live="polite"></div>' +
+                (editingCard.image ? '<button class="btn" type="button" id="removeEditedCardImage">Remove image</button>' : '') +
+              '</div>' +
+            '</div>' +
+            '<div class="card-editor-actions">' +
+              (isOriginalCardEdited(editingCard) ? '<button class="restore-card-button" type="button" id="restoreOriginalCard">Restore original</button>' : '') +
+              '<button class="btn" type="button" id="cancelEditCard">Cancel</button>' +
+              '<button class="btn btn-dark" type="submit" id="saveEditedCardButton">Save changes</button>' +
+            '</div>' +
+          '</form>'
+        : '';
+
       elements.viewCards.innerHTML =
         '<div class="view-cards-toolbar">' +
           '<div class="status-group">' +
@@ -2794,12 +3429,14 @@
           '</div>' +
           '<button class="btn btn-yellow" type="button" id="openAddCard">Add card</button>' +
         '</div>' +
-        editor +
+        addEditor +
+        editEditor +
         '<div class="view-cards-list">' + rows + '</div>';
 
       document.querySelector("#openAddCard").addEventListener("click", () => {
         isAddCardFormOpen = true;
-        pendingCardImageData = "";
+        editingCardIndex = null;
+        clearPendingCardImage();
         isCardImageProcessing = false;
         renderViewCards();
         document.querySelector("#newCardTerm")?.focus();
@@ -2807,14 +3444,113 @@
 
       document.querySelector("#cancelAddCard")?.addEventListener("click", () => {
         isAddCardFormOpen = false;
-        pendingCardImageData = "";
+        clearPendingCardImage();
         isCardImageProcessing = false;
         renderViewCards();
       });
 
+      document.querySelectorAll("[data-edit-card]").forEach((button) => {
+        button.addEventListener("click", () => {
+          editingCardIndex = Number(button.dataset.editCard);
+          isAddCardFormOpen = false;
+          editImageAction = "keep";
+          clearPendingCardImage();
+          isCardImageProcessing = false;
+          renderViewCards();
+          updateEditCardImagePreview(deck[editingCardIndex]);
+          document.querySelector("#editCardTerm")?.focus();
+        });
+      });
+
+      if (editingCard) updateEditCardImagePreview(editingCard);
+
+      document.querySelector("#cancelEditCard")?.addEventListener("click", () => {
+        editingCardIndex = null;
+        editImageAction = "keep";
+        clearPendingCardImage();
+        isCardImageProcessing = false;
+        renderViewCards();
+      });
+
+      document.querySelector("#editCardImage")?.addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        clearPendingCardImage();
+        editImageAction = "keep";
+        if (!file) {
+          updateEditCardImagePreview(editingCard);
+          return;
+        }
+        isCardImageProcessing = true;
+        updateEditCardImagePreview(editingCard, "Compressing replacement image…");
+        try {
+          pendingCardImageBlob = await compressCardImage(file);
+          pendingCardImagePreviewURL = URL.createObjectURL(pendingCardImageBlob);
+          editImageAction = "replace";
+          isCardImageProcessing = false;
+          updateEditCardImagePreview(editingCard);
+        } catch (error) {
+          clearPendingCardImage();
+          isCardImageProcessing = false;
+          event.target.value = "";
+          updateEditCardImagePreview(editingCard, error.message);
+        }
+      });
+
+      document.querySelector("#removeEditedCardImage")?.addEventListener("click", () => {
+        clearPendingCardImage();
+        editImageAction = "remove";
+        document.querySelector("#editCardImage").value = "";
+        document.querySelector("#editCardImageAlt").value = "";
+        updateEditCardImagePreview(editingCard);
+      });
+
+      document.querySelector("#restoreOriginalCard")?.addEventListener("click", async () => {
+        const originalCard = originalCardsById.get(editingCard.sourceId);
+        if (!originalCard) return;
+        const updatedCards = deck.map((card, index) => index === editingCardIndex ? { ...originalCard } : card);
+        if (await saveEditedDeck(updatedCards, { cleanupImageId: editingCard.imageId || "" })) reopenCardManager();
+      });
+
+      document.querySelector("#editCardForm")?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (isCardImageProcessing) return;
+        const term = document.querySelector("#editCardTerm").value.trim();
+        const definition = document.querySelector("#editCardDefinition").value.trim();
+        const imageAlt = document.querySelector("#editCardImageAlt").value.trim();
+        if (!term || !definition) {
+          showDeckError("A card needs both a term and a definition.");
+          return;
+        }
+        const willHaveImage = editImageAction === "replace" || (editImageAction === "keep" && Boolean(editingCard.image));
+        if (willHaveImage && !imageAlt) {
+          showDeckError("Please add alt text that describes the card image.");
+          document.querySelector("#editCardImageAlt").focus();
+          return;
+        }
+        const editedCard = { ...editingCard, term, definition };
+        if (editImageAction === "remove") {
+          delete editedCard.image;
+          delete editedCard.imageAlt;
+          delete editedCard.imageId;
+        } else if (editImageAction === "replace") {
+          delete editedCard.image;
+          delete editedCard.imageId;
+          editedCard.imageAlt = imageAlt;
+        } else if (editedCard.image) {
+          editedCard.imageAlt = imageAlt;
+        }
+        const updatedCards = deck.map((card, index) => index === editingCardIndex ? editedCard : card);
+        if (await saveEditedDeck(updatedCards, {
+          newImageBlob: editImageAction === "replace" ? pendingCardImageBlob : null,
+          imageTargetIndex: editingCardIndex,
+          imageAlt,
+          cleanupImageId: ["replace", "remove"].includes(editImageAction) ? (editingCard.imageId || "") : ""
+        })) reopenCardManager();
+      });
+
       document.querySelector("#newCardImage")?.addEventListener("change", async (event) => {
         const file = event.target.files?.[0];
-        pendingCardImageData = "";
+        clearPendingCardImage();
         if (!file) {
           updateCardImagePreview();
           return;
@@ -2823,18 +3559,19 @@
         isCardImageProcessing = true;
         updateCardImagePreview("Compressing image…");
         try {
-          pendingCardImageData = await compressCardImage(file);
+          pendingCardImageBlob = await compressCardImage(file);
+          pendingCardImagePreviewURL = URL.createObjectURL(pendingCardImageBlob);
           isCardImageProcessing = false;
           updateCardImagePreview();
         } catch (error) {
-          pendingCardImageData = "";
+          clearPendingCardImage();
           isCardImageProcessing = false;
           event.target.value = "";
           updateCardImagePreview(error.message);
         }
       });
 
-      document.querySelector("#addCardForm")?.addEventListener("submit", (event) => {
+      document.querySelector("#addCardForm")?.addEventListener("submit", async (event) => {
         event.preventDefault();
         if (isCardImageProcessing) return;
         const term = document.querySelector("#newCardTerm").value.trim();
@@ -2843,14 +3580,14 @@
 
         const newCard = {
           term,
-          definition,
-          ...(pendingCardImageData ? {
-            image: pendingCardImageData,
-            imageAlt: `Image for ${term}`
-          } : {})
+          definition
         };
         const updatedCards = [...deck, newCard];
-        if (saveEditedDeck(updatedCards)) reopenCardManager();
+        if (await saveEditedDeck(updatedCards, {
+          newImageBlob: pendingCardImageBlob,
+          imageTargetIndex: updatedCards.length - 1,
+          imageAlt: `Image for ${term}`
+        })) reopenCardManager();
       });
 
       document.querySelectorAll("[data-delete-card]").forEach((button) => {
@@ -2876,10 +3613,11 @@
       });
 
       document.querySelectorAll("[data-confirm-delete]").forEach((button) => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", async () => {
           const cardIndex = Number(button.dataset.confirmDelete);
+          const deletedCard = deck[cardIndex];
           const updatedCards = deck.filter((_, index) => index !== cardIndex);
-          if (saveEditedDeck(updatedCards)) reopenCardManager();
+          if (await saveEditedDeck(updatedCards, { deletedCard, deletedIndex: cardIndex })) reopenCardManager();
         });
       });
     }
@@ -2891,7 +3629,7 @@
     function initLearn() {
       clearLearnAdvanceTimer();
       Object.assign(learnState, {
-        queue: shuffle(deck.map((_, index) => index)),
+        queue: learnShuffleEnabled ? shuffle(deck.map((_, index) => index)) : deck.map((_, index) => index),
         missed: [],
         index: 0,
         round: 1,
@@ -2958,7 +3696,10 @@
             <span class="stat">Round ${learnState.round}</span>
             <span class="stat">Score ${learnState.correct} / ${learnState.answered}</span>
           </div>
-          <span>${learnState.index + 1} / ${learnState.queue.length}</span>
+          <div class="status-group">
+            <button class="mode-shuffle-button" type="button" id="toggleLearnShuffle" aria-pressed="${learnShuffleEnabled}">Shuffle ${learnShuffleEnabled ? "on" : "off"}</button>
+            <span>${learnState.index + 1} / ${learnState.queue.length}</span>
+          </div>
         </div>
         <article class="study-card learn-prompt">
           <span class="badge">term</span>
@@ -2978,7 +3719,7 @@
           `;
           }).join("")}
         </div>
-        <p class="learn-feedback" id="learnFeedback">
+        <p class="learn-feedback ${learnState.feedback ? (learnState.needsNext ? "feedback-wrong" : "feedback-correct") : ""}" id="learnFeedback">
           ${learnState.feedback}
         </p>
         <div class="learn-controls">
@@ -2992,6 +3733,13 @@
       });
       document.querySelector("#dontKnowButton").addEventListener("click", () => answerLearn(null));
       document.querySelector("#learnNextButton")?.addEventListener("click", advanceLearnQuestion);
+      document.querySelector("#toggleLearnShuffle").addEventListener("click", toggleLearnShuffle);
+    }
+
+    function toggleLearnShuffle() {
+      learnShuffleEnabled = !learnShuffleEnabled;
+      saveDeckPreference("learnShuffle", learnShuffleEnabled);
+      initLearn();
     }
 
     function answerLearn(choicePosition) {
@@ -3002,6 +3750,7 @@
       const selected = choicePosition === null ? null : learnState.choices[choicePosition];
       const correctPosition = learnState.choices.findIndex((choice) => choice.index === currentIndex);
       const isCorrect = selected?.index === currentIndex;
+      updateMissedCard(currentIndex, !isCorrect);
 
       learnState.answered += 1;
       learnState.selectedChoice = choicePosition;
@@ -3196,93 +3945,270 @@
       }, 500);
     }
 
+    function defaultTestPreferences() {
+      return {
+        questionCount: "all",
+        questionTypes: ["multipleChoice", "trueFalse", "match"],
+        direction: "termToDefinition",
+        cardPool: "all",
+        selectedCardIds: []
+      };
+    }
+
+    function normalizeTestPreferences(preferences) {
+      const defaults = defaultTestPreferences();
+      const allowedTypes = new Set(["multipleChoice", "trueFalse", "match"]);
+      const types = Array.isArray(preferences?.questionTypes)
+        ? preferences.questionTypes.filter((type) => allowedTypes.has(type))
+        : defaults.questionTypes;
+      return {
+        questionCount: ["10", "20", "50", "all"].includes(String(preferences?.questionCount)) ? String(preferences.questionCount) : defaults.questionCount,
+        questionTypes: types.length ? [...new Set(types)] : defaults.questionTypes,
+        direction: ["termToDefinition", "definitionToTerm", "mixed"].includes(preferences?.direction) ? preferences.direction : defaults.direction,
+        cardPool: ["all", "selected", "missed"].includes(preferences?.cardPool) ? preferences.cardPool : defaults.cardPool,
+        selectedCardIds: Array.isArray(preferences?.selectedCardIds) ? preferences.selectedCardIds.filter((id) => typeof id === "string") : []
+      };
+    }
+
     function initTest() {
-      const questions = buildTestQuestions();
       Object.assign(testState, {
+        initialized: true,
+        configuring: true,
+        preferences: normalizeTestPreferences(savedTestPreferences),
+        questions: null,
+        matchChoices: [],
+        selectedMatchValue: null,
+        submitted: false,
+        configError: ""
+      });
+      renderTestBuilder();
+    }
+
+    function getTestPoolIndexes(preferences) {
+      if (preferences.cardPool === "missed") {
+        return deck.map((card, index) => ({ card, index }))
+          .filter(({ card }) => missedCardIds.has(cardTrackingId(card)))
+          .map(({ index }) => index);
+      }
+      if (preferences.cardPool === "selected") {
+        const selected = new Set(preferences.selectedCardIds);
+        return deck.map((card, index) => ({ card, index }))
+          .filter(({ card }) => selected.has(cardTrackingId(card)))
+          .map(({ index }) => index);
+      }
+      return deck.map((_, index) => index);
+    }
+
+    function renderTestBuilder() {
+      const preferences = testState.preferences || defaultTestPreferences();
+      const missedCount = getTestPoolIndexes({ ...preferences, cardPool: "missed" }).length;
+      const selected = new Set(preferences.selectedCardIds);
+      setProgress(0);
+      elements.test.innerHTML = `
+        <section class="test-intro test-builder">
+          <div>
+            <h2>Build a test</h2>
+            <p>The current default still creates a shuffled, full-deck mixture in term-to-definition direction.</p>
+          </div>
+          <form id="testBuilderForm">
+            <div class="test-builder-grid">
+              <fieldset>
+                <legend>Number of questions</legend>
+                <label><select id="testQuestionCount" name="questionCount">
+                  <option value="10" ${preferences.questionCount === "10" ? "selected" : ""}>10</option>
+                  <option value="20" ${preferences.questionCount === "20" ? "selected" : ""}>20</option>
+                  <option value="50" ${preferences.questionCount === "50" ? "selected" : ""}>50</option>
+                  <option value="all" ${preferences.questionCount === "all" ? "selected" : ""}>All available cards</option>
+                </select></label>
+                <span class="stat" id="testPoolLimit"></span>
+              </fieldset>
+              <fieldset>
+                <legend>Question types</legend>
+                ${[
+                  ["multipleChoice", "Multiple choice"],
+                  ["trueFalse", "True / false"],
+                  ["match", "Matching"]
+                ].map(([value, label]) => `<label><input type="checkbox" name="questionType" value="${value}" ${preferences.questionTypes.includes(value) ? "checked" : ""}> ${label}</label>`).join("")}
+              </fieldset>
+              <fieldset>
+                <legend>Direction</legend>
+                <label><input type="radio" name="direction" value="termToDefinition" ${preferences.direction === "termToDefinition" ? "checked" : ""}> Term to definition</label>
+                <label><input type="radio" name="direction" value="definitionToTerm" ${preferences.direction === "definitionToTerm" ? "checked" : ""}> Definition to term</label>
+                <label><input type="radio" name="direction" value="mixed" ${preferences.direction === "mixed" ? "checked" : ""}> Mixed</label>
+              </fieldset>
+              <fieldset>
+                <legend>Card pool</legend>
+                <label><input type="radio" name="cardPool" value="all" ${preferences.cardPool === "all" ? "checked" : ""}> All cards</label>
+                <label><input type="radio" name="cardPool" value="selected" ${preferences.cardPool === "selected" ? "checked" : ""}> Selected cards</label>
+                <label><input type="radio" name="cardPool" value="missed" ${preferences.cardPool === "missed" ? "checked" : ""} ${missedCount ? "" : "disabled"}> Previously missed (${missedCount})</label>
+              </fieldset>
+            </div>
+            <fieldset id="testSelectedCardsFieldset" ${preferences.cardPool === "selected" ? "" : "hidden"}>
+              <legend>Select cards</legend>
+              <div class="test-card-selector">
+                ${deck.map((card) => {
+                  const id = cardTrackingId(card);
+                  return `<label><input type="checkbox" name="selectedCard" value="${escapeHTML(id)}" ${selected.has(id) ? "checked" : ""}> ${escapeHTML(card.term)}</label>`;
+                }).join("")}
+              </div>
+            </fieldset>
+            <p class="test-builder-error" id="testBuilderError" ${testState.configError ? "" : "hidden"}>${escapeHTML(testState.configError || "")}</p>
+            <div class="test-actions">
+              <button class="btn btn-dark" type="submit">Generate shuffled test</button>
+            </div>
+          </form>
+        </section>
+      `;
+
+      const form = document.querySelector("#testBuilderForm");
+      form.querySelectorAll('input[name="cardPool"], input[name="selectedCard"]').forEach((control) => {
+        control.addEventListener("change", syncTestBuilderControls);
+      });
+      syncTestBuilderControls();
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const questionTypes = [...form.querySelectorAll('input[name="questionType"]:checked')].map((input) => input.value);
+        const cardPool = form.querySelector('input[name="cardPool"]:checked')?.value || "all";
+        const nextPreferences = normalizeTestPreferences({
+          questionCount: form.querySelector("#testQuestionCount").value,
+          questionTypes,
+          direction: form.querySelector('input[name="direction"]:checked')?.value,
+          cardPool,
+          selectedCardIds: [...form.querySelectorAll('input[name="selectedCard"]:checked')].map((input) => input.value)
+        });
+        if (!questionTypes.length) {
+          testState.configError = "Choose at least one question type.";
+          renderTestBuilder();
+          return;
+        }
+        if (!getTestPoolIndexes(nextPreferences).length) {
+          testState.configError = cardPool === "missed" ? "No previously missed cards are available yet." : "Select at least one card for this test.";
+          renderTestBuilder();
+          return;
+        }
+        testState.preferences = nextPreferences;
+        savedTestPreferences = nextPreferences;
+        await saveDeckPreference("testPreferences", nextPreferences);
+        generateTest(nextPreferences);
+      });
+    }
+
+    function syncTestBuilderControls() {
+      const form = document.querySelector("#testBuilderForm");
+      if (!form) return;
+      const pool = form.querySelector('input[name="cardPool"]:checked')?.value || "all";
+      const selectedFieldset = document.querySelector("#testSelectedCardsFieldset");
+      selectedFieldset.hidden = pool !== "selected";
+      let available = deck.length;
+      if (pool === "missed") available = deck.filter((card) => missedCardIds.has(cardTrackingId(card))).length;
+      if (pool === "selected") available = form.querySelectorAll('input[name="selectedCard"]:checked').length;
+      const countSelect = form.querySelector("#testQuestionCount");
+      [...countSelect.options].forEach((option) => {
+        option.disabled = option.value !== "all" && Number(option.value) > available;
+      });
+      if (countSelect.selectedOptions[0]?.disabled) countSelect.value = "all";
+      document.querySelector("#testPoolLimit").textContent = `${available} card${available === 1 ? "" : "s"} available`;
+    }
+
+    function generateTest(preferences = testState.preferences) {
+      const poolIndexes = shuffle(getTestPoolIndexes(preferences));
+      const requested = preferences.questionCount === "all" ? poolIndexes.length : Number(preferences.questionCount);
+      const selectedIndexes = poolIndexes.slice(0, Math.min(requested, poolIndexes.length));
+      const questions = buildTestQuestions(selectedIndexes, preferences);
+      Object.assign(testState, {
+        configuring: false,
+        preferences,
         questions,
         matchChoices: buildTestMatchChoices(questions),
         selectedMatchValue: null,
-        submitted: false
+        submitted: false,
+        configError: ""
       });
       renderTest();
     }
 
-    function buildTestQuestions() {
-      const questionTypes = ["multipleChoice", "trueFalse", "match"];
-      const shuffledIndexes = shuffle(deck.map((_, index) => index));
+    function buildTestQuestions(cardIndexes, preferences) {
+      const typeOrder = shuffle([...preferences.questionTypes]);
+      return shuffle(cardIndexes.map((cardIndex, questionIndex) => {
+        const type = typeOrder[questionIndex % typeOrder.length];
+        const direction = preferences.direction === "mixed"
+          ? (Math.random() >= 0.5 ? "termToDefinition" : "definitionToTerm")
+          : preferences.direction;
+        if (type === "trueFalse") return buildTrueFalseQuestion(cardIndex, questionIndex, cardIndexes, direction);
+        if (type === "match") return buildMatchQuestion(cardIndex, questionIndex, direction);
+        return buildMultipleChoiceQuestion(cardIndex, questionIndex, cardIndexes, direction);
+      }));
+    }
 
-      return shuffledIndexes.map((cardIndex, questionIndex) => {
-        const type = questionTypes[questionIndex % questionTypes.length];
-        if (type === "trueFalse") return buildTrueFalseQuestion(cardIndex, questionIndex);
-        if (type === "match") return buildMatchQuestion(cardIndex, questionIndex);
-        return buildMultipleChoiceQuestion(cardIndex, questionIndex);
+    function getTestDistractors(cardIndex, poolIndexes, direction, count = 3) {
+      const correctLabel = direction === "termToDefinition" ? deck[cardIndex].definition : deck[cardIndex].term;
+      const labels = new Set([correctLabel]);
+      const distractors = [];
+      shuffle(poolIndexes.filter((index) => index !== cardIndex)).forEach((index) => {
+        const label = direction === "termToDefinition" ? deck[index].definition : deck[index].term;
+        if (distractors.length >= count || labels.has(label)) return;
+        labels.add(label);
+        distractors.push({ label, value: String(index), cardIndex: index });
       });
+      return distractors;
     }
 
-    function getDistractorDefinitions(cardIndex, count = 3) {
-      return shuffle(
-        deck.map((card, index) => ({
-          label: card.definition,
-          cardIndex: index
-        })).filter((choice) => choice.cardIndex !== cardIndex)
-      ).slice(0, Math.min(count, deck.length - 1));
-    }
-
-    function buildMultipleChoiceQuestion(cardIndex, questionIndex) {
-      const choices = shuffle([
-        {
-          label: deck[cardIndex].definition,
-          value: String(cardIndex),
-          cardIndex
-        },
-        ...getDistractorDefinitions(cardIndex).map((choice) => ({
-          label: choice.label,
-          value: String(choice.cardIndex),
-          cardIndex: choice.cardIndex
-        }))
-      ]);
-
+    function buildMultipleChoiceQuestion(cardIndex, questionIndex, poolIndexes, direction) {
+      const card = deck[cardIndex];
+      const correctLabel = direction === "termToDefinition" ? card.definition : card.term;
+      const prompt = direction === "termToDefinition"
+        ? `What is the definition of ${card.term}?`
+        : `Which term matches this definition: ${card.definition}`;
       return {
-        id: `test-${questionIndex}`,
+        id: `test-${questionIndex}-${Math.random().toString(36).slice(2)}`,
         type: "multipleChoice",
         typeLabel: "Multiple choice",
+        direction,
         cardIndex,
-        prompt: `What is the definition of ${deck[cardIndex].term}?`,
-        choices,
+        prompt,
+        promptImageCardIndex: direction === "definitionToTerm" && card.image ? cardIndex : null,
+        choices: shuffle([{ label: correctLabel, value: String(cardIndex), cardIndex }, ...getTestDistractors(cardIndex, poolIndexes, direction)]),
         correctValue: String(cardIndex),
         userAnswer: ""
       };
     }
 
-    function buildTrueFalseQuestion(cardIndex, questionIndex) {
-      const shouldBeTrue = Math.random() >= 0.5 || deck.length < 2;
-      const wrongDefinition = getDistractorDefinitions(cardIndex, 1)[0];
-      const shownDefinition = shouldBeTrue
-        ? deck[cardIndex].definition
-        : wrongDefinition?.label || deck[cardIndex].definition;
-
+    function buildTrueFalseQuestion(cardIndex, questionIndex, poolIndexes, direction) {
+      const card = deck[cardIndex];
+      const distractors = poolIndexes.filter((index) => index !== cardIndex);
+      const shouldBeTrue = !distractors.length || Math.random() >= 0.5;
+      const candidateIndex = shouldBeTrue ? cardIndex : shuffle(distractors)[0];
+      const prompt = direction === "termToDefinition"
+        ? `${card.term}: ${deck[candidateIndex].definition}`
+        : `${card.definition}: ${deck[candidateIndex].term}`;
       return {
-        id: `test-${questionIndex}`,
+        id: `test-${questionIndex}-${Math.random().toString(36).slice(2)}`,
         type: "trueFalse",
         typeLabel: "True / false",
+        direction,
         cardIndex,
-        prompt: `${deck[cardIndex].term}: ${shownDefinition}`,
-        choices: [
-          { label: "True", value: "true" },
-          { label: "False", value: "false" }
-        ],
+        prompt,
+        promptImageCardIndex: direction === "definitionToTerm" && card.image ? cardIndex : null,
+        choices: [{ label: "True", value: "true" }, { label: "False", value: "false" }],
         correctValue: String(shouldBeTrue),
         userAnswer: ""
       };
     }
 
-    function buildMatchQuestion(cardIndex, questionIndex) {
+    function buildMatchQuestion(cardIndex, questionIndex, direction) {
+      const card = deck[cardIndex];
+      const promptLabel = direction === "termToDefinition" ? card.term : card.definition;
+      const answerLabel = direction === "termToDefinition" ? card.definition : card.term;
       return {
-        id: `test-${questionIndex}`,
+        id: `test-${questionIndex}-${Math.random().toString(36).slice(2)}`,
         type: "match",
         typeLabel: "Match",
+        direction,
         cardIndex,
-        prompt: `Match ${deck[cardIndex].term} to the correct definition.`,
+        prompt: `Match ${promptLabel} to the correct ${direction === "termToDefinition" ? "definition" : "term"}.`,
+        promptLabel,
+        answerLabel,
+        promptImageCardIndex: direction === "definitionToTerm" && card.image ? cardIndex : null,
         choices: [],
         correctValue: String(cardIndex),
         userAnswer: ""
@@ -3290,18 +4216,16 @@
     }
 
     function buildTestMatchChoices(questions) {
-      return shuffle(questions
-        .filter((question) => question.type === "match")
-        .map((question) => ({
-          label: deck[question.cardIndex].definition,
-          value: String(question.cardIndex),
-          cardIndex: question.cardIndex
-        })));
+      return shuffle(questions.filter((question) => question.type === "match").map((question) => ({
+        label: question.answerLabel,
+        value: String(question.cardIndex),
+        cardIndex: question.cardIndex
+      })));
     }
 
     function renderTest() {
-      if (!testState.questions?.length) {
-        initTest();
+      if (testState.configuring || !testState.questions) {
+        renderTestBuilder();
         return;
       }
       if (testState.submitted) {
@@ -3315,7 +4239,7 @@
           <section class="test-intro">
             <div>
               <h2>Test</h2>
-              <p>${deck.length} questions pulled from this deck. Mixed multiple choice, true/false, and match.</p>
+              <p>${testState.questions.length} shuffled questions from the chosen card pool.</p>
             </div>
             <div class="status-group">
               <span class="stat" id="testAnsweredStat">${getAnsweredTestCount()} / ${testState.questions.length} answered</span>
@@ -3325,7 +4249,8 @@
           ${testQuestionListHTML()}
           <div class="test-actions">
             <button class="btn btn-dark" type="button" id="submitTestButton">Submit test</button>
-            <button class="btn" type="button" id="resetTestButton">New test</button>
+            <button class="btn" type="button" id="shuffleTestButton">Generate new shuffled test</button>
+            <button class="btn" type="button" id="resetTestButton">Customize test</button>
           </div>
         </div>
       `;
@@ -3340,21 +4265,21 @@
       bindTestMatchDrag();
 
       document.querySelector("#submitTestButton").addEventListener("click", submitTest);
+      document.querySelector("#shuffleTestButton").addEventListener("click", () => generateTest(testState.preferences));
       document.querySelector("#resetTestButton").addEventListener("click", initTest);
     }
 
     function testQuestionListHTML() {
-      const regularQuestions = testState.questions
-        .map((question, index) => ({ question, index }))
-        .filter(({ question }) => question.type !== "match");
       const matchQuestions = testState.questions
         .map((question, index) => ({ question, index }))
         .filter(({ question }) => question.type === "match");
-
-      return `
-        ${regularQuestions.map(({ question, index }) => testQuestionHTML(question, index)).join("")}
-        ${testMatchSectionHTML(matchQuestions)}
-      `;
+      let matchingSectionRendered = false;
+      return testState.questions.map((question, index) => {
+        if (question.type !== "match") return testQuestionHTML(question, index);
+        if (matchingSectionRendered) return "";
+        matchingSectionRendered = true;
+        return testMatchSectionHTML(matchQuestions);
+      }).join("");
     }
 
     function testQuestionHTML(question, index) {
@@ -3365,6 +4290,7 @@
             <span class="mini-badge">${escapeHTML(question.typeLabel)}</span>
           </div>
           <p class="test-prompt">${escapeHTML(question.prompt)}</p>
+          ${question.promptImageCardIndex !== null && question.promptImageCardIndex !== undefined ? cardImageHTML(deck[question.promptImageCardIndex], "test-question-image") : ""}
           ${testChoiceHTML(question, index)}
         </article>
       `;
@@ -3410,17 +4336,22 @@
                 <div class="test-match-row">
                   <div>
                     <span class="mini-badge">Question ${index + 1}</span>
-                    <div class="test-match-term">${escapeHTML(deck[question.cardIndex].term)}</div>
+                    <div class="test-match-term">${escapeHTML(question.promptLabel)}</div>
+                    ${question.promptImageCardIndex !== null && question.promptImageCardIndex !== undefined ? cardImageHTML(deck[question.promptImageCardIndex], "test-question-image", false) : ""}
                   </div>
                   <div
                     class="test-drop-zone ${selectedChoice ? "" : "empty"}"
                     data-test-drop="${index}"
                     role="button"
                     tabindex="0"
-                    aria-label="Answer for ${escapeHTML(deck[question.cardIndex].term)}"
+                    aria-label="Answer for ${escapeHTML(question.promptLabel)}"
                   >
                     ${selectedChoice ? testAnswerChipHTML(selectedChoice) : "No answer selected"}
                   </div>
+                  <select class="test-match-select" data-test-match-select="${index}" aria-label="Choose answer for ${escapeHTML(question.promptLabel)}">
+                    <option value="">No answer selected</option>
+                    ${testState.matchChoices.map((choice) => `<option value="${escapeHTML(choice.value)}" ${question.userAnswer === choice.value ? "selected" : ""}>${escapeHTML(choice.label)}</option>`).join("")}
+                  </select>
                 </div>
               `;
             }).join("")}
@@ -3498,6 +4429,14 @@
         });
       });
 
+      document.querySelectorAll("[data-test-match-select]").forEach((select) => {
+        select.addEventListener("change", () => {
+          const questionIndex = Number(select.dataset.testMatchSelect);
+          if (select.value) assignTestMatchAnswer(questionIndex, select.value);
+          else clearTestMatchAnswer(testState.questions[questionIndex].userAnswer);
+        });
+      });
+
       const bank = document.querySelector("[data-test-answer-bank]");
       if (!bank) return;
 
@@ -3551,6 +4490,7 @@
 
     function submitTest() {
       testState.submitted = true;
+      testState.questions.forEach((question) => updateMissedCard(question.cardIndex, !isTestQuestionCorrect(question)));
       renderTestResults();
       elements.test.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -3576,7 +4516,7 @@
           correct: typeCorrect,
           total: typeQuestions.length
         };
-      });
+      }).filter((item) => item.total > 0);
 
       return {
         correct,
@@ -3592,6 +4532,7 @@
 
     function getTestAnswerLabel(question, value) {
       if (value === "") return "No answer";
+      if (question.type === "match") return getTestMatchChoice(value)?.label || value;
       const choice = question.choices.find((item) => item.value === value);
       return choice?.label || value;
     }
@@ -3610,7 +4551,8 @@
             `).join("")}
           </div>
           <div class="test-result-actions">
-            <button class="btn btn-yellow" type="button" id="retakeTestButton">Retake test</button>
+            <button class="btn btn-yellow" type="button" id="retakeTestButton">New shuffled test</button>
+            <button class="btn" type="button" id="customizeTestFromResults">Customize test</button>
             <button class="btn btn-dark" type="button" id="backToCardsFromTest">Return to flashcards</button>
           </div>
           <div class="test-review">
@@ -3629,7 +4571,8 @@
         </section>
       `;
 
-      document.querySelector("#retakeTestButton").addEventListener("click", initTest);
+      document.querySelector("#retakeTestButton").addEventListener("click", () => generateTest(testState.preferences));
+      document.querySelector("#customizeTestFromResults").addEventListener("click", initTest);
       document.querySelector("#backToCardsFromTest").addEventListener("click", () => switchMode("flashcards"));
     }
 
@@ -3667,7 +4610,7 @@
         }
       }
       if (mode === "test") {
-        if (!testState.questions) initTest();
+        if (!testState.initialized) initTest();
         else renderTest();
       }
       if (mode === "viewCards") renderViewCards();
@@ -3708,13 +4651,16 @@
     document.addEventListener("keydown", handleFlashcardShortcut);
 
     window.studyBroSwitchMode = switchMode;
+    window.addEventListener("pagehide", () => {
+      activeImageObjectURLs.forEach((url) => URL.revokeObjectURL(url));
+      clearPendingCardImage();
+    });
 
-    initThemeToggle();
     initImageViewer();
-    loadDeck().then(startApp);
+    Promise.all([initThemeToggle(), loadDeck()]).then(loadStudyPreferences).then(startApp);
   </script>
   <script src="vendor/matter.min.js"></script>
   <script src="physics.js"></script>
-  <script src="stack.js"></script>
+  <script src="stack.js?v=2.3-semantic"></script>
 </body>
 </html>

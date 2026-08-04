@@ -1,0 +1,175 @@
+{
+  "title": "Physics 241: Electromagnetic Waves",
+  "cards": [
+    {
+      "term": "What does the Ampere-Maxwell law add to Ampere's law?",
+      "definition": "A changing electric flux acts like a current: integral B·ds = mu0 I + mu0 epsilon0 d(Phi_E)/dt. This displacement-current term allows changing electric fields to produce magnetic fields."
+    },
+    {
+      "term": "Direction rule for a magnetic field induced by changing electric flux",
+      "definition": "Treat epsilon0 d(Phi_E)/dt as a conventional current and use the right-hand rule. Unlike Faraday's law, the changing-flux term in the Ampere-Maxwell law has a plus sign.",
+      "image": "deck-assets/physics-241-electromagnetic-waves/002-direction-rule-for-a-magnetic-field-indu.png",
+      "imageAlt": "Electric-field diagrams showing dots out of the page and arrows pointing right"
+    },
+    {
+      "term": "Increasing electric field out of the page: direction of induced B",
+      "definition": "Counterclockwise. An increasing outward electric flux acts like current out of the page, so the right-hand rule gives a counterclockwise magnetic field."
+    },
+    {
+      "term": "Decreasing electric field out of the page: direction of induced B",
+      "definition": "Clockwise. The changing flux is effectively into the page, so the right-hand rule reverses the circulation."
+    },
+    {
+      "term": "Increasing rightward electric field: how does induced B circulate?",
+      "definition": "It circulates around the +x direction by the right-hand rule. Viewed while looking in the +x direction, the circulation is clockwise; viewed from the arrowhead back toward the source, it is counterclockwise."
+    },
+    {
+      "term": "Decreasing rightward electric field: how does induced B circulate?",
+      "definition": "It circulates as if the displacement current pointed left, opposite the circulation for an increasing rightward field."
+    },
+    {
+      "term": "Charge conservation for a radially outward current",
+      "definition": "For charge Q(r,t) inside a sphere of radius r, dQ/dt = -j(r,t) 4 pi r^2. The minus sign means outward current reduces the charge remaining inside."
+    },
+    {
+      "term": "Why can an Amperian loop lie on a curved surface?",
+      "definition": "Ampere's law requires a closed integration path, not a flat loop. Any surface bounded by that path can be used, including a patch of a sphere."
+    },
+    {
+      "term": "Why is B = 0 for a spherically symmetric radial current?",
+      "definition": "No nonzero magnetic-field direction is compatible with full spherical symmetry. In the Ampere-Maxwell law, the conduction-current and displacement-current terms cancel."
+    },
+    {
+      "term": "How do conduction and displacement current cancel inside the conducting sphere?",
+      "definition": "For a spherical patch of area A, I = jA and d(Phi_E)/dt = (A/(4 pi epsilon0 r^2)) dQ/dt = -jA/epsilon0. Therefore mu0 I + mu0 epsilon0 d(Phi_E)/dt = 0."
+    },
+    {
+      "term": "Why is Ampere-Maxwell law consistent with B = 0 for r > R?",
+      "definition": "Outside the conductor, no radial conduction current crosses the chosen surface, and the total enclosed charge is constant, so d(Phi_E)/dt = 0. Both source terms vanish."
+    },
+    {
+      "term": "Current I(t) = alpha t charging initially empty capacitor plates: charge Q(t)",
+      "definition": "Q(t) = integral from 0 to t of alpha t' dt' = (alpha t^2)/2. The two plates carry equal and opposite charges."
+    },
+    {
+      "term": "Electric field between circular plates of radius R charged by I(t) = alpha t",
+      "definition": "Ignoring fringing, E(t) = Q/(epsilon0 pi R^2) = alpha t^2/(2 epsilon0 pi R^2).",
+      "image": "deck-assets/physics-241-electromagnetic-waves/013-electric-field-between-circular-plates-o.png",
+      "imageAlt": "Thick wire of radius R interrupted by a narrow capacitor gap"
+    },
+    {
+      "term": "Magnetic field inside a uniform thick wire carrying I(t) = alpha t",
+      "definition": "For rho < R, I_enclosed = I rho^2/R^2. Thus B(rho,t) = mu0 alpha t rho/(2 pi R^2), circulating around the wire."
+    },
+    {
+      "term": "Magnetic field between the charging plates for rho < R",
+      "definition": "The enclosed displacement current is alpha t rho^2/R^2, giving B(rho,t) = mu0 alpha t rho/(2 pi R^2). It exactly matches the field inside the wire."
+    },
+    {
+      "term": "One-dimensional electromagnetic wave equation",
+      "definition": "partial^2 E/partial t^2 = (1/(mu0 epsilon0)) partial^2 E/partial x^2. Its wave speed is c = 1/sqrt(mu0 epsilon0)."
+    },
+    {
+      "term": "Why does E_max sin(kx - omega t) satisfy the wave equation?",
+      "definition": "Both second derivatives reproduce the wave with negative factors: partial^2 E/partial t^2 = -omega^2 E and partial^2 E/partial x^2 = -k^2 E. Equality requires omega/k = 1/sqrt(mu0 epsilon0) = c."
+    },
+    {
+      "term": "Propagation direction encoded by sin(kz - omega t)",
+      "definition": "The wave propagates in the +z direction because a point of constant phase satisfies z = (omega/k)t + constant."
+    },
+    {
+      "term": "Relationship among E, B, and propagation direction in a plane EM wave",
+      "definition": "E and B are perpendicular, in phase, and satisfy E x B = propagation direction. Their amplitudes obey E_max = c B_max."
+    },
+    {
+      "term": "Complete E field when B = 10^-6 sin(10^5 z - omega t)(-x-hat) T",
+      "definition": "The wave travels +z, so E must point +y when B points -x. E(z,t) = 300 sin(10^5 z - omega t) y-hat V/m, with omega = ck = 3.00 x 10^13 rad/s."
+    },
+    {
+      "term": "Wavelength for wave number k = 10^5 rad/m",
+      "definition": "lambda = 2 pi/k = 6.28 x 10^-5 m. This is the peak-to-peak spacing at a fixed time."
+    },
+    {
+      "term": "Poynting vector of the specified B-amplitude 10^-6 T wave",
+      "definition": "S = (1/mu0) E x B = (c B_max^2/mu0) sin^2(10^5 z - omega t) z-hat, approximately 239 sin^2(...) z-hat W/m^2."
+    },
+    {
+      "term": "Spatial gradient of B for the specified wave",
+      "definition": "partial B/partial z = -0.1 cos(10^5 z - omega t) x-hat T/m. At z = 10^-4 m and t = 10^-13 s, the phase is about 7 rad, giving approximately -0.0754 x-hat T/m."
+    },
+    {
+      "term": "Maximum time rate of change of E for the specified wave",
+      "definition": "max|partial E/partial t| = E_max omega = 300(3.00 x 10^13) = 9.00 x 10^15 V/(m·s)."
+    },
+    {
+      "term": "Lorentz force on a charge in an electromagnetic wave",
+      "definition": "F = q(E + v x B). Compute the cross product before adding the electric contribution; the force is a vector."
+    },
+    {
+      "term": "Proton force in problem 5f when B = +10^-6 x-hat T",
+      "definition": "For a +z-traveling wave, E = -300 y-hat V/m. With v = (10^7, 2 x 10^7, 3 x 10^7) m/s, E + v x B = -270 y-hat - 20 z-hat V/m. F is about (-4.33 x 10^-17 y-hat - 3.20 x 10^-18 z-hat) N, magnitude 4.34 x 10^-17 N."
+    },
+    {
+      "term": "Poynting vector",
+      "definition": "S = (1/mu0) E x B. It gives electromagnetic energy flux: power transported per unit area and its direction."
+    },
+    {
+      "term": "Why does energy flow radially into a charging parallel-plate capacitor?",
+      "definition": "Between the plates, E is axial and the displacement-current magnetic field circles the axis. Their cross product E x B points radially inward through the capacitor's edge.",
+      "image": "deck-assets/physics-241-electromagnetic-waves/028-why-does-energy-flow-radially-into-a-cha.png",
+      "imageAlt": "Circular parallel-plate capacitor with radius R, separation d, and charging current I"
+    },
+    {
+      "term": "Power entering a charging circular capacitor through its edge",
+      "definition": "At the rim, B = mu0 I/(2 pi R), so S = EB/mu0. Multiplying by the edge area 2 pi R d gives P_in = E I d."
+    },
+    {
+      "term": "Rate of energy storage in a charging circular capacitor",
+      "definition": "U = (1/2) epsilon0 E^2(pi R^2 d). Since I = epsilon0 pi R^2 dE/dt, dU/dt = E I d, exactly matching the Poynting flux through the edge."
+    },
+    {
+      "term": "Intensity from an isotropic source",
+      "definition": "At distance r from a source of average power P, average intensity is I_avg = P/(4 pi r^2). The same power spreads over a sphere."
+    },
+    {
+      "term": "How does electric-field amplitude depend on distance from an isotropic source?",
+      "definition": "E_max is proportional to 1/r because intensity is proportional to E_max^2 and falls as 1/r^2. This assumes no absorption during propagation."
+    },
+    {
+      "term": "EM field amplitudes 5 m from a 100 W isotropic bulb",
+      "definition": "I_avg = 100/(4 pi·5^2) = 0.318 W/m^2. E_max = sqrt(2I_avg/(c epsilon0)) = 15.5 V/m, and B_max = E_max/c = 5.16 x 10^-8 T."
+    },
+    {
+      "term": "Radiation pressure on absorbing and reflecting surfaces",
+      "definition": "For normal incidence, p_rad = I/c for perfect absorption and p_rad = 2I/c for perfect reflection. Force equals pressure times illuminated area."
+    },
+    {
+      "term": "Force on a perfectly reflecting 0.01 m^2 object 5 m from a 100 W bulb",
+      "definition": "Using I = 0.318 W/m^2, F = 2IA/c = 2.12 x 10^-11 N, directed away from the bulb."
+    },
+    {
+      "term": "Radiation force on Earth with 70% absorption and 30% reflection",
+      "definition": "Use intercepted area pi R_Earth^2 and effective pressure (0.70 + 2·0.30)I/c = 1.30I/c. With the given solar data, F_rad is about 7.5 x 10^8 N away from the Sun."
+    },
+    {
+      "term": "Solar radiation force versus Sun-Earth gravity",
+      "definition": "The gravitational force is GM_Sun M_Earth/r^2, about 3.53 x 10^22 N. Radiation force is only about 2.1 x 10^-14 of gravity."
+    },
+    {
+      "term": "Net force and speed of the solar-sail rocket in problem 10",
+      "definition": "Reflection gives about 63.7 N outward; stellar gravity gives about 40.0 N inward. The net force is about 23.6 N, so a = 4.72 x 10^-3 m/s^2 and v after 10^5 s is about 472 m/s outward."
+    },
+    {
+      "term": "Photon energy-momentum relation",
+      "definition": "For light, dp = dU/c. Emitting energy in one direction gives the source equal and opposite momentum."
+    },
+    {
+      "term": "Speed gained by a 2000 kg spacecraft using a 100 kW laser for one year",
+      "definition": "The recoil force is P/c. Thus v = Pt/(Mc) = about 5.26 m/s after one year, opposite the emitted laser beam."
+    },
+    {
+      "term": "Best solenoid orientation for receiving a wave from a vertical electric dipole",
+      "definition": "Place the solenoid axis perpendicular to both the vertical dipole and the line from the dipole to the receiver. This aligns the coil axis with the wave's magnetic field, maximizing changing magnetic flux through the turns."
+    }
+  ]
+}

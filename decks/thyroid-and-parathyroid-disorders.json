@@ -1,0 +1,261 @@
+{
+  "title": "Thyroid and Parathyroid Disorders",
+  "cards": [
+    {
+      "term": "Thyroid and parathyroid anatomy",
+      "definition": "The parathyroid glands are located on the back of the thyroid gland.",
+      "image": "deck-assets/thyroid-and-parathyroid-disorders/001-thyroid-and-parathyroid-anatomy.webp",
+      "imageAlt": "Front and back views of the thyroid showing four parathyroid glands on its posterior surface"
+    },
+    {
+      "term": "Primary hypothyroidism",
+      "definition": "Hypothyroidism caused by a problem in the thyroid gland; Hashimoto's disease is the example shown in the source."
+    },
+    {
+      "term": "Secondary hypothyroidism",
+      "definition": "Hypothyroidism caused by a problem involving the anterior pituitary gland."
+    },
+    {
+      "term": "Tertiary hypothyroidism",
+      "definition": "Hypothyroidism caused by a problem involving the hypothalamus.",
+      "image": "deck-assets/thyroid-and-parathyroid-disorders/004-tertiary-hypothyroidism.webp",
+      "imageAlt": "Diagram linking primary, secondary, and tertiary hypothyroidism to the thyroid, anterior pituitary, and hypothalamus"
+    },
+    {
+      "term": "Hypothyroidism risk factors",
+      "definition": "Female sex, iodine deficiency, thyroid surgery, and radioactive iodine therapy."
+    },
+    {
+      "term": "Hypothyroidism: energy and sleep",
+      "definition": "Common manifestations include decreased energy or fatigue and increased sleep."
+    },
+    {
+      "term": "Hypothyroidism: weight and temperature",
+      "definition": "Weight gain without an intake change and increased susceptibility to cold are common."
+    },
+    {
+      "term": "Hypothyroidism: goiter and constipation",
+      "definition": "Goiter and constipation are common clinical manifestations."
+    },
+    {
+      "term": "Hypothyroidism: hair and mood",
+      "definition": "Hair fragility or loss and depression may occur.",
+      "image": "deck-assets/thyroid-and-parathyroid-disorders/009-hypothyroidism-hair-and-mood.webp",
+      "imageAlt": "Hypothyroidism slide listing clinical manifestations and comparing a normal thyroid with a goiter"
+    },
+    {
+      "term": "Hypothyroidism lab pattern",
+      "definition": "Elevated TSH with low T3 and T4."
+    },
+    {
+      "term": "Hypothyroidism medication",
+      "definition": "Levothyroxine is the thyroid-replacement medication listed for treatment."
+    },
+    {
+      "term": "Myxedema coma",
+      "definition": "A severe hypothyroid emergency associated with hypoxia and hypercapnia, fluid and electrolyte imbalance, hyponatremia, hypothermia, bradycardia and hypotension, and hypoglycemia."
+    },
+    {
+      "term": "Hypothyroidism nursing assessment",
+      "definition": "Assess vital signs, general appearance, bowel elimination, and serum calcium levels."
+    },
+    {
+      "term": "Hypothyroidism edema findings",
+      "definition": "Assess for nonpitting edema in the hands and feet, periorbital edema, and facial puffiness."
+    },
+    {
+      "term": "Hypothyroidism nursing diagnoses",
+      "definition": "Fatigue, chronic functional constipation, and risk for decreased body temperature."
+    },
+    {
+      "term": "Hypothyroidism nursing interventions",
+      "definition": "Provide warm blankets and skin care, and administer thyroid replacement on the patient's schedule."
+    },
+    {
+      "term": "Hypothyroidism and sedating drugs",
+      "definition": "Monitor the effects of opioids and sedatives in patients with hypothyroidism."
+    },
+    {
+      "term": "Hypothyroidism patient teaching",
+      "definition": "Teach the need for lifelong medication, provider-directed dose changes, and recognition of hypothyroidism and hyperthyroidism signs."
+    },
+    {
+      "term": "Hyperthyroidism and Graves' disease",
+      "definition": "Graves' disease is identified as a cause of hyperthyroidism."
+    },
+    {
+      "term": "Hyperthyroidism risk factors",
+      "definition": "Female sex and age 20-40."
+    },
+    {
+      "term": "Hyperthyroidism: cardiovascular and weight findings",
+      "definition": "Tachycardia and weight loss despite increased intake are common manifestations."
+    },
+    {
+      "term": "Hyperthyroidism: sleep and temperature",
+      "definition": "Fatigue, insomnia, and heat intolerance are common."
+    },
+    {
+      "term": "Hyperthyroidism: eye and thyroid findings",
+      "definition": "Exophthalmos and goiter may occur.",
+      "image": "deck-assets/thyroid-and-parathyroid-disorders/023-hyperthyroidism-eye-and-thyroid-findings.webp",
+      "imageAlt": "Illustration labeling exophthalmos and goiter alongside hyperthyroidism manifestations"
+    },
+    {
+      "term": "Hyperthyroidism lab pattern",
+      "definition": "Elevated T3 and T4 with decreased TSH."
+    },
+    {
+      "term": "Hyperthyroidism treatments",
+      "definition": "Treatment options include medication, radioactive iodine, and thyroidectomy."
+    },
+    {
+      "term": "Subtotal vs total thyroidectomy",
+      "definition": "A subtotal thyroidectomy leaves part of the thyroid, whereas a total thyroidectomy removes the gland.",
+      "image": "deck-assets/thyroid-and-parathyroid-disorders/026-subtotal-vs-total-thyroidectomy.webp",
+      "imageAlt": "Illustrations comparing subtotal and total thyroidectomy"
+    },
+    {
+      "term": "Thyroid storm",
+      "definition": "Thyrotoxicosis is a hyperthyroid emergency marked in the source by tachycardia and fever."
+    },
+    {
+      "term": "Hyperthyroidism nursing assessment",
+      "definition": "Assess vital signs, the head and neck, and thyroid hormone levels."
+    },
+    {
+      "term": "Hyperthyroidism nursing diagnoses",
+      "definition": "Hyperthermia, fatigue, ineffective sleep pattern, and risk for dry eye."
+    },
+    {
+      "term": "Post-thyroidectomy airway care",
+      "definition": "Monitor the airway and keep a tracheostomy tray, suction equipment, and oxygen at the bedside."
+    },
+    {
+      "term": "Post-thyroidectomy positioning",
+      "definition": "Place the patient in Semi-Fowler's position."
+    },
+    {
+      "term": "Post-thyroidectomy assessments",
+      "definition": "Provide incision care, monitor for tetany, and assess the patient's voice."
+    },
+    {
+      "term": "Hyperthyroidism patient teaching",
+      "definition": "Teach lifelong medication needs, signs of hypothyroidism and hyperthyroidism, and postoperative care."
+    },
+    {
+      "term": "Types of hypoparathyroidism",
+      "definition": "Hypoparathyroidism may be acquired, reversible, or idiopathic."
+    },
+    {
+      "term": "Hypoparathyroidism risk factors",
+      "definition": "Thyroidectomy and iodine therapy."
+    },
+    {
+      "term": "Hypoparathyroidism and calcium",
+      "definition": "Hypoparathyroidism produces hypocalcemia."
+    },
+    {
+      "term": "Early hypocalcemia sensations",
+      "definition": "Numbness and tingling around the mouth and in the hands and feet."
+    },
+    {
+      "term": "Neuromuscular hypocalcemia findings",
+      "definition": "Severe muscle cramps, spasms of the hands and feet, and tetany."
+    },
+    {
+      "term": "Hypoparathyroidism lab pattern",
+      "definition": "Low calcium, high phosphate, and low PTH."
+    },
+    {
+      "term": "Hypoparathyroidism treatment goal",
+      "definition": "Raise the serum calcium level."
+    },
+    {
+      "term": "Acute hypocalcemia treatment",
+      "definition": "Administer IV calcium for acute hypocalcemia."
+    },
+    {
+      "term": "Chronic hypocalcemia treatment",
+      "definition": "Use oral calcium and vitamin D for chronic hypocalcemia."
+    },
+    {
+      "term": "Hypoparathyroidism complications",
+      "definition": "Tetany and laryngospasm."
+    },
+    {
+      "term": "Chvostek and Trousseau signs",
+      "definition": "Assess Chvostek and Trousseau signs when hypocalcemia is suspected.",
+      "image": "deck-assets/thyroid-and-parathyroid-disorders/044-chvostek-and-trousseau-signs.webp",
+      "imageAlt": "Illustrations demonstrating Chvostek and Trousseau signs"
+    },
+    {
+      "term": "Hypoparathyroidism nursing assessment",
+      "definition": "Assess vital signs, cardiac telemetry, Chvostek and Trousseau signs, and calcium and magnesium levels."
+    },
+    {
+      "term": "Hypoparathyroidism nursing diagnoses",
+      "definition": "Risk for impaired airway clearance and risk for impaired cardiovascular function."
+    },
+    {
+      "term": "Hypoparathyroidism nursing interventions",
+      "definition": "Monitor the airway and cardiac rhythm, and administer calcium replacement and vitamin D as ordered."
+    },
+    {
+      "term": "Hypoparathyroidism patient teaching",
+      "definition": "Teach lifelong calcium supplementation, calcium-rich foods, and signs of hypocalcemia and hypercalcemia."
+    },
+    {
+      "term": "Hyperparathyroidism mechanism",
+      "definition": "Too much PTH causes bone breakdown and hypercalcemia."
+    },
+    {
+      "term": "Hyperparathyroidism risk factors",
+      "definition": "Parathyroid cancer and chronic renal failure."
+    },
+    {
+      "term": "Hyperparathyroidism: renal and GI findings",
+      "definition": "Polyuria, anorexia, constipation, and abdominal pain may occur."
+    },
+    {
+      "term": "Hyperparathyroidism: neurologic and musculoskeletal findings",
+      "definition": "Lethargy, confusion, muscle weakness, and bone pain may occur."
+    },
+    {
+      "term": "Hypercalcemia ECG changes",
+      "definition": "A long PR interval and short QT interval are listed ECG changes."
+    },
+    {
+      "term": "Hyperparathyroidism lab pattern",
+      "definition": "Elevated intact PTH and elevated ionized calcium."
+    },
+    {
+      "term": "Hyperparathyroidism treatment goal",
+      "definition": "Lower the serum calcium level."
+    },
+    {
+      "term": "Hyperparathyroidism fluid and diet management",
+      "definition": "Increase fluid intake and decrease calcium and vitamin D intake."
+    },
+    {
+      "term": "Hyperparathyroidism nursing assessment",
+      "definition": "Assess neurologic, musculoskeletal, gastrointestinal, and genitourinary systems and monitor calcium and phosphorus labs."
+    },
+    {
+      "term": "Hyperparathyroidism nursing diagnoses",
+      "definition": "Acute pain and fatigue."
+    },
+    {
+      "term": "Hyperparathyroidism nursing interventions",
+      "definition": "Increase fluid intake to 3,000 mL per day, use fall precautions, and administer ordered medications."
+    },
+    {
+      "term": "Hyperparathyroidism medications listed",
+      "definition": "Furosemide, oral phosphates, and calcium chelators."
+    },
+    {
+      "term": "Hyperparathyroidism patient teaching",
+      "definition": "Teach signs of hypocalcemia and hypercalcemia, a low-calcium diet, and increased fluids and fiber."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Normalize Homework to Flashcards"
+  short_description: "Turn assignments into standalone flashcards"
+  default_prompt: "Use $normalize-homework-to-flashcards to turn this homework, worksheet, practice exam, answer key, or mixed academic source into self-contained Study Bro flashcards."

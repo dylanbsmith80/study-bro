@@ -44,8 +44,8 @@
       "definition": "For a spherical patch of area A, I = jA and d(Phi_E)/dt = (A/(4 pi epsilon0 r^2)) dQ/dt = -jA/epsilon0. Therefore mu0 I + mu0 epsilon0 d(Phi_E)/dt = 0."
     },
     {
-      "term": "Why is Ampere-Maxwell law consistent with B = 0 for r > R?",
-      "definition": "Outside the conductor, no radial conduction current crosses the chosen surface, and the total enclosed charge is constant, so d(Phi_E)/dt = 0. Both source terms vanish."
+      "term": "Why is B = 0 outside a spherically symmetric conducting sphere carrying radial current?",
+      "definition": "For an Amperian loop at radius r greater than the conductor radius R, no radial conduction current crosses the chosen surface and the total enclosed charge is constant. Therefore d(Phi_E)/dt = 0, both source terms in the Ampere-Maxwell law vanish, and B = 0."
     },
     {
       "term": "Current I(t) = alpha t charging initially empty capacitor plates: charge Q(t)",
@@ -62,8 +62,8 @@
       "definition": "For rho < R, I_enclosed = I rho^2/R^2. Thus B(rho,t) = mu0 alpha t rho/(2 pi R^2), circulating around the wire."
     },
     {
-      "term": "Magnetic field between the charging plates for rho < R",
-      "definition": "The enclosed displacement current is alpha t rho^2/R^2, giving B(rho,t) = mu0 alpha t rho/(2 pi R^2). It exactly matches the field inside the wire."
+      "term": "Magnetic field between circular plates charged by I(t) = alpha t for rho < R",
+      "definition": "For plates of radius R, the enclosed displacement current at radial distance rho is alpha t rho^2/R^2. The Ampere-Maxwell law gives B(rho,t) = mu0 alpha t rho/(2 pi R^2), which matches the magnetic field inside the uniform wire supplying the current."
     },
     {
       "term": "One-dimensional electromagnetic wave equation",
@@ -90,24 +90,24 @@
       "definition": "lambda = 2 pi/k = 6.28 x 10^-5 m. This is the peak-to-peak spacing at a fixed time."
     },
     {
-      "term": "Poynting vector of the specified B-amplitude 10^-6 T wave",
-      "definition": "S = (1/mu0) E x B = (c B_max^2/mu0) sin^2(10^5 z - omega t) z-hat, approximately 239 sin^2(...) z-hat W/m^2."
+      "term": "Poynting vector when B(z,t) = 10^-6 sin(10^5 z - omega t)(-x-hat) T",
+      "definition": "The wave travels in the +z direction and has B_max = 10^-6 T. Therefore S = (1/mu0) E x B = (c B_max^2/mu0) sin^2(10^5 z - omega t) z-hat, approximately 239 sin^2(10^5 z - omega t) z-hat W/m^2."
     },
     {
-      "term": "Spatial gradient of B for the specified wave",
-      "definition": "partial B/partial z = -0.1 cos(10^5 z - omega t) x-hat T/m. At z = 10^-4 m and t = 10^-13 s, the phase is about 7 rad, giving approximately -0.0754 x-hat T/m."
+      "term": "Spatial gradient of B(z,t) = 10^-6 sin(10^5 z - omega t)(-x-hat) T",
+      "definition": "partial B/partial z = -0.1 cos(10^5 z - omega t) x-hat T/m. Using omega = 3.00 x 10^13 rad/s, the phase at z = 10^-4 m and t = 10^-13 s is about 7 rad, giving approximately -0.0754 x-hat T/m."
     },
     {
-      "term": "Maximum time rate of change of E for the specified wave",
-      "definition": "max|partial E/partial t| = E_max omega = 300(3.00 x 10^13) = 9.00 x 10^15 V/(m·s)."
+      "term": "Maximum time rate of change of E(z,t) = 300 sin(10^5 z - omega t) y-hat V/m",
+      "definition": "With omega = ck = 3.00 x 10^13 rad/s, max|partial E/partial t| = E_max omega = 300(3.00 x 10^13) = 9.00 x 10^15 V/(m·s)."
     },
     {
       "term": "Lorentz force on a charge in an electromagnetic wave",
       "definition": "F = q(E + v x B). Compute the cross product before adding the electric contribution; the force is a vector."
     },
     {
-      "term": "Proton force in problem 5f when B = +10^-6 x-hat T",
-      "definition": "For a +z-traveling wave, E = -300 y-hat V/m. With v = (10^7, 2 x 10^7, 3 x 10^7) m/s, E + v x B = -270 y-hat - 20 z-hat V/m. F is about (-4.33 x 10^-17 y-hat - 3.20 x 10^-18 z-hat) N, magnitude 4.34 x 10^-17 N."
+      "term": "Worked example: Lorentz force on a proton in a +z-traveling electromagnetic wave",
+      "definition": "Let B = +10^-6 x-hat T, E = -300 y-hat V/m, and v = (10^7 x-hat + 2 x 10^7 y-hat + 3 x 10^7 z-hat) m/s. Then E + v x B = -270 y-hat - 20 z-hat V/m. Using F = q(E + v x B), the force is about (-4.33 x 10^-17 y-hat - 3.20 x 10^-18 z-hat) N, with magnitude 4.34 x 10^-17 N."
     },
     {
       "term": "Poynting vector",
@@ -149,15 +149,15 @@
     },
     {
       "term": "Radiation force on Earth with 70% absorption and 30% reflection",
-      "definition": "Use intercepted area pi R_Earth^2 and effective pressure (0.70 + 2·0.30)I/c = 1.30I/c. With the given solar data, F_rad is about 7.5 x 10^8 N away from the Sun."
+      "definition": "For solar power 3.83 x 10^26 W at distance 1.5 x 10^11 m, use intensity I = P/(4 pi r^2), intercepted area pi R_Earth^2 with R_Earth = 6.37 x 10^6 m, and effective pressure (0.70 + 2·0.30)I/c = 1.30I/c. The radiation force is about 7.5 x 10^8 N away from the Sun."
     },
     {
       "term": "Solar radiation force versus Sun-Earth gravity",
-      "definition": "The gravitational force is GM_Sun M_Earth/r^2, about 3.53 x 10^22 N. Radiation force is only about 2.1 x 10^-14 of gravity."
+      "definition": "Using M_Sun = 1.99 x 10^30 kg, M_Earth = 5.98 x 10^24 kg, and r = 1.5 x 10^11 m, the gravitational force GM_Sun M_Earth/r^2 is about 3.53 x 10^22 N. A solar radiation force of 7.5 x 10^8 N is only about 2.1 x 10^-14 of gravity."
     },
     {
-      "term": "Net force and speed of the solar-sail rocket in problem 10",
-      "definition": "Reflection gives about 63.7 N outward; stellar gravity gives about 40.0 N inward. The net force is about 23.6 N, so a = 4.72 x 10^-3 m/s^2 and v after 10^5 s is about 472 m/s outward."
+      "term": "Worked example: reflective solar-sail acceleration opposed by stellar gravity",
+      "definition": "For a 5,000 kg rocket with a 6,000 m^2 reflective sail located 5 x 10^11 m from a star of power 5 x 10^30 W and mass 3 x 10^31 kg, radiation gives about 63.7 N outward and gravity gives about 40.0 N inward. The net force is about 23.6 N, so a = 4.72 x 10^-3 m/s^2 and the speed after 10^5 s is about 472 m/s outward."
     },
     {
       "term": "Photon energy-momentum relation",

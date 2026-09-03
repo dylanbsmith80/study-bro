@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e7">
+  <title>My Decks · Study Bro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <main id="configurationView" class="centered-view" hidden>
+    <section class="auth-card setup-card">
+      <span class="brand-mark">SB</span>
+      <p class="eyebrow">Setup required</p>
+      <h1>Connect Study Bro to Supabase.</h1>
+      <p>The platform is deployed, but its public Supabase configuration has not been added yet.</p>
+    </section>
+  </main>
+
+  <main id="authView" class="auth-layout" hidden>
+    <section class="auth-story">
+      <a class="brand" href="/"><span class="brand-mark">SB</span><span>Study Bro</span></a>
+      <div>
+        <p class="eyebrow">Your private study space</p>
+        <h1>Pick up exactly<br>where you left off.</h1>
+        <p>Every deck you own, every personal edit, and every card you add—ready when you are.</p>
+      </div>
+      <p class="story-footer">One page at a time.</p>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-card">
+        <div class="mobile-brand"><span class="brand-mark">SB</span><strong>Study Bro</strong></div>
+        <p class="eyebrow">Welcome back</p>
+        <h2 id="authTitle">Sign in to your decks</h2>
+        <p id="authSubtitle" class="muted">Use the email connected to your Study Bro account.</p>
+        <form id="authForm">
+          <label>Email<input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+          <label>Password<input id="authPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters"></label>
+          <button id="authSubmit" class="button button-primary" type="submit">Sign in</button>
+        </form>
+        <button id="authToggle" class="text-button" type="button">New here? Create an account</button>
+        <button id="forgotPassword" class="text-button quiet" type="button">Forgot your password?</button>
+        <p id="authMessage" class="form-message" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <div id="appView" hidden>
+    <header class="app-header">
+      <a class="brand" href="/" data-route><span class="brand-mark">SB</span><span>Study Bro</span></a>
+      <nav>
+        <a href="/" data-route>My decks</a>
+        <a id="adminNav" href="/admin" data-route hidden>Admin</a>
+        <button id="accountButton" class="account-button" type="button"><span id="accountInitial">S</span><span id="accountEmail"></span></button>
+        <button id="signOutButton" class="icon-button" type="button" aria-label="Sign out" title="Sign out">↗</button>
+      </nav>
+    </header>
+
+    <main class="app-main">
+      <section id="libraryView" hidden>
+        <div class="page-heading">
+          <div><p class="eyebrow">Your study space</p><h1>My decks</h1></div>
+          <div class="heading-note"><span></span> Personal edits save automatically</div>
+        </div>
+        <div id="libraryGrid" class="library-grid"></div>
+        <div id="emptyLibrary" class="empty-state" hidden>
+          <span class="empty-glyph">＋</span>
+          <h2>Your shelf is ready.</h2>
+          <p>Once a deck is assigned to your account, it will appear here.</p>
+        </div>
+      </section>
+
+      <section id="deckView" hidden>
+        <button id="backToLibrary" class="back-button" type="button">← My decks</button>
+        <div class="deck-heading">
+          <div><p class="eyebrow">Personal deck</p><h1 id="deckTitle">Deck</h1><p id="deckDescription" class="muted"></p></div>
+          <a id="studyDeckButton" class="button button-primary" href="#">Study this deck <span>→</span></a>
+        </div>
+        <div class="deck-toolbar">
+          <label class="search-field"><span>⌕</span><input id="cardSearch" type="search" placeholder="Search cards"></label>
+          <span id="deckCount" class="count-pill"></span>
+        </div>
+        <div id="cardList" class="card-list"></div>
+      </section>
+
+      <section id="adminView" hidden>
+        <div class="page-heading">
+          <div><p class="eyebrow">Private workspace</p><h1>Admin</h1></div>
+          <span class="admin-badge">Administrator</span>
+        </div>
+        <div class="admin-grid">
+          <section class="panel admin-upload">
+            <div class="panel-heading"><span class="panel-number">01</span><div><h2>Publish a deck</h2><p>Import the same JSON format Study Bro already uses.</p></div></div>
+            <form id="deckUploadForm">
+              <div class="field-row">
+                <label>Title<input id="uploadTitle" required placeholder="Biology Exam 2"></label>
+                <label>Slug<input id="uploadSlug" required pattern="[a-z0-9-]+" placeholder="biology-exam-2"></label>
+              </div>
+              <label>Description<input id="uploadDescription" placeholder="Everything covered on the second exam"></label>
+              <label>Deck JSON<textarea id="uploadJson" required spellcheck="false" placeholder='{"title":"Biology Exam 2","cards":[...]}'></textarea></label>
+              <div class="upload-actions">
+                <label class="file-button">Choose JSON file<input id="uploadFile" type="file" accept="application/json,.json"></label>
+                <label class="file-button">Add card images<input id="uploadImages" type="file" accept="image/*" multiple></label>
+                <button class="button button-primary" type="submit">Validate & publish</button>
+              </div>
+              <p id="uploadMessage" class="form-message" hidden></p>
+            </form>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading"><span class="panel-number">02</span><div><h2>Grant access</h2><p>Add a published deck to a customer’s library.</p></div></div>
+            <form id="grantForm">
+              <label>Customer email<input id="grantEmail" type="email" required placeholder="student@example.com"></label>
+              <label>Deck<select id="grantDeck" required><option value="">Choose a deck</option></select></label>
+              <button class="button button-dark" type="submit">Grant deck access</button>
+              <p id="grantMessage" class="form-message" hidden></p>
+            </form>
+            <div class="admin-divider"></div>
+            <h3>Published decks</h3>
+            <div id="adminDeckList" class="admin-deck-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="editDialog" class="edit-dialog">
+    <form id="editForm" method="dialog">
+      <div class="dialog-heading"><div><p id="editEyebrow" class="eyebrow">Personal edit</p><h2 id="editTitle">Make this card yours</h2></div><button id="closeDialog" class="icon-button" type="button" aria-label="Close">×</button></div>
+      <input id="editCardId" type="hidden">
+      <input id="editMode" type="hidden" value="personal">
+      <div id="originalSnapshot" class="original-snapshot"><span>Current master</span><strong id="originalTerm"></strong><p id="originalDefinition"></p></div>
+      <label>Term<input id="editTerm" required></label>
+      <label>Definition<textarea id="editDefinition" required></textarea></label>
+      <div id="masterUpdateNote" class="update-note" hidden><strong>The master card has changed.</strong><span>Your version is preserved. Saving keeps your version; resetting uses the latest master.</span></div>
+      <div class="dialog-actions">
+        <button id="resetCardButton" class="text-button danger" type="button">Reset to master</button>
+        <button class="button button-primary" type="submit">Save changes</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

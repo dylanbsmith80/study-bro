@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/deck/:id", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/index.html" }
+  ]
+}

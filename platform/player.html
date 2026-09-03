@@ -1,0 +1,4993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <title>Study Bro</title>
+  <style>
+    :root {
+      --black: #050505;
+      --white: #ffffff;
+      --paper: #fff7df;
+      --paper-deep: #f0dfb8;
+      --paper-line: rgba(5, 5, 5, 0.06);
+      --muted: #665f51;
+      --yellow: #ffd43b;
+      --note-pink: #f3a0d8;
+      --note-blue: #72b8ff;
+      --lime: #a8d81f;
+      --green: #c9f47a;
+      --green-dark: #315f05;
+      --red: #ff4d32;
+      --red-soft: #ffd0c9;
+      --red-dark: #8b1111;
+      --purple: #6f3fa0;
+      --wood: #8b5226;
+      --ink-soft: rgba(5, 5, 5, 0.72);
+      --border: 3px solid var(--black);
+      --radius: 18px;
+      --shadow: 7px 7px 0 var(--black);
+      --shadow-soft: 5px 5px 0 rgba(5, 5, 5, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 31px, var(--paper-line) 31px 32px),
+        repeating-linear-gradient(90deg, rgba(255, 212, 59, 0.08) 0 1px, transparent 1px 76px),
+        linear-gradient(180deg, #fff9e9 0%, var(--paper) 54%, #f4e2bb 100%);
+      color: var(--black);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        repeating-linear-gradient(8deg, transparent 0 42px, rgba(5, 5, 5, 0.025) 42px 43px),
+        repeating-linear-gradient(96deg, transparent 0 64px, rgba(168, 216, 31, 0.06) 64px 65px);
+      opacity: 0.75;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app-header {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, #16110d 0%, #22150d 56%, #32180e 100%);
+      color: var(--white);
+      padding: 16px clamp(18px, 5vw, 64px);
+      border-bottom: 5px solid var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .app-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 28px),
+        linear-gradient(0deg, rgba(255, 212, 59, 0.12), transparent 62%);
+      opacity: 0.72;
+    }
+
+    .brand-lockup {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-mark {
+      position: relative;
+      flex: 0 0 74px;
+      width: 74px;
+      height: 74px;
+      overflow: hidden;
+      border: 3px solid var(--black);
+      border-radius: 19px;
+      background:
+        linear-gradient(135deg, var(--lime) 0 48%, var(--yellow) 48% 100%);
+      color: var(--black);
+      display: grid;
+      place-items: center;
+      box-shadow: 5px 5px 0 var(--yellow);
+      font-size: 1.2rem;
+      font-weight: 950;
+      letter-spacing: 0;
+      transform: rotate(-2deg);
+    }
+
+    .logo-mark img {
+      position: absolute;
+      left: -47%;
+      top: -18%;
+      width: 188%;
+      height: 188%;
+      object-fit: cover;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      display: grid;
+      gap: 5px;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: clamp(1.65rem, 4vw, 2.25rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      text-shadow: 3px 3px 0 var(--black);
+    }
+
+    .brand-tagline {
+      width: fit-content;
+      padding: 4px 9px;
+      border: 2px solid var(--black);
+      border-radius: 3px;
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.45);
+      font-size: 0.72rem;
+      font-weight: 950;
+      letter-spacing: 0;
+      transform: rotate(-1deg);
+    }
+
+    .deck-label {
+      padding: 8px 12px;
+      border: 2px solid rgba(255, 255, 255, 0.78);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff3bf;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .deck-title {
+      color: var(--white);
+    }
+
+    .shell {
+      width: min(100% - 32px, 960px);
+      margin: 28px auto 64px;
+    }
+
+    .shell.stack-shell {
+      width: min(100% - 32px, 1180px);
+    }
+
+    .tabs {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto 24px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      display: flex;
+      gap: 8px;
+    }
+
+    .tab {
+      min-width: 110px;
+      padding: 11px 18px 13px;
+      border: var(--border);
+      border-radius: 14px 14px 6px 6px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 850;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .tab[data-mode="viewCards"] { background: var(--lime); }
+    .tab[data-mode="flashcards"] { background: var(--yellow); }
+    .tab[data-mode="learn"] { background: var(--green); }
+    .tab[data-mode="match"] { background: var(--note-blue); }
+    .tab[data-mode="test"] { background: var(--note-pink); }
+    .tab[data-mode="stack"] { background: var(--red-soft); }
+
+    .tab:hover,
+    .tab:focus-visible {
+      transform: translate(-1px, -2px);
+      box-shadow: 5px 6px 0 var(--black);
+      outline: none;
+    }
+
+    .tab.active {
+      background: var(--black);
+      color: var(--white);
+      transform: translateY(-4px);
+      box-shadow: 4px 8px 0 var(--yellow);
+    }
+
+    .progress-track {
+      height: 14px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      border: var(--border);
+      border-radius: 999px;
+      background:
+        repeating-linear-gradient(90deg, rgba(5, 5, 5, 0.08) 0 1px, transparent 1px 18px),
+        var(--white);
+      box-shadow: 4px 4px 0 rgba(5, 5, 5, 0.18);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background:
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.28) 0 8px, transparent 8px 16px),
+        var(--lime);
+      transition: width 240ms ease;
+    }
+
+    .deck-message {
+      margin-bottom: 20px;
+      padding: 14px 16px;
+      border: var(--border);
+      border-radius: 14px;
+      background: var(--red-soft);
+      color: var(--red-dark);
+      box-shadow: var(--shadow-soft);
+      font-weight: 850;
+      line-height: 1.4;
+    }
+
+    .deck-message[hidden] {
+      display: none;
+    }
+
+    .mode-panel {
+      display: none;
+    }
+
+    .mode-panel.active {
+      display: block;
+      animation: appear 220ms ease;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .status-row {
+      min-height: 34px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .status-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stat {
+      padding: 6px 11px;
+      border: var(--border);
+      border-radius: 6px;
+      background: var(--yellow);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.2);
+      font-weight: 900;
+    }
+
+    .status-group .stat:nth-child(2n) {
+      background: var(--green);
+      transform: rotate(1deg);
+    }
+
+    .status-group .stat:nth-child(3n) {
+      background: var(--note-pink);
+      transform: rotate(-1deg);
+    }
+
+    .mode-shuffle-button {
+      min-height: 34px;
+      padding: 6px 11px;
+      border: var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--black);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.2);
+    }
+
+    .mode-shuffle-button[aria-pressed="true"] {
+      background: var(--yellow);
+    }
+
+    .mode-shuffle-button:hover,
+    .mode-shuffle-button:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
+    .study-card {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      min-height: 360px;
+      padding: clamp(28px, 7vw, 64px);
+      border: var(--border);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, rgba(255, 77, 50, 0.16) 0 4px, transparent 4px 100%),
+        repeating-linear-gradient(0deg, transparent 0 36px, rgba(5, 5, 5, 0.07) 36px 37px),
+        #fffdf3;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .study-card::before {
+      content: "";
+      position: absolute;
+      inset: 14px auto 14px 24px;
+      width: 3px;
+      border-radius: 999px;
+      background: var(--red);
+      opacity: 0.72;
+    }
+
+    .study-card::after {
+      content: "";
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      width: 80px;
+      height: 18px;
+      border: 2px solid var(--black);
+      background:
+        repeating-linear-gradient(90deg, rgba(5, 5, 5, 0.18) 0 2px, transparent 2px 10px),
+        var(--yellow);
+      transform: rotate(4deg);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.18);
+    }
+
+    .flashcard {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .flashcard.flipping-out {
+      animation: flashcardFlipOut 150ms ease-in forwards;
+    }
+
+    .flashcard.flipping-in {
+      animation: flashcardFlipIn 170ms ease-out;
+    }
+
+    .flashcard:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 4px;
+    }
+
+    @keyframes flashcardFlipOut {
+      from { transform: rotateY(0deg) scale(1); }
+      to { transform: rotateY(88deg) scale(0.985); }
+    }
+
+    @keyframes flashcardFlipIn {
+      from { transform: rotateY(-88deg) scale(0.985); }
+      to { transform: rotateY(0deg) scale(1); }
+    }
+
+    .badge {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 22px;
+      padding: 5px 10px;
+      border: 2px solid var(--black);
+      border-radius: 5px;
+      background: var(--lime);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.18);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transform: rotate(-1deg);
+    }
+
+    .card-copy {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(1.65rem, 5vw, 3.2rem);
+      font-weight: 850;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    .card-image {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: auto;
+      max-width: min(100%, 360px);
+      max-height: 190px;
+      margin: 0 auto 18px;
+      border: var(--border);
+      border-radius: 14px;
+      background: var(--white);
+      box-shadow: 4px 4px 0 rgba(5, 5, 5, 0.22);
+      object-fit: contain;
+    }
+
+    [data-enlarge-card-image] {
+      cursor: zoom-in;
+    }
+
+    [data-enlarge-card-image]:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 4px;
+    }
+
+    .image-enlarge-hint {
+      position: relative;
+      z-index: 1;
+      margin: -8px 0 12px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 850;
+    }
+
+    body.image-viewer-open {
+      overflow: hidden;
+    }
+
+    .image-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      padding: 24px;
+      background: rgba(5, 5, 5, 0.84);
+      display: grid;
+      place-items: center;
+    }
+
+    .image-viewer[hidden] {
+      display: none;
+    }
+
+    .image-viewer-dialog {
+      position: relative;
+      width: min(94vw, 1100px, calc(100vw - 48px));
+      max-height: 92dvh;
+      padding: 52px 20px 20px;
+      border: var(--border);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: 9px 9px 0 var(--yellow);
+      display: grid;
+      place-items: center;
+      gap: 12px;
+    }
+
+    .image-viewer-image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: calc(92dvh - 112px);
+      border: 2px solid var(--black);
+      border-radius: 12px;
+      background: var(--white);
+      object-fit: contain;
+    }
+
+    .image-viewer-caption {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .image-viewer-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      min-height: 38px;
+      padding: 7px 12px;
+      border: 2px solid var(--black);
+      border-radius: 9px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    .image-viewer-close:hover,
+    .image-viewer-close:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
+    .definition-copy {
+      font-size: clamp(1.25rem, 3.4vw, 2rem);
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .flip-note {
+      position: absolute;
+      z-index: 1;
+      right: 18px;
+      bottom: 15px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 750;
+    }
+
+    .actions {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .btn {
+      min-height: 52px;
+      padding: 12px 20px;
+      border: var(--border);
+      border-radius: 12px;
+      background: #fffdf3;
+      color: var(--black);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 100ms ease, box-shadow 100ms ease, background 140ms ease;
+    }
+
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 6px 6px 0 var(--black);
+    }
+
+    .btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 var(--black);
+    }
+
+    .btn:focus-visible,
+    .answer:focus-visible,
+    .test-option:focus-visible,
+    .test-answer-chip:focus-visible,
+    .test-drop-zone:focus-visible,
+    .stack-answer:focus-visible,
+    .match-card:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 3px;
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+      box-shadow: 4px 4px 0 var(--red);
+    }
+
+    .btn-yellow {
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.35), transparent 64%),
+        var(--yellow);
+    }
+
+    .learn-prompt {
+      min-height: 210px;
+      margin-bottom: 18px;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .learn-controls {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .learn-feedback {
+      min-height: 24px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-weight: 820;
+      line-height: 1.35;
+    }
+
+    .learn-feedback strong {
+      color: var(--black);
+    }
+
+    .answer {
+      min-height: 94px;
+      padding: 18px;
+      border: var(--border);
+      border-radius: 13px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 28px, rgba(5, 5, 5, 0.05) 28px 29px),
+        #fffdf3;
+      color: var(--black);
+      font-weight: 750;
+      line-height: 1.35;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 150ms ease;
+    }
+
+    .answer:hover:not(:disabled) {
+      transform: translate(-1px, -2px);
+      box-shadow: 6px 6px 0 rgba(5, 5, 5, 0.22);
+    }
+
+    .answer:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
+    .answer.correct {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--green-dark);
+    }
+
+    .answer.wrong {
+      border-color: var(--red-dark);
+      background: var(--red-soft);
+      color: var(--red-dark);
+    }
+
+    .view-cards-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .view-cards-toolbar {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .local-save-status {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 850;
+    }
+
+    .card-editor {
+      margin-bottom: 18px;
+      padding: 18px;
+      border: var(--border);
+      border-radius: 14px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 30px, rgba(5, 5, 5, 0.045) 30px 31px),
+        #fffdf3;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-editor h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      letter-spacing: -0.025em;
+    }
+
+    .card-editor-fields {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .card-editor-field {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .card-editor-field input,
+    .card-editor-field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 12px;
+      border: var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-weight: 720;
+      letter-spacing: 0;
+      line-height: 1.35;
+      text-transform: none;
+    }
+
+    .card-editor-field textarea {
+      min-height: 82px;
+      resize: vertical;
+    }
+
+    .card-image-picker {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .card-image-picker input[type="file"] {
+      min-height: 48px;
+      padding: 9px;
+      border: var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: none;
+    }
+
+    .card-image-preview {
+      min-height: 88px;
+      padding: 10px;
+      border: 2px dashed var(--black);
+      border-radius: 12px;
+      background: rgba(255, 212, 59, 0.12);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .card-image-preview img {
+      display: block;
+      width: auto;
+      max-width: 180px;
+      max-height: 120px;
+      border: 2px solid var(--black);
+      border-radius: 9px;
+      background: var(--white);
+      object-fit: contain;
+    }
+
+    .card-image-preview[aria-busy="true"] {
+      opacity: 0.68;
+    }
+
+    .card-editor-field input:focus,
+    .card-editor-field textarea:focus,
+    .card-image-picker input[type="file"]:focus {
+      outline: 4px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
+    .card-editor-actions {
+      margin-top: 14px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .view-card-row {
+      overflow: hidden;
+      border: var(--border);
+      border-radius: 14px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 30px, rgba(5, 5, 5, 0.045) 30px 31px),
+        #fffdf3;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(170px, 0.38fr) minmax(0, 1fr) auto;
+    }
+
+    .view-card-term,
+    .view-card-definition {
+      padding: 16px 18px;
+      line-height: 1.35;
+    }
+
+    .view-card-term {
+      border-right: var(--border);
+      background: var(--yellow);
+      font-weight: 950;
+    }
+
+    .view-card-definition {
+      color: var(--ink-soft);
+      font-weight: 720;
+    }
+
+    .view-card-image {
+      display: block;
+      width: auto;
+      max-width: 150px;
+      max-height: 110px;
+      margin: 10px 18px 14px;
+      border: 2px solid var(--black);
+      border-radius: 10px;
+      background: var(--white);
+      object-fit: contain;
+    }
+
+    .view-card-actions {
+      padding: 10px;
+      border-left: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .edit-card-button,
+    .restore-card-button,
+    .delete-card-button,
+    .confirm-delete-button {
+      min-height: 42px;
+      padding: 8px 12px;
+      border: 2px solid var(--red-dark);
+      border-radius: 9px;
+      background: var(--red-soft);
+      color: var(--red-dark);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .edit-card-button,
+    .restore-card-button {
+      border-color: var(--black);
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .cancel-delete-button {
+      min-height: 42px;
+      padding: 8px 12px;
+      border: 2px solid var(--black);
+      border-radius: 9px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .edit-card-button:hover,
+    .edit-card-button:focus-visible,
+    .restore-card-button:hover,
+    .restore-card-button:focus-visible,
+    .delete-card-button:hover,
+    .delete-card-button:focus-visible,
+    .confirm-delete-button:hover,
+    .confirm-delete-button:focus-visible,
+    .cancel-delete-button:hover,
+    .cancel-delete-button:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
+    .match-toolbar {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .match-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .match-card {
+      min-height: 134px;
+      padding: 14px;
+      border: var(--border);
+      border-radius: 13px;
+      background: #fffdf3;
+      color: var(--black);
+      font-weight: 760;
+      line-height: 1.25;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      box-shadow: var(--shadow-soft);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 150ms ease, opacity 200ms ease;
+    }
+
+    .match-card-image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 76px;
+      margin-inline: auto;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      background: var(--white);
+      object-fit: contain;
+    }
+
+    .match-card:hover:not(:disabled) {
+      transform: translate(-1px, -2px);
+      box-shadow: 6px 6px 0 rgba(5, 5, 5, 0.22);
+    }
+
+    .match-card.selected {
+      background: var(--yellow);
+    }
+
+    .match-card.matched {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--green-dark);
+      cursor: default;
+    }
+
+    .match-card.wrong {
+      border-color: var(--red-dark);
+      background: var(--red-soft);
+      color: var(--red-dark);
+    }
+
+    .mini-badge {
+      padding: 3px 7px;
+      border: 2px solid currentColor;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.45);
+      font-size: 0.57rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .completion {
+      position: relative;
+      overflow: hidden;
+      min-height: 430px;
+      padding: 40px 24px;
+      border: var(--border);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, rgba(255, 77, 50, 0.14) 0 5px, transparent 5px),
+        repeating-linear-gradient(0deg, transparent 0 34px, rgba(5, 5, 5, 0.06) 34px 35px),
+        #fffdf3;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .completion::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 76px;
+      height: 76px;
+      border: 3px solid var(--black);
+      border-radius: 18px;
+      background-image: url("Logo1.png");
+      background-size: 190%;
+      background-position: 45% 20%;
+      box-shadow: 4px 4px 0 var(--yellow);
+      transform: rotate(-4deg);
+    }
+
+    .completion > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .completion-mark {
+      width: 92px;
+      height: 92px;
+      margin-bottom: 20px;
+      border: var(--border);
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, var(--lime), var(--yellow));
+      box-shadow: 5px 5px 0 var(--black);
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 950;
+      transform: rotate(-2deg);
+    }
+
+    .completion h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 7vw, 3.7rem);
+      letter-spacing: -0.055em;
+    }
+
+    .completion p {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .completion .btn {
+      min-width: 190px;
+    }
+
+    .test-shell {
+      display: grid;
+      gap: 18px;
+    }
+
+    .test-builder {
+      display: grid;
+      gap: 16px;
+    }
+
+    .test-builder-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .test-builder fieldset {
+      margin: 0;
+      padding: 14px;
+      border: 2px solid var(--black);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      display: grid;
+      gap: 9px;
+    }
+
+    .test-builder legend {
+      padding: 0 6px;
+      font-weight: 950;
+    }
+
+    .test-builder label {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      font-weight: 760;
+      line-height: 1.3;
+    }
+
+    .test-builder input,
+    .test-builder select {
+      accent-color: var(--black);
+    }
+
+    .test-card-selector {
+      max-height: 250px;
+      overflow: auto;
+      padding: 10px;
+      border: 2px dashed var(--black);
+      border-radius: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .test-builder-error {
+      margin: 0;
+      color: var(--red-dark);
+      font-weight: 900;
+    }
+
+    .test-intro,
+    .test-card,
+    .test-results {
+      position: relative;
+      overflow: hidden;
+      border: var(--border);
+      border-radius: var(--radius);
+      background:
+        repeating-linear-gradient(0deg, transparent 0 32px, rgba(5, 5, 5, 0.055) 32px 33px),
+        #fffdf3;
+      box-shadow: var(--shadow);
+    }
+
+    .test-intro,
+    .test-results {
+      padding: clamp(22px, 4vw, 34px);
+    }
+
+    .test-intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .test-intro h2,
+    .test-results h2 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .test-intro p,
+    .test-results p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 760;
+      line-height: 1.4;
+    }
+
+    .test-card {
+      padding: clamp(18px, 4vw, 28px);
+    }
+
+    .test-question-header {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .test-question-header strong {
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .test-prompt {
+      margin: 0 0 14px;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 850;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .test-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .test-option {
+      min-height: 58px;
+      padding: 13px 14px;
+      border: var(--border);
+      border-radius: 14px;
+      background: #fffdf3;
+      color: var(--black);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: center;
+      font-weight: 760;
+      line-height: 1.3;
+      text-align: left;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .test-option input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--black);
+    }
+
+    .test-option:has(input:checked) {
+      background: var(--yellow);
+    }
+
+    .test-match-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.72fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .test-match-section {
+      display: grid;
+      gap: 18px;
+    }
+
+    .test-match-board {
+      display: grid;
+      gap: 12px;
+    }
+
+    .test-match-term {
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .test-drop-zone {
+      min-height: 62px;
+      padding: 10px;
+      border: var(--border);
+      border-radius: 14px;
+      background: #fffdf3;
+      color: var(--black);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .test-drop-zone.empty {
+      border-style: dashed;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .test-drop-zone.drag-over {
+      background: var(--yellow);
+    }
+
+    .test-answer-bank {
+      padding: 14px;
+      border: 2px dashed var(--black);
+      border-radius: 16px;
+      background: rgba(168, 216, 31, 0.12);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: flex-start;
+      min-height: 86px;
+    }
+
+    .test-answer-bank.drag-over {
+      background: var(--yellow);
+    }
+
+    .test-answer-chip {
+      min-height: 44px;
+      padding: 10px 12px;
+      border: var(--border);
+      border-radius: 14px;
+      background: var(--yellow);
+      color: var(--black);
+      cursor: grab;
+      box-shadow: 3px 3px 0 var(--black);
+      font-weight: 760;
+      line-height: 1.25;
+      text-align: left;
+      touch-action: manipulation;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .test-match-select {
+      display: none;
+      width: 100%;
+      min-height: 48px;
+      margin-top: 8px;
+      padding: 9px;
+      border: 2px solid var(--black);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-weight: 760;
+    }
+
+    .test-answer-chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 4px 4px 0 var(--black);
+    }
+
+    .test-answer-chip.dragging {
+      opacity: 0.62;
+      cursor: grabbing;
+    }
+
+    .test-answer-chip.selected {
+      background: var(--yellow);
+    }
+
+    .test-drop-zone .test-answer-chip {
+      width: 100%;
+      box-shadow: none;
+      cursor: grab;
+    }
+
+    .test-actions,
+    .test-result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .test-score {
+      margin: 18px 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .test-score .stat {
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .test-review {
+      margin-top: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .test-review-item {
+      padding: 14px;
+      border: var(--border);
+      border-radius: 15px;
+      background: #fffdf3;
+    }
+
+    .test-review-item.correct {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--green-dark);
+    }
+
+    .test-review-item.wrong {
+      border-color: var(--red-dark);
+      background: var(--red);
+      color: var(--red-dark);
+    }
+
+    .test-review-item h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .test-review-item p {
+      margin: 4px 0 0;
+      color: inherit;
+      font-size: 0.92rem;
+      font-weight: 760;
+      line-height: 1.35;
+    }
+
+    .test-results::before,
+    .stack-end-state::before {
+      content: "One page at a time";
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      padding: 5px 9px;
+      border: 2px solid var(--black);
+      border-radius: 4px;
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.2);
+      font-size: 0.7rem;
+      font-weight: 950;
+      pointer-events: none;
+      transform: rotate(2deg);
+    }
+
+    .stack-game {
+      display: grid;
+      grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .stack-panel,
+    .stack-stage-card {
+      border: var(--border);
+      border-radius: 18px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 30px, rgba(5, 5, 5, 0.05) 30px 31px),
+        #fffdf3;
+      box-shadow: var(--shadow);
+    }
+
+    .stack-panel {
+      padding: 20px;
+    }
+
+    .stack-stage-card {
+      overflow: hidden;
+    }
+
+    .stack-stats {
+      margin-bottom: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.83rem;
+      font-weight: 850;
+    }
+
+    .stack-question {
+      margin: 0 0 16px;
+      font-size: clamp(1.55rem, 3vw, 2.35rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .stack-answer-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stack-answer {
+      width: 100%;
+      min-height: 68px;
+      padding: 13px 14px;
+      border: var(--border);
+      border-radius: 13px;
+      background: #fffdf3;
+      color: var(--black);
+      font-weight: 780;
+      line-height: 1.25;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 120ms ease, background 150ms ease;
+    }
+
+    .stack-answer:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .stack-answer:disabled {
+      cursor: default;
+    }
+
+    .stack-answer.correct {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--green-dark);
+    }
+
+    .stack-answer.wrong {
+      border-color: var(--red-dark);
+      background: var(--red-soft);
+      color: var(--red-dark);
+    }
+
+    .stack-feedback {
+      min-height: 45px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .stack-feedback strong {
+      color: var(--black);
+    }
+
+    .stack-preview {
+      margin-top: 16px;
+      padding: 14px;
+      border: 2px dashed var(--black);
+      border-radius: 15px;
+      background: rgba(255, 212, 59, 0.14);
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .stack-preview.empty {
+      color: var(--muted);
+      display: block;
+      font-weight: 800;
+    }
+
+    .stack-preview-shape {
+      width: 52px;
+      height: 38px;
+      border: 2px solid var(--black);
+      background: var(--yellow);
+    }
+
+    .stack-preview h3 {
+      margin: 0 0 2px;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .stack-preview p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .stack-controls {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .stack-stage-toolbar {
+      padding: 13px 16px;
+      border-bottom: var(--border);
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.86rem;
+      font-weight: 850;
+    }
+
+    .stack-stage {
+      position: relative;
+      height: min(58vh, 560px);
+      min-height: 430px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(5, 5, 5, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(5, 5, 5, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 77, 50, 0.14) 0 4px, transparent 4px),
+        #fffdf3;
+      background-size: 34px 34px, 34px 34px, 100% 100%, auto;
+      touch-action: none;
+    }
+
+    .stack-stage canvas {
+      position: absolute !important;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 1;
+    }
+
+    .stack-drop-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      z-index: 2;
+      width: min(42%, 320px);
+      height: 22px;
+      transform: translateX(-50%);
+      border: 2px solid var(--black);
+      border-radius: 999px;
+      background: var(--black);
+      box-shadow: 0 6px 0 rgba(5, 5, 5, 0.12);
+      pointer-events: none;
+    }
+
+    .stack-token-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .stack-token {
+      position: absolute;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      box-shadow: 4px 4px 0 rgba(5, 5, 5, 0.28);
+      cursor: grab;
+      pointer-events: auto;
+      touch-action: none;
+    }
+
+    .stack-token:focus-visible {
+      outline: 4px solid var(--yellow);
+      outline-offset: 4px;
+    }
+
+    .stack-token.dragging {
+      cursor: grabbing;
+      box-shadow: 6px 6px 0 rgba(5, 5, 5, 0.28);
+    }
+
+    .stack-token.circle {
+      border-radius: 50%;
+    }
+
+    .stack-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      padding: 24px;
+      background: rgba(244, 244, 240, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .stack-overlay.active {
+      display: flex;
+    }
+
+    .stack-end-state {
+      position: relative;
+      overflow: hidden;
+      width: min(100%, 440px);
+      padding: 28px;
+      border: var(--border);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .stack-end-state h2 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .stack-end-state p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .stack-end-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .header-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .theme-toggle {
+      flex: 0 0 auto;
+      min-height: 42px;
+      padding: 6px 8px 6px 14px;
+      border: 2px solid rgba(255, 255, 255, 0.82);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.76rem;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 rgba(5, 5, 5, 0.45);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(5, 5, 5, 0.58);
+      outline: none;
+    }
+
+    .theme-toggle-track {
+      position: relative;
+      width: 42px;
+      height: 24px;
+      border: 2px solid currentColor;
+      border-radius: 999px;
+      background: var(--yellow);
+    }
+
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: currentColor;
+      transition: transform 160ms ease;
+    }
+
+    body.plain-theme {
+      --black: #000000;
+      --white: #ffffff;
+      --paper: #ffffff;
+      --paper-deep: #ffffff;
+      --paper-line: #e4e4e4;
+      --muted: #4a4a4a;
+      --yellow: #ffffff;
+      --note-pink: #ffffff;
+      --note-blue: #ffffff;
+      --lime: #ffffff;
+      --green: #ffffff;
+      --green-dark: #000000;
+      --red: #ffffff;
+      --red-soft: #ffffff;
+      --red-dark: #000000;
+      --semantic-green-bg: #e6f4ea;
+      --semantic-green-text: #0b5d2a;
+      --semantic-red-bg: #fde8e8;
+      --semantic-red-text: #8a1c1c;
+      --purple: #000000;
+      --wood: #000000;
+      --ink-soft: #000000;
+      --border: 2px solid #000000;
+      --radius: 6px;
+      --shadow: none;
+      --shadow-soft: none;
+      background: #ffffff;
+      color: #000000;
+    }
+
+    body.plain-theme::before,
+    body.plain-theme .app-header::before,
+    body.plain-theme .study-card::before,
+    body.plain-theme .study-card::after,
+    body.plain-theme .completion::before,
+    body.plain-theme .test-results::before,
+    body.plain-theme .stack-end-state::before {
+      display: none;
+    }
+
+    body.plain-theme .app-header {
+      overflow: visible;
+      background: #ffffff;
+      color: #000000;
+      border-bottom: 2px solid #000000;
+    }
+
+    body.plain-theme .brand,
+    body.plain-theme .card-copy,
+    body.plain-theme .definition-copy,
+    body.plain-theme .completion h2,
+    body.plain-theme .test-intro h2,
+    body.plain-theme .test-results h2,
+    body.plain-theme .stack-question,
+    body.plain-theme .stack-end-state h2 {
+      letter-spacing: 0;
+      text-shadow: none;
+    }
+
+    body.plain-theme .logo-mark,
+    body.plain-theme .brand-tagline,
+    body.plain-theme .deck-label,
+    body.plain-theme .theme-toggle,
+    body.plain-theme .tab,
+    body.plain-theme .progress-track,
+    body.plain-theme .deck-message,
+    body.plain-theme .stat,
+    body.plain-theme .study-card,
+    body.plain-theme .badge,
+    body.plain-theme .btn,
+    body.plain-theme .answer,
+    body.plain-theme .match-card,
+    body.plain-theme .view-card-row,
+    body.plain-theme .card-editor,
+    body.plain-theme .card-editor-field input,
+    body.plain-theme .card-editor-field textarea,
+    body.plain-theme .card-image-picker input[type="file"],
+    body.plain-theme .card-image-preview,
+    body.plain-theme .edit-card-button,
+    body.plain-theme .restore-card-button,
+    body.plain-theme .delete-card-button,
+    body.plain-theme .confirm-delete-button,
+    body.plain-theme .cancel-delete-button,
+    body.plain-theme .view-card-term,
+    body.plain-theme .completion,
+    body.plain-theme .completion-mark,
+    body.plain-theme .test-intro,
+    body.plain-theme .test-card,
+    body.plain-theme .test-results,
+    body.plain-theme .test-option,
+    body.plain-theme .test-drop-zone,
+    body.plain-theme .test-answer-bank,
+    body.plain-theme .test-answer-chip,
+    body.plain-theme .test-review-item,
+    body.plain-theme .stack-panel,
+    body.plain-theme .stack-stage-card,
+    body.plain-theme .stack-answer,
+    body.plain-theme .stack-preview,
+    body.plain-theme .stack-preview-shape,
+    body.plain-theme .stack-stage-toolbar,
+    body.plain-theme .stack-end-state {
+      border-color: #000000;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #000000;
+      box-shadow: none;
+      transform: none;
+    }
+
+    body.plain-theme .logo-mark img,
+    body.plain-theme .completion::before {
+      filter: grayscale(1) contrast(1.35);
+    }
+
+    body.plain-theme .tab.active,
+    body.plain-theme .btn-dark,
+    body.plain-theme .progress-fill,
+    body.plain-theme .stack-drop-hint {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    body.plain-theme .theme-toggle {
+      border-color: #000000;
+      color: #000000;
+    }
+
+    body.plain-theme .theme-toggle-track {
+      background: #000000;
+    }
+
+    body.plain-theme .theme-toggle-thumb {
+      background: #ffffff;
+      transform: translateX(18px);
+    }
+
+    body.plain-theme .study-card,
+    body.plain-theme .answer,
+    body.plain-theme .view-card-row,
+    body.plain-theme .completion,
+    body.plain-theme .test-intro,
+    body.plain-theme .test-card,
+    body.plain-theme .test-results,
+    body.plain-theme .stack-panel,
+    body.plain-theme .stack-stage-card,
+    body.plain-theme .stack-stage {
+      background-image: none;
+    }
+
+    body.plain-theme .answer.correct,
+    body.plain-theme .match-card.matched,
+    body.plain-theme .test-review-item.correct,
+    body.plain-theme .stack-answer.correct,
+    body.plain-theme .learn-feedback.feedback-correct,
+    body.plain-theme .stack-feedback.feedback-correct,
+    body.plain-theme .stack-panel:has(.stack-answer.correct) .stack-feedback,
+    body.plain-theme .stack-end-state.success,
+    body.plain-theme #knownButton {
+      border-color: var(--semantic-green-text);
+      border-style: double;
+      background: var(--semantic-green-bg);
+      color: var(--semantic-green-text);
+    }
+
+    body.plain-theme .answer.wrong,
+    body.plain-theme .match-card.wrong,
+    body.plain-theme .test-review-item.wrong,
+    body.plain-theme .stack-answer.wrong,
+    body.plain-theme .learn-feedback.feedback-wrong,
+    body.plain-theme .stack-feedback.feedback-wrong,
+    body.plain-theme .stack-feedback.feedback-error,
+    body.plain-theme .stack-panel:has(.stack-answer.wrong) .stack-feedback,
+    body.plain-theme .stack-end-state.error,
+    body.plain-theme .test-builder-error,
+    body.plain-theme .deck-message,
+    body.plain-theme #missedButton {
+      border-color: var(--semantic-red-text);
+      border-style: dashed;
+      background: var(--semantic-red-bg);
+      color: var(--semantic-red-text);
+    }
+
+    body.plain-theme .learn-feedback.feedback-correct,
+    body.plain-theme .learn-feedback.feedback-wrong,
+    body.plain-theme .stack-feedback.feedback-correct,
+    body.plain-theme .stack-feedback.feedback-wrong,
+    body.plain-theme .stack-feedback.feedback-error,
+    body.plain-theme .stack-panel:has(.stack-answer.correct) .stack-feedback,
+    body.plain-theme .stack-panel:has(.stack-answer.wrong) .stack-feedback,
+    body.plain-theme .test-builder-error {
+      padding: 9px 11px;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 4px;
+    }
+
+    body.plain-theme .learn-feedback.feedback-correct strong,
+    body.plain-theme .stack-feedback.feedback-correct strong,
+    body.plain-theme .stack-panel:has(.stack-answer.correct) .stack-feedback strong {
+      color: var(--semantic-green-text);
+    }
+
+    body.plain-theme .learn-feedback.feedback-wrong strong,
+    body.plain-theme .stack-feedback.feedback-wrong strong,
+    body.plain-theme .stack-feedback.feedback-error strong,
+    body.plain-theme .stack-panel:has(.stack-answer.wrong) .stack-feedback strong {
+      color: var(--semantic-red-text);
+    }
+
+    /*
+      Keep the controls for the fixed study modes inside a typical laptop
+      viewport. Long-form modes (the term list and tests) intentionally retain
+      their natural document scrolling.
+    */
+    @media (min-width: 701px) and (max-height: 900px) {
+      .app-header {
+        padding-block: 10px;
+      }
+
+      .logo-mark {
+        flex-basis: 54px;
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+      }
+
+      .brand-copy {
+        gap: 3px;
+      }
+
+      .brand {
+        font-size: 1.7rem;
+      }
+
+      .shell {
+        margin-top: 14px;
+        margin-bottom: 28px;
+      }
+
+      .tabs {
+        margin-bottom: 14px;
+      }
+
+      .tab {
+        padding-block: 8px 10px;
+      }
+
+      .status-row {
+        margin-bottom: 9px;
+      }
+
+      #flashcardsPanel .study-card {
+        min-height: clamp(260px, calc(100dvh - 330px), 360px);
+        padding-block: 26px;
+      }
+
+      #flashcardsPanel .card-image {
+        max-height: 110px;
+        margin-bottom: 10px;
+      }
+
+      #learnPanel .card-image {
+        max-height: 72px;
+        margin-bottom: 6px;
+      }
+
+      #flashcardsPanel .actions {
+        margin-top: 14px;
+      }
+
+      #learnPanel .learn-prompt {
+        min-height: clamp(130px, calc(100dvh - 600px), 190px);
+        margin-bottom: 8px;
+        padding-block: 18px;
+      }
+
+      #learnPanel .answers {
+        gap: 8px;
+      }
+
+      #learnPanel .answer {
+        min-height: 62px;
+        padding: 9px 13px;
+      }
+
+      #learnPanel .learn-controls {
+        margin-top: 10px;
+      }
+
+      #learnPanel .learn-feedback {
+        margin-top: 9px;
+      }
+
+      .stack-game {
+        gap: 14px;
+      }
+
+      .stack-panel {
+        padding: 14px;
+      }
+
+      .stack-stats {
+        margin-bottom: 9px;
+      }
+
+      .stack-question {
+        margin-bottom: 10px;
+        font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+      }
+
+      .stack-answer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .stack-answer {
+        min-height: 56px;
+        padding: 9px 10px;
+        font-size: 0.9rem;
+      }
+
+      .stack-feedback {
+        min-height: 38px;
+        margin-top: 9px;
+        font-size: 0.9rem;
+      }
+
+      .stack-preview {
+        margin-top: 9px;
+        padding: 9px;
+      }
+
+      .stack-controls {
+        margin-top: 9px;
+      }
+
+      .stack-controls .btn {
+        min-height: 44px;
+        padding-block: 8px;
+      }
+
+      .stack-stage-toolbar {
+        padding-block: 9px;
+      }
+
+      .stack-stage {
+        height: clamp(330px, calc(100dvh - 245px), 540px);
+        min-height: 330px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: clip;
+      }
+
+      body {
+        min-height: 100dvh;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .app-header {
+        min-height: calc(64px + env(safe-area-inset-top));
+        padding: calc(8px + env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left));
+        gap: 10px;
+      }
+
+      .header-actions {
+        gap: 0;
+      }
+
+      .theme-toggle {
+        min-height: 38px;
+        padding: 6px;
+        gap: 0;
+      }
+
+      #themeToggleLabel {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+
+      .shell {
+        width: auto;
+        max-width: 960px;
+        margin: 12px max(10px, env(safe-area-inset-right)) calc(32px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+      }
+
+      .deck-label {
+        display: none;
+      }
+
+      .brand-lockup {
+        gap: 8px;
+      }
+
+      .logo-mark {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+        box-shadow: 3px 3px 0 var(--yellow);
+      }
+
+      .brand-copy {
+        gap: 2px;
+      }
+
+      .brand {
+        font-size: clamp(1.25rem, 6vw, 1.55rem);
+      }
+
+      .brand-tagline {
+        padding: 2px 6px;
+        font-size: 0.62rem;
+      }
+
+      .tabs {
+        position: sticky;
+        top: env(safe-area-inset-top);
+        z-index: 20;
+        width: calc(100% + 20px);
+        max-width: none;
+        margin: 0 -10px 14px;
+        padding: 6px max(10px, env(safe-area-inset-right)) 9px max(10px, env(safe-area-inset-left));
+        overflow-x: auto;
+        overflow-y: visible;
+        overscroll-behavior-inline: contain;
+        scroll-padding-inline: 10px;
+        scrollbar-width: none;
+        background: rgba(255, 247, 223, 0.96);
+        border-bottom: 2px solid rgba(5, 5, 5, 0.16);
+        justify-content: flex-start;
+        gap: 7px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab {
+        flex: 0 0 auto;
+        min-width: 96px;
+        min-height: 44px;
+        padding: 8px 12px 9px;
+        border-radius: 11px 11px 5px 5px;
+        box-shadow: 3px 3px 0 var(--black);
+        scroll-snap-align: start;
+      }
+
+      .tab.active {
+        transform: translateY(-2px);
+        box-shadow: 3px 5px 0 var(--yellow);
+      }
+
+      .progress-track {
+        height: 11px;
+        min-height: 0;
+        margin-bottom: 12px;
+        border-width: 2px;
+      }
+
+      .study-card {
+        min-height: clamp(250px, 44dvh, 330px);
+        height: auto;
+        padding: 42px 22px 38px;
+        box-shadow: 5px 5px 0 var(--black);
+      }
+
+      .study-card::before {
+        left: 14px;
+      }
+
+      .study-card::after {
+        top: 12px;
+        right: 14px;
+        width: 58px;
+        height: 14px;
+      }
+
+      .badge {
+        margin-bottom: 14px;
+      }
+
+      .card-copy {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        font-size: clamp(1.45rem, 7.5vw, 2.25rem);
+        line-height: 1.16;
+      }
+
+      .definition-copy {
+        font-size: clamp(1.08rem, 5vw, 1.45rem);
+        line-height: 1.42;
+      }
+
+      .card-image {
+        max-width: min(100%, 300px);
+        max-height: min(30dvh, 210px);
+        margin-bottom: 12px;
+      }
+
+      .image-enlarge-hint {
+        margin: -4px 0 10px;
+      }
+
+      .image-viewer {
+        padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+      }
+
+      .image-viewer-dialog {
+        width: 100%;
+        max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 20px);
+        padding: 54px 10px 12px;
+        border-radius: 14px;
+        box-shadow: 5px 5px 0 var(--yellow);
+      }
+
+      .image-viewer-image {
+        max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 112px);
+      }
+
+      .image-viewer-close {
+        min-width: 44px;
+        min-height: 44px;
+      }
+
+      .status-row {
+        min-height: 44px;
+        margin-bottom: 10px;
+        gap: 8px;
+      }
+
+      .status-group {
+        gap: 6px;
+      }
+
+      .stat,
+      .mode-shuffle-button {
+        min-height: 44px;
+        padding: 8px 9px;
+      }
+
+      .actions {
+        margin-top: 16px;
+        gap: 10px;
+      }
+
+      .btn {
+        min-height: 48px;
+        padding: 10px 14px;
+      }
+
+      .answers {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .answer {
+        min-height: 64px;
+        padding: 13px 14px;
+      }
+
+      .view-cards-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .view-cards-toolbar .btn {
+        width: 100%;
+      }
+
+      .card-editor-fields,
+      .view-card-row {
+        grid-template-columns: 1fr;
+      }
+
+      .card-image-picker {
+        grid-template-columns: 1fr;
+      }
+
+      .view-card-term {
+        border-right: 0;
+        border-bottom: var(--border);
+      }
+
+      .view-card-actions {
+        border-top: var(--border);
+        border-left: 0;
+        flex-wrap: wrap;
+      }
+
+      .edit-card-button,
+      .restore-card-button,
+      .delete-card-button,
+      .confirm-delete-button,
+      .cancel-delete-button {
+        width: 100%;
+        min-height: 44px;
+      }
+
+      .learn-controls {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .learn-prompt {
+        min-height: 220px;
+        margin-bottom: 12px;
+      }
+
+      .test-intro {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 20px 16px;
+      }
+
+      .test-builder-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .test-score {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .test-match-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .test-match-select {
+        display: block;
+      }
+
+      .match-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .match-card {
+        min-width: 0;
+        min-height: 112px;
+        padding: 10px;
+        gap: 8px;
+        overflow-wrap: anywhere;
+        font-size: clamp(0.78rem, 3.5vw, 0.9rem);
+        line-height: 1.32;
+      }
+
+      .match-card-image {
+        max-height: 68px;
+      }
+
+      .stack-game {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .stack-panel {
+        padding: 15px;
+      }
+
+      .stack-question {
+        font-size: clamp(1.35rem, 7vw, 1.8rem);
+      }
+
+      .stack-answer {
+        min-height: 56px;
+        padding: 11px 12px;
+      }
+
+      .stack-stage-toolbar {
+        padding: 10px 12px;
+        flex-wrap: wrap;
+      }
+
+      .stack-stage {
+        height: clamp(320px, 58dvh, 520px);
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .brand-tagline {
+        display: none;
+      }
+
+      .brand {
+        font-size: 1.35rem;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .status-row {
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .status-group {
+        flex: 1 1 auto;
+      }
+
+      .match-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+        margin-bottom: 12px;
+      }
+
+      .match-toolbar .btn,
+      .test-actions,
+      .test-result-actions {
+        width: 100%;
+      }
+
+      .test-score {
+        grid-template-columns: 1fr;
+      }
+
+      .test-actions .btn,
+      .test-result-actions .btn {
+        width: 100%;
+      }
+
+      .stack-end-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .test-card,
+      .test-results {
+        padding: 16px 13px;
+      }
+
+      .test-question-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .test-option,
+      .test-drop-zone,
+      .test-answer-chip {
+        overflow-wrap: anywhere;
+      }
+
+      .test-answer-bank {
+        padding: 10px;
+      }
+
+      .view-card-term,
+      .view-card-definition {
+        padding: 13px 14px;
+        overflow-wrap: anywhere;
+      }
+
+      .view-card-image {
+        max-width: calc(100% - 28px);
+        max-height: 180px;
+        margin-inline: 14px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .app-header {
+        gap: 6px;
+      }
+
+      .logo-mark {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+      }
+
+      .brand {
+        font-size: 1.18rem;
+      }
+
+      .theme-toggle-track {
+        width: 38px;
+      }
+
+      .tab {
+        min-width: 88px;
+        padding-inline: 10px;
+        font-size: 0.9rem;
+      }
+
+      .study-card {
+        padding-inline: 18px;
+      }
+
+      .stat,
+      .mode-shuffle-button {
+        font-size: 0.78rem;
+      }
+
+      .match-card {
+        min-height: 104px;
+        padding: 9px;
+        font-size: 0.76rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+    .library-link {
+      min-height: 38px;
+      padding: 0 14px;
+      border: 2px solid var(--black);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--black);
+      background: var(--white);
+      font-size: .72rem;
+      font-weight: 900;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand-lockup" aria-label="Study Bro">
+      <span class="logo-mark" aria-hidden="true">
+        <span>SB</span>
+        <img src="Logo1.png" alt="">
+      </span>
+      <div class="brand-copy">
+        <h1 class="brand">Study Bro.</h1>
+        <span class="brand-tagline">One page at a time</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a class="library-link" href="/">← My decks</a>
+      <span class="deck-label">
+        <span class="deck-title" id="deckTitle">Sample deck</span> · <span id="deckCount"></span> terms
+      </span>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to basic black and white theme">
+        <span id="themeToggleLabel">Basic</span>
+        <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <nav class="tabs" aria-label="Study modes">
+      <button class="tab" type="button" data-mode="viewCards">View Cards</button>
+      <button class="tab active" type="button" data-mode="flashcards">Flashcards</button>
+      <button class="tab" type="button" data-mode="learn">Learn</button>
+      <button class="tab" type="button" data-mode="match">Match</button>
+      <button class="tab" type="button" data-mode="stack">Stack</button>
+      <button class="tab" type="button" data-mode="test">Test</button>
+    </nav>
+
+    <div class="progress-track" aria-label="Study progress">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="deck-message" id="deckMessage" role="alert" hidden></div>
+
+    <section class="mode-panel active" id="flashcardsPanel" aria-label="Flashcards mode"></section>
+    <section class="mode-panel" id="learnPanel" aria-label="Learn mode"></section>
+    <section class="mode-panel" id="matchPanel" aria-label="Match mode"></section>
+    <section class="mode-panel" id="testPanel" aria-label="Test mode"></section>
+    <section class="mode-panel" id="viewCardsPanel" aria-label="View all cards"></section>
+    <section class="mode-panel" id="stackPanel" aria-label="Stack game mode"></section>
+  </main>
+
+  <div class="image-viewer" id="imageViewer" role="dialog" aria-modal="true" aria-label="Enlarged card image" hidden>
+    <div class="image-viewer-dialog">
+      <button class="image-viewer-close" id="closeImageViewer" type="button">Close ✕</button>
+      <img class="image-viewer-image" id="imageViewerImage" alt="">
+      <p class="image-viewer-caption" id="imageViewerCaption"></p>
+    </div>
+  </div>
+
+  <script>
+    const sampleDeck = {
+      title: "Sample deck",
+      cards: [
+        { term: "Photosynthesis", definition: "The process plants use to convert light energy into chemical energy." },
+        { term: "Mitosis", definition: "Cell division that produces two genetically identical daughter cells." },
+        { term: "Ecosystem", definition: "A community of organisms interacting with each other and their environment." },
+        { term: "Velocity", definition: "The speed of an object in a specific direction." },
+        { term: "Atom", definition: "The smallest unit of an element that retains its chemical properties." },
+        { term: "Democracy", definition: "A system of government in which power is held by the people." },
+        { term: "Metaphor", definition: "A figure of speech that directly compares two unlike things." },
+        { term: "Hypothesis", definition: "A testable explanation or prediction based on available evidence." },
+        { term: "Inflation", definition: "A general increase in prices and fall in the purchasing value of money." },
+        { term: "Algorithm", definition: "A step-by-step procedure for solving a problem or completing a task." }
+      ]
+    };
+
+    const DECK_EDITS_STORAGE_PREFIX = "studyBroDeckEdits:v1:";
+    const STUDY_BRO_DB_NAME = "StudyBroPrivateData";
+    const STUDY_BRO_DB_VERSION = 1;
+    const STUDY_BRO_STORES = {
+      decks: "decks",
+      images: "images",
+      deletedCards: "deletedCards",
+      preferences: "preferences",
+      library: "library",
+      migrations: "migrations"
+    };
+    let studyBroDBPromise = null;
+    let persistenceMode = "pending";
+    const activeImageObjectURLs = new Set();
+    let deckTitle = sampleDeck.title;
+    let deck = sampleDeck.cards;
+    let originalDeck = { title: sampleDeck.title, cards: [] };
+    let originalCardsById = new Map();
+    let hasLocalDeckEdits = false;
+    let isAddCardFormOpen = false;
+    let editingCardIndex = null;
+    let editImageAction = "keep";
+    let pendingDeleteCardIndex = null;
+    let pendingCardImageBlob = null;
+    let pendingCardImagePreviewURL = "";
+    let isCardImageProcessing = false;
+    let imageViewerTrigger = null;
+
+    const elements = {
+      progress: document.querySelector("#progressFill"),
+      deckTitle: document.querySelector("#deckTitle"),
+      deckCount: document.querySelector("#deckCount"),
+      deckMessage: document.querySelector("#deckMessage"),
+      themeToggle: document.querySelector("#themeToggle"),
+      themeToggleLabel: document.querySelector("#themeToggleLabel"),
+      flashcards: document.querySelector("#flashcardsPanel"),
+      learn: document.querySelector("#learnPanel"),
+      match: document.querySelector("#matchPanel"),
+      test: document.querySelector("#testPanel"),
+      viewCards: document.querySelector("#viewCardsPanel"),
+      stack: document.querySelector("#stackPanel"),
+      shell: document.querySelector(".shell"),
+      tabs: [...document.querySelectorAll(".tab")]
+    };
+
+    let activeMode = "flashcards";
+    let timerInterval = null;
+    let learnAdvanceTimer = null;
+    let stackGame = null;
+
+    const flashState = {};
+    const learnState = {};
+    const matchState = {};
+    const testState = {};
+    const missedCardIds = new Set();
+    let savedTestPreferences = null;
+    let flashShuffleEnabled = false;
+    let learnShuffleEnabled = true;
+
+    function getLegacyThemePreference() {
+      try {
+        return localStorage.getItem("studyBroPlainTheme") === "true";
+      } catch (error) {
+        return false;
+      }
+    }
+
+    async function getSavedThemePreference() {
+      try {
+        const db = await openStudyBroDB();
+        const record = await idbRequest(db.transaction(STUDY_BRO_STORES.preferences).objectStore(STUDY_BRO_STORES.preferences).get(`${getDeckKey()}:theme`));
+        return record ? record.value === true : getLegacyThemePreference();
+      } catch (error) {
+        return getLegacyThemePreference();
+      }
+    }
+
+    async function saveThemePreference(usePlainTheme) {
+      try {
+        localStorage.setItem("studyBroPlainTheme", usePlainTheme ? "true" : "false");
+      } catch (error) {
+        // The database below is the primary store; this is only a compatibility fallback.
+      }
+      try {
+        const db = await openStudyBroDB();
+        await idbTransaction(db, [STUDY_BRO_STORES.preferences], "readwrite", (stores) => {
+          stores.preferences.put({
+            id: `${getDeckKey()}:theme`,
+            deckKey: getDeckKey(),
+            name: "plainTheme",
+            value: Boolean(usePlainTheme),
+            updatedAt: new Date().toISOString()
+          });
+        });
+      } catch (error) {
+        // The visible toggle still works and the localStorage fallback remains available.
+      }
+    }
+
+    async function getDeckPreference(name, fallback = null) {
+      try {
+        const db = await openStudyBroDB();
+        const record = await idbRequest(db.transaction(STUDY_BRO_STORES.preferences).objectStore(STUDY_BRO_STORES.preferences).get(`${getDeckKey()}:${name}`));
+        return record ? record.value : fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    async function saveDeckPreference(name, value) {
+      try {
+        const db = await openStudyBroDB();
+        await idbTransaction(db, [STUDY_BRO_STORES.preferences], "readwrite", (stores) => {
+          stores.preferences.put({
+            id: `${getDeckKey()}:${name}`,
+            deckKey: getDeckKey(),
+            name,
+            value,
+            updatedAt: new Date().toISOString()
+          });
+        });
+      } catch (error) {
+        // Preferences are helpful but must never block studying when storage is unavailable.
+      }
+    }
+
+    function cardTrackingId(card) {
+      return card?.sourceId || card?.id || "";
+    }
+
+    async function loadStudyPreferences() {
+      const savedMissed = await getDeckPreference("missedCards", []);
+      missedCardIds.clear();
+      if (Array.isArray(savedMissed)) savedMissed.forEach((id) => missedCardIds.add(id));
+      const preferences = await getDeckPreference("testPreferences", null);
+      savedTestPreferences = preferences && typeof preferences === "object" ? preferences : null;
+      flashShuffleEnabled = await getDeckPreference("flashcardsShuffle", false) === true;
+      learnShuffleEnabled = await getDeckPreference("learnShuffle", true) !== false;
+    }
+
+    function updateMissedCard(cardIndex, wasMissed) {
+      const id = cardTrackingId(deck[cardIndex]);
+      if (!id) return;
+      if (wasMissed) missedCardIds.add(id);
+      else missedCardIds.delete(id);
+      saveDeckPreference("missedCards", [...missedCardIds]);
+    }
+
+    function setThemePreference(usePlainTheme, shouldSave = true) {
+      document.body.classList.toggle("plain-theme", usePlainTheme);
+      elements.themeToggle.setAttribute("aria-pressed", String(usePlainTheme));
+      elements.themeToggle.setAttribute(
+        "aria-label",
+        usePlainTheme ? "Switch to fun Study Bro theme" : "Switch to basic black and white theme"
+      );
+      elements.themeToggleLabel.textContent = usePlainTheme ? "Fun" : "Basic";
+      if (shouldSave) saveThemePreference(usePlainTheme);
+    }
+
+    async function initThemeToggle() {
+      setThemePreference(await getSavedThemePreference(), false);
+      elements.themeToggle.addEventListener("click", () => {
+        setThemePreference(!document.body.classList.contains("plain-theme"));
+      });
+    }
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function escapeHTML(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function isSafePublishedImagePath(value) {
+      if (typeof value !== "string") return false;
+      if (/^deck-assets\/[a-z0-9](?:[a-z0-9-]{0,78}[a-z0-9])?\/[a-z0-9][a-z0-9._-]*\.(?:gif|jpe?g|png|webp)$/i.test(value.trim())) return true;
+      try {
+        const imageURL = new URL(value);
+        const supabaseURL = new URL(window.STUDY_BRO_CONFIG?.supabaseUrl || "https://invalid.local");
+        return imageURL.origin === supabaseURL.origin && imageURL.pathname.includes("/storage/v1/object/sign/deck-assets/");
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function cardImageHTML(card, className = "card-image", showHint = true) {
+      if (!card?.image || typeof card.image !== "string") return "";
+      const cardLabel = card.term || card.text || "card";
+      const imageAlt = typeof card.imageAlt === "string" && card.imageAlt.trim()
+        ? card.imageAlt.trim()
+        : `Image for ${cardLabel}`;
+      return (
+        `<img class="${className}" src="${escapeHTML(card.image)}" ` +
+          `alt="${escapeHTML(imageAlt)}" ` +
+          `aria-label="Enlarge image: ${escapeHTML(imageAlt)}" ` +
+          `title="Enlarge image" role="button" tabindex="0" data-enlarge-card-image>` +
+        (showHint ? '<span class="image-enlarge-hint">Tap or click the image to enlarge</span>' : '')
+      );
+    }
+
+    function openImageViewer(image) {
+      const viewer = document.querySelector("#imageViewer");
+      const viewerImage = document.querySelector("#imageViewerImage");
+      const caption = document.querySelector("#imageViewerCaption");
+      if (!viewer || !viewerImage || !image?.src) return;
+
+      imageViewerTrigger = image;
+      viewerImage.src = image.src;
+      viewerImage.alt = image.alt || "Enlarged card image";
+      caption.textContent = image.alt || "";
+      viewer.hidden = false;
+      document.body.classList.add("image-viewer-open");
+      document.querySelector("#closeImageViewer")?.focus();
+    }
+
+    function closeImageViewer() {
+      const viewer = document.querySelector("#imageViewer");
+      const viewerImage = document.querySelector("#imageViewerImage");
+      if (!viewer || viewer.hidden) return;
+
+      viewer.hidden = true;
+      document.body.classList.remove("image-viewer-open");
+      viewerImage.removeAttribute("src");
+      imageViewerTrigger?.focus();
+      imageViewerTrigger = null;
+    }
+
+    function initImageViewer() {
+      document.addEventListener("click", (event) => {
+        const image = event.target.closest?.("[data-enlarge-card-image]");
+        if (!image) return;
+        event.preventDefault();
+        event.stopPropagation();
+        openImageViewer(image);
+      }, true);
+
+      document.addEventListener("keydown", (event) => {
+        const image = event.target.closest?.("[data-enlarge-card-image]");
+        if (image && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          event.stopPropagation();
+          openImageViewer(image);
+          return;
+        }
+
+        if (event.key === "Escape" && !document.querySelector("#imageViewer")?.hidden) {
+          event.preventDefault();
+          closeImageViewer();
+        }
+      }, true);
+
+      document.addEventListener("error", (event) => {
+        const image = event.target.closest?.("[data-enlarge-card-image]");
+        if (!image) return;
+        image.hidden = true;
+        if (image.nextElementSibling?.classList.contains("image-enlarge-hint")) {
+          image.nextElementSibling.hidden = true;
+        }
+        console.warn(`Study Bro could not load card image: ${image.getAttribute("src")}`);
+      }, true);
+
+      document.querySelector("#closeImageViewer")?.addEventListener("click", closeImageViewer);
+      document.querySelector("#imageViewer")?.addEventListener("click", (event) => {
+        if (event.target.id === "imageViewer") closeImageViewer();
+      });
+    }
+
+    function setProgress(percent) {
+      elements.progress.style.width = `${Math.max(0, Math.min(100, percent))}%`;
+    }
+
+    function validateDeck(data) {
+      if (!data || typeof data.title !== "string" || !data.title.trim()) {
+        throw new Error("The deck needs a non-empty title.");
+      }
+
+      if (!Array.isArray(data.cards) || data.cards.length === 0) {
+        throw new Error("The deck needs at least one card.");
+      }
+
+      const validCards = data.cards.every((card) => {
+        if (
+          !card ||
+          typeof card.term !== "string" ||
+          !card.term.trim() ||
+          typeof card.definition !== "string" ||
+          !card.definition.trim()
+        ) {
+          return false;
+        }
+
+        const image = card.image;
+        const imageAlt = card.imageAlt;
+        if (image === undefined || image === "") {
+          return imageAlt === undefined || imageAlt === "";
+        }
+        if (typeof image !== "string" || !image.trim()) return false;
+
+        if (image.trim().startsWith("data:image/")) {
+          return (
+            imageAlt === undefined ||
+            imageAlt === "" ||
+            (typeof imageAlt === "string" && Boolean(imageAlt.trim()))
+          );
+        }
+
+        if (typeof card.imageId === "string" && card.imageId && image.trim().startsWith("blob:")) {
+          return imageAlt === undefined || imageAlt === "" || typeof imageAlt === "string";
+        }
+
+        return (
+          isSafePublishedImagePath(image) &&
+          typeof imageAlt === "string" &&
+          Boolean(imageAlt.trim())
+        );
+      });
+
+      if (!validCards) {
+        throw new Error(
+          "Every card needs a non-empty term and definition. Published images also need a safe deck-assets path and non-empty alt text."
+        );
+      }
+    }
+
+    function normalizeDeck(data) {
+      return {
+        title: data.title.trim(),
+        cards: data.cards.map((card) => {
+          const term = card.term.trim();
+          return {
+            term,
+            definition: card.definition.trim(),
+            ...(typeof card.id === "string" && card.id ? { id: card.id } : {}),
+            ...(typeof card.sourceId === "string" && card.sourceId ? { sourceId: card.sourceId } : {}),
+            ...(typeof card.imageId === "string" && card.imageId ? { imageId: card.imageId } : {}),
+            ...(card.image ? {
+              image: card.image.trim(),
+              imageAlt: typeof card.imageAlt === "string" && card.imageAlt.trim()
+                ? card.imageAlt.trim()
+                : `Image for ${term}`
+            } : {})
+          };
+        })
+      };
+    }
+
+    function assignOriginalCardIds(data) {
+      const occurrences = new Map();
+      return {
+        title: data.title,
+        cards: data.cards.map((card) => {
+          const explicitId = typeof card.id === "string" && card.id.trim() ? card.id.trim() : "";
+          const signature = JSON.stringify([card.term, card.definition, card.image || "", card.imageAlt || ""]);
+          const occurrence = occurrences.get(signature) || 0;
+          occurrences.set(signature, occurrence + 1);
+          const sourceId = explicitId
+            ? `published:id:${encodeURIComponent(explicitId)}`
+            : `published:v1:${encodeURIComponent(signature)}:${occurrence}`;
+          return { ...card, sourceId };
+        })
+      };
+    }
+
+    function cardsMatch(left, right) {
+      return left.term === right.term &&
+        left.definition === right.definition &&
+        (left.image || "") === (right.image || "") &&
+        (left.imageAlt || "") === (right.imageAlt || "");
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => resolve(reader.result));
+        reader.addEventListener("error", () => reject(new Error("The image could not be read.")));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function loadImage(dataURL) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.addEventListener("load", () => resolve(image));
+        image.addEventListener("error", () => reject(new Error("That file is not a supported image.")));
+        image.src = dataURL;
+      });
+    }
+
+    function renderCompressedImage(image, maxDimension, quality) {
+      const scale = Math.min(1, maxDimension / Math.max(image.naturalWidth, image.naturalHeight));
+      const width = Math.max(1, Math.round(image.naturalWidth * scale));
+      const height = Math.max(1, Math.round(image.naturalHeight * scale));
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+      return new Promise((resolve, reject) => {
+        canvas.toBlob(
+          (blob) => blob ? resolve(blob) : reject(new Error("The image could not be compressed.")),
+          "image/webp",
+          quality
+        );
+      });
+    }
+
+    async function compressCardImage(file) {
+      if (!file.type.startsWith("image/")) {
+        throw new Error("Please choose an image file.");
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        throw new Error("Please choose an image smaller than 10 MB.");
+      }
+
+      const sourceData = await readFileAsDataURL(file);
+      const image = await loadImage(sourceData);
+      let compressed = await renderCompressedImage(image, 900, 0.8);
+      if (compressed.size > 180000) {
+        compressed = await renderCompressedImage(image, 600, 0.66);
+      }
+      if (compressed.size > 135000) {
+        compressed = await renderCompressedImage(image, 480, 0.58);
+      }
+      return compressed;
+    }
+
+    function clearPendingCardImage() {
+      if (pendingCardImagePreviewURL) URL.revokeObjectURL(pendingCardImagePreviewURL);
+      pendingCardImageBlob = null;
+      pendingCardImagePreviewURL = "";
+    }
+
+    function updateCardImagePreview(message = "") {
+      const preview = document.querySelector("#newCardImagePreview");
+      const saveButton = document.querySelector("#saveNewCardButton");
+      if (!preview) return;
+
+      preview.setAttribute("aria-busy", String(isCardImageProcessing));
+      saveButton?.toggleAttribute("disabled", isCardImageProcessing);
+      if (pendingCardImageBlob && pendingCardImagePreviewURL) {
+        preview.innerHTML =
+          `<img src="${escapeHTML(pendingCardImagePreviewURL)}" alt="Selected card image preview">` +
+          `<span>${escapeHTML(message || "Image ready and compressed for local saving.")}</span>`;
+      } else {
+        preview.textContent = message || "Optional · JPG, PNG, GIF, or WebP up to 10 MB";
+      }
+    }
+
+    function isOriginalCardEdited(card) {
+      if (!card?.sourceId) return false;
+      const original = originalCardsById.get(card.sourceId);
+      return Boolean(original && (!cardsMatch(card, original) || card.imageId));
+    }
+
+    function updateEditCardImagePreview(card, message = "") {
+      const preview = document.querySelector("#editCardImagePreview");
+      const saveButton = document.querySelector("#saveEditedCardButton");
+      if (!preview) return;
+      preview.setAttribute("aria-busy", String(isCardImageProcessing));
+      saveButton?.toggleAttribute("disabled", isCardImageProcessing);
+      if (editImageAction === "remove") {
+        preview.textContent = message || "The current image will be removed when you save.";
+      } else if (pendingCardImageBlob && pendingCardImagePreviewURL) {
+        preview.innerHTML = `<img src="${escapeHTML(pendingCardImagePreviewURL)}" alt="Replacement image preview">` +
+          `<span>${escapeHTML(message || "Replacement image ready and compressed for local saving.")}</span>`;
+      } else if (card?.image) {
+        preview.innerHTML = `<img src="${escapeHTML(card.image)}" alt="${escapeHTML(card.imageAlt || "Current card image")}">` +
+          `<span>${escapeHTML(message || "Current definition-side image.")}</span>`;
+      } else {
+        preview.textContent = message || "No image · choose one to add it to the definition side.";
+      }
+    }
+
+    function getDeckKey() {
+      const deckURL = new URL(window.location.href);
+      deckURL.hash = "";
+      return deckURL.href;
+    }
+
+    function getDeckStorageKey() {
+      return `${DECK_EDITS_STORAGE_PREFIX}${getDeckKey()}`;
+    }
+
+    function idbRequest(request) {
+      return new Promise((resolve, reject) => {
+        request.addEventListener("success", () => resolve(request.result), { once: true });
+        request.addEventListener("error", () => reject(request.error || new Error("Browser database request failed.")), { once: true });
+      });
+    }
+
+    function openStudyBroDB() {
+      if (!window.indexedDB) return Promise.reject(new Error("IndexedDB is unavailable."));
+      if (studyBroDBPromise) return studyBroDBPromise;
+
+      studyBroDBPromise = new Promise((resolve, reject) => {
+        const request = indexedDB.open(STUDY_BRO_DB_NAME, STUDY_BRO_DB_VERSION);
+        request.addEventListener("upgradeneeded", () => {
+          const db = request.result;
+          Object.values(STUDY_BRO_STORES).forEach((storeName) => {
+            if (!db.objectStoreNames.contains(storeName)) {
+              const store = db.createObjectStore(storeName, { keyPath: storeName === STUDY_BRO_STORES.decks ? "deckKey" : "id" });
+              if ([STUDY_BRO_STORES.images, STUDY_BRO_STORES.deletedCards, STUDY_BRO_STORES.preferences].includes(storeName)) {
+                store.createIndex("deckKey", "deckKey", { unique: false });
+              }
+            }
+          });
+        });
+        request.addEventListener("success", () => {
+          const db = request.result;
+          db.addEventListener("versionchange", () => db.close());
+          persistenceMode = "indexedDB";
+          resolve(db);
+        }, { once: true });
+        request.addEventListener("error", () => {
+          studyBroDBPromise = null;
+          persistenceMode = "localStorage";
+          reject(request.error || new Error("IndexedDB could not be opened."));
+        }, { once: true });
+        request.addEventListener("blocked", () => {
+          studyBroDBPromise = null;
+          persistenceMode = "localStorage";
+          reject(new Error("IndexedDB is blocked by another open page."));
+        }, { once: true });
+      });
+      return studyBroDBPromise;
+    }
+
+    function idbTransaction(db, storeNames, mode, work) {
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeNames, mode);
+        const stores = Object.fromEntries(storeNames.map((name) => [name, transaction.objectStore(name)]));
+        transaction.addEventListener("complete", () => resolve(), { once: true });
+        transaction.addEventListener("abort", () => reject(transaction.error || new Error("Browser database transaction was cancelled.")), { once: true });
+        transaction.addEventListener("error", () => reject(transaction.error || new Error("Browser database transaction failed.")), { once: true });
+        try {
+          work(stores, transaction);
+        } catch (error) {
+          transaction.abort();
+          reject(error);
+        }
+      });
+    }
+
+    function makeRecordId(prefix = "record") {
+      return `${prefix}:${Date.now()}:${crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)}`;
+    }
+
+    async function dataURLToBlob(dataURL) {
+      const response = await fetch(dataURL);
+      if (!response.ok) throw new Error("A saved card image could not be migrated.");
+      return response.blob();
+    }
+
+    function readLegacyDeck() {
+      try {
+        const savedValue = localStorage.getItem(getDeckStorageKey());
+        if (!savedValue) return null;
+
+        const savedDeck = JSON.parse(savedValue);
+        validateDeck(savedDeck);
+        return normalizeDeck(savedDeck);
+      } catch (error) {
+        showDeckError(`Your locally saved card changes could not be loaded. ${error.message}`);
+        return null;
+      }
+    }
+
+    function saveLegacyDeck(cards) {
+      const serializableCards = cards.map((card) => {
+        const copy = { term: card.term, definition: card.definition };
+        if (card.image && !card.image.startsWith("blob:")) {
+          copy.image = card.image;
+          copy.imageAlt = card.imageAlt || `Image for ${card.term}`;
+        }
+        return copy;
+      });
+      const editedDeck = { title: deckTitle, cards: serializableCards };
+
+      try {
+        validateDeck(editedDeck);
+        localStorage.setItem(getDeckStorageKey(), JSON.stringify(editedDeck));
+        hasLocalDeckEdits = true;
+        return true;
+      } catch (error) {
+        showDeckError(`Your card changes could not be saved on this device. ${error.message}`);
+        return false;
+      }
+    }
+
+    async function hydrateImage(db, card) {
+      const hydrated = { ...card };
+      if (hydrated.imageId) {
+        const imageRecord = await idbRequest(db.transaction(STUDY_BRO_STORES.images).objectStore(STUDY_BRO_STORES.images).get(hydrated.imageId));
+        if (imageRecord?.blob instanceof Blob) {
+          hydrated.image = URL.createObjectURL(imageRecord.blob);
+          activeImageObjectURLs.add(hydrated.image);
+        }
+      }
+      return hydrated;
+    }
+
+    async function applySavedOverlay(db, record, baseDeck) {
+      const deleted = new Set(record.deletedOriginalIds || []);
+      const overrides = new Map((record.overrides || []).map((override) => [override.sourceId, override]));
+      const cards = [];
+      for (const originalCard of baseDeck.cards) {
+        if (deleted.has(originalCard.sourceId)) continue;
+        const override = overrides.get(originalCard.sourceId);
+        if (!override) {
+          cards.push({ ...originalCard });
+          continue;
+        }
+        let card = { ...originalCard, ...override, sourceId: originalCard.sourceId };
+        if (override.imageRemoved) {
+          delete card.image;
+          delete card.imageAlt;
+          delete card.imageId;
+        } else if (override.imageId) {
+          delete card.image;
+          card = await hydrateImage(db, card);
+        }
+        delete card.imageRemoved;
+        cards.push(card);
+      }
+      for (const addition of record.additions || []) cards.push(await hydrateImage(db, addition));
+      return normalizeDeck({ title: baseDeck.title, cards });
+    }
+
+    function cardForStorage(card, baseCard = null) {
+      const stored = {
+        ...(baseCard ? { sourceId: baseCard.sourceId } : { id: card.id || makeRecordId("user-card") }),
+        term: card.term,
+        definition: card.definition
+      };
+      if (card.imageId) {
+        stored.imageId = card.imageId;
+        stored.imageAlt = card.imageAlt || `Image for ${card.term}`;
+      } else if (card.image && !card.image.startsWith("blob:")) {
+        stored.image = card.image;
+        stored.imageAlt = card.imageAlt || `Image for ${card.term}`;
+      } else if (baseCard?.image) {
+        stored.imageRemoved = true;
+      }
+      return stored;
+    }
+
+    function buildOverlayRecord(cards) {
+      const presentOriginalIds = new Set(cards.filter((card) => card.sourceId).map((card) => card.sourceId));
+      const deletedOriginalIds = originalDeck.cards
+        .filter((card) => !presentOriginalIds.has(card.sourceId))
+        .map((card) => card.sourceId);
+      const overrides = [];
+      const additions = [];
+      cards.forEach((card) => {
+        const baseCard = card.sourceId ? originalCardsById.get(card.sourceId) : null;
+        if (!baseCard) {
+          additions.push(cardForStorage(card));
+        } else if (!cardsMatch(card, baseCard) || card.imageId) {
+          overrides.push(cardForStorage(card, baseCard));
+        }
+      });
+      return {
+        deckKey: getDeckKey(),
+        title: originalDeck.title,
+        additions,
+        overrides,
+        deletedOriginalIds,
+        metadata: {},
+        updatedAt: new Date().toISOString(),
+        schemaVersion: 2
+      };
+    }
+
+    async function convertFullDeckToOverlay(db, fullDeck, migrationId = "") {
+      const unmatched = fullDeck.cards.map((card) => ({ ...card }));
+      const reconstructed = [];
+      originalDeck.cards.forEach((originalCard) => {
+        const matchIndex = unmatched.findIndex((card) => cardsMatch(card, originalCard));
+        if (matchIndex >= 0) {
+          reconstructed.push({ ...originalCard });
+          unmatched.splice(matchIndex, 1);
+        }
+      });
+      const imageRecords = [];
+      for (const card of unmatched) {
+        const addition = { ...card, id: card.id || makeRecordId("user-card") };
+        if (addition.image?.startsWith("data:image/")) {
+          const imageId = makeRecordId("image");
+          imageRecords.push({ id: imageId, deckKey: getDeckKey(), blob: await dataURLToBlob(addition.image), createdAt: new Date().toISOString() });
+          addition.imageId = imageId;
+          delete addition.image;
+        }
+        reconstructed.push(addition);
+      }
+      const overlay = buildOverlayRecord(reconstructed);
+      const storesNeeded = [STUDY_BRO_STORES.decks, STUDY_BRO_STORES.images, ...(migrationId ? [STUDY_BRO_STORES.migrations] : [])];
+      await idbTransaction(db, storesNeeded, "readwrite", (stores) => {
+        imageRecords.forEach((record) => stores.images.put(record));
+        stores.decks.put(overlay);
+        if (migrationId) stores.migrations.put({ id: migrationId, deckKey: getDeckKey(), status: "complete", completedAt: new Date().toISOString(), legacyKey: getDeckStorageKey() });
+      });
+      return applySavedOverlay(db, overlay, originalDeck);
+    }
+
+    async function getSavedDeck(baseDeck) {
+      const legacyDeck = readLegacyDeck();
+      try {
+        const db = await openStudyBroDB();
+        const record = await idbRequest(db.transaction(STUDY_BRO_STORES.decks).objectStore(STUDY_BRO_STORES.decks).get(getDeckKey()));
+        if (record?.schemaVersion === 2) {
+          hasLocalDeckEdits = Boolean(record.additions?.length || record.overrides?.length || record.deletedOriginalIds?.length);
+          return applySavedOverlay(db, record, baseDeck);
+        }
+        if (record?.cards) {
+          hasLocalDeckEdits = true;
+          return convertFullDeckToOverlay(db, { title: record.title || baseDeck.title, cards: await Promise.all(record.cards.map((card) => hydrateImage(db, card))) });
+        }
+        if (legacyDeck) {
+          hasLocalDeckEdits = true;
+          return convertFullDeckToOverlay(db, legacyDeck, `localStorage-v1:${getDeckKey()}`);
+        }
+        return baseDeck;
+      } catch (error) {
+        persistenceMode = "localStorage";
+        if (legacyDeck) {
+          hasLocalDeckEdits = true;
+          showDeckError(`Private browser database is unavailable, so Study Bro is using its saved compatibility copy. Nothing was discarded. ${error.message}`);
+          return legacyDeck;
+        }
+        return baseDeck;
+      }
+    }
+
+    async function saveEditedDeck(cards, options = {}) {
+      const deckKey = getDeckKey();
+      const cardsToSave = cards.map((card) => ({ ...card }));
+      let newImageRecord = null;
+      if (options.newImageBlob instanceof Blob) {
+        const targetIndex = Number.isInteger(options.imageTargetIndex) ? options.imageTargetIndex : cardsToSave.length - 1;
+        const imageId = makeRecordId("image");
+        newImageRecord = { id: imageId, deckKey, blob: options.newImageBlob, createdAt: new Date().toISOString() };
+        cardsToSave[targetIndex].imageId = imageId;
+        cardsToSave[targetIndex].imageAlt = options.imageAlt || `Image for ${cardsToSave[targetIndex].term}`;
+        delete cardsToSave[targetIndex].image;
+      }
+      const overlay = buildOverlayRecord(cardsToSave);
+      try {
+        const db = await openStudyBroDB();
+        await idbTransaction(db, [STUDY_BRO_STORES.decks, STUDY_BRO_STORES.images, STUDY_BRO_STORES.deletedCards], "readwrite", (stores) => {
+          if (newImageRecord) stores.images.put(newImageRecord);
+          if (options.cleanupImageId && options.cleanupImageId !== newImageRecord?.id) stores.images.delete(options.cleanupImageId);
+          if (options.deletedCard) {
+            stores.deletedCards.put({ id: makeRecordId("deleted"), deckKey, card: cardForStorage(options.deletedCard, options.deletedCard.sourceId ? originalCardsById.get(options.deletedCard.sourceId) : null), originalIndex: options.deletedIndex, deletedAt: new Date().toISOString() });
+          }
+          stores.decks.put(overlay);
+        });
+        persistenceMode = "indexedDB";
+        hasLocalDeckEdits = Boolean(overlay.additions.length || overlay.overrides.length || overlay.deletedOriginalIds.length);
+        return true;
+      } catch (error) {
+        persistenceMode = "localStorage";
+        if (cardsToSave.some((card) => card.imageId && card.image?.startsWith("blob:"))) {
+          showDeckError(`Your changes were not saved because the private browser database became unavailable. Your previously saved deck and images were left untouched. ${error.message}`);
+          return false;
+        }
+        const fallbackCards = [...cardsToSave];
+        if (options.newImageBlob instanceof Blob) {
+          try {
+            const targetIndex = Number.isInteger(options.imageTargetIndex) ? options.imageTargetIndex : fallbackCards.length - 1;
+            fallbackCards[targetIndex] = { ...fallbackCards[targetIndex], image: await readFileAsDataURL(options.newImageBlob), imageAlt: options.imageAlt };
+            delete fallbackCards[targetIndex].imageId;
+          } catch (imageError) {
+            showDeckError(`Your card image could not be saved. Nothing was removed. ${imageError.message}`);
+            return false;
+          }
+        }
+        const saved = saveLegacyDeck(fallbackCards);
+        if (saved) showDeckError(`Private browser database is unavailable, so this deck was saved with the compatibility fallback. ${error.message}`);
+        return saved;
+      }
+    }
+
+    function reopenCardManager() {
+      const cardManagerURL = new URL(window.location.href);
+      cardManagerURL.hash = "viewCards";
+      window.history.replaceState(null, "", cardManagerURL.href);
+      window.location.reload();
+    }
+
+    function updateDeckHeader() {
+      elements.deckTitle.textContent = deckTitle;
+      elements.deckCount.textContent = deck.length;
+      document.title = `${deckTitle} · Study Bro`;
+      window.studyBroDeck = deck;
+    }
+
+    function showDeckError(message) {
+      elements.deckMessage.textContent = message;
+      elements.deckMessage.hidden = false;
+    }
+
+    async function loadDeck() {
+      const parameters = new URLSearchParams(window.location.search);
+      const deckId = parameters.get("id");
+      const deckPath = parameters.get("deck");
+      let publishedDeck = normalizeDeck(sampleDeck);
+      if (deckId) {
+        try {
+          const config = window.STUDY_BRO_CONFIG || {};
+          if (!window.supabase || !config.supabaseUrl || config.supabaseUrl.startsWith("__")) {
+            throw new Error("The Study Bro database is not configured.");
+          }
+          const client = window.supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
+          const { data: { session } } = await client.auth.getSession();
+          if (!session) {
+            window.location.replace(`/?returnTo=${encodeURIComponent(window.location.pathname + window.location.search)}`);
+            return new Promise(() => {});
+          }
+          const { data, error } = await client.rpc("get_effective_deck", { p_deck_id: deckId });
+          if (error) throw error;
+          await Promise.all((data.cards || []).map(async (card) => {
+            if (!card.image || /^(?:https?:|data:|blob:|deck-assets\/)/i.test(card.image)) return;
+            const { data: signed } = await client.storage.from("deck-assets").createSignedUrl(card.image, 3600);
+            if (signed?.signedUrl) card.image = signed.signedUrl;
+          }));
+          validateDeck(data);
+          publishedDeck = normalizeDeck(data);
+        } catch (error) {
+          showDeckError(`This deck could not be loaded. ${error.message}`);
+          throw error;
+        }
+      } else if (!deckPath) {
+        publishedDeck = normalizeDeck(sampleDeck);
+      } else {
+        try {
+          const response = await fetch(deckPath);
+          if (!response.ok) throw new Error(`Request failed with status ${response.status}.`);
+          const data = await response.json();
+          validateDeck(data);
+          publishedDeck = normalizeDeck(data);
+        } catch (error) {
+          publishedDeck = normalizeDeck(sampleDeck);
+          showDeckError(`Could not load "${deckPath}". ${error.message} Showing the sample deck instead.`);
+        }
+      }
+
+      originalDeck = assignOriginalCardIds(publishedDeck);
+      originalCardsById = new Map(originalDeck.cards.map((card) => [card.sourceId, card]));
+      const composedDeck = await getSavedDeck(originalDeck);
+      deckTitle = composedDeck.title;
+      deck = composedDeck.cards;
+      updateDeckHeader();
+    }
+
+    function startApp() {
+      initFlashcards();
+      initLearn();
+      initMatch();
+      switchMode(window.location.hash === "#viewCards" ? "viewCards" : "flashcards");
+    }
+
+    function initFlashcards() {
+      Object.assign(flashState, {
+        queue: flashShuffleEnabled ? shuffle(deck.map((_, index) => index)) : deck.map((_, index) => index),
+        missed: [],
+        index: 0,
+        round: 1,
+        known: 0,
+        unknown: 0,
+        flipped: false,
+        flipStage: null,
+        complete: false
+      });
+      renderFlashcards();
+    }
+
+    function renderFlashcards() {
+      if (flashState.complete) {
+        elements.flashcards.innerHTML = completionHTML(
+          "Deck complete",
+          `${flashState.known} got it · ${flashState.unknown} still learning`,
+          "Study again",
+          "initFlashcards()"
+        );
+        setProgress(100);
+        return;
+      }
+
+      const card = deck[flashState.queue[flashState.index]];
+      const showingDefinition = flashState.flipped;
+      const completed = flashState.index;
+      const total = flashState.queue.length;
+      setProgress((completed / total) * 100);
+
+      elements.flashcards.innerHTML = `
+        <div class="status-row">
+          <div class="status-group">
+            <span class="stat">Round ${flashState.round}</span>
+            <span class="stat">Known ${flashState.known}</span>
+            <span class="stat">Learning ${flashState.unknown}</span>
+          </div>
+          <div class="status-group">
+            <button class="mode-shuffle-button" type="button" id="toggleFlashShuffle" aria-pressed="${flashShuffleEnabled}">Shuffle ${flashShuffleEnabled ? "on" : "off"}</button>
+            <span>${flashState.index + 1} / ${total}</span>
+          </div>
+        </div>
+        <article class="study-card flashcard ${flashState.flipStage ? `flipping-${flashState.flipStage}` : ""}" id="activeFlashcard" role="button" tabindex="0" aria-label="Flip card">
+          <span class="badge">${showingDefinition ? "definition" : "term"}</span>
+          ${showingDefinition ? cardImageHTML(card) : ""}
+          <p class="card-copy ${showingDefinition ? "definition-copy" : ""}">
+            ${escapeHTML(showingDefinition ? card.definition : card.term)}
+          </p>
+          <span class="flip-note">click to flip ↻</span>
+        </article>
+        <div class="actions">
+          <button class="btn" type="button" id="missedButton">Still learning ✗</button>
+          <button class="btn btn-dark" type="button" id="knownButton">Got it ✓</button>
+        </div>
+      `;
+
+      const flashcard = document.querySelector("#activeFlashcard");
+      flashcard.addEventListener("click", flipFlashcard);
+      flashcard.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          flipFlashcard();
+        }
+      });
+      document.querySelector("#missedButton").addEventListener("click", () => gradeFlashcard(false));
+      document.querySelector("#knownButton").addEventListener("click", () => gradeFlashcard(true));
+      document.querySelector("#toggleFlashShuffle").addEventListener("click", toggleFlashShuffle);
+    }
+
+    function toggleFlashShuffle() {
+      flashShuffleEnabled = !flashShuffleEnabled;
+      saveDeckPreference("flashcardsShuffle", flashShuffleEnabled);
+      initFlashcards();
+    }
+
+    function flipFlashcard() {
+      if (flashState.flipStage) return;
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduceMotion) {
+        flashState.flipped = !flashState.flipped;
+        renderFlashcards();
+        return;
+      }
+
+      flashState.flipStage = "out";
+      renderFlashcards();
+
+      window.setTimeout(() => {
+        flashState.flipped = !flashState.flipped;
+        flashState.flipStage = "in";
+        renderFlashcards();
+
+        window.setTimeout(() => {
+          flashState.flipStage = null;
+          renderFlashcards();
+        }, 170);
+      }, 150);
+    }
+
+    function shouldIgnoreFlashcardShortcut(event) {
+      const target = event.target;
+      if (!target) return false;
+      const tagName = target.tagName;
+      return target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(tagName);
+    }
+
+    function handleFlashcardShortcut(event) {
+      if (activeMode !== "flashcards" || flashState.complete || shouldIgnoreFlashcardShortcut(event)) return;
+
+      if (event.key === " " || event.code === "Space") {
+        event.preventDefault();
+        flipFlashcard();
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        gradeFlashcard(true);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        gradeFlashcard(false);
+      }
+    }
+
+    function gradeFlashcard(isKnown) {
+      const cardIndex = flashState.queue[flashState.index];
+      updateMissedCard(cardIndex, !isKnown);
+      if (isKnown) {
+        flashState.known += 1;
+      } else {
+        flashState.unknown += 1;
+        if (flashState.round === 1) flashState.missed.push(cardIndex);
+      }
+
+      flashState.index += 1;
+      flashState.flipped = false;
+      flashState.flipStage = null;
+
+      if (flashState.index >= flashState.queue.length) {
+        if (flashState.round === 1 && flashState.missed.length) {
+          flashState.queue = shuffle(flashState.missed);
+          flashState.index = 0;
+          flashState.round = 2;
+        } else {
+          flashState.complete = true;
+        }
+      }
+      renderFlashcards();
+    }
+
+    function renderViewCards() {
+      setProgress(100);
+      const rows = deck.map((card, index) => {
+        const deleteControls = pendingDeleteCardIndex === index
+          ? '<button class="confirm-delete-button" type="button" data-confirm-delete="' + index + '">' +
+              'Confirm delete</button>' +
+            '<button class="cancel-delete-button" type="button" data-cancel-delete>Cancel</button>'
+          : '<button class="edit-card-button" type="button" data-edit-card="' + index + '" ' +
+              'aria-label="Edit ' + escapeHTML(card.term) + '">Edit</button>' +
+            '<button class="delete-card-button" type="button" data-delete-card="' + index + '" ' +
+              'aria-label="Delete ' + escapeHTML(card.term) + '">Delete</button>';
+
+        return '<article class="view-card-row">' +
+          '<div class="view-card-term">' + (index + 1) + '. ' + escapeHTML(card.term) + '</div>' +
+          '<div class="view-card-definition">' + escapeHTML(card.definition) +
+            cardImageHTML(card, "view-card-image") + '</div>' +
+          '<div class="view-card-actions">' +
+            deleteControls +
+          '</div>' +
+        '</article>';
+      }).join("");
+
+      const editingCard = Number.isInteger(editingCardIndex) ? deck[editingCardIndex] : null;
+      const addEditor = isAddCardFormOpen
+        ? '<form class="card-editor" id="addCardForm">' +
+            '<h2>Add a card</h2>' +
+            '<div class="card-editor-fields">' +
+              '<label class="card-editor-field">Term' +
+                '<input id="newCardTerm" name="term" type="text" maxlength="300" required autocomplete="off">' +
+              '</label>' +
+              '<label class="card-editor-field">Definition' +
+                '<textarea id="newCardDefinition" name="definition" maxlength="2000" required></textarea>' +
+              '</label>' +
+              '<div class="card-image-picker">' +
+                '<label class="card-editor-field">Optional image' +
+                  '<input id="newCardImage" name="image" type="file" accept="image/*">' +
+                '</label>' +
+                '<div class="card-image-preview" id="newCardImagePreview" aria-live="polite">' +
+                  'Optional · JPG, PNG, GIF, or WebP up to 10 MB' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="card-editor-actions">' +
+              '<button class="btn" type="button" id="cancelAddCard">Cancel</button>' +
+              '<button class="btn btn-dark" type="submit" id="saveNewCardButton">Save card</button>' +
+            '</div>' +
+          '</form>'
+        : '';
+
+      const editEditor = editingCard
+        ? '<form class="card-editor" id="editCardForm">' +
+            '<h2>Edit card</h2>' +
+            '<div class="card-editor-fields">' +
+              '<label class="card-editor-field">Term' +
+                '<input id="editCardTerm" name="term" type="text" maxlength="300" required autocomplete="off" value="' + escapeHTML(editingCard.term) + '">' +
+              '</label>' +
+              '<label class="card-editor-field">Definition' +
+                '<textarea id="editCardDefinition" name="definition" maxlength="2000" required>' + escapeHTML(editingCard.definition) + '</textarea>' +
+              '</label>' +
+              '<div class="card-image-picker">' +
+                '<label class="card-editor-field">Add or replace image' +
+                  '<input id="editCardImage" name="image" type="file" accept="image/*">' +
+                '</label>' +
+                '<label class="card-editor-field">Image alt text' +
+                  '<input id="editCardImageAlt" name="imageAlt" type="text" maxlength="500" value="' + escapeHTML(editingCard.imageAlt || '') + '">' +
+                '</label>' +
+                '<div class="card-image-preview" id="editCardImagePreview" aria-live="polite"></div>' +
+                (editingCard.image ? '<button class="btn" type="button" id="removeEditedCardImage">Remove image</button>' : '') +
+              '</div>' +
+            '</div>' +
+            '<div class="card-editor-actions">' +
+              (isOriginalCardEdited(editingCard) ? '<button class="restore-card-button" type="button" id="restoreOriginalCard">Restore original</button>' : '') +
+              '<button class="btn" type="button" id="cancelEditCard">Cancel</button>' +
+              '<button class="btn btn-dark" type="submit" id="saveEditedCardButton">Save changes</button>' +
+            '</div>' +
+          '</form>'
+        : '';
+
+      elements.viewCards.innerHTML =
+        '<div class="view-cards-toolbar">' +
+          '<div class="status-group">' +
+            '<span class="stat">' + deck.length + ' cards</span>' +
+            (hasLocalDeckEdits ? '<span class="local-save-status">Saved on this device</span>' : '') +
+          '</div>' +
+          '<button class="btn btn-yellow" type="button" id="openAddCard">Add card</button>' +
+        '</div>' +
+        addEditor +
+        editEditor +
+        '<div class="view-cards-list">' + rows + '</div>';
+
+      document.querySelector("#openAddCard").addEventListener("click", () => {
+        isAddCardFormOpen = true;
+        editingCardIndex = null;
+        clearPendingCardImage();
+        isCardImageProcessing = false;
+        renderViewCards();
+        document.querySelector("#newCardTerm")?.focus();
+      });
+
+      document.querySelector("#cancelAddCard")?.addEventListener("click", () => {
+        isAddCardFormOpen = false;
+        clearPendingCardImage();
+        isCardImageProcessing = false;
+        renderViewCards();
+      });
+
+      document.querySelectorAll("[data-edit-card]").forEach((button) => {
+        button.addEventListener("click", () => {
+          editingCardIndex = Number(button.dataset.editCard);
+          isAddCardFormOpen = false;
+          editImageAction = "keep";
+          clearPendingCardImage();
+          isCardImageProcessing = false;
+          renderViewCards();
+          updateEditCardImagePreview(deck[editingCardIndex]);
+          document.querySelector("#editCardTerm")?.focus();
+        });
+      });
+
+      if (editingCard) updateEditCardImagePreview(editingCard);
+
+      document.querySelector("#cancelEditCard")?.addEventListener("click", () => {
+        editingCardIndex = null;
+        editImageAction = "keep";
+        clearPendingCardImage();
+        isCardImageProcessing = false;
+        renderViewCards();
+      });
+
+      document.querySelector("#editCardImage")?.addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        clearPendingCardImage();
+        editImageAction = "keep";
+        if (!file) {
+          updateEditCardImagePreview(editingCard);
+          return;
+        }
+        isCardImageProcessing = true;
+        updateEditCardImagePreview(editingCard, "Compressing replacement image…");
+        try {
+          pendingCardImageBlob = await compressCardImage(file);
+          pendingCardImagePreviewURL = URL.createObjectURL(pendingCardImageBlob);
+          editImageAction = "replace";
+          isCardImageProcessing = false;
+          updateEditCardImagePreview(editingCard);
+        } catch (error) {
+          clearPendingCardImage();
+          isCardImageProcessing = false;
+          event.target.value = "";
+          updateEditCardImagePreview(editingCard, error.message);
+        }
+      });
+
+      document.querySelector("#removeEditedCardImage")?.addEventListener("click", () => {
+        clearPendingCardImage();
+        editImageAction = "remove";
+        document.querySelector("#editCardImage").value = "";
+        document.querySelector("#editCardImageAlt").value = "";
+        updateEditCardImagePreview(editingCard);
+      });
+
+      document.querySelector("#restoreOriginalCard")?.addEventListener("click", async () => {
+        const originalCard = originalCardsById.get(editingCard.sourceId);
+        if (!originalCard) return;
+        const updatedCards = deck.map((card, index) => index === editingCardIndex ? { ...originalCard } : card);
+        if (await saveEditedDeck(updatedCards, { cleanupImageId: editingCard.imageId || "" })) reopenCardManager();
+      });
+
+      document.querySelector("#editCardForm")?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (isCardImageProcessing) return;
+        const term = document.querySelector("#editCardTerm").value.trim();
+        const definition = document.querySelector("#editCardDefinition").value.trim();
+        const imageAlt = document.querySelector("#editCardImageAlt").value.trim();
+        if (!term || !definition) {
+          showDeckError("A card needs both a term and a definition.");
+          return;
+        }
+        const willHaveImage = editImageAction === "replace" || (editImageAction === "keep" && Boolean(editingCard.image));
+        if (willHaveImage && !imageAlt) {
+          showDeckError("Please add alt text that describes the card image.");
+          document.querySelector("#editCardImageAlt").focus();
+          return;
+        }
+        const editedCard = { ...editingCard, term, definition };
+        if (editImageAction === "remove") {
+          delete editedCard.image;
+          delete editedCard.imageAlt;
+          delete editedCard.imageId;
+        } else if (editImageAction === "replace") {
+          delete editedCard.image;
+          delete editedCard.imageId;
+          editedCard.imageAlt = imageAlt;
+        } else if (editedCard.image) {
+          editedCard.imageAlt = imageAlt;
+        }
+        const updatedCards = deck.map((card, index) => index === editingCardIndex ? editedCard : card);
+        if (await saveEditedDeck(updatedCards, {
+          newImageBlob: editImageAction === "replace" ? pendingCardImageBlob : null,
+          imageTargetIndex: editingCardIndex,
+          imageAlt,
+          cleanupImageId: ["replace", "remove"].includes(editImageAction) ? (editingCard.imageId || "") : ""
+        })) reopenCardManager();
+      });
+
+      document.querySelector("#newCardImage")?.addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        clearPendingCardImage();
+        if (!file) {
+          updateCardImagePreview();
+          return;
+        }
+
+        isCardImageProcessing = true;
+        updateCardImagePreview("Compressing image…");
+        try {
+          pendingCardImageBlob = await compressCardImage(file);
+          pendingCardImagePreviewURL = URL.createObjectURL(pendingCardImageBlob);
+          isCardImageProcessing = false;
+          updateCardImagePreview();
+        } catch (error) {
+          clearPendingCardImage();
+          isCardImageProcessing = false;
+          event.target.value = "";
+          updateCardImagePreview(error.message);
+        }
+      });
+
+      document.querySelector("#addCardForm")?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (isCardImageProcessing) return;
+        const term = document.querySelector("#newCardTerm").value.trim();
+        const definition = document.querySelector("#newCardDefinition").value.trim();
+        if (!term || !definition) return;
+
+        const newCard = {
+          term,
+          definition
+        };
+        const updatedCards = [...deck, newCard];
+        if (await saveEditedDeck(updatedCards, {
+          newImageBlob: pendingCardImageBlob,
+          imageTargetIndex: updatedCards.length - 1,
+          imageAlt: `Image for ${term}`
+        })) reopenCardManager();
+      });
+
+      document.querySelectorAll("[data-delete-card]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const cardIndex = Number(button.dataset.deleteCard);
+          const card = deck[cardIndex];
+          if (!card) return;
+
+          if (deck.length === 1) {
+            showDeckError("A deck must keep at least one card.");
+            return;
+          }
+
+          pendingDeleteCardIndex = cardIndex;
+          renderViewCards();
+          document.querySelector(`[data-confirm-delete="${cardIndex}"]`)?.focus();
+        });
+      });
+
+      document.querySelector("[data-cancel-delete]")?.addEventListener("click", () => {
+        pendingDeleteCardIndex = null;
+        renderViewCards();
+      });
+
+      document.querySelectorAll("[data-confirm-delete]").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const cardIndex = Number(button.dataset.confirmDelete);
+          const deletedCard = deck[cardIndex];
+          const updatedCards = deck.filter((_, index) => index !== cardIndex);
+          if (await saveEditedDeck(updatedCards, { deletedCard, deletedIndex: cardIndex })) reopenCardManager();
+        });
+      });
+    }
+    function clearLearnAdvanceTimer() {
+      if (learnAdvanceTimer) window.clearTimeout(learnAdvanceTimer);
+      learnAdvanceTimer = null;
+    }
+
+    function initLearn() {
+      clearLearnAdvanceTimer();
+      Object.assign(learnState, {
+        queue: learnShuffleEnabled ? shuffle(deck.map((_, index) => index)) : deck.map((_, index) => index),
+        missed: [],
+        index: 0,
+        round: 1,
+        correct: 0,
+        answered: 0,
+        locked: false,
+        complete: false,
+        selectedChoice: null,
+        correctChoice: null,
+        needsNext: false,
+        feedback: "",
+        choices: []
+      });
+      prepareLearnQuestion();
+    }
+
+    function prepareLearnQuestion() {
+      clearLearnAdvanceTimer();
+      if (learnState.complete) {
+        renderLearn();
+        return;
+      }
+      const currentIndex = learnState.queue[learnState.index];
+      const distractors = shuffle(
+        deck.map((card, index) => ({ definition: card.definition, index }))
+          .filter((item) => item.index !== currentIndex)
+      ).slice(0, Math.min(3, deck.length - 1));
+
+      learnState.choices = shuffle([
+        { definition: deck[currentIndex].definition, index: currentIndex },
+        ...distractors
+      ]);
+      learnState.locked = false;
+      learnState.selectedChoice = null;
+      learnState.correctChoice = null;
+      learnState.needsNext = false;
+      learnState.feedback = "";
+      renderLearn();
+    }
+
+    function renderLearn() {
+      if (learnState.complete) {
+        const percentage = learnState.answered
+          ? Math.round((learnState.correct / learnState.answered) * 100)
+          : 0;
+        elements.learn.innerHTML = completionHTML(
+          `${percentage}% score`,
+          `${learnState.correct} correct out of ${learnState.answered} answers`,
+          "Try again",
+          "initLearn()"
+        );
+        setProgress(100);
+        return;
+      }
+
+      const currentIndex = learnState.queue[learnState.index];
+      const card = deck[currentIndex];
+      setProgress((learnState.index / learnState.queue.length) * 100);
+      const answersLocked = learnState.locked;
+
+      elements.learn.innerHTML = `
+        <div class="status-row">
+          <div class="status-group">
+            <span class="stat">Round ${learnState.round}</span>
+            <span class="stat">Score ${learnState.correct} / ${learnState.answered}</span>
+          </div>
+          <div class="status-group">
+            <button class="mode-shuffle-button" type="button" id="toggleLearnShuffle" aria-pressed="${learnShuffleEnabled}">Shuffle ${learnShuffleEnabled ? "on" : "off"}</button>
+            <span>${learnState.index + 1} / ${learnState.queue.length}</span>
+          </div>
+        </div>
+        <article class="study-card learn-prompt">
+          <span class="badge">term</span>
+          <p class="card-copy">${escapeHTML(card.term)}</p>
+        </article>
+        <div class="answers" id="answerGrid">
+          ${learnState.choices.map((choice, index) => {
+            const classes = ["answer"];
+            if (learnState.correctChoice === index) classes.push("correct");
+            if (learnState.selectedChoice === index && learnState.correctChoice !== index) classes.push("wrong");
+
+            return `
+            <button class="${classes.join(" ")}" type="button" data-choice="${index}" ${answersLocked ? "disabled" : ""}>
+              <span class="mini-badge">definition</span><br><br>
+              ${escapeHTML(choice.definition)}
+            </button>
+          `;
+          }).join("")}
+        </div>
+        <p class="learn-feedback ${learnState.feedback ? (learnState.needsNext ? "feedback-wrong" : "feedback-correct") : ""}" id="learnFeedback">
+          ${learnState.feedback}
+        </p>
+        <div class="learn-controls">
+          <button class="btn" type="button" id="dontKnowButton" ${answersLocked ? "disabled" : ""}>I don't know</button>
+          <button class="btn btn-dark" type="button" id="learnNextButton" ${learnState.needsNext ? "" : "hidden"}>Next</button>
+        </div>
+      `;
+
+      document.querySelectorAll(".answer").forEach((button) => {
+        button.addEventListener("click", () => answerLearn(Number(button.dataset.choice)));
+      });
+      document.querySelector("#dontKnowButton").addEventListener("click", () => answerLearn(null));
+      document.querySelector("#learnNextButton")?.addEventListener("click", advanceLearnQuestion);
+      document.querySelector("#toggleLearnShuffle").addEventListener("click", toggleLearnShuffle);
+    }
+
+    function toggleLearnShuffle() {
+      learnShuffleEnabled = !learnShuffleEnabled;
+      saveDeckPreference("learnShuffle", learnShuffleEnabled);
+      initLearn();
+    }
+
+    function answerLearn(choicePosition) {
+      if (learnState.locked) return;
+      learnState.locked = true;
+
+      const currentIndex = learnState.queue[learnState.index];
+      const selected = choicePosition === null ? null : learnState.choices[choicePosition];
+      const correctPosition = learnState.choices.findIndex((choice) => choice.index === currentIndex);
+      const isCorrect = selected?.index === currentIndex;
+      updateMissedCard(currentIndex, !isCorrect);
+
+      learnState.answered += 1;
+      learnState.selectedChoice = choicePosition;
+      learnState.correctChoice = correctPosition;
+      if (isCorrect) {
+        learnState.correct += 1;
+        learnState.needsNext = false;
+        learnState.feedback = "<strong>Correct.</strong>";
+      } else if (learnState.round === 1) {
+        learnState.missed.push(currentIndex);
+      }
+
+      if (!isCorrect) {
+        learnState.needsNext = true;
+        learnState.feedback = `<strong>Correct answer:</strong> ${escapeHTML(deck[currentIndex].definition)}`;
+        renderLearn();
+        return;
+      }
+
+      renderLearn();
+      learnAdvanceTimer = window.setTimeout(advanceLearnQuestion, 650);
+    }
+
+    function advanceLearnQuestion() {
+      clearLearnAdvanceTimer();
+      if (!learnState.locked && !learnState.needsNext) return;
+
+      learnState.index += 1;
+      if (learnState.index >= learnState.queue.length) {
+        if (learnState.round === 1 && learnState.missed.length) {
+          learnState.queue = shuffle(learnState.missed);
+          learnState.index = 0;
+          learnState.round = 2;
+        } else {
+          learnState.complete = true;
+        }
+      }
+      prepareLearnQuestion();
+    }
+
+    function initMatch() {
+      stopMatchTimer();
+      const pairCount = Math.min(6, deck.length);
+      const selectedIndexes = shuffle(deck.map((_, index) => index)).slice(0, pairCount);
+      const cards = selectedIndexes.flatMap((deckIndex) => [
+        {
+          id: `term-${deckIndex}`,
+          pairId: deckIndex,
+          type: "term",
+          text: deck[deckIndex].term,
+          image: "",
+          imageAlt: ""
+        },
+        {
+          id: `definition-${deckIndex}`,
+          pairId: deckIndex,
+          type: "definition",
+          text: deck[deckIndex].definition,
+          image: deck[deckIndex].image || "",
+          imageAlt: deck[deckIndex].imageAlt || ""
+        }
+      ]);
+
+      Object.assign(matchState, {
+        cards: shuffle(cards),
+        selected: null,
+        matched: new Set(),
+        moves: 0,
+        seconds: 0,
+        locked: false,
+        complete: false,
+        pairCount
+      });
+      startMatchTimer();
+      renderMatch();
+    }
+
+    function startMatchTimer() {
+      timerInterval = window.setInterval(() => {
+        if (activeMode === "match" && !matchState.complete) {
+          matchState.seconds += 1;
+          const timer = document.querySelector("#matchTimer");
+          if (timer) timer.textContent = formatTime(matchState.seconds);
+        }
+      }, 1000);
+    }
+
+    function stopMatchTimer() {
+      if (timerInterval) window.clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      return `${minutes}:${String(seconds % 60).padStart(2, "0")}`;
+    }
+
+    function renderMatch() {
+      if (matchState.complete) {
+        elements.match.innerHTML = completionHTML(
+          "Matched!",
+          `${matchState.moves} moves · ${formatTime(matchState.seconds)}`,
+          "New set",
+          "initMatch()"
+        );
+        setProgress(100);
+        return;
+      }
+
+      setProgress((matchState.matched.size / matchState.pairCount) * 100);
+      elements.match.innerHTML = `
+        <div class="match-toolbar">
+          <div class="status-group">
+            <span class="stat">Moves ${matchState.moves}</span>
+            <span class="stat">Time <span id="matchTimer">${formatTime(matchState.seconds)}</span></span>
+          </div>
+          <button class="btn btn-yellow" type="button" id="newMatchSet">New set</button>
+        </div>
+        <div class="match-grid">
+          ${matchState.cards.map((card) => {
+            const matched = matchState.matched.has(card.pairId);
+            const selected = matchState.selected?.id === card.id;
+            return `
+              <button
+                class="match-card ${matched ? "matched" : ""} ${selected ? "selected" : ""}"
+                type="button"
+                data-id="${card.id}"
+                ${matched ? "disabled" : ""}
+              >
+                <span class="mini-badge">${card.type}</span>
+                ${card.image ? cardImageHTML(card, "match-card-image", false) : ""}
+                <span>${escapeHTML(card.text)}</span>
+              </button>
+            `;
+          }).join("")}
+        </div>
+      `;
+
+      document.querySelector("#newMatchSet").addEventListener("click", initMatch);
+      document.querySelectorAll(".match-card:not(:disabled)").forEach((button) => {
+        button.addEventListener("click", () => selectMatchCard(button.dataset.id));
+      });
+    }
+
+    function selectMatchCard(cardId) {
+      if (matchState.locked) return;
+      const clicked = matchState.cards.find((card) => card.id === cardId);
+      if (!clicked || matchState.matched.has(clicked.pairId)) return;
+
+      if (!matchState.selected) {
+        matchState.selected = clicked;
+        renderMatch();
+        return;
+      }
+
+      if (matchState.selected.id === clicked.id) {
+        matchState.selected = null;
+        renderMatch();
+        return;
+      }
+
+      // A valid attempt must contain one term and one definition.
+      if (matchState.selected.type === clicked.type) {
+        matchState.selected = clicked;
+        renderMatch();
+        return;
+      }
+
+      matchState.moves += 1;
+      const first = matchState.selected;
+      if (first.pairId === clicked.pairId) {
+        matchState.matched.add(clicked.pairId);
+        matchState.selected = null;
+        if (matchState.matched.size === matchState.pairCount) {
+          matchState.complete = true;
+          stopMatchTimer();
+        }
+        renderMatch();
+        return;
+      }
+
+      matchState.locked = true;
+      const firstButton = document.querySelector(`[data-id="${CSS.escape(first.id)}"]`);
+      const secondButton = document.querySelector(`[data-id="${CSS.escape(clicked.id)}"]`);
+      firstButton?.classList.add("wrong");
+      secondButton?.classList.add("wrong");
+
+      window.setTimeout(() => {
+        matchState.selected = null;
+        matchState.locked = false;
+        renderMatch();
+      }, 500);
+    }
+
+    function defaultTestPreferences() {
+      return {
+        questionCount: "all",
+        questionTypes: ["multipleChoice", "trueFalse", "match"],
+        direction: "termToDefinition",
+        cardPool: "all",
+        selectedCardIds: []
+      };
+    }
+
+    function normalizeTestPreferences(preferences) {
+      const defaults = defaultTestPreferences();
+      const allowedTypes = new Set(["multipleChoice", "trueFalse", "match"]);
+      const types = Array.isArray(preferences?.questionTypes)
+        ? preferences.questionTypes.filter((type) => allowedTypes.has(type))
+        : defaults.questionTypes;
+      return {
+        questionCount: ["10", "20", "50", "all"].includes(String(preferences?.questionCount)) ? String(preferences.questionCount) : defaults.questionCount,
+        questionTypes: types.length ? [...new Set(types)] : defaults.questionTypes,
+        direction: ["termToDefinition", "definitionToTerm", "mixed"].includes(preferences?.direction) ? preferences.direction : defaults.direction,
+        cardPool: ["all", "selected", "missed"].includes(preferences?.cardPool) ? preferences.cardPool : defaults.cardPool,
+        selectedCardIds: Array.isArray(preferences?.selectedCardIds) ? preferences.selectedCardIds.filter((id) => typeof id === "string") : []
+      };
+    }
+
+    function initTest() {
+      Object.assign(testState, {
+        initialized: true,
+        configuring: true,
+        preferences: normalizeTestPreferences(savedTestPreferences),
+        questions: null,
+        matchChoices: [],
+        selectedMatchValue: null,
+        submitted: false,
+        configError: ""
+      });
+      renderTestBuilder();
+    }
+
+    function getTestPoolIndexes(preferences) {
+      if (preferences.cardPool === "missed") {
+        return deck.map((card, index) => ({ card, index }))
+          .filter(({ card }) => missedCardIds.has(cardTrackingId(card)))
+          .map(({ index }) => index);
+      }
+      if (preferences.cardPool === "selected") {
+        const selected = new Set(preferences.selectedCardIds);
+        return deck.map((card, index) => ({ card, index }))
+          .filter(({ card }) => selected.has(cardTrackingId(card)))
+          .map(({ index }) => index);
+      }
+      return deck.map((_, index) => index);
+    }
+
+    function renderTestBuilder() {
+      const preferences = testState.preferences || defaultTestPreferences();
+      const missedCount = getTestPoolIndexes({ ...preferences, cardPool: "missed" }).length;
+      const selected = new Set(preferences.selectedCardIds);
+      setProgress(0);
+      elements.test.innerHTML = `
+        <section class="test-intro test-builder">
+          <div>
+            <h2>Build a test</h2>
+            <p>The current default still creates a shuffled, full-deck mixture in term-to-definition direction.</p>
+          </div>
+          <form id="testBuilderForm">
+            <div class="test-builder-grid">
+              <fieldset>
+                <legend>Number of questions</legend>
+                <label><select id="testQuestionCount" name="questionCount">
+                  <option value="10" ${preferences.questionCount === "10" ? "selected" : ""}>10</option>
+                  <option value="20" ${preferences.questionCount === "20" ? "selected" : ""}>20</option>
+                  <option value="50" ${preferences.questionCount === "50" ? "selected" : ""}>50</option>
+                  <option value="all" ${preferences.questionCount === "all" ? "selected" : ""}>All available cards</option>
+                </select></label>
+                <span class="stat" id="testPoolLimit"></span>
+              </fieldset>
+              <fieldset>
+                <legend>Question types</legend>
+                ${[
+                  ["multipleChoice", "Multiple choice"],
+                  ["trueFalse", "True / false"],
+                  ["match", "Matching"]
+                ].map(([value, label]) => `<label><input type="checkbox" name="questionType" value="${value}" ${preferences.questionTypes.includes(value) ? "checked" : ""}> ${label}</label>`).join("")}
+              </fieldset>
+              <fieldset>
+                <legend>Direction</legend>
+                <label><input type="radio" name="direction" value="termToDefinition" ${preferences.direction === "termToDefinition" ? "checked" : ""}> Term to definition</label>
+                <label><input type="radio" name="direction" value="definitionToTerm" ${preferences.direction === "definitionToTerm" ? "checked" : ""}> Definition to term</label>
+                <label><input type="radio" name="direction" value="mixed" ${preferences.direction === "mixed" ? "checked" : ""}> Mixed</label>
+              </fieldset>
+              <fieldset>
+                <legend>Card pool</legend>
+                <label><input type="radio" name="cardPool" value="all" ${preferences.cardPool === "all" ? "checked" : ""}> All cards</label>
+                <label><input type="radio" name="cardPool" value="selected" ${preferences.cardPool === "selected" ? "checked" : ""}> Selected cards</label>
+                <label><input type="radio" name="cardPool" value="missed" ${preferences.cardPool === "missed" ? "checked" : ""} ${missedCount ? "" : "disabled"}> Previously missed (${missedCount})</label>
+              </fieldset>
+            </div>
+            <fieldset id="testSelectedCardsFieldset" ${preferences.cardPool === "selected" ? "" : "hidden"}>
+              <legend>Select cards</legend>
+              <div class="test-card-selector">
+                ${deck.map((card) => {
+                  const id = cardTrackingId(card);
+                  return `<label><input type="checkbox" name="selectedCard" value="${escapeHTML(id)}" ${selected.has(id) ? "checked" : ""}> ${escapeHTML(card.term)}</label>`;
+                }).join("")}
+              </div>
+            </fieldset>
+            <p class="test-builder-error" id="testBuilderError" ${testState.configError ? "" : "hidden"}>${escapeHTML(testState.configError || "")}</p>
+            <div class="test-actions">
+              <button class="btn btn-dark" type="submit">Generate shuffled test</button>
+            </div>
+          </form>
+        </section>
+      `;
+
+      const form = document.querySelector("#testBuilderForm");
+      form.querySelectorAll('input[name="cardPool"], input[name="selectedCard"]').forEach((control) => {
+        control.addEventListener("change", syncTestBuilderControls);
+      });
+      syncTestBuilderControls();
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const questionTypes = [...form.querySelectorAll('input[name="questionType"]:checked')].map((input) => input.value);
+        const cardPool = form.querySelector('input[name="cardPool"]:checked')?.value || "all";
+        const nextPreferences = normalizeTestPreferences({
+          questionCount: form.querySelector("#testQuestionCount").value,
+          questionTypes,
+          direction: form.querySelector('input[name="direction"]:checked')?.value,
+          cardPool,
+          selectedCardIds: [...form.querySelectorAll('input[name="selectedCard"]:checked')].map((input) => input.value)
+        });
+        if (!questionTypes.length) {
+          testState.configError = "Choose at least one question type.";
+          renderTestBuilder();
+          return;
+        }
+        if (!getTestPoolIndexes(nextPreferences).length) {
+          testState.configError = cardPool === "missed" ? "No previously missed cards are available yet." : "Select at least one card for this test.";
+          renderTestBuilder();
+          return;
+        }
+        testState.preferences = nextPreferences;
+        savedTestPreferences = nextPreferences;
+        await saveDeckPreference("testPreferences", nextPreferences);
+        generateTest(nextPreferences);
+      });
+    }
+
+    function syncTestBuilderControls() {
+      const form = document.querySelector("#testBuilderForm");
+      if (!form) return;
+      const pool = form.querySelector('input[name="cardPool"]:checked')?.value || "all";
+      const selectedFieldset = document.querySelector("#testSelectedCardsFieldset");
+      selectedFieldset.hidden = pool !== "selected";
+      let available = deck.length;
+      if (pool === "missed") available = deck.filter((card) => missedCardIds.has(cardTrackingId(card))).length;
+      if (pool === "selected") available = form.querySelectorAll('input[name="selectedCard"]:checked').length;
+      const countSelect = form.querySelector("#testQuestionCount");
+      [...countSelect.options].forEach((option) => {
+        option.disabled = option.value !== "all" && Number(option.value) > available;
+      });
+      if (countSelect.selectedOptions[0]?.disabled) countSelect.value = "all";
+      document.querySelector("#testPoolLimit").textContent = `${available} card${available === 1 ? "" : "s"} available`;
+    }
+
+    function generateTest(preferences = testState.preferences) {
+      const poolIndexes = shuffle(getTestPoolIndexes(preferences));
+      const requested = preferences.questionCount === "all" ? poolIndexes.length : Number(preferences.questionCount);
+      const selectedIndexes = poolIndexes.slice(0, Math.min(requested, poolIndexes.length));
+      const questions = buildTestQuestions(selectedIndexes, preferences);
+      Object.assign(testState, {
+        configuring: false,
+        preferences,
+        questions,
+        matchChoices: buildTestMatchChoices(questions),
+        selectedMatchValue: null,
+        submitted: false,
+        configError: ""
+      });
+      renderTest();
+    }
+
+    function buildTestQuestions(cardIndexes, preferences) {
+      const typeOrder = shuffle([...preferences.questionTypes]);
+      return shuffle(cardIndexes.map((cardIndex, questionIndex) => {
+        const type = typeOrder[questionIndex % typeOrder.length];
+        const direction = preferences.direction === "mixed"
+          ? (Math.random() >= 0.5 ? "termToDefinition" : "definitionToTerm")
+          : preferences.direction;
+        if (type === "trueFalse") return buildTrueFalseQuestion(cardIndex, questionIndex, cardIndexes, direction);
+        if (type === "match") return buildMatchQuestion(cardIndex, questionIndex, direction);
+        return buildMultipleChoiceQuestion(cardIndex, questionIndex, cardIndexes, direction);
+      }));
+    }
+
+    function getTestDistractors(cardIndex, poolIndexes, direction, count = 3) {
+      const correctLabel = direction === "termToDefinition" ? deck[cardIndex].definition : deck[cardIndex].term;
+      const labels = new Set([correctLabel]);
+      const distractors = [];
+      shuffle(poolIndexes.filter((index) => index !== cardIndex)).forEach((index) => {
+        const label = direction === "termToDefinition" ? deck[index].definition : deck[index].term;
+        if (distractors.length >= count || labels.has(label)) return;
+        labels.add(label);
+        distractors.push({ label, value: String(index), cardIndex: index });
+      });
+      return distractors;
+    }
+
+    function buildMultipleChoiceQuestion(cardIndex, questionIndex, poolIndexes, direction) {
+      const card = deck[cardIndex];
+      const correctLabel = direction === "termToDefinition" ? card.definition : card.term;
+      const prompt = direction === "termToDefinition"
+        ? `What is the definition of ${card.term}?`
+        : `Which term matches this definition: ${card.definition}`;
+      return {
+        id: `test-${questionIndex}-${Math.random().toString(36).slice(2)}`,
+        type: "multipleChoice",
+        typeLabel: "Multiple choice",
+        direction,
+        cardIndex,
+        prompt,
+        promptImageCardIndex: direction === "definitionToTerm" && card.image ? cardIndex : null,
+        choices: shuffle([{ label: correctLabel, value: String(cardIndex), cardIndex }, ...getTestDistractors(cardIndex, poolIndexes, direction)]),
+        correctValue: String(cardIndex),
+        userAnswer: ""
+      };
+    }
+
+    function buildTrueFalseQuestion(cardIndex, questionIndex, poolIndexes, direction) {
+      const card = deck[cardIndex];
+      const distractors = poolIndexes.filter((index) => index !== cardIndex);
+      const shouldBeTrue = !distractors.length || Math.random() >= 0.5;
+      const candidateIndex = shouldBeTrue ? cardIndex : shuffle(distractors)[0];
+      const prompt = direction === "termToDefinition"
+        ? `${card.term}: ${deck[candidateIndex].definition}`
+        : `${card.definition}: ${deck[candidateIndex].term}`;
+      return {
+        id: `test-${questionIndex}-${Math.random().toString(36).slice(2)}`,
+        type: "trueFalse",
+        typeLabel: "True / false",
+        direction,
+        cardIndex,
+        prompt,
+        promptImageCardIndex: direction === "definitionToTerm" && card.image ? cardIndex : null,
+        choices: [{ label: "True", value: "true" }, { label: "False", value: "false" }],
+        correctValue: String(shouldBeTrue),
+        userAnswer: ""
+      };
+    }
+
+    function buildMatchQuestion(cardIndex, questionIndex, direction) {
+      const card = deck[cardIndex];
+      const promptLabel = direction === "termToDefinition" ? card.term : card.definition;
+      const answerLabel = direction === "termToDefinition" ? card.definition : card.term;
+      return {
+        id: `test-${questionIndex}-${Math.random().toString(36).slice(2)}`,
+        type: "match",
+        typeLabel: "Match",
+        direction,
+        cardIndex,
+        prompt: `Match ${promptLabel} to the correct ${direction === "termToDefinition" ? "definition" : "term"}.`,
+        promptLabel,
+        answerLabel,
+        promptImageCardIndex: direction === "definitionToTerm" && card.image ? cardIndex : null,
+        choices: [],
+        correctValue: String(cardIndex),
+        userAnswer: ""
+      };
+    }
+
+    function buildTestMatchChoices(questions) {
+      return shuffle(questions.filter((question) => question.type === "match").map((question) => ({
+        label: question.answerLabel,
+        value: String(question.cardIndex),
+        cardIndex: question.cardIndex
+      })));
+    }
+
+    function renderTest() {
+      if (testState.configuring || !testState.questions) {
+        renderTestBuilder();
+        return;
+      }
+      if (testState.submitted) {
+        renderTestResults();
+        return;
+      }
+
+      setProgress(getTestCompletionPercent());
+      elements.test.innerHTML = `
+        <div class="test-shell">
+          <section class="test-intro">
+            <div>
+              <h2>Test</h2>
+              <p>${testState.questions.length} shuffled questions from the chosen card pool.</p>
+            </div>
+            <div class="status-group">
+              <span class="stat" id="testAnsweredStat">${getAnsweredTestCount()} / ${testState.questions.length} answered</span>
+              <span class="stat">Submit for results</span>
+            </div>
+          </section>
+          ${testQuestionListHTML()}
+          <div class="test-actions">
+            <button class="btn btn-dark" type="button" id="submitTestButton">Submit test</button>
+            <button class="btn" type="button" id="shuffleTestButton">Generate new shuffled test</button>
+            <button class="btn" type="button" id="resetTestButton">Customize test</button>
+          </div>
+        </div>
+      `;
+
+      document.querySelectorAll("input[data-test-question]").forEach((control) => {
+        control.addEventListener("change", () => {
+          const question = testState.questions[Number(control.dataset.testQuestion)];
+          question.userAnswer = control.value;
+          updateTestAnsweredDisplay();
+        });
+      });
+      bindTestMatchDrag();
+
+      document.querySelector("#submitTestButton").addEventListener("click", submitTest);
+      document.querySelector("#shuffleTestButton").addEventListener("click", () => generateTest(testState.preferences));
+      document.querySelector("#resetTestButton").addEventListener("click", initTest);
+    }
+
+    function testQuestionListHTML() {
+      const matchQuestions = testState.questions
+        .map((question, index) => ({ question, index }))
+        .filter(({ question }) => question.type === "match");
+      let matchingSectionRendered = false;
+      return testState.questions.map((question, index) => {
+        if (question.type !== "match") return testQuestionHTML(question, index);
+        if (matchingSectionRendered) return "";
+        matchingSectionRendered = true;
+        return testMatchSectionHTML(matchQuestions);
+      }).join("");
+    }
+
+    function testQuestionHTML(question, index) {
+      return `
+        <article class="test-card">
+          <div class="test-question-header">
+            <strong>Question ${index + 1}</strong>
+            <span class="mini-badge">${escapeHTML(question.typeLabel)}</span>
+          </div>
+          <p class="test-prompt">${escapeHTML(question.prompt)}</p>
+          ${question.promptImageCardIndex !== null && question.promptImageCardIndex !== undefined ? cardImageHTML(deck[question.promptImageCardIndex], "test-question-image") : ""}
+          ${testChoiceHTML(question, index)}
+        </article>
+      `;
+    }
+
+    function testChoiceHTML(question, index) {
+      return `
+        <div class="test-options">
+          ${question.choices.map((choice) => `
+            <label class="test-option">
+              <input
+                type="radio"
+                name="${escapeHTML(question.id)}"
+                value="${escapeHTML(choice.value)}"
+                data-test-question="${index}"
+                ${question.userAnswer === choice.value ? "checked" : ""}
+              >
+              <span>${escapeHTML(choice.label)}</span>
+            </label>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function testMatchSectionHTML(matchQuestions) {
+      if (!matchQuestions.length) return "";
+
+      const usedValues = new Set(matchQuestions
+        .map(({ question }) => question.userAnswer)
+        .filter(Boolean));
+      const bankChoices = testState.matchChoices.filter((choice) => !usedValues.has(choice.value));
+
+      return `
+        <article class="test-card test-match-section">
+          <div class="test-question-header">
+            <strong>Matching section</strong>
+            <span class="mini-badge">Match</span>
+          </div>
+          <div class="test-match-board">
+            ${matchQuestions.map(({ question, index }) => {
+              const selectedChoice = getTestMatchChoice(question.userAnswer);
+              return `
+                <div class="test-match-row">
+                  <div>
+                    <span class="mini-badge">Question ${index + 1}</span>
+                    <div class="test-match-term">${escapeHTML(question.promptLabel)}</div>
+                    ${question.promptImageCardIndex !== null && question.promptImageCardIndex !== undefined ? cardImageHTML(deck[question.promptImageCardIndex], "test-question-image", false) : ""}
+                  </div>
+                  <div
+                    class="test-drop-zone ${selectedChoice ? "" : "empty"}"
+                    data-test-drop="${index}"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Answer for ${escapeHTML(question.promptLabel)}"
+                  >
+                    ${selectedChoice ? testAnswerChipHTML(selectedChoice) : "No answer selected"}
+                  </div>
+                  <select class="test-match-select" data-test-match-select="${index}" aria-label="Choose answer for ${escapeHTML(question.promptLabel)}">
+                    <option value="">No answer selected</option>
+                    ${testState.matchChoices.map((choice) => `<option value="${escapeHTML(choice.value)}" ${question.userAnswer === choice.value ? "selected" : ""}>${escapeHTML(choice.label)}</option>`).join("")}
+                  </select>
+                </div>
+              `;
+            }).join("")}
+          </div>
+          <div class="test-answer-bank" data-test-answer-bank>
+            ${bankChoices.length ? bankChoices.map((choice) => testAnswerChipHTML(choice)).join("") : '<span class="stat">All answers placed</span>'}
+          </div>
+        </article>
+      `;
+    }
+
+    function testAnswerChipHTML(choice) {
+      const selected = testState.selectedMatchValue === choice.value;
+      return `
+        <button
+          class="test-answer-chip ${selected ? "selected" : ""}"
+          type="button"
+          draggable="true"
+          data-test-answer-value="${escapeHTML(choice.value)}"
+        >
+          ${escapeHTML(choice.label)}
+        </button>
+      `;
+    }
+
+    function getTestMatchChoice(value) {
+      if (!value) return null;
+      return testState.matchChoices.find((choice) => choice.value === value) || null;
+    }
+
+    function bindTestMatchDrag() {
+      document.querySelectorAll(".test-answer-chip").forEach((chip) => {
+        chip.addEventListener("dragstart", (event) => {
+          testState.selectedMatchValue = chip.dataset.testAnswerValue;
+          chip.classList.add("dragging");
+          event.dataTransfer.effectAllowed = "move";
+          event.dataTransfer.setData("text/plain", chip.dataset.testAnswerValue);
+        });
+        chip.addEventListener("dragend", () => {
+          chip.classList.remove("dragging");
+        });
+        chip.addEventListener("click", (event) => {
+          event.stopPropagation();
+          testState.selectedMatchValue = testState.selectedMatchValue === chip.dataset.testAnswerValue
+            ? null
+            : chip.dataset.testAnswerValue;
+          renderTest();
+        });
+      });
+
+      document.querySelectorAll(".test-drop-zone").forEach((zone) => {
+        zone.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          zone.classList.add("drag-over");
+        });
+        zone.addEventListener("dragleave", () => {
+          zone.classList.remove("drag-over");
+        });
+        zone.addEventListener("drop", (event) => {
+          event.preventDefault();
+          zone.classList.remove("drag-over");
+          const answerValue = event.dataTransfer.getData("text/plain") || testState.selectedMatchValue;
+          assignTestMatchAnswer(Number(zone.dataset.testDrop), answerValue);
+        });
+        zone.addEventListener("click", () => {
+          if (testState.selectedMatchValue) {
+            assignTestMatchAnswer(Number(zone.dataset.testDrop), testState.selectedMatchValue);
+          }
+        });
+        zone.addEventListener("keydown", (event) => {
+          if ((event.key === "Enter" || event.key === " ") && testState.selectedMatchValue) {
+            event.preventDefault();
+            assignTestMatchAnswer(Number(zone.dataset.testDrop), testState.selectedMatchValue);
+          }
+        });
+      });
+
+      document.querySelectorAll("[data-test-match-select]").forEach((select) => {
+        select.addEventListener("change", () => {
+          const questionIndex = Number(select.dataset.testMatchSelect);
+          if (select.value) assignTestMatchAnswer(questionIndex, select.value);
+          else clearTestMatchAnswer(testState.questions[questionIndex].userAnswer);
+        });
+      });
+
+      const bank = document.querySelector("[data-test-answer-bank]");
+      if (!bank) return;
+
+      bank.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        bank.classList.add("drag-over");
+      });
+      bank.addEventListener("dragleave", () => {
+        bank.classList.remove("drag-over");
+      });
+      bank.addEventListener("drop", (event) => {
+        event.preventDefault();
+        bank.classList.remove("drag-over");
+        const answerValue = event.dataTransfer.getData("text/plain") || testState.selectedMatchValue;
+        clearTestMatchAnswer(answerValue);
+      });
+    }
+
+    function assignTestMatchAnswer(questionIndex, answerValue) {
+      if (!answerValue) return;
+
+      testState.questions.forEach((question) => {
+        if (question.type === "match" && question.userAnswer === answerValue) {
+          question.userAnswer = "";
+        }
+      });
+
+      testState.questions[questionIndex].userAnswer = answerValue;
+      testState.selectedMatchValue = null;
+      renderTest();
+    }
+
+    function clearTestMatchAnswer(answerValue) {
+      if (!answerValue) return;
+
+      testState.questions.forEach((question) => {
+        if (question.type === "match" && question.userAnswer === answerValue) {
+          question.userAnswer = "";
+        }
+      });
+
+      testState.selectedMatchValue = null;
+      renderTest();
+    }
+
+    function updateTestAnsweredDisplay() {
+      setProgress(getTestCompletionPercent());
+      const answeredStat = document.querySelector("#testAnsweredStat");
+      if (answeredStat) answeredStat.textContent = `${getAnsweredTestCount()} / ${testState.questions.length} answered`;
+    }
+
+    function submitTest() {
+      testState.submitted = true;
+      testState.questions.forEach((question) => updateMissedCard(question.cardIndex, !isTestQuestionCorrect(question)));
+      renderTestResults();
+      elements.test.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function getAnsweredTestCount() {
+      return testState.questions.filter((question) => question.userAnswer !== "").length;
+    }
+
+    function getTestCompletionPercent() {
+      if (!testState.questions?.length) return 0;
+      return (getAnsweredTestCount() / testState.questions.length) * 100;
+    }
+
+    function getTestResults() {
+      const questions = testState.questions || [];
+      const correct = questions.filter((question) => isTestQuestionCorrect(question)).length;
+      const byType = ["multipleChoice", "trueFalse", "match"].map((type) => {
+        const typeQuestions = questions.filter((question) => question.type === type);
+        const typeCorrect = typeQuestions.filter((question) => isTestQuestionCorrect(question)).length;
+        return {
+          type,
+          label: typeQuestions[0]?.typeLabel || type,
+          correct: typeCorrect,
+          total: typeQuestions.length
+        };
+      }).filter((item) => item.total > 0);
+
+      return {
+        correct,
+        total: questions.length,
+        percent: questions.length ? Math.round((correct / questions.length) * 100) : 0,
+        byType
+      };
+    }
+
+    function isTestQuestionCorrect(question) {
+      return question.userAnswer !== "" && question.userAnswer === question.correctValue;
+    }
+
+    function getTestAnswerLabel(question, value) {
+      if (value === "") return "No answer";
+      if (question.type === "match") return getTestMatchChoice(value)?.label || value;
+      const choice = question.choices.find((item) => item.value === value);
+      return choice?.label || value;
+    }
+
+    function renderTestResults() {
+      const results = getTestResults();
+      setProgress(100);
+      elements.test.innerHTML = `
+        <section class="test-results">
+          <h2>${results.percent}% score</h2>
+          <p>${results.correct} correct out of ${results.total} questions.</p>
+          <div class="test-score">
+            <span class="stat">Total ${results.correct} / ${results.total}</span>
+            ${results.byType.map((item) => `
+              <span class="stat">${escapeHTML(item.label)} ${item.correct} / ${item.total}</span>
+            `).join("")}
+          </div>
+          <div class="test-result-actions">
+            <button class="btn btn-yellow" type="button" id="retakeTestButton">New shuffled test</button>
+            <button class="btn" type="button" id="customizeTestFromResults">Customize test</button>
+            <button class="btn btn-dark" type="button" id="backToCardsFromTest">Return to flashcards</button>
+          </div>
+          <div class="test-review">
+            ${testState.questions.map((question, index) => {
+              const correct = isTestQuestionCorrect(question);
+              return `
+                <article class="test-review-item ${correct ? "correct" : "wrong"}">
+                  <h3>${index + 1}. ${escapeHTML(question.typeLabel)} · ${correct ? "Correct" : "Missed"}</h3>
+                  <p>${escapeHTML(question.prompt)}</p>
+                  <p><strong>Your answer:</strong> ${escapeHTML(getTestAnswerLabel(question, question.userAnswer))}</p>
+                  <p><strong>Correct answer:</strong> ${escapeHTML(getTestAnswerLabel(question, question.correctValue))}</p>
+                </article>
+              `;
+            }).join("")}
+          </div>
+        </section>
+      `;
+
+      document.querySelector("#retakeTestButton").addEventListener("click", () => generateTest(testState.preferences));
+      document.querySelector("#customizeTestFromResults").addEventListener("click", initTest);
+      document.querySelector("#backToCardsFromTest").addEventListener("click", () => switchMode("flashcards"));
+    }
+
+    function completionHTML(title, detail, buttonLabel, action) {
+      return `
+        <div class="completion">
+          <div class="completion-mark">✓</div>
+          <h2>${escapeHTML(title)}</h2>
+          <p>${escapeHTML(detail)}</p>
+          <button class="btn btn-dark" type="button" onclick="${action}">${escapeHTML(buttonLabel)}</button>
+        </div>
+      `;
+    }
+
+    function switchMode(mode) {
+      activeMode = mode;
+      elements.shell.classList.toggle("stack-shell", mode === "stack");
+      elements.tabs.forEach((tab) => {
+        const isActive = tab.dataset.mode === mode;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+      });
+      document.querySelectorAll(".mode-panel").forEach((panel) => panel.classList.remove("active"));
+      elements[mode].classList.add("active");
+
+      if (mode !== "match") stopMatchTimer();
+      if (mode !== "stack" && stackGame) stackGame.pause();
+      if (mode === "flashcards") renderFlashcards();
+      if (mode === "learn") renderLearn();
+      if (mode === "match") {
+        if (!matchState.cards || matchState.complete) initMatch();
+        else {
+          startMatchTimer();
+          renderMatch();
+        }
+      }
+      if (mode === "test") {
+        if (!testState.initialized) initTest();
+        else renderTest();
+      }
+      if (mode === "viewCards") renderViewCards();
+      if (mode === "stack") {
+        ensureStackGame();
+      }
+    }
+
+    function ensureStackGame() {
+      if (!window.StudyBroStack || !window.StudyBroStack.create) {
+        elements.stack.innerHTML = completionHTML(
+          "Stack unavailable",
+          "Matter.js or the Stack game script did not load.",
+          "Back to cards",
+          "switchMode('flashcards')"
+        );
+        setProgress(0);
+        return;
+      }
+
+      if (!stackGame) {
+        stackGame = window.StudyBroStack.create({
+          deck,
+          panel: elements.stack,
+          onProgress: setProgress,
+          onExit: () => switchMode("flashcards")
+        });
+        stackGame.start();
+        return;
+      }
+
+      stackGame.resume();
+    }
+
+    elements.tabs.forEach((tab) => {
+      tab.addEventListener("click", () => switchMode(tab.dataset.mode));
+    });
+    document.addEventListener("keydown", handleFlashcardShortcut);
+
+    window.studyBroSwitchMode = switchMode;
+    window.addEventListener("pagehide", () => {
+      activeImageObjectURLs.forEach((url) => URL.revokeObjectURL(url));
+      clearPendingCardImage();
+    });
+
+    initImageViewer();
+    Promise.all([initThemeToggle(), loadDeck()]).then(loadStudyPreferences).then(startApp);
+  </script>
+  <script src="vendor/matter.min.js"></script>
+  <script src="physics.js"></script>
+  <script src="stack.js?v=2.3-semantic"></script>
+</body>
+</html>

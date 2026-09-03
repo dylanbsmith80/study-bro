@@ -2666,6 +2666,8 @@
     let deck = sampleDeck.cards;
     let originalDeck = { title: sampleDeck.title, cards: [] };
     let originalCardsById = new Map();
+    const accountDeckId = new URLSearchParams(window.location.search).get("id");
+    const isAccountDeck = Boolean(accountDeckId);
     let hasLocalDeckEdits = false;
     let isAddCardFormOpen = false;
     let editingCardIndex = null;
@@ -3461,7 +3463,7 @@
 
     async function loadDeck() {
       const parameters = new URLSearchParams(window.location.search);
-      const deckId = parameters.get("id");
+      const deckId = accountDeckId;
       const deckPath = parameters.get("deck");
       let publishedDeck = normalizeDeck(sampleDeck);
       if (deckId) {
@@ -3506,7 +3508,9 @@
 
       originalDeck = assignOriginalCardIds(publishedDeck);
       originalCardsById = new Map(originalDeck.cards.map((card) => [card.sourceId, card]));
-      const composedDeck = await getSavedDeck(originalDeck);
+      // Account decks are composed by Supabase so edits follow the signed-in
+      // customer across devices. Legacy share links retain device-local edits.
+      const composedDeck = isAccountDeck ? originalDeck : await getSavedDeck(originalDeck);
       deckTitle = composedDeck.title;
       deck = composedDeck.cards;
       updateDeckHeader();
@@ -3673,7 +3677,9 @@
     function renderViewCards() {
       setProgress(100);
       const rows = deck.map((card, index) => {
-        const deleteControls = pendingDeleteCardIndex === index
+        const deleteControls = isAccountDeck
+          ? ''
+          : pendingDeleteCardIndex === index
           ? '<button class="confirm-delete-button" type="button" data-confirm-delete="' + index + '">' +
               'Confirm delete</button>' +
             '<button class="cancel-delete-button" type="button" data-cancel-delete>Cancel</button>'
@@ -3752,15 +3758,19 @@
         '<div class="view-cards-toolbar">' +
           '<div class="status-group">' +
             '<span class="stat">' + deck.length + ' cards</span>' +
-            (hasLocalDeckEdits ? '<span class="local-save-status">Saved on this device</span>' : '') +
+            (isAccountDeck
+              ? '<span class="local-save-status">Personal changes sync to your account</span>'
+              : (hasLocalDeckEdits ? '<span class="local-save-status">Saved on this device</span>' : '')) +
           '</div>' +
-          '<button class="btn btn-yellow" type="button" id="openAddCard">Add card</button>' +
+          (isAccountDeck
+            ? '<a class="btn btn-yellow" href="/deck/' + encodeURIComponent(accountDeckId) + '">Edit personalized deck</a>'
+            : '<button class="btn btn-yellow" type="button" id="openAddCard">Add card</button>') +
         '</div>' +
         addEditor +
         editEditor +
         '<div class="view-cards-list">' + rows + '</div>';
 
-      document.querySelector("#openAddCard").addEventListener("click", () => {
+      document.querySelector("#openAddCard")?.addEventListener("click", () => {
         isAddCardFormOpen = true;
         editingCardIndex = null;
         clearPendingCardImage();

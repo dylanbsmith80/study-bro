@@ -24,17 +24,24 @@
 
   <main id="authView" class="auth-layout" hidden>
     <section class="auth-story">
-      <a class="brand" href="/"><span class="brand-mark">SB</span><span>Study Bro</span></a>
-      <div>
-        <p class="eyebrow">Your private study space</p>
-        <h1>Pick up exactly<br>where you left off.</h1>
-        <p>Every deck you own and every personal edit—ready when you are.</p>
+      <a class="brand" href="https://study-bro-home-page.vercel.app" aria-label="Study Bro home"><span class="brand-mark">SB</span><span>Study Bro</span></a>
+      <div class="auth-story-main">
+        <div class="auth-story-copy">
+          <p class="eyebrow"><span></span>Your private study space</p>
+          <h1>Pick up exactly<br>where you left off.</h1>
+          <p>Every deck you own and every personal edit—ready when you are.</p>
+        </div>
+        <figure class="auth-mascot-frame">
+          <img src="assets/study-bro-hero.png" alt="Study Bro mascot studying at a desk">
+          <figcaption>One page at a time.</figcaption>
+          <span class="mascot-badge">You got<br>this.</span>
+        </figure>
       </div>
-      <p class="story-footer">One page at a time.</p>
+      <a class="story-footer" href="https://study-bro-home-page.vercel.app">← Back to the Study Bro home page</a>
     </section>
     <section class="auth-panel">
       <div class="auth-card">
-        <div class="mobile-brand"><span class="brand-mark">SB</span><strong>Study Bro</strong></div>
+        <a class="mobile-brand" href="https://study-bro-home-page.vercel.app"><span class="brand-mark">SB</span><strong>Study Bro</strong></a>
         <p class="eyebrow">Welcome back</p>
         <h2 id="authTitle">Sign in to your decks</h2>
         <p id="authSubtitle" class="muted">Use the email connected to your Study Bro account.</p>
@@ -54,6 +61,7 @@
     <header class="app-header">
       <a class="brand" href="/" data-route><span class="brand-mark">SB</span><span>Study Bro</span></a>
       <nav>
+        <a class="home-link" href="https://study-bro-home-page.vercel.app">Home</a>
         <a href="/" data-route>My decks</a>
         <a id="adminNav" href="/admin" data-route hidden>Admin</a>
         <button id="accountButton" class="account-button" type="button"><span id="accountInitial">S</span><span id="accountEmail"></span></button>

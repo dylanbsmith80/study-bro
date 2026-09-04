@@ -71,12 +71,21 @@
 
     <main class="app-main">
       <section id="libraryView" hidden>
-        <div class="page-heading">
-          <div><p class="eyebrow">Your study space</p><h1>My decks</h1></div>
-          <div class="heading-note"><span></span> Personal edits save automatically</div>
+        <div class="library-hero">
+          <div class="library-hero-copy">
+            <p class="eyebrow"><span></span>Your study space</p>
+            <h1>My decks</h1>
+            <p>Your private shelf for every Study Bro deck, ready to review and make your own.</p>
+            <div class="heading-note"><span></span> Personal edits save automatically</div>
+          </div>
+          <figure class="library-mascot-frame">
+            <img src="assets/study-bro-hero.png" alt="Study Bro mascot studying at a desk">
+            <figcaption>One page at a time.</figcaption>
+            <span class="library-mascot-badge">Let's<br>study.</span>
+          </figure>
         </div>
         <div id="libraryGrid" class="library-grid"></div>
-        <div id="emptyLibrary" class="empty-state" hidden>
+        <div id="emptyLibrary" class="empty-state library-empty" hidden>
           <span class="empty-glyph">＋</span>
           <h2>Your shelf is ready.</h2>
           <p>Once a deck is assigned to your account, it will appear here.</p>

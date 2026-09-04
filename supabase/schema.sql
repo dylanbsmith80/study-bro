@@ -31,6 +31,8 @@ create table if not exists public.cards (
   definition text not null check (char_length(trim(definition)) > 0),
   image_path text,
   image_alt text,
+  source_key text,
+  source_active boolean not null default true,
   revision integer not null default 1 check (revision > 0),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
@@ -82,6 +84,8 @@ create table if not exists public.hidden_cards (
 );
 
 create index if not exists cards_deck_position_idx on public.cards(deck_id, position);
+create unique index if not exists cards_deck_source_key_idx on public.cards(deck_id, source_key)
+  where source_key is not null;
 create index if not exists deck_access_user_status_idx on public.deck_access(user_id, status);
 create index if not exists deck_access_deck_status_idx on public.deck_access(deck_id, status);
 create index if not exists card_overrides_user_idx on public.card_overrides(user_id);
@@ -298,7 +302,7 @@ as $$
   select d.id, d.slug, d.title, d.description, count(c.id), da.granted_at, d.updated_at
   from public.deck_access da
   join public.decks d on d.id = da.deck_id
-  left join public.cards c on c.deck_id = d.id
+  left join public.cards c on c.deck_id = d.id and c.source_active
   where da.user_id = auth.uid() and da.status = 'active' and d.status = 'published'
   group by d.id, da.granted_at
   order by da.granted_at desc;
@@ -339,7 +343,7 @@ begin
     ) filter (where c.id is not null and h.card_id is null), '[]'::jsonb)
   ) into result
   from public.decks d
-  left join public.cards c on c.deck_id = d.id
+  left join public.cards c on c.deck_id = d.id and c.source_active
   left join public.card_overrides o on o.card_id = c.id and o.user_id = auth.uid()
   left join public.hidden_cards h on h.card_id = c.id and h.user_id = auth.uid()
   where d.id = p_deck_id

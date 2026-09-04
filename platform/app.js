@@ -130,7 +130,7 @@
     el("cardList").innerHTML = "<div class=\"empty-state\"><p>Loading your deck…</p></div>";
     const [{ data: deck, error: deckError }, { data: cards, error: cardError }, { data: overrides, error: overrideError }, { data: hidden, error: hiddenError }] = await Promise.all([
       state.client.from("decks").select("id,slug,title,description,updated_at").eq("id", deckId).single(),
-      state.client.from("cards").select("id,position,term,definition,image_path,image_alt,revision").eq("deck_id", deckId).order("position"),
+      state.client.from("cards").select("id,position,term,definition,image_path,image_alt,revision").eq("deck_id", deckId).eq("source_active", true).order("position"),
       state.client.from("card_overrides").select("card_id,custom_term,custom_definition,base_term,base_definition,base_revision,updated_at").eq("user_id", state.user.id),
       state.client.from("hidden_cards").select("card_id").eq("user_id", state.user.id)
     ]);

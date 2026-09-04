@@ -1,0 +1,39 @@
+name: Sync Study Bro decks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "decks/**/*.json"
+      - "deck-assets/**"
+  workflow_dispatch:
+
+concurrency:
+  group: study-bro-deck-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    name: Publish decks to the account platform
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out Study Bro
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate deck files and images
+        run: node scripts/sync-decks-to-supabase.mjs --validate-only
+
+      - name: Sync every deck to Supabase
+        run: node scripts/sync-decks-to-supabase.mjs
+        env:
+          SUPABASE_URL: https://qwzayhxclcprhgthbnlx.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}

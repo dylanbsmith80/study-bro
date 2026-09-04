@@ -203,6 +203,11 @@ grant select on public.profiles, public.decks, public.cards, public.card_revisio
 grant insert, update, delete on public.decks, public.cards, public.deck_access to authenticated;
 grant insert, update, delete on public.card_overrides, public.hidden_cards to authenticated;
 
+-- Repository sync runs with the service role. RLS bypass does not itself grant
+-- table privileges, so keep this automation limited to its two source tables.
+grant usage on schema public to service_role;
+grant select, insert, update on public.decks, public.cards to service_role;
+
 drop policy if exists "Profiles read own or admin" on public.profiles;
 create policy "Profiles read own or admin" on public.profiles for select to authenticated
   using (id = auth.uid() or public.is_admin());

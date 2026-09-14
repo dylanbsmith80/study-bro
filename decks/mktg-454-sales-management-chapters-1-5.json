@@ -1,0 +1,625 @@
+{
+  "title": "MKTG 454: Sales Management (Chapters 1-5)",
+  "cards": [
+    {
+      "term": "Personal selling",
+      "definition": "Direct communication between paid representatives and prospects that leads to transactions, customer satisfaction, account development, and profitable relationships."
+    },
+    {
+      "term": "Sales management",
+      "definition": "The planning, organizing, leading, and controlling of personal contact programs designed to achieve the sales and profit objectives of the firm."
+    },
+    {
+      "term": "Sales manager",
+      "definition": "The person responsible for managing the field sales operation, either as a first-line manager or higher in the hierarchy."
+    },
+    {
+      "term": "Globalization",
+      "definition": "The spread of markets and competition across national borders, forcing sales forces to shift from a local to a global focus."
+    },
+    {
+      "term": "Shorter product cycles",
+      "definition": "Faster technology transfer that narrows the window of product differentiation and raises the value of selling and relationship skills."
+    },
+    {
+      "term": "Proliferation challenge",
+      "definition": "The explosion of new products, brands, channels, and price points that sharply increases knowledge demands on salespeople."
+    },
+    {
+      "term": "Transactional selling model",
+      "definition": "Selling built on selling skills, product/price/service, differentiation through products, and a short-term sales revenue focus."
+    },
+    {
+      "term": "Solutions selling model",
+      "definition": "Selling that creates customer value by addressing important customer problems through a supplier-customer relationship more intimate than transactional selling."
+    },
+    {
+      "term": "Sales teams",
+      "definition": "Multiple seller contacts matched to multiple buyer contacts, replacing the traditional single-point \"lone wolf\" buyer-seller interface."
+    },
+    {
+      "term": "Sales networks",
+      "definition": "The internal and external web of contacts a salesperson needs to prospect, close complex deals, and deliver customer solutions."
+    },
+    {
+      "term": "Productivity metrics",
+      "definition": "Profit-based performance measures (time to close, gross margin, discounting, promotional and post-sale support) that replace pure sales volume."
+    },
+    {
+      "term": "Sales management process",
+      "definition": "The sequence guiding sales programs — seeing the big picture, defining sales force roles, structuring the sales force, building competencies, and leading the sales force."
+    },
+    {
+      "term": "Sales management competencies",
+      "definition": "Sets of knowledge, skills, behaviors, and attitudes needed to be effective as a sales manager across industries and organizations."
+    },
+    {
+      "term": "Strategic action competency",
+      "definition": "Understanding the industry, understanding the organization, and taking actions consistent with company goals and strategy."
+    },
+    {
+      "term": "Coaching competency",
+      "definition": "A sequence of conversations and activities giving ongoing feedback and encouragement, achieved through verbal feedback, role modeling, and building trust."
+    },
+    {
+      "term": "Team-building competency",
+      "definition": "Designing teams properly, creating a supportive environment, and managing team dynamics."
+    },
+    {
+      "term": "Self-management competency",
+      "definition": "Integrity and ethical conduct, managing personal drive, and self-awareness and development."
+    },
+    {
+      "term": "Global perspective competency",
+      "definition": "Cultural knowledge and sensitivity plus the ability to design and run a global selling program."
+    },
+    {
+      "term": "Technology competency",
+      "definition": "Understanding the productivity potential of new technology and implementing sales force automation and CRM."
+    },
+    {
+      "term": "Sales force automation (SFA)",
+      "definition": "Integration of communications and computer technology into selling tasks to increase sales force efficiency and effectiveness."
+    },
+    {
+      "term": "Business strategy",
+      "definition": "Defining the business mission, developing specific measurable goals, and designing a strategy for achieving them."
+    },
+    {
+      "term": "Business mission statement",
+      "definition": "Statement of the customers a firm wishes to serve, the needs to be fulfilled, and the activities and technologies used to fulfill them."
+    },
+    {
+      "term": "Hierarchy of sales objectives",
+      "definition": "The cascading of corporate goals down through business unit, marketing, sales department, district, salesperson, and major account objectives."
+    },
+    {
+      "term": "Generic business strategies",
+      "definition": "Porter's three positions for creating superior customer value — low cost, differentiation, and niche."
+    },
+    {
+      "term": "Low-cost strategy",
+      "definition": "Vigorous pursuit of cost reductions from experience and tight cost control."
+    },
+    {
+      "term": "Differentiation strategy",
+      "definition": "Creating an offering perceived as unique, leading to high brand loyalty and low price sensitivity."
+    },
+    {
+      "term": "Niche strategy",
+      "definition": "Servicing one target market very well and dominating sales within that segment."
+    },
+    {
+      "term": "Marketing strategy",
+      "definition": "The set of integrated decisions and actions a business takes to achieve its marketing objectives by addressing customers' value requirements."
+    },
+    {
+      "term": "Market segmentation",
+      "definition": "Aggregating customers into groups that share characteristics, have similar needs, and respond similarly to a marketing program."
+    },
+    {
+      "term": "Target marketing",
+      "definition": "The selection and prioritizing of the segments a company will serve."
+    },
+    {
+      "term": "Positioning strategy",
+      "definition": "Decisions about product, price, distribution, and promotion that shape how consumers perceive the product, brand, and company versus competitors."
+    },
+    {
+      "term": "Strategic implementation decisions",
+      "definition": "The Level 2 processes organizations develop to create customer value — go-to-market strategy, PDM, SCM, and CRM."
+    },
+    {
+      "term": "Go-to-market strategy",
+      "definition": "The decisions defining who will perform the essential selling activities and for which customers."
+    },
+    {
+      "term": "Sales process activities",
+      "definition": "All activities needed to serve a customer properly, grouped as interest creation, prepurchase, purchase, and postpurchase."
+    },
+    {
+      "term": "Independent sales agents",
+      "definition": "Outside businesses (manufacturers' reps or brokers) given exclusive contracts to sell within specified geographic areas; not employees."
+    },
+    {
+      "term": "Telemarketing",
+      "definition": "Customer contact that uses telecommunications technology for personal selling without direct, face-to-face contact."
+    },
+    {
+      "term": "Product development management (PDM)",
+      "definition": "The process of developing, producing, and launching new offerings, with the sales force a key source of new product information."
+    },
+    {
+      "term": "Supply chain management (SCM)",
+      "definition": "The integration and organization of information and logistics activities across firms to create and deliver goods and services that provide value to customers."
+    },
+    {
+      "term": "Customer relationship management (CRM)",
+      "definition": "A comprehensive set of processes and technologies for managing relationships with current and potential customers across marketing, sales, and service."
+    },
+    {
+      "term": "Sales force program",
+      "definition": "A tool for planning how the sales force will perform its role in achieving the firm's objectives; the Level 3 decisions."
+    },
+    {
+      "term": "Elements of the sales force program",
+      "definition": "Sales potential and forecast, account relationship strategy, desired selling actions and behaviors, sales force size and budget, organizational structure, competency development, and leadership system."
+    },
+    {
+      "term": "Account relationship strategy",
+      "definition": "The type or types of relationship a firm intends to develop with its customers, including plans for acquiring, maintaining, and developing them."
+    },
+    {
+      "term": "Transactional relationship",
+      "definition": "A relationship based on a product of acceptable quality, competitively priced, and a process convenient for the buyer."
+    },
+    {
+      "term": "Consultative relationship",
+      "definition": "A relationship based on the customer's demand and willingness to pay for a sales effort that creates new value beyond the product itself."
+    },
+    {
+      "term": "Enterprise relationship",
+      "definition": "A relationship whose primary function is to leverage all corporate assets of the supplier to contribute to the customer's strategic success."
+    },
+    {
+      "term": "Market potential",
+      "definition": "An estimate of maximum industry demand in a time period based on the number of potential users and their purchase rate."
+    },
+    {
+      "term": "Sales potential",
+      "definition": "The maximum amount a firm can sell in a time period under optimum conditions; the company's share of market potential."
+    },
+    {
+      "term": "Sales forecasting",
+      "definition": "Predicting future levels of demand, which is essential for budgeting, quotas, territories, and planning."
+    },
+    {
+      "term": "Buying Power Index (BPI)",
+      "definition": "A multifactor index combining population, income, and retail sales into a composite indicator of consumer demand by geographic area."
+    },
+    {
+      "term": "Sales force composite",
+      "definition": "A forecast built by aggregating salespeople's own volume projections for customers in their territories."
+    },
+    {
+      "term": "Jury of executive opinion",
+      "definition": "A forecast produced by soliciting and pooling the judgment of a group of experienced managers."
+    },
+    {
+      "term": "Leading indicators",
+      "definition": "Economic series that change in advance of company sales and can therefore be used to predict sales and turning points."
+    },
+    {
+      "term": "Deseasonalized data",
+      "definition": "Actual sales divided by the appropriate seasonal index so that seasonal effects are removed before forecasting."
+    },
+    {
+      "term": "Naive forecast",
+      "definition": "The simplest time-series technique, assuming the best estimate for the next period is the current level of sales."
+    },
+    {
+      "term": "MAPE (mean absolute percentage error)",
+      "definition": "The average absolute percentage error across periods, used to compare forecasting accuracy across methods and products."
+    },
+    {
+      "term": "Moving average",
+      "definition": "A forecast equal to the average revenue achieved over the several most recent periods."
+    },
+    {
+      "term": "Exponential smoothing",
+      "definition": "A forecast that emphasizes recent information and systematically discounts older information."
+    },
+    {
+      "term": "Smoothing constant",
+      "definition": "The alpha weight (between 0 and 1) in exponential smoothing; low values give stability, high values respond faster to change."
+    },
+    {
+      "term": "Time series regression",
+      "definition": "Fitting a straight line by least squares to express the relationship between sales and time."
+    },
+    {
+      "term": "Turning point",
+      "definition": "A sudden change in a trend, which quantitative forecasting methods predict poorly."
+    },
+    {
+      "term": "Sales carryover",
+      "definition": "The phenomenon in which a portion of current sales is a function of customer relationships built by selling effort in prior years."
+    },
+    {
+      "term": "Workload approach",
+      "definition": "Sizing the sales force from the number of accounts, call frequency, and call length required, divided by the selling time available per salesperson."
+    },
+    {
+      "term": "Sales response approach",
+      "definition": "Sizing the sales force by estimating how sales respond to different levels of selling effort, then evaluating sales and profit impact."
+    },
+    {
+      "term": "Percentage of sales approach",
+      "definition": "Setting sales force size and budget by multiplying the sales forecast by a predetermined percentage of sales."
+    },
+    {
+      "term": "Sales budget",
+      "definition": "A set of planned selling expenses prepared on an annual basis to reach the sales manager's objectives."
+    },
+    {
+      "term": "Customer-Product Matrix",
+      "definition": "A four-quadrant budgeting tool identifying revenue sources — account management, leverage selling, convergence selling, and new business development."
+    },
+    {
+      "term": "Sales opportunity management",
+      "definition": "Allocating selling effort across generating new accounts, managing existing accounts, balancing sales versus profits, and personal time management."
+    },
+    {
+      "term": "Prospecting",
+      "definition": "Spending selling time with prospects who are likely to become good customers, in order to acquire new accounts."
+    },
+    {
+      "term": "Prospect profile",
+      "definition": "A profile of what the best prospect looks like, used to decide which leads are worth pursuing."
+    },
+    {
+      "term": "Lead generation methods",
+      "definition": "Cold canvassing, direct mail, trade shows, directories, the Internet and Webcasting, and referrals."
+    },
+    {
+      "term": "Qualify a prospect",
+      "definition": "Determining whether a prospect is likely to convert into a buying customer."
+    },
+    {
+      "term": "Three qualifying criteria",
+      "definition": "The prospect must have a need, buying authority, and the ability to pay."
+    },
+    {
+      "term": "Cost per call",
+      "definition": "Total direct selling expenses for a period divided by the total number of sales calls made in that period."
+    },
+    {
+      "term": "Direct selling expenses",
+      "definition": "Costs attributable to an individual salesperson — compensation, travel, lodging, entertainment, and communications."
+    },
+    {
+      "term": "Breakeven sales volume",
+      "definition": "The sales volume necessary to cover the direct selling expenses of calling on an account."
+    },
+    {
+      "term": "Minimum account size",
+      "definition": "The smallest customer worth pursuing, found by dividing the cost of selling by the gross margin percentage."
+    },
+    {
+      "term": "Single-factor model",
+      "definition": "Prioritizing accounts on one characteristic, usually total sales volume, as in ABC account classification."
+    },
+    {
+      "term": "Portfolio model",
+      "definition": "Classifying accounts on two dimensions — account opportunity and competitive position — to allocate selling effort across four quadrants."
+    },
+    {
+      "term": "Account opportunity",
+      "definition": "The magnitude of an account's present and future need for the salesperson's offering."
+    },
+    {
+      "term": "Competitive position",
+      "definition": "The strength of the salesperson's present and future relationship with an account."
+    },
+    {
+      "term": "Portfolio quadrants",
+      "definition": "Core accounts, growth accounts, drag accounts, and problem accounts, each warranting a different level of selling investment."
+    },
+    {
+      "term": "Decision model",
+      "definition": "A call allocation model that assigns calls based on the sales response of each account over a period of time."
+    },
+    {
+      "term": "Sales response function",
+      "definition": "The estimated relationship between the number of sales calls made over a period and the sales generated for a particular account."
+    },
+    {
+      "term": "Sales process model",
+      "definition": "A model that prioritizes opportunities by their stage in the selling process and their probability of resulting in a sale."
+    },
+    {
+      "term": "Unqualified opportunities",
+      "definition": "Possible needs that have not been verified with key people in the account."
+    },
+    {
+      "term": "Qualified opportunities",
+      "definition": "Opportunities with a verified need, confirmed intention to buy, approved funding, and an identified time frame."
+    },
+    {
+      "term": "Best few opportunities",
+      "definition": "Opportunities where all buyers have been contacted, needs developed, and the sale is at least 50 percent through the selling cycle."
+    },
+    {
+      "term": "Sales funnel",
+      "definition": "The image ranking opportunities from unqualified at the top, through qualified, to the best few at the bottom of the funnel."
+    },
+    {
+      "term": "Prioritization sequence",
+      "definition": "Close the best few first, prospect for unqualified opportunities second, and work qualified opportunities last to keep the funnel full."
+    },
+    {
+      "term": "Customer lifetime value (CLV)",
+      "definition": "The sum of a customer's discounted flow of future profit contributions, used as a forward-looking resource allocation metric."
+    },
+    {
+      "term": "Time management",
+      "definition": "Planning and controlling the use of selling time to increase the share spent face to face with customers."
+    },
+    {
+      "term": "Purchasing process",
+      "definition": "The four typical stages business buyers move through — recognition of needs, evaluation of options, purchase decision, and implementation and evaluation."
+    },
+    {
+      "term": "Straight rebuy",
+      "definition": "A purchasing situation in which the product has been bought before and no change is desired; it simply replenishes inventory."
+    },
+    {
+      "term": "Modified rebuy",
+      "definition": "A purchasing situation in which some changes are anticipated, so the evaluation of options becomes much more extensive."
+    },
+    {
+      "term": "New buy",
+      "definition": "The most complex purchasing situation, in which the seller can add value during recognition of needs, evaluation of options, and implementation."
+    },
+    {
+      "term": "Derived demand",
+      "definition": "The dynamic in which demand for a business product is derived from demand for the customer's own products and services."
+    },
+    {
+      "term": "Sales proposal",
+      "definition": "A written offer by a seller to provide a product or service to a purchasing organization."
+    },
+    {
+      "term": "Request for proposal (RFP)",
+      "definition": "A notice a customer sends to qualified suppliers asking them to bid on a project with a certain set of specifications."
+    },
+    {
+      "term": "Extranets",
+      "definition": "Linked trading-partner computer networks that create a secure private environment for real-time order, inventory, and shipping information."
+    },
+    {
+      "term": "Value analysis",
+      "definition": "A detailed analysis of a product focusing on the relative cost of providing a necessary function or service at the desired time and place with the necessary quality."
+    },
+    {
+      "term": "Vendor analysis",
+      "definition": "Evaluation of a supplier on delivery reliability, price, service, and technical competence."
+    },
+    {
+      "term": "Supplier tiers",
+      "definition": "Segmentation of a customer's supplier base into levels — in-supplier, preferred, extended, and partner — reflecting the importance of the relationship."
+    },
+    {
+      "term": "Complex sales situations",
+      "definition": "Situations in which several people in the customer's organization must give approval before the sale can take place."
+    },
+    {
+      "term": "Buying center",
+      "definition": "All the people formally or informally involved in a purchasing decision — anyone who must say yes, or who can influence those who do."
+    },
+    {
+      "term": "Purchasing role",
+      "definition": "The set of issues or concerns a buying center member considers when deciding whether to approve or recommend a purchase or supplier."
+    },
+    {
+      "term": "Economic buyer",
+      "definition": "The person or committee with power to give final approval to buy; focused on performance and return for the money spent, and can say yes when everyone else says no."
+    },
+    {
+      "term": "User buyer",
+      "definition": "The buying center member who judges the impact of the purchase on the job that they or their people perform; implementation-oriented and tactical."
+    },
+    {
+      "term": "Technical buyer",
+      "definition": "The gatekeeper who screens out products and suppliers that fail to meet specifications; can say no but cannot say yes."
+    },
+    {
+      "term": "Advocate",
+      "definition": "The insider who helps guide the salesperson to the right people and information so that the sale can be successfully concluded."
+    },
+    {
+      "term": "Relationship evolution",
+      "definition": "The five general stages a buyer-seller relationship passes through — awareness, exploration, expansion, commitment, and dissolution."
+    },
+    {
+      "term": "Relationship binders",
+      "definition": "The factors that drive parties toward a fully committed relationship — creating value, meeting expectations, and building trust."
+    },
+    {
+      "term": "Value",
+      "definition": "The perception that the rewards exceed the costs associated with establishing or expanding a relationship."
+    },
+    {
+      "term": "Expectations",
+      "definition": "The rules or norms parties develop with respect to acceptable conduct and performance in a relationship."
+    },
+    {
+      "term": "Trust",
+      "definition": "The opinion that an individual's word or promise can be believed and that the customer's long-term interests will be served."
+    },
+    {
+      "term": "Attributes of a trusted salesperson",
+      "definition": "Honesty, competence, dependability, customer orientation, and likability."
+    },
+    {
+      "term": "Account intelligence",
+      "definition": "The market, financial, organizational, operational, personnel, and competitive information a seller gathers about an account."
+    },
+    {
+      "term": "Three phases of customer interaction",
+      "definition": "Preinteraction (planning skills), interaction (relating, discovery, advocating, closing), and postinteraction (supporting skills)."
+    },
+    {
+      "term": "Standardized model",
+      "definition": "A selling model using a constructed series of statements about an offering designed to stimulate a positive response from the customer."
+    },
+    {
+      "term": "Canned presentation",
+      "definition": "A highly structured standard presentation given to each customer, requiring little preparation once mastered."
+    },
+    {
+      "term": "Need-satisfaction model",
+      "definition": "A selling model oriented toward discovering and meeting customers' needs, with the salesperson testing assumptions about the customer's problems."
+    },
+    {
+      "term": "Problem-solution model",
+      "definition": "A selling model based on a formal study of the customer's operations, followed by a written proposal and formal presentation."
+    },
+    {
+      "term": "Preinteraction phase",
+      "definition": "The phase in which the salesperson collects thoughts and organizes interaction strategy prior to meeting the customer face to face."
+    },
+    {
+      "term": "Precall planning",
+      "definition": "The preinteraction planning that differentiates top performers from average salespeople."
+    },
+    {
+      "term": "Planning skills",
+      "definition": "Setting objectives, knowledge management, information gathering, and rehearsal before a sales call."
+    },
+    {
+      "term": "Interaction phase",
+      "definition": "What takes place during the face-to-face encounter with a customer, including gaining access, relating, discovery, advocating, and closing."
+    },
+    {
+      "term": "Gaining access",
+      "definition": "Securing face time with decision makers through direct personal contact, phoning ahead, personal letters, e-mail, or referrals."
+    },
+    {
+      "term": "Call reluctance",
+      "definition": "A salesperson's fear of making contact with a customer."
+    },
+    {
+      "term": "Relationship anxiety",
+      "definition": "The tension a buyer feels on meeting a salesperson, arising because people don't like to be sold; they like to buy."
+    },
+    {
+      "term": "Relating skills",
+      "definition": "The ability to put the other person at ease in a potentially tense situation."
+    },
+    {
+      "term": "Means of reducing relationship anxiety",
+      "definition": "Propriety, competence, commonality, and intent."
+    },
+    {
+      "term": "Needs discovery skills",
+      "definition": "Understanding what is on the prospect's mind rather than focusing the discussion on the product and its benefits."
+    },
+    {
+      "term": "Task motives",
+      "definition": "The logical, practical, or functional reasons for buying, usually involving money or productivity."
+    },
+    {
+      "term": "Personal motives",
+      "definition": "The individual reasons behind a purchase decision — respect, approval, power, and recognition."
+    },
+    {
+      "term": "Closed-ended questions",
+      "definition": "Questions answerable with a simple yes or no or by selecting from a list; used to gain feedback and commitment."
+    },
+    {
+      "term": "Open-ended questions",
+      "definition": "Questions that cannot be answered yes or no, used to identify and explore a topic."
+    },
+    {
+      "term": "Permission questions",
+      "definition": "Closed-ended questions asking the other person's permission to ask questions or probe further into a subject."
+    },
+    {
+      "term": "Fact-finding questions",
+      "definition": "Questions focusing on factual information about the business, the person, or the current situation."
+    },
+    {
+      "term": "Feeling-finding questions",
+      "definition": "Open-ended questions that uncover feelings about a situation and its potential consequences."
+    },
+    {
+      "term": "Checking questions",
+      "definition": "Questions that check one's understanding and get agreement concerning a statement."
+    },
+    {
+      "term": "Advocating skills",
+      "definition": "The ability to clearly and fully present a solution that customers can see will help address their needs."
+    },
+    {
+      "term": "Solution presentation",
+      "definition": "Confirming with customers that the goods and services being offered match their requirements and satisfy their needs."
+    },
+    {
+      "term": "Features",
+      "definition": "The tangible or intangible characteristics of a product or service."
+    },
+    {
+      "term": "Benefits",
+      "definition": "Statements of how a product or service can help a customer satisfy an explicit or stated need."
+    },
+    {
+      "term": "Evidence",
+      "definition": "Test results, testimonials, demonstrations, or trial periods offered to support a benefit claim."
+    },
+    {
+      "term": "LSCPA",
+      "definition": "Wilson Learning's method for handling customer concerns — Listen, Share, Clarify, Problem-solve, and Ask for action."
+    },
+    {
+      "term": "Closing skills",
+      "definition": "Asking the customer for a commitment, either for an order or to advance the purchasing process."
+    },
+    {
+      "term": "Trial close",
+      "definition": "An opinion-seeking question used as an indicator of how close the client is to making a purchase decision."
+    },
+    {
+      "term": "Alternative choice close",
+      "definition": "A close posing a series of questions designed to narrow the prospect's choice and help make a final selection."
+    },
+    {
+      "term": "Summary close",
+      "definition": "A close that summarizes the benefits accepted during the call, combined with an action plan requiring the customer's commitment."
+    },
+    {
+      "term": "Postinteraction phase",
+      "definition": "The phase following the transaction, involving supporting skills that service the sale and build the relationship."
+    },
+    {
+      "term": "Followup",
+      "definition": "All the efforts involved in servicing the sale and building a lasting, growing relationship after the purchase."
+    },
+    {
+      "term": "Four pillars of sales support",
+      "definition": "Supporting the buying decision, managing the implementation, dealing with dissatisfaction, and enhancing the relationship."
+    },
+    {
+      "term": "Cross-selling",
+      "definition": "Selling additional products and services to an existing account."
+    },
+    {
+      "term": "Up-selling",
+      "definition": "Selling bigger or enhanced products or services to an account, typically producing higher margins and greater dollar commitments."
+    },
+    {
+      "term": "Knowledge management",
+      "definition": "Systematically recording what was learned about the prospect and customer after each interaction so it can be used in the future."
+    }
+  ]
+}

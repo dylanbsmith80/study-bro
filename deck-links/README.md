@@ -9,6 +9,7 @@ This folder is the private GitHub registry of shareable Study Bro deck URLs. Eac
 | [Econ 300 Exam 2](econ-300-exam-2.md) | 67 | [Open deck](https://study-bro-nu.vercel.app/?deck=decks/econ-300-exam-2.json) |
 | [MKTG 450 Exam 3](mktg-450-exam-3.md) | 40 | [Open deck](https://study-bro-nu.vercel.app/?deck=decks/mktg-450-exam-3.json) |
 | [MKTG 454: Sales Management (Chapters 1-5)](mktg-454-sales-management-chapters-1-5.md) | 155 | [Open deck](https://study-bro-nu.vercel.app/?deck=decks/mktg-454-sales-management-chapters-1-5.json) |
+| [MKTG MGMT 454 Exam 1 (Chapters 1-5, Fall 2026)](mktg-mgmt-454-exam-1-chapters-1-5-fall-2026.md) | 98 | [Open deck](https://study-bro-nu.vercel.app/?deck=decks/mktg-mgmt-454-exam-1-chapters-1-5-fall-2026.json) |
 | [Batman, Nightwing, Joker & Bane](batman-nightwing-joker-bane.md) | 11 | [Open deck](https://study-bro-nu.vercel.app/?deck=decks/batman-nightwing-joker-bane.json) |
 | [Thyroid and Parathyroid Disorders](thyroid-and-parathyroid-disorders.md) | 61 | [Open deck](https://study-bro-nu.vercel.app/?deck=decks/thyroid-and-parathyroid-disorders.json) |
 | [Physics 241: Electromagnetic Waves](physics-241-electromagnetic-waves.md) | 41 | [Open deck](https://study-bro-nu.vercel.app/?deck=decks/physics-241-electromagnetic-waves.json) |

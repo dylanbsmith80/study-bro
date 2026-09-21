@@ -1,0 +1,397 @@
+{
+  "title": "MKTG MGMT 454 Exam 1 (Chapters 1-5, Fall 2026)",
+  "cards": [
+    {
+      "term": "Personal selling",
+      "definition": "Direct communication between paid representatives and prospects that leads to transactions, customer satisfaction, account development, and profitable relationships."
+    },
+    {
+      "term": "Sales management",
+      "definition": "Management of the field sales operation; it turns personal selling into a managed process aligned with organizational goals."
+    },
+    {
+      "term": "Sales management in the marketing mix",
+      "definition": "Sales management falls under Promotion. Its major responsibilities include planning and budgeting, recruiting and selecting, training, motivating and compensating, designing territories, and evaluating performance."
+    },
+    {
+      "term": "Competencies",
+      "definition": "The knowledge, skills, behaviors, and attitudes needed to perform effectively."
+    },
+    {
+      "term": "Changing sales marketplace",
+      "definition": "Global competition, shorter product cycles, and blurred boundaries give customers more power and higher expectations while pushing sellers toward solutions, teams, inside selling, and productivity measures."
+    },
+    {
+      "term": "What customers expect from salespeople",
+      "definition": "Understand their business, support their interests, design suitable applications, remain accessible, solve problems, respond creatively, and accept accountability for results."
+    },
+    {
+      "term": "Transactional selling",
+      "definition": "A short-term approach emphasizing sales skills, products, price, service, and immediate revenue."
+    },
+    {
+      "term": "Relationship selling",
+      "definition": "A collaborative approach emphasizing management skills, customer solutions, differentiation through people, customer lifetime value, and trusted-advisor status."
+    },
+    {
+      "term": "Transactional vs. relationship selling",
+      "definition": "Transactional selling focuses on short-term product, price, and revenue; relationship selling focuses on collaborative solutions, people-based differentiation, and customer lifetime value."
+    },
+    {
+      "term": "Sales manager leadership",
+      "definition": "Lead by example, model professional conduct, and share best practices."
+    },
+    {
+      "term": "How sales managers build trust",
+      "definition": "Use open two-way communication, collaboration, creativity, initiative, and appropriate risk taking."
+    },
+    {
+      "term": "Team leadership",
+      "definition": "Create a supportive structure, reward fairly, align team and organizational goals, hire and train for teamwork, and use each member's strengths."
+    },
+    {
+      "term": "Self-awareness",
+      "definition": "Knowing one's goals, values, strengths, and weaknesses; learning from experience; and remaining willing to unlearn and relearn."
+    },
+    {
+      "term": "Technology competency",
+      "definition": "Understanding desired outcomes, adapting management practices, and encouraging the sales force to accept and use appropriate selling technology."
+    },
+    {
+      "term": "Salesperson vs. sales manager",
+      "definition": "A salesperson tries to win the next customer; a sales manager builds a repeatable system by managing people, processes, and performance."
+    },
+    {
+      "term": "Strategic planning",
+      "definition": "The process of creating and sustaining competitive advantage."
+    },
+    {
+      "term": "Mission",
+      "definition": "A statement that provides direction and defines the firm's potential."
+    },
+    {
+      "term": "The three Cs",
+      "definition": "Customers, competitors, and the company; together they define the basic character of the business."
+    },
+    {
+      "term": "Organizational goals",
+      "definition": "Specific, measurable objectives expressed through profit, revenue, unit sales, market share, survival, or social responsibility and communicated throughout the organization."
+    },
+    {
+      "term": "Strategy vs. tactics",
+      "definition": "Strategy provides the direction for reaching objectives; tactics are the specific actions used to carry out that strategy."
+    },
+    {
+      "term": "Marketing strategy",
+      "definition": "Integrated decisions and actions used to achieve marketing objectives by addressing customer value requirements."
+    },
+    {
+      "term": "Hierarchy of sales objectives",
+      "definition": "Sales objectives align from corporate goals to business-unit, marketing, sales-department, district, salesperson, and major-account objectives."
+    },
+    {
+      "term": "Useful market segment",
+      "definition": "A group of customers with common characteristics, similar needs, and similar responses to a marketing program."
+    },
+    {
+      "term": "Target marketing",
+      "definition": "Selecting and prioritizing the market segments the company will pursue."
+    },
+    {
+      "term": "Go-to-market planning",
+      "definition": "Segment customers by the attraction and retention activities they require, identify the essential activities and participants for each segment, and decide when face-to-face selling is justified."
+    },
+    {
+      "term": "Go-to-market participants",
+      "definition": "A direct sales force, agents, distributors, retailers, integrators, alliances, advertising, promotion, direct mail, telemarketing, and the Internet can all help reach customers."
+    },
+    {
+      "term": "Channel cost-effectiveness tradeoff",
+      "definition": "Lower-cost channels provide efficiency; a sales force costs more but offers greater personal effectiveness."
+    },
+    {
+      "term": "Four strategy-implementation processes",
+      "definition": "Go-to-market strategy, product development management, supply chain management, and customer relationship management."
+    },
+    {
+      "term": "Go-to-market strategy",
+      "definition": "The strategy-implementation process that addresses customer access."
+    },
+    {
+      "term": "Product development management",
+      "definition": "The strategy-implementation process that creates and improves offerings."
+    },
+    {
+      "term": "Supply chain management",
+      "definition": "Integration of information and logistics across firms to create and deliver customer value, including supplier relationships, logistics, production, channel partners, orders, pricing, installation, and maintenance."
+    },
+    {
+      "term": "Customer relationship management (CRM)",
+      "definition": "A comprehensive set of processes and technologies for managing relationships with prospects, customers, and business partners across marketing, sales, and service, regardless of channel."
+    },
+    {
+      "term": "Sales force program",
+      "definition": "A plan for how the sales force will contribute to company objectives."
+    },
+    {
+      "term": "Account-relationship strategy",
+      "definition": "Choosing the right customers and the right relationship type; the choice is strategic for both supplier and customer."
+    },
+    {
+      "term": "Transactional relationship",
+      "definition": "An account relationship emphasizing acceptable quality, competitive price, and convenience."
+    },
+    {
+      "term": "Consultative relationship",
+      "definition": "An account relationship that creates value beyond the product."
+    },
+    {
+      "term": "Enterprise relationship",
+      "definition": "An account relationship that uses the supplier's corporate assets to advance the customer's strategic success."
+    },
+    {
+      "term": "Transactional vs. consultative vs. enterprise accounts",
+      "definition": "Transactional accounts seek a convenient product exchange; consultative accounts seek added value beyond the product; enterprise accounts use the supplier's full corporate assets for the customer's strategy."
+    },
+    {
+      "term": "Three routes to sales growth",
+      "definition": "Acquire new customers, retain current customers, and increase each customer's profitable purchases."
+    },
+    {
+      "term": "Prospect profile",
+      "definition": "A description of a promising prospect using factors such as demographics, business size, product-line age, geographic distance, and need for a product-line specialist."
+    },
+    {
+      "term": "Prospecting methods",
+      "definition": "Cold canvassing, direct mail, trade shows, directories, the Internet, and referrals from existing customers."
+    },
+    {
+      "term": "Qualifying a prospect",
+      "definition": "Evaluating the prospect's need, buying authority, and ability to pay so salespeople do not overinvest in weak opportunities."
+    },
+    {
+      "term": "Managing existing accounts",
+      "definition": "Build long-term loyalty while allocating selling resources carefully; consultative relationships require more time than transactional relationships."
+    },
+    {
+      "term": "Cost per call",
+      "definition": "The allocation of time, compensation, and other direct selling expenses to a sales call."
+    },
+    {
+      "term": "Breakeven sales volume",
+      "definition": "The sales volume required to cover direct selling expenses."
+    },
+    {
+      "term": "Portfolio model",
+      "definition": "A call-allocation model using several customer characteristics, often sales volume, sales potential, and gross margin; it fits consultative selling."
+    },
+    {
+      "term": "Decision model",
+      "definition": "A call-allocation model based on customer response over time; it is more likely in transactional selling."
+    },
+    {
+      "term": "Portfolio vs. decision model",
+      "definition": "The portfolio model uses multiple customer characteristics to guide calls in consultative selling; the decision model uses customer response over time to guide calls in transactional selling."
+    },
+    {
+      "term": "Sales funnel",
+      "definition": "A way to sort opportunities by their probability of becoming sales: unqualified opportunities, qualified opportunities, and the best few opportunities."
+    },
+    {
+      "term": "Account profit",
+      "definition": "What the customer pays minus the cost of servicing the account."
+    },
+    {
+      "term": "Customer lifetime value",
+      "definition": "The sum of a customer's expected future profit contributions."
+    },
+    {
+      "term": "Sales vs. profit vs. customer lifetime value",
+      "definition": "Sales are revenue received; profit is revenue less account-service costs; customer lifetime value is the customer's expected future profit contribution."
+    },
+    {
+      "term": "Time-management routine",
+      "definition": "Eliminate distractions, set goals, make a list, complete items, and transfer unfinished priorities forward."
+    },
+    {
+      "term": "Buying center",
+      "definition": "Everyone formally or informally involved in a purchase decision, including people who approve the purchase and people who influence the final decision."
+    },
+    {
+      "term": "Navigating a business sale",
+      "definition": "Identify all buying influences and understand what matters to each instead of focusing only on the first contact or the person who places the order."
+    },
+    {
+      "term": "Economic buyer",
+      "definition": "The buying influence that asks whether the purchase benefits the business over the long term."
+    },
+    {
+      "term": "User buyer",
+      "definition": "The buying influence that considers how the purchase will affect the job or work."
+    },
+    {
+      "term": "Technical buyer",
+      "definition": "The buying influence that checks specifications and requirements."
+    },
+    {
+      "term": "Advocate",
+      "definition": "The buying influence that wants the salesperson and proposed solution to succeed."
+    },
+    {
+      "term": "Why buying-center membership changes",
+      "definition": "Membership varies with the purchase, departments involved, dollar value, and technical sophistication."
+    },
+    {
+      "term": "Supporter vs. decision authority",
+      "definition": "A supporter may like the product without controlling the budget or final approval."
+    },
+    {
+      "term": "Straight rebuy",
+      "definition": "A routine repurchase with little or no change."
+    },
+    {
+      "term": "Modified rebuy",
+      "definition": "A repeat purchase in which the buyer considers changes to specifications, suppliers, price, or terms."
+    },
+    {
+      "term": "Five relationship-development stages",
+      "definition": "Awareness, exploration, expansion, commitment, and dissolution. The stages are dynamic and do not always proceed in a perfectly linear order."
+    },
+    {
+      "term": "Three relationship binders",
+      "definition": "Create value, meet expectations, and build trust; strong relationships require all three."
+    },
+    {
+      "term": "Components of trust in sales relationships",
+      "definition": "Competence, dependability, customer orientation, likability, and honesty."
+    },
+    {
+      "term": "Most critical trust component",
+      "definition": "Honesty is the most critical component emphasized in the Exam 1 guide."
+    },
+    {
+      "term": "Referrals",
+      "definition": "Names of potential prospects provided by satisfied customers, connecting relationship quality with opportunity development."
+    },
+    {
+      "term": "Purchasing-process application",
+      "definition": "Ask questions first to understand customer needs and the current purchase stage before arguing that your product is better."
+    },
+    {
+      "term": "Buying-center application",
+      "definition": "When a contact lacks budget authority, identify the other people involved in the decision instead of continuing to persuade only that contact."
+    },
+    {
+      "term": "Relationship application",
+      "definition": "Learn what matters to the customer, meet expectations consistently, and keep finding ways to provide additional value."
+    },
+    {
+      "term": "Three phases of customer interaction",
+      "definition": "Pre-interaction, interaction, and post-interaction."
+    },
+    {
+      "term": "Pre-interaction phase",
+      "definition": "Planning before meeting decision makers."
+    },
+    {
+      "term": "Interaction phase",
+      "definition": "Relating, discovery, advocacy, objection handling, and closing."
+    },
+    {
+      "term": "Post-interaction phase",
+      "definition": "Support and follow-through after the transaction."
+    },
+    {
+      "term": "Standardized selling model",
+      "definition": "Uses prepared statements about an offering to stimulate a positive response."
+    },
+    {
+      "term": "Benefitizing",
+      "definition": "Translating a product feature into a competitive advantage connected to a customer benefit."
+    },
+    {
+      "term": "Need-satisfaction model",
+      "definition": "Discovers and meets customer needs by identifying likely buyers, creating an incentive to change, building confidence to invest, and ensuring fulfillment of value promises."
+    },
+    {
+      "term": "Problem-solution model",
+      "definition": "Uses a formal study of the customer's operations, followed by a written proposal and often a team presentation; it fits complex, expensive purchases with longer selling cycles."
+    },
+    {
+      "term": "Standardized vs. need-satisfaction vs. problem-solution",
+      "definition": "Standardized selling uses prepared benefit statements; need-satisfaction selling discovers customer needs; problem-solution selling uses a formal operational study and proposal."
+    },
+    {
+      "term": "Pre-interaction planning questions",
+      "definition": "What do I want to accomplish? What do I know about the customer? Where can I find the information? What will I say? Accurate details, including the customer's name, matter."
+    },
+    {
+      "term": "Interaction skills",
+      "definition": "Gaining access, relating to the customer, discovering needs, advocating a solution, and recognizing when to close."
+    },
+    {
+      "term": "Cross-selling",
+      "definition": "Offering additional products or services."
+    },
+    {
+      "term": "Upselling",
+      "definition": "Moving the customer to a larger product or enhanced service."
+    },
+    {
+      "term": "Cross-selling vs. upselling",
+      "definition": "Cross-selling adds products or services; upselling moves the customer to a larger product or enhanced service."
+    },
+    {
+      "term": "Knowledge management",
+      "definition": "Recording what the salesperson learned about a prospect or customer, then analyzing successful and unsuccessful calls to shape future behavior."
+    },
+    {
+      "term": "Ethical customer interaction",
+      "definition": "Remain ethical and consistent while recognizing individual needs; managers should explain decisions clearly and balance organizational requirements with employee circumstances."
+    },
+    {
+      "term": "Psychology of selling (Marc Wayshak)",
+      "definition": "Effective selling focuses less on convincing people and more on understanding how buyers think, uncovering problems, and creating value."
+    },
+    {
+      "term": "Stop pitching (Marc Wayshak)",
+      "definition": "Do not lead with an immediate product speech; ask purposeful questions, listen carefully, and understand the customer's situation before recommending anything."
+    },
+    {
+      "term": "Why a clear no can help (Marc Wayshak)",
+      "definition": "It can reveal poor fit, conserve the salesperson's time, and shift effort toward qualified prospects instead of creating opportunity cost by chasing everyone."
+    },
+    {
+      "term": "Think like a doctor (Marc Wayshak)",
+      "definition": "Let the customer describe the problem, ask diagnostic questions, identify the underlying need, and recommend an appropriate solution."
+    },
+    {
+      "term": "What to do instead of immediately pitching (Marc Wayshak)",
+      "definition": "Lead with questions, listening, and diagnosis so the recommendation addresses the prospect's actual needs."
+    },
+    {
+      "term": "Trophy mindset (Julia Jordan)",
+      "definition": "Approach goals with competitive preparation, personal accountability, and an expectation that strong effort should produce measurable results."
+    },
+    {
+      "term": "Results on a resume (Julia Jordan)",
+      "definition": "Show measurable results rather than merely listing responsibilities because results demonstrate impact and provide evidence of performance."
+    },
+    {
+      "term": "Equipped and paid to win (Julia Jordan)",
+      "definition": "Evaluate whether an employer provides the tools, training, leadership, and opportunity needed to succeed and whether compensation rewards the results the role expects."
+    },
+    {
+      "term": "Career fair as a sales process (Julia Jordan)",
+      "definition": "Sell your value, clarify the next step before leaving, and obtain the recruiter's preferred contact information or permission to follow up."
+    },
+    {
+      "term": "Three opportunity checkboxes (Julia Jordan)",
+      "definition": "Culture, purpose rather than passion, and professional and financial growth."
+    },
+    {
+      "term": "Evaluating culture, purpose, and growth (Julia Jordan)",
+      "definition": "Culture shapes daily fit and leadership environment; purpose connects work to meaningful contribution; growth determines whether the role builds skills, responsibility, advancement, and earnings."
+    }
+  ]
+}

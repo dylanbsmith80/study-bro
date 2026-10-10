@@ -1,0 +1,117 @@
+{
+  "title": "ISTA Exam 1",
+  "cards": [
+    {
+      "term": "Gershwin v. Columbia Artists Management (CAMI)",
+      "definition": "CAMI sponsored a concert that included a Gershwin song without copyright clearance. The court held CAMI liable because it knew the concert lacked clearance, even though CAMI did not directly put on the concert."
+    },
+    {
+      "term": "Significance of Gershwin v. CAMI",
+      "definition": "It expanded the scope of liability by establishing that indirectly involved parties could still be liable."
+    },
+    {
+      "term": "Sony v. Universal (Betamax case)",
+      "definition": "Universal argued that Sony's Betamax recorder infringed copyright because users recorded Universal's works. The court ruled in Sony's favor."
+    },
+    {
+      "term": "Significance of Sony v. Universal",
+      "definition": "It established that manufacturers are not liable for infringement when their products have substantial non-infringing uses, such as time-shifting."
+    },
+    {
+      "term": "MGM v. Grokster",
+      "definition": "Grokster offered file-sharing software used to download copyrighted files and earned advertising revenue. It was held liable because it encouraged users to infringe."
+    },
+    {
+      "term": "Significance of MGM v. Grokster",
+      "definition": "It established that companies could be liable when they encourage customers to use their products for infringement."
+    },
+    {
+      "term": "Copyright",
+      "definition": "Protects original works of authorship, such as novels, movies, and songs; encourages the creation and distribution of creative works; and is automatically granted to the creator for life."
+    },
+    {
+      "term": "Patent",
+      "definition": "Protects inventions, designs, and processes; encourages innovation and commercialization; requires an application; and lasts about 20 years."
+    },
+    {
+      "term": "Fair use",
+      "definition": "Specific circumstances in which it is legal to reproduce a copyrighted work without the copyright holder's permission."
+    },
+    {
+      "term": "Fair-use factor 1",
+      "definition": "What is the purpose and character of the use? Examples include commentary, criticism, and teaching."
+    },
+    {
+      "term": "Fair-use factor 2",
+      "definition": "What is the nature of the work being copied? The guide notes that nonfiction is often acceptable."
+    },
+    {
+      "term": "Fair-use factor 3",
+      "definition": "How much of the work is being used?"
+    },
+    {
+      "term": "Fair-use factor 4",
+      "definition": "How will the use affect the market?"
+    },
+    {
+      "term": "Kantianism",
+      "definition": "Follows two categorical imperatives: act only from moral rules that you can will to be universal moral laws, and treat others as ends in themselves rather than only as a means to an end."
+    },
+    {
+      "term": "Act utilitarianism",
+      "definition": "An act is right or wrong to the extent that it increases or decreases the total happiness of affected parties, following the principle of utility or greatest happiness principle."
+    },
+    {
+      "term": "Rule utilitarianism",
+      "definition": "Adopt the moral rules that, if followed by everyone, would create the greatest increase in total happiness for all affected parties."
+    },
+    {
+      "term": "Virtue ethics",
+      "definition": "The right action is what a virtuous person would do when acting in character under the circumstances. Virtuous traits help a person flourish and be truly happy, following the golden mean."
+    },
+    {
+      "term": "Social contract theory",
+      "definition": "Morality consists of mutually beneficial rules for how people treat one another that rational people agree to follow on the condition that others follow them too."
+    },
+    {
+      "term": "Explicit contract",
+      "definition": "A contract that is clearly stated, such as laws or terms of service."
+    },
+    {
+      "term": "Implicit contract",
+      "definition": "A contract that is implied rather than necessarily codified into law, such as social norms and customs."
+    },
+    {
+      "term": "ENIAC",
+      "definition": "The first programmable electric digital computer."
+    },
+    {
+      "term": "Moore's Law",
+      "definition": "The number of transistors doubles every two years."
+    },
+    {
+      "term": "Ethical point of view",
+      "definition": "Understanding that people and their core values are worthy of respect."
+    },
+    {
+      "term": "Negative right",
+      "definition": "A right that is guaranteed by leaving the person alone."
+    },
+    {
+      "term": "Difference principle",
+      "definition": "Social and economic inequalities must be arranged to provide the greatest benefit to the least-advantaged members of society."
+    },
+    {
+      "term": "Patent troll",
+      "definition": "A patent-holding company that makes money by filing lawsuits to enforce its intellectual property rights."
+    },
+    {
+      "term": "Prudential right",
+      "definition": "A right that benefits society."
+    },
+    {
+      "term": "Purpose of public records",
+      "definition": "To inform the public."
+    }
+  ]
+}
